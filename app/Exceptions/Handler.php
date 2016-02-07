@@ -45,6 +45,12 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
+        // Handle findOrFail($id) exception
+        if($e instanceof ModelNotFoundException) {
+            if(starts_with($request->getRequestUri(), '/project/')) {
+                return redirect()->to('project');
+            }
+        }
         return parent::render($request, $e);
     }
 }
