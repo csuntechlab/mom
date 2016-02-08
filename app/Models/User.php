@@ -4,14 +4,16 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    protected $primaryKey = '';
+    protected $table = 'users';
+    protected $primaryKey = 'user_id';
+    
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'first_name', 'middle_name', 'last_name', 'email', 'password',
+        'first_name', 'last_name', 'display_name'
     ];
 
     /**

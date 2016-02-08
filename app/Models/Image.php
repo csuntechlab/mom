@@ -4,16 +4,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Image extends Model
 {
-   protected $table = '';
-   protected $primarKey = 'image';
-   protected $fillable = ['owner_id', 'src'];
+   protected $table = 'mom.images';
+   protected $primaryKey = 'image_id';
+   protected $fillable = ['imageable_id', 'imageable_type', 'src'];
 
    /**
-    * Relates this image to its associated person.
+    * Returns the model instance to which this image is morphed.
     * 
-    * @return Builder
+    * @return Person|Project
     */
-   public function person() {
-      return $this->belongsTo('Helix\Models\Person');
+   public function imageable() {
+      return $this->morphTo();
    }
+
 }

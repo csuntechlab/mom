@@ -4,10 +4,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Person extends Model
 {
-   protected $table = '';
-   protected $primaryKey = 'user_id';
+   protected $table = 'mom.profiles';
+   protected $primaryKey = 'profile_id';
    protected $fillable = [
-      'background', 'position', 'grad_year'
+      'background', 'position', 'grad_date'
    ];
 
    /**
@@ -16,7 +16,7 @@ class Person extends Model
     * @return Builder
     */
    public function image() {
-      return $this->hasOne('Mom\Models\Image');
+      return $this->morphOne('Mom\Models\Image', 'imageable');
    }
 
    /**
@@ -24,8 +24,18 @@ class Person extends Model
     * 
     * @return Builder
     */
-   public function socialNetworks() {
-      return $this->belongsToMany('Mom\Models\SocialNetwork', 'Person_SocialNetwork', 'user_id', 'social_id');
+   public function links() {
+      return $this->belongsToMany('Mom\Models\Link', 'link_person', 'individuals_id', 'link_id')
+        ->withPivot('link_url');
+   }
+
+   /**
+    * Relates this person to their associated skills.
+    * 
+    * @return Builder
+    */
+   public function skills() {
+      return $this->belongsToMany('Mom\Models\Skill', 'mom.person_expertise', 'individuals_id', 'expertise_id');
    }
 
    /**
