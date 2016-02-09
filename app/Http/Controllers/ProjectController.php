@@ -1,11 +1,9 @@
-<?php
+<?php namespace Mom\Http\Controllers;
 
-namespace App\Http\Controllers;
-
-use App\Project;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\CreateProjectRequest;
+use Mom\Models\Project;
+use Mom\Http\Requests;
+use Mom\Http\Controllers\Controller;
+use Mom\Http\Requests\CreateProjectRequest;
 
 class ProjectController extends Controller
 {
@@ -18,6 +16,7 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::all();
+        // Change view as needed
         return view('projects.index', compact('projects'));
     }
 
@@ -28,6 +27,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
+        // Change view as needed
         return view('projects.create');
     }
 
@@ -55,6 +55,7 @@ class ProjectController extends Controller
         // ModelNotFoundException exception will be caught for
         // findOrFail under the /project URI
         $project = Project::findOrFail($id);
+        // Change view as needed
         return view('projects.show', compact('project'));
     }
 
@@ -70,6 +71,7 @@ class ProjectController extends Controller
         // ModelNotFoundException exception will be caught for
         // findOrFail under the /project URI
         $project = Project::findOrFail($id);
+        // Change view as needed
         return view('projects.edit', compact('project'));
     }
 

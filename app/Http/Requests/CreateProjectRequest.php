@@ -1,8 +1,6 @@
-<?php
+<?php namespace Mom\Http\Requests;
 
-namespace App\Http\Requests;
-
-use App\Http\Requests\Request;
+//use Mom\Http\Requests\Request;
 use Route;
 
 class CreateProjectRequest extends Request
