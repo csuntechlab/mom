@@ -1,6 +1,4 @@
-<?php
-
-namespace App;
+<?php namespace Mom\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 

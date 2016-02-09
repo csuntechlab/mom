@@ -122,7 +122,7 @@ return [
     */
 
     'providers' => [
-         Collective\Html\HtmlServiceProvider::class, 
+         // Collective\Html\HtmlServiceProvider::class, 
 
         /*
          * Laravel Framework Service Providers...
@@ -152,10 +152,10 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        Mom\Providers\AppServiceProvider::class,
+        Mom\Providers\AuthServiceProvider::class,
+        Mom\Providers\EventServiceProvider::class,
+        Mom\Providers\RouteServiceProvider::class,
 
     ],
 
@@ -171,8 +171,8 @@ return [
     */
 
     'aliases' => [
-         'Form'      => Collective\Html\FormFacade::class, 
-         'HTML'      => Collective\Html\HtmlFacade::class, 
+         // 'Form'      => Collective\Html\FormFacade::class, 
+         // 'HTML'      => Collective\Html\HtmlFacade::class, 
 
         'App'       => Illuminate\Support\Facades\App::class,
         'Artisan'   => Illuminate\Support\Facades\Artisan::class,
