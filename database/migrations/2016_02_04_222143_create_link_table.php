@@ -16,7 +16,6 @@ class CreateLinkTable extends Migration
             $table->increments('link_id')->unsigned();
             $table->string('logo_src');
             $table->string('type');
-
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->nullable();
         });

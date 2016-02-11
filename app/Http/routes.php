@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 /*
 |--------------------------------------------------------------------------
 | Routes File
@@ -15,6 +14,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('person', function() {
+   $user = Mom\Models\User::all();
+   return $user;
+});
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -27,5 +30,5 @@ Route::get('/', function () {
 */
 
 Route::group(['middleware' => ['web']], function () {
-    //
+   
 });

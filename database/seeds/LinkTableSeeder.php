@@ -9,19 +9,19 @@ class LinkTableSeeder extends Seeder
     {
       Link::create([
          'type' => 'linkedin',
-         'logo_src' => ''
+         'logo_src' => 'url_to_linkedin_logo'
       ]);
       Link::create([
          'type' => 'portfolium',
-         'logo_src' => ''
+         'logo_src' => 'url_to_portfolium_logo'
       ]);
       Link::create([
          'type' => 'github',
-         'logo_src' => ''
+         'logo_src' => 'url_to_github_logo'
       ]);
       Link::create([
          'type' => 'website',
-         'logo_src' => ''
+         'logo_src' => 'url_to_website_logo'
       ]);
     }
 }

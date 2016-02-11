@@ -6,6 +6,6 @@ class PersonSkill extends Model
 {
    protected $table = 'mom.person_expertise';
    protected $fillable = [
-      'individual_id', 'expertise_id',
+      'individuals_id', 'expertise_id',
    ];
 }

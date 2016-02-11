@@ -51,13 +51,14 @@ return [
             'database' => database_path('database.sqlite'),
             'prefix'   => '',
         ],
-
+        
         'mysql' => [
             'driver'    => 'mysql',
-            'host'      => env('DB_HOST', 'localhost'),
-            'database'  => env('DB_DATABASE', 'forge'),
+            'host'      => env('DB_HOST', 'DB_HOST'),
+            'database'  => env('DB_DATABASE', 'localhost'),
             'username'  => env('DB_USERNAME', 'forge'),
             'password'  => env('DB_PASSWORD', ''),
+            'port'      => env('DB_PORT'),
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',

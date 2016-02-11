@@ -4,17 +4,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    protected $table = 'users';
+    protected $table = 'mom.users';
     protected $primaryKey = 'user_id';
-    
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'first_name', 'last_name', 'display_name'
-    ];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -24,4 +15,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function profile() {
+        return $this->hasOne('Mom\Models\Person', 'user_id');
+    }
 }
