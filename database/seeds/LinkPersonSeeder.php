@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Mom\Models\LinkPerson;
+
 
 class LinkPersonSeeder extends Seeder
 {
