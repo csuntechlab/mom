@@ -34,8 +34,8 @@ elixir(function(mix) {
   mix.copy(paths.fontawesome + 'fonts', 'public/fonts');
 
   // Add Scripts to project
-  mix.copy(paths.jquery + 'jquery.js', 'resources/js/jquery.js')
-     .copy(paths.bootstrap + 'javascripts/bootstrap.js', 'resources/js/bootstrap.js');
+  mix.copy(paths.jquery + 'jquery.js', 'resources/js/jquery/jquery.js')
+     .copy(paths.bootstrap + 'javascripts/bootstrap.js', 'resources/js/bootstrap-js/bootstrap.js');
 
   // Merge Styles
   mix.styles([
@@ -44,8 +44,9 @@ elixir(function(mix) {
 
   // Merge Scripts
   mix.scripts([
-    'jquery.js', 
-    'bootstrap.js'
+    'jquery/jquery.js', 
+    'app.js', 
+    'bootstrap-js/bootstrap.js'
   ],'public/js/app.js', 'resources/js');
 
   // Compile SASS

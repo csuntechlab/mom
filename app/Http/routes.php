@@ -12,7 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts.master');
+});
+Route::get('projects', function () {
+    return view('projects');
 });
 
 /*

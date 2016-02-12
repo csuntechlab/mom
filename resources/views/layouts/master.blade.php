@@ -11,14 +11,14 @@
         <link rel="icon" href="{!! asset('favicon.png') !!}" type="image/x-icon">
         
             {{-- APP STYLESHEETS --}}
-        {!! HTML::style('css/components.css') !!}
+        {{-- {!! HTML::style('css/components.css') !!} --}}
         {!! HTML::style('css/app.css') !!}
     </head>
     <body>
 
         {{-- APP CONTENT BEGINS --}}
-        @include('layouts.partials.header')
-            <div class="wrapper">
+        @include('layouts.partials.nav')
+            <div class="container-fluid">
                 @yield('content')
             </div>
             {{-- MODALS --}}
