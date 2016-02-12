@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class PersonSkill extends Model
+class ProfileSkill extends Model
 {
    protected $table = 'mom.person_expertise';
    protected $fillable = [

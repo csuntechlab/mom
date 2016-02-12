@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class LinkPerson extends Model
+class LinkProfile extends Model
 {
    protected $table = 'mom.link_profile';
    protected $primaryKey = 'link_profile_id';
