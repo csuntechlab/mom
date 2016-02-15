@@ -32,6 +32,10 @@ Route::get('profile', function() {
    // $user = Mom\Models\Profile::find('members:104733445');
    // $name = $user->fullName();
    // return $name;
+
+   // $user = Mom\Models\User::all();
+   // $user->load('profile.links', 'profile.skills');
+   // return $user;
 });
 /*
 |--------------------------------------------------------------------------
