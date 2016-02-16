@@ -5785,7 +5785,7 @@ button.close {
   background-repeat: no-repeat;
   background-size: 13px 2px;
   display: table;
-  font-size: 2.6em;
+  font-size: 2em;
   font-weight: 400;
   letter-spacing: 1px;
   margin: 0 auto;
@@ -5794,7 +5794,7 @@ button.close {
 
 .student-title {
   color: #999;
-  font-size: 2em;
+  font-size: 1.5em;
   font-weight: 300;
   letter-spacing: 1px; }
 
@@ -5817,13 +5817,13 @@ button.close {
   background-position: bottom left;
   background-repeat: no-repeat;
   background-size: 13px 2px;
-  font-size: 2.4em;
+  font-size: 1.8em;
   font-weight: 200;
   letter-spacing: 1px;
   padding-bottom: 5px; }
 
 .student-seb-list {
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-weight: 300;
   letter-spacing: .5px;
   line-height: 1.5em;

@@ -27,7 +27,7 @@
 					</div>
 				</div>
 				
-	        	<div class="col-xs-6 text-center"><img class="student-image <?php if($productOwner) echo'product-owner' ?>" src="http://placehold.it/220x220" alt="student image"></div>
+	        	<div class="col-xs-6 text-center"><img class="student-image <?php if($productOwner) echo'product-owner' ?>" src="http://placehold.it/200x200" alt="student image"></div>
 	        	<div class="col-xs-2 text-left">
 	        		<div class="social-media-btn">
 	        			<a href="#">
