@@ -5749,6 +5749,87 @@ button.close {
   .hidden-print {
     display: none !important; } }
 
+.projects:first-child {
+  margin-top: 100px; }
+
+.projects {
+  border: #999 solid 1px;
+  border-radius: 20px;
+  height: 410px;
+  margin: 0 auto 100px;
+  padding: 1em 0 1em 1em;
+  position: relative; }
+
+.projects--project-btn {
+  background-color: #c81d28;
+  color: #fff;
+  font-size: 1.8em;
+  left: -30px;
+  line-height: 2em;
+  padding: 10px 20px;
+  position: absolute;
+  text-align: center;
+  top: -45px;
+  z-index: 999; }
+
+.project-sow {
+  border-bottom: 1px solid #999; }
+
+.project-sow,
+.project-po {
+  padding: 1em; }
+
+.project--img {
+  border: solid 1px #999;
+  border-radius: 20px; }
+
+.project--img-view {
+  color: #000;
+  left: 338px;
+  position: absolute;
+  top: 353px; }
+  .project--img-view-icon {
+    background-color: #c71d28;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 2em;
+    height: 38px;
+    line-height: 1.2em;
+    text-align: center;
+    width: 38px; }
+  .project--img-view-text {
+    font-size: 1.3em;
+    margin-left: 52px;
+    margin-top: -30px; }
+  .project--img-view:hover {
+    color: #000;
+    text-decoration: none; }
+    .project--img-view:hover .project--img-view-text {
+      text-decoration: underline; }
+
+.projects-product-owner--image {
+  border-radius: 50%; }
+
+.project-members {
+  border-left: solid 1px #999;
+  height: 380px;
+  margin: 0 35px 0 auto;
+  position: relative;
+  text-align: center;
+  width: 380px; }
+
+.project-members--member {
+  height: 40px;
+  position: absolute; }
+
+.project-member--img {
+  border-radius: 20px; }
+
+.project-member--name {
+  color: #000;
+  font-size: 10px;
+  padding-top: 7px; }
+
 .student {
   background-image: url("../imgs/lines-left.png");
   background-position: bottom right;
@@ -5762,7 +5843,7 @@ button.close {
   margin-top: 110px;
   text-align: center; }
   .social-media-btn a {
-    color: #666;
+    color: #999;
     font-size: 1.1em;
     letter-spacing: .2px;
     text-decoration: none; }
@@ -5777,7 +5858,7 @@ button.close {
   border-radius: 50%; }
 
 .product-owner {
-  box-shadow: 0 0 10px #ce2124; }
+  box-shadow: 0 0 10px #c71d28; }
 
 .student-name {
   background-image: url("../imgs/red-line.png");
@@ -5799,18 +5880,18 @@ button.close {
   letter-spacing: 1px; }
 
 .student-graduate {
-  border: solid 2px #ce2124;
+  border: solid 2px #c71d28;
   border-radius: 100%;
   color: #000;
   font-size: .9em;
   padding: .4em; }
 
 .graduates-in {
-  color: #666;
+  color: #999;
   font-size: 1.2em; }
 
 .student-seb {
-  color: #666; }
+  color: #999; }
 
 .student-seb-title {
   background-image: url("../imgs/red-line.png");
@@ -5831,7 +5912,7 @@ button.close {
   margin-left: -20px; }
 
 .student-seb-list-items::before {
-  color: #ce2124;
+  color: #c71d28;
   content: '• ';
   font-size: 1em; }
 
