@@ -1,6 +1,4 @@
-<?php
-
-namespace Mom\Http\Controllers;
+<?php namespace Mom\Http\Controllers;
 
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
