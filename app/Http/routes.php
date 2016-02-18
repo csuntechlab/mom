@@ -29,9 +29,3 @@ Route::get('/', function () {
 Route::group(['middleware' => ['web']], function () {
     //
 });
-
-// Test route for returning images
-
-Route::get('images', function(){
-	return Mom\Models\Image::all();
-});
