@@ -1,6 +1,6 @@
 <?php namespace Mom\Http\Requests;
 
-//use Mom\Http\Requests\Request;
+use Mom\Http\Requests\Request;
 use Route;
 
 class CreateProjectRequest extends Request
@@ -23,7 +23,7 @@ class CreateProjectRequest extends Request
     public function rules()
     {
         $rules = [
-            'name' => 'required|unique:projects,name|min:3',
+            'title' => 'required|unique:projects,title|min:3',
   
         ];
         // retrieves primary key to ignore 'project name already exist' error
@@ -31,7 +31,7 @@ class CreateProjectRequest extends Request
         if($this['_method'] == 'PUT'){
             $parameters     = Route::current()->parameters();
             $project_id     = array_values($parameters)[0];
-            $rules['name']  = "required|unique:projects,name,$project_id,project_id|min:3";
+            $rules['title']  = "required|unique:projects,title,$project_id,project_id|min:3";
         }
         return $rules;
 
@@ -45,8 +45,8 @@ class CreateProjectRequest extends Request
     public function messages()
     {
         return [
-            'name.required'     => 'The project name field is required.',
-            'name.unique'       => 'The project ' . CreateProjectRequest::get('name') . ' already exists.',
+            'title.required'     => 'The project name field is required.',
+            'title.unique'       => 'The project ' . Request::get('title') . ' already exists.',
 
         ];
        
