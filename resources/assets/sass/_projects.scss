@@ -19,7 +19,7 @@ $view-members-circle-size: 380px;
   position: relative;
 }
 
-.projects--project-btn {
+.projects-projectname {
   background-color: $project-red;
   color: $white;
   font-size: 1.8em;
@@ -37,7 +37,7 @@ $view-members-circle-size: 380px;
 }
 
 .project-sow,
-.project-po {
+.project--po {
   padding: 1em;
 }
 
@@ -79,13 +79,13 @@ $view-members-circle-size: 380px;
   }
 }
 
-.projects-product-owner {
-  &--image {
+.projects--po {
+  &-image img {
     border-radius: 50%;
   }
 }
 
-.project-members {
+.members {
   border-left: solid 1px $grey;
   height: $view-members-circle-size;
   margin: 0 35px 0 auto;
@@ -94,16 +94,16 @@ $view-members-circle-size: 380px;
   width: $view-members-circle-size;
 }
 
-.project-members--member {
+.members--member {
   height: 40px;
   position: absolute;
 }
 
-.project-member--img {
+.members--member-img {
   border-radius: 20px;
 }
 
-.project-member--name {
+.members--member-name {
   color: $black;
   font-size: 10px;
   padding-top: 7px;
