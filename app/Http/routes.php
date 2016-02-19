@@ -37,6 +37,9 @@ Route::get('profile', function() {
    // $user->load('profile.links', 'profile.skills');
    // return $user;
 });
+Route::get('projects', function(){
+   return Mom\Models\Project::all();
+});
 /*
 |--------------------------------------------------------------------------
 | Application Routes
