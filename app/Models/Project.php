@@ -8,6 +8,7 @@ class Project extends Model
 {
     protected $table ='mom.projectmeta';
     protected $primaryKey = 'project_id';
+    public $incrementing = false;
     protected $fillable = ['title','description'];
 
 }
