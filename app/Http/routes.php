@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 /*
 |--------------------------------------------------------------------------
 | Routes File
@@ -15,6 +14,29 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('profile', function() {
+   // returns profile for that user -> This WORKS!
+   // $user = Mom\Models\User::find('members:104733445');
+   // $profile = $user->profile()->get();
+   // return $profile;
+
+   // returns links for that profile -> This WORKS!
+   // $links = Mom\Models\Profile::where('individuals_id', 'members:104733445')->with('links')->get();
+   // return $links;
+      // OR
+   // $user = Mom\Models\Profile::find('members:104733445');
+   // $links = $user->links()->get();
+   // return $links;
+
+   // returns the full name of the user.
+   // $user = Mom\Models\Profile::find('members:104733445');
+   // $name = $user->fullName();
+   // return $name;
+
+   // $user = Mom\Models\User::all();
+   // $user->load('profile.links', 'profile.skills');
+   // return $user;
+});
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -27,7 +49,7 @@ Route::get('/', function () {
 */
 
 Route::group(['middleware' => ['web']], function () {
-    //
+   
 });
 
 Route::get('student-modal', function () {
