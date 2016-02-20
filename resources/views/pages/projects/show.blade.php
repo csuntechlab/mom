@@ -4,7 +4,7 @@
 	&larr; Go Back
 </a>
 |
-<a href="{{ url('rest/' . $project->project_id . '/edit') }}">
+<a href="{{ url('project/' . $project->project_id . '/edit') }}">
 	Edit User
 </a>
 

@@ -39,7 +39,7 @@ class ProjectController extends Controller
      */
     public function store(CreateProjectRequest $request)
     {
-        $project = Project::create($request->all());
+        Project::create($request->all());
         return redirect()->to('project');
     }
 
@@ -54,7 +54,7 @@ class ProjectController extends Controller
         // Look in app/Exceptions/Handler.php for how a
         // ModelNotFoundException exception will be caught for
         // findOrFail under the /project URI
-        $project = Project::findOrFail($id);
+        $project = Project::findOrFail('projects:' . $id);
         // Change view as needed
         return view('pages.projects.show', compact('project'));
     }
@@ -70,7 +70,7 @@ class ProjectController extends Controller
         // Look in app/Exceptions/Handler.php for how a
         // ModelNotFoundException exception will be caught for
         // findOrFail under the /project URI
-        $project = Project::findOrFail($id);
+        $project = Project::findOrFail('projects: ' . $id);
         // Change view as needed
         return view('pages.projects.edit', compact('project'));
     }
@@ -87,14 +87,14 @@ class ProjectController extends Controller
         // Look in app/Exceptions/Handler.php for how a
         // ModelNotFoundException exception will be caught for
         // findOrFail under the /project URI
-        $project = Project::findOrFail($id);
+        $project = Project::findOrFail('projects:' . $id);
 
         $project->fill($request->all());
         $project->save();
         $project->touch();
         return redirect()
                 ->to('project/' . $project->project_id)
-                ->with('message', "Project {$project->name} updated successfully!");
+                ->with('message', "Project {$project->title} updated successfully!");
     }
 
     /**
@@ -108,11 +108,11 @@ class ProjectController extends Controller
         // Look in app/Exceptions/Handler.php for how a
         // ModelNotFoundException exception will be caught for
         // findOrFail under the /project URI
-        $project = Project::findOrFail($id);
+        $project = Project::findOrFail('projects: ' . $id);
         $project->delete();
 
         return redirect()
             ->to('project/')
-            ->with('message', "Project {$project->name} deleted successfully!");
+            ->with('message', "Project {$project->title} deleted successfully!");
     }
 }

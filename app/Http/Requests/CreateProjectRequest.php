@@ -23,7 +23,9 @@ class CreateProjectRequest extends Request
     public function rules()
     {
         $rules = [
-            'title' => 'required|unique:projects,title|min:3',
+            'title' => 'required|unique:projectmeta,title|min:3',
+            //'owner_id' => 'required'
+            'description' => 'required'
   
         ];
         // retrieves primary key to ignore 'project name already exist' error
@@ -31,7 +33,8 @@ class CreateProjectRequest extends Request
         if($this['_method'] == 'PUT'){
             $parameters     = Route::current()->parameters();
             $project_id     = array_values($parameters)[0];
-            $rules['title']  = "required|unique:projects,title,$project_id,project_id|min:3";
+            $rules['title']  = "required|unique:projectmeta,title,$project_id,project_id|min:3";
+            //$rules['owner_id']  = "required|unique:projectmeta,owner_id,$project_id,project_id";
         }
         return $rules;
 
@@ -45,9 +48,10 @@ class CreateProjectRequest extends Request
     public function messages()
     {
         return [
-            'title.required'     => 'The project name field is required.',
-            'title.unique'       => 'The project ' . Request::get('title') . ' already exists.',
-
+            'title.required'        => 'The project name field is required.',
+            'title.unique'          => 'The project ' . Request::get('title') . ' already exists.',
+            //'owner_id.required'     => 'A project owner is required.',
+            'description.required'  => 'The project\'s description field is required.',
         ];
        
     }
