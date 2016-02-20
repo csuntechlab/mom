@@ -17,7 +17,7 @@ class ProjectController extends Controller
     {
         $projects = Project::all();
         // Change view as needed
-        return view('projects.index', compact('projects'));
+        return view('pages.projects.index', compact('projects'));
     }
 
     /**
@@ -28,7 +28,7 @@ class ProjectController extends Controller
     public function create()
     {
         // Change view as needed
-        return view('projects.create');
+        return view('pages.projects.create');
     }
 
     /**
@@ -56,7 +56,7 @@ class ProjectController extends Controller
         // findOrFail under the /project URI
         $project = Project::findOrFail($id);
         // Change view as needed
-        return view('projects.show', compact('project'));
+        return view('pages.projects.show', compact('project'));
     }
 
     /**
@@ -72,7 +72,7 @@ class ProjectController extends Controller
         // findOrFail under the /project URI
         $project = Project::findOrFail($id);
         // Change view as needed
-        return view('projects.edit', compact('project'));
+        return view('pages.projects.edit', compact('project'));
     }
 
     /**
