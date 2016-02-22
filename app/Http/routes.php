@@ -37,8 +37,16 @@ Route::get('profile', function() {
    // $user->load('profile.links', 'profile.skills');
    // return $user;
 });
+
+// test route for Project Model
 Route::get('projects', function(){
    return Mom\Models\Project::all();
+});
+
+// test route for NemoEntity Model to return all projects of META+Lab
+// NemoEntity Model will be used to create the projects and the Project model to display and edit them.
+Route::get('entities', function(){
+   return Mom\Models\NemoEntity::where('parent_entities_id', 'departments:10390')->where('entity_type', 'Project')->get();
 });
 /*
 |--------------------------------------------------------------------------
