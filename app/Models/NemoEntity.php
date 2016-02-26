@@ -16,10 +16,4 @@ class NemoEntity extends Model
       'display_name', 
       'description',
    ];
-
-   public function scopeLatestProject($query){
-   		return $query->where('parent_entities_id','departments:10390')
-   					->where('entity_type', 'Project')
-   					->orderBy('created_at', 'DESC')->first();
-   }
 }
