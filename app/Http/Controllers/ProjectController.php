@@ -17,7 +17,7 @@ class ProjectController extends Controller
      * @return Mom\Models\NemoEntity project_id
      */
     private function generateProjectNewID(){
-        $latestID = NemoEntity::latestProject()->entities_id;
+        $latestID = NemoEntity::where('entities_id', 'like', 'projects:%')->latest()->first()->entities_id;
         // strip split string 'projects:#' into an array and add 1 with ':' delimiter
         $project_id = explode(':', $latestID);
         return 'projects:' . ($project_id[1] + 1);
