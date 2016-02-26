@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 /*
 |--------------------------------------------------------------------------
 | Routes File
@@ -18,6 +17,10 @@ Route::get('projects', function () {
     return view('projects');
 });
 
+Route::get('profile', function() {
+   return Mom\Models\Profile::all();
+});
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -30,5 +33,5 @@ Route::get('projects', function () {
 */
 
 Route::group(['middleware' => ['web']], function () {
-    //
+	Route::resource('project', 'ProjectController');
 });
