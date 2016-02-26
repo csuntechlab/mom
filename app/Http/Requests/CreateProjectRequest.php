@@ -26,6 +26,7 @@ class CreateProjectRequest extends Request
             'title' => 'required|unique:projectmeta,title|min:3',
             'description' => 'required',
             'start_date'  => 'required|date_format:Y-m-d',
+            // if value is entered, then it will be validated and must be after start_date
             'end_date'    => 'date_format:Y-m-d|after:' . Request::get('start_date'),
         ];
         // retrieves primary key to ignore 'project name already exist' error
@@ -33,7 +34,7 @@ class CreateProjectRequest extends Request
         if($this['_method'] == 'PUT'){
             $parameters     = Route::current()->parameters();
             $project_id     = 'projects:' . array_values($parameters)[0];
-            $rules['title']  = "required|unique:projectmeta,title,$project_id,project_id|min:3";
+            $rules['title'] = "required|unique:projectmeta,title,$project_id,project_id|min:3";
         }
         return $rules;
 
@@ -50,7 +51,7 @@ class CreateProjectRequest extends Request
             'title.required'        => 'The project name field is required.',
             'title.unique'          => 'The project ' . Request::get('title') . ' already exists.',
             'description.required'  => 'The project\'s description field is required.',
-            'start_date.required'   => 'The start date field is required, mang.'
+            'end_date.after'        =>  'The estimated end date must be a after the ' . Request::get('start_date') . ' date.',
         ];
        
     }

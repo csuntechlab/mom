@@ -14,6 +14,7 @@ class ProjectMeta extends Model
     	'description'
     ];
 
+    // start_date and end_date timestamps for each project
     public function dates(){
     	return $this->hasOne(Project::class, 'project_id');
     }

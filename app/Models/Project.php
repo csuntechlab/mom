@@ -18,14 +18,11 @@ class Project extends Model
     	'project_id',
     ];
 
-    // formatted as Carbon instances on database
+    // formatted as Carbon instances on database in order to use ->format('Y-m-d') in views.
     protected $dates = [
         'created_at',
         'updated_at',
         'start_date',
         'end_date',
     ];
-    public function titleAndDescription(){
-    	return $this->HasOne(ProjectMeta::class, 'project_id');
-    }
 }
