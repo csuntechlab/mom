@@ -20,6 +20,10 @@
 
 	{!! Form::text('title', $project->title, ['placeholder' => 'Title']) !!}
 	{!! Form::textarea('description', $project->description , ['placeholder' => 'Description'])!!}
+	{!! Form::label('start_date', 'Start date:') !!}
+        {!! Form::input('text', 'start_date', $project->dates->start_date->format('Y-m-d') ) !!}
+    {!! Form::label('end_date', 'Estimated end date:') !!}
+        {!! Form::input('text', 'end_date', $project->dates->end_date ? $project->dates->end_date->format('Y-m-d'): date('Y-m-d', strtotime("+30 days"))) !!}
 	{!! Form::submit('Update Project') !!}
 
 {!! Form::close() !!}

@@ -5,7 +5,7 @@
 </a>
 |
 <a href="{{ url('project/' . $project->project_id . '/edit') }}">
-	Edit User
+	Edit Project
 </a>
 
 {!! Form::open(['method' => 'DELETE']) !!}
@@ -20,3 +20,15 @@
 
 <h3>Description </h3>
 <p> {{$project->description }} </p>
+
+<h3>Start Date </h3>
+<p> {{$project->dates->start_date }} </p>
+
+<h3>Estimated End Date </h3>
+<p> {{$project->dates->end_date }} </p>
+
+<h3>Created At Date </h3>
+<p> {{$project->created_at }} </p>
+
+<h3>Updated At Last Date </h3>
+<p> {{$project->updated_at }} </p>

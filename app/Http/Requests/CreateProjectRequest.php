@@ -24,17 +24,16 @@ class CreateProjectRequest extends Request
     {
         $rules = [
             'title' => 'required|unique:projectmeta,title|min:3',
-            //'owner_id' => 'required'
-            'description' => 'required'
-  
+            'description' => 'required',
+            'start_date'  => 'required|date_format:Y-m-d',
+            'end_date'    => 'date_format:Y-m-d|after:' . Request::get('start_date'),
         ];
         // retrieves primary key to ignore 'project name already exist' error
         // if keeping the same name on edit/update 
         if($this['_method'] == 'PUT'){
             $parameters     = Route::current()->parameters();
-            $project_id     = array_values($parameters)[0];
+            $project_id     = 'projects:' . array_values($parameters)[0];
             $rules['title']  = "required|unique:projectmeta,title,$project_id,project_id|min:3";
-            //$rules['owner_id']  = "required|unique:projectmeta,owner_id,$project_id,project_id";
         }
         return $rules;
 
@@ -50,8 +49,8 @@ class CreateProjectRequest extends Request
         return [
             'title.required'        => 'The project name field is required.',
             'title.unique'          => 'The project ' . Request::get('title') . ' already exists.',
-            //'owner_id.required'     => 'A project owner is required.',
             'description.required'  => 'The project\'s description field is required.',
+            'start_date.required'   => 'The start date field is required, mang.'
         ];
        
     }

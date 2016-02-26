@@ -1,12 +1,22 @@
 <?php namespace Mom\Http\Controllers;
 
 use Mom\Models\Project;
+use Mom\Models\ProjectMeta;
+use Mom\Models\NemoEntity;
 use Mom\Http\Requests;
 use Mom\Http\Controllers\Controller;
 use Mom\Http\Requests\CreateProjectRequest;
+use Carbon\Carbon;
 
 class ProjectController extends Controller
 {
+
+    private function generateProjectNewID(){
+        $latestID = NemoEntity::latestProject()->entities_id;
+        // strip split string 'projects:#' into an array and add 1 with ':' delimiter
+        $project_id = explode(':', $latestID);
+        return 'projects:' . ($project_id[1] + 1);
+    }
 
     /**
      * Display a listing of the resource.
@@ -15,7 +25,14 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::all();
+        $projects = ProjectMeta::with('dates')->get();
+        
+        // remove 'projects:' from project_id to only have the integers
+        foreach($projects as $project){
+            $id = explode(':', $project->project_id);
+            $project->project_id = array_pop($id);
+        }
+
         // Change view as needed
         return view('pages.projects.index', compact('projects'));
     }
@@ -39,7 +56,26 @@ class ProjectController extends Controller
      */
     public function store(CreateProjectRequest $request)
     {
-        Project::create($request->all());
+        $project_id = ($this->generateProjectNewID());
+        $title = $request->title;
+        $description = $request->description;
+        $start_date = $request->start_date;
+        $end_date = $request->end_date  === "" ? NULL: $request->end_date;
+        
+        NemoEntity::create([
+            'entities_id' => $project_id,
+            'parent_entities_id' => 'departments:10390',
+            'entity_type' => 'Project',
+            'display_name' => $title,
+            'description' => $description,
+        ]);
+
+        Project::create([
+            'project_id' => $project_id,
+            'start_date' => $start_date,
+            'end_date'   => $end_date,
+        ]);
+
         return redirect()->to('project');
     }
 
@@ -54,7 +90,10 @@ class ProjectController extends Controller
         // Look in app/Exceptions/Handler.php for how a
         // ModelNotFoundException exception will be caught for
         // findOrFail under the /project URI
-        $project = Project::findOrFail('projects:' . $id);
+        $project = ProjectMeta::findOrFail('projects:' . $id);
+        $project->load('dates');
+        $project->project_id = $id;
+        
         // Change view as needed
         return view('pages.projects.show', compact('project'));
     }
@@ -70,7 +109,10 @@ class ProjectController extends Controller
         // Look in app/Exceptions/Handler.php for how a
         // ModelNotFoundException exception will be caught for
         // findOrFail under the /project URI
-        $project = Project::findOrFail('projects: ' . $id);
+        $project = ProjectMeta::findOrFail('projects:' . $id);
+        $project->load('dates');
+        //dd($project);
+        $project->project_id = $id;
         // Change view as needed
         return view('pages.projects.edit', compact('project'));
     }
@@ -87,14 +129,25 @@ class ProjectController extends Controller
         // Look in app/Exceptions/Handler.php for how a
         // ModelNotFoundException exception will be caught for
         // findOrFail under the /project URI
-        $project = Project::findOrFail('projects:' . $id);
+        $projectMeta = ProjectMeta::findOrFail('projects:' . $id);
+        $projectMeta->fill([
+            'title'         =>  $request->title,
+            'description'   =>  $request->description,
+        ]);
+        $projectMeta->save();
+        $projectMeta->touch();
 
-        $project->fill($request->all());
+        $project = Project::findOrFail('projects:' . $id);
+        $project->fill([
+            'start_date' =>  $request->start_date,
+            'end_date'   =>  $request->end_date  === "" ? NULL: $request->end_date,
+        ]);
         $project->save();
         $project->touch();
+
         return redirect()
-                ->to('project/' . $project->project_id)
-                ->with('message', "Project {$project->title} updated successfully!");
+                ->to('project/' . $id)
+                ->with('message', "Project {$projectMeta->title} updated successfully!");
     }
 
     /**
@@ -108,11 +161,13 @@ class ProjectController extends Controller
         // Look in app/Exceptions/Handler.php for how a
         // ModelNotFoundException exception will be caught for
         // findOrFail under the /project URI
-        $project = Project::findOrFail('projects: ' . $id);
+        $projectMeta = ProjectMeta::findOrFail('projects:' . $id);
+        $projectMeta->delete();
+        $project = Project::findOrFail('projects:' . $id);
         $project->delete();
-
+        
         return redirect()
             ->to('project/')
-            ->with('message', "Project {$project->title} deleted successfully!");
+            ->with('message', "Project {$projectMeta->title} deleted successfully!");
     }
 }

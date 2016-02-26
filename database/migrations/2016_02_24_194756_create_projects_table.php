@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatProjectsTable extends Migration
+class CreateProjectsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,14 @@ class CreatProjectsTable extends Migration
      */
     public function up()
     {
-        Schema::create('projectmeta', function (Blueprint $table) {
-            $table->increments('project_id');
-            $table->string('title');
-            $table->string('description');
+        Schema::create('projects', function (Blueprint $table) {
+            $table->string('project_id');
+            $table->primary('project_id');
+            $table->timestamp('start_date')->nullable();
+            $table->timestamp('end_date')->nullable();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->nullable();
+
         });
     }
 
