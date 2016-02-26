@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 /*
 |--------------------------------------------------------------------------
 | Routes File
@@ -15,6 +14,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('profile', function() {
+   return Mom\Models\Profile::all();
+});
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -27,7 +30,7 @@ Route::get('/', function () {
 */
 
 Route::group(['middleware' => ['web']], function () {
-    //
+	Route::resource('project', 'ProjectController');
 });
 
 Route::get('student-modal', function () {
