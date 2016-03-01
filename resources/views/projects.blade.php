@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-
+<?php $i = 1; ?>
 <section class="section page-hero work-banner">
 	  <div class="dark-overlay"></div>
 		<div class="content">
@@ -17,7 +17,7 @@
 			</div>
 		</div>
 		<div class="row no-padding">
-			<div class="row-eq-height">
+			<div id="project{{$i}}" class="projects row-eq-height">
 				<div class="col-md-12">
 					
 					<div class="col-md-4">
@@ -47,24 +47,30 @@
 					</div>					
 					<div class="col-md-4">
 						<div class="card card-light">
-							<div class="card-content-xl card-content-action work-block">
-								<h2>Members</h2>
-								<hr class="line-inline">
+							<div class="card-content-xl card-content-action">
+								<!-- <h2>Members</h2>
+								<hr class="line-inline"> -->
 								<div class="members">
-						<a href="#" class="members--member">
-							<img class="members--member-img product-owner" src="http://placehold.it/80x80" alt="student image"><div class="members--member-name">
-								Student / Title</div>
-						</a>
-						<a href="#" class="members--member">
-							<img class="members--member-img" src="http://placehold.it/80x80" alt="student image"><div class="members--member-name">Student / Title</div>
-						</a>
-						<a href="#" class="members--member">
-							<img class="members--member-img" src="http://placehold.it/80x80" alt="student image"><div class="members--member-name">Student / Title</div>
-						</a>
-						<a href="#" class="members--member">
-							<img class="members--member-img" src="http://placehold.it/80x80" alt="student image"><div class="members-member--name">Student / Title</div>
-						</a>
-					</div>
+									<a href="#" class="members--member">
+										<img class="members--member-img product-owner" src="http://placehold.it/60x60" alt="student image"><div class="members--member-name">
+											Student / Title</div>
+									</a>
+									<a href="#" class="members--member">
+										<img class="members--member-img" src="http://placehold.it/60x60" alt="student image"><div class="members--member-name">Student / Title</div>
+									</a>
+									<a href="#" class="members--member">
+										<img class="members--member-img" src="http://placehold.it/60x60" alt="student image"><div class="members--member-name">Student / Title</div>
+									</a>
+									<a href="#" class="members--member">
+										<img class="members--member-img" src="http://placehold.it/60x60" alt="student image"><div class="members--member-name">Student / Title</div>
+									</a>
+									<a href="#" class="members--member">
+										<img class="members--member-img" src="http://placehold.it/60x60" alt="student image"><div class="members--member-name">Student / Title</div>
+									</a>
+									<a href="#" class="members--member">
+										<img class="members--member-img" src="http://placehold.it/60x60" alt="student image"><div class="members--member-name">Student / Title</div>
+									</a>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -92,6 +98,7 @@
 						</div>
 					</div>
 				</div> -->
+				<?php $i++; ?>
 			</div>
 
 		</div>
@@ -102,7 +109,7 @@
 var projects = $('.projects').length;
 
 for(i=1; i <= projects; i++){
-	var radius = 135;
+	var radius = 130;
 	var fields = $('#project'+i+' .members--member'), container = $('.members'), width = container.width(), height = container.height();
 	var angle = (1.5*Math.PI), step = (2*Math.PI) / fields.length;
 
