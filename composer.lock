@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2ca467233104a75425675f04771dba3b",
+    "hash": "a02ed13899b161c00860baff058e511b",
     "content-hash": "0feb6af5bef0e094e776fba476c27e7c",
     "packages": [
         {
@@ -2021,7 +2021,7 @@
             ],
             "authors": [
                 {
-                    "name": "Padraic Brady",
+                    "name": "Pádraic Brady",
                     "email": "padraic.brady@gmail.com",
                     "homepage": "http://blog.astrumfutura.com"
                 },
