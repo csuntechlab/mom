@@ -51,23 +51,23 @@
 								<!-- <h2>Members</h2>
 								<hr class="line-inline"> -->
 								<div class="members">
-									<a href="#" class="members--member">
+									<a href="#" class="members--member" data-toggle="modal" data-target="#myModal">
 										<img class="members--member-img product-owner" src="http://placehold.it/60x60" alt="student image"><div class="members--member-name">
 											Student / Title</div>
 									</a>
-									<a href="#" class="members--member">
+									<a href="#" class="members--member" data-toggle="modal" data-target="#myModal">
 										<img class="members--member-img" src="http://placehold.it/60x60" alt="student image"><div class="members--member-name">Student / Title</div>
 									</a>
-									<a href="#" class="members--member">
+									<a href="#" class="members--member" data-toggle="modal" data-target="#myModal">
 										<img class="members--member-img" src="http://placehold.it/60x60" alt="student image"><div class="members--member-name">Student / Title</div>
 									</a>
-									<a href="#" class="members--member">
+									<a href="#" class="members--member" data-toggle="modal" data-target="#myModal">
 										<img class="members--member-img" src="http://placehold.it/60x60" alt="student image"><div class="members--member-name">Student / Title</div>
 									</a>
-									<a href="#" class="members--member">
+									<a href="#" class="members--member" data-toggle="modal" data-target="#myModal">
 										<img class="members--member-img" src="http://placehold.it/60x60" alt="student image"><div class="members--member-name">Student / Title</div>
 									</a>
-									<a href="#" class="members--member">
+									<a href="#" class="members--member" data-toggle="modal" data-target="#myModal">
 										<img class="members--member-img" src="http://placehold.it/60x60" alt="student image"><div class="members--member-name">Student / Title</div>
 									</a>
 								</div>
@@ -102,6 +102,97 @@
 			</div>
 
 		</div>
+
+		<!-- Student Modal -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-body student">
+		     	<?php $productOwner = true; ?>
+		        <div class="row">
+		        	<div class="col-xs-1"></div>
+		        	<div class="col-xs-2 text-right">
+		        		<div class="social-media-btn">
+		        			<a href="#">
+		        				<img class="social-media-btn-img" src="{{ asset('imgs/Hover.svg' ) }}" alt="portfolium" />
+		        				<p>Portfolium</p>
+		    				</a>
+						</div>
+					</div>
+					
+		        	<div class="col-xs-6 text-center"><img class="student-image <?php if($productOwner) echo'product-owner' ?>" src="http://placehold.it/200x200" alt="student image"></div>
+		        	<div class="col-xs-2 text-left">
+		        		<div class="social-media-btn">
+		        			<a href="#">
+		        				<img class="social-media-btn-img" src="{{ asset('imgs/linkden.svg' ) }}" alt="linkedin" />
+		        				<p>LinkedIn</p>
+		    				</a>
+						</div>
+					</div>
+		        	<div class="col-md-1"></div>
+		        </div>
+		        
+		        <div class="row">
+		        	<div class="col-sm-12 text-center">
+		        		<p class="student-name">FirstName Lastname</p>
+	    			</div>
+		        </div>
+		        <div class="row">
+		        	<div class="col-sm-12 text-center"><p class="student-title">Title</p></div>
+		        </div>
+		        <div class="row">
+		        	<div class="col-sm-12 text-center"><i class="fa fa-graduation-cap student-graduate"></i> <span class="graduates-in">Graduates in 20XY</span></div>
+		        </div>
+		        <div class="row">
+		        	<div class="col-sm-1"></div>
+		        	<div class="col-sm-10 text-left student-seb">
+		        		<h2 class="student-seb-title">Skills</h2>
+		        		<ul class="student-seb-list">
+		        			<?php
+		        				
+		        				for($i=1; $i <= 3; $i++){
+		        				echo '<li class="student-seb-list-items"><span class="student-seb-list-item-space"></span>Skill #'.$i.'</li>';
+		        				}
+		        			?>
+		        		</ul>
+		        	</div>
+		        	<div class="col-sm-1"></div>
+		        </div>
+		        <div class="row">
+		        	<div class="col-sm-1"></div>
+		        	<div class="col-sm-10 text-left student-seb">
+		        		<h2 class="student-seb-title">Experience</h2>
+		        		<ul class="student-seb-list">
+		        			<?php
+		        				
+		        				for($i=1; $i <= 3; $i++){
+		        				echo '<li class="student-seb-list-items"><span class="student-seb-list-item-space"></span>Experience #'.$i.'</li>';
+		        				}
+		        			?>
+		        		</ul>
+		        	</div>
+		        	<div class="col-sm-1"></div>
+		        </div>
+		        <div class="row">
+		        	<div class="col-sm-1"></div>
+		        	<div class="col-sm-10 text-left student-seb">
+		        		<h2 class="student-seb-title">Background</h2>
+		        		<ul class="student-seb-list">
+		        			<?php
+		        				
+		        				for($i=1; $i <= 3; $i++){
+		        				echo '<li class="student-seb-list-items"><span class="student-seb-list-item-space"></span>Background #'.$i.'</li>';
+		        				}
+		        			?>
+		        		</ul>
+		        	</div>
+		        	<div class="col-sm-1"></div>
+		        </div>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
 	</div>
 </section>
 <script>
