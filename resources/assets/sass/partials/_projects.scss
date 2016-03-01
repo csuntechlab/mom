@@ -1,0 +1,21 @@
+.members {
+  height: $view-members-circle-size;
+  position: relative;
+  text-align: center;
+  width: $view-members-circle-size;
+}
+
+.members--member {
+  height: 40px;
+  position: absolute;
+}
+
+.members--member-img {
+  border-radius: 20px;
+}
+
+.members--member-name {
+  color: $black;
+  font-size: 10px;
+  padding-top: 7px;
+}

@@ -6248,3 +6248,21 @@ address {
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex; }
+
+.members {
+  height: 200px;
+  position: relative;
+  text-align: center;
+  width: 200px; }
+
+.members--member {
+  height: 40px;
+  position: absolute; }
+
+.members--member-img {
+  border-radius: 20px; }
+
+.members--member-name {
+  color: #000;
+  font-size: 10px;
+  padding-top: 7px; }

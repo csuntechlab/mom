@@ -13,6 +13,8 @@
             {{-- APP STYLESHEETS --}}
         {{-- {!! HTML::style('css/components.css') !!} --}}
         {!! HTML::style('css/app.css') !!}
+        {{-- APP SCRIPTS --}}
+        {!! HTML::script('js/app.js') !!}
     </head>
     <body>
 
@@ -26,7 +28,6 @@
         @include('layouts.partials.footer')
         {{-- APP CONTENT ENDS --}}
         
-        {{-- APP SCRIPTS --}}
-        {!! HTML::script('js/app.js') !!}
+        
     </body>
 </html>
