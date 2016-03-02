@@ -6249,6 +6249,9 @@ address {
     display: -ms-flexbox;
     display: flex; }
 
+.projects {
+  padding-bottom: 5em; }
+
 /* Members */
 .members {
   height: 300px;
