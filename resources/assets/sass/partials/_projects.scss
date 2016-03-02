@@ -1,0 +1,142 @@
+//* Projects
+//
+//#
+
+.projects {
+  padding-bottom: 5em;
+}
+
+/* Members */
+
+.members {
+  height: $view-members-circle-size;
+  margin: 0 auto;
+  position: relative;
+  text-align: center;
+  width: $view-members-circle-size;
+}
+
+.members--member {
+  height: 40px;
+  position: absolute;
+}
+
+.members--member-img {
+  border-radius: 20px;
+}
+
+.members--member-name {
+  color: $black;
+  font-size: 10px;
+  padding-top: 7px;
+}
+
+
+/* Student Modal */
+
+.student {
+  background-image: url('../imgs/lines-right-2.png');
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  background-size: 300px;
+  font-family: $font-family-sans-serif;
+  margin-top: 1em;
+  padding-bottom: 2em;
+}
+
+.social-media-btn {
+  margin-top: 110px;
+  text-align: center;
+
+  a {
+    color: $grey;
+    letter-spacing: .2px;
+    text-decoration: none;
+  }
+
+  :hover {
+    text-decoration: underline;
+  }
+}
+
+.social-media-btn-img {
+  height: auto;
+  width: 30px;
+}
+
+.student-image {
+  border-radius: 50%;
+}
+
+.product-owner {
+  box-shadow: 0 0 10px $brand-primary;
+}
+
+
+.student-name {
+  background-image: url('../imgs/red-line.png');
+  background-position: bottom left;
+  background-repeat: no-repeat;
+  background-size: 13px 2px;
+  display: table;
+  font-size: 2em;
+  font-weight: 400;
+  letter-spacing: 1px;
+  margin: 0 auto;
+  padding-bottom: .3em;
+  padding-top: .7em;
+  text-transform: uppercase;
+}
+
+.student-title {
+  color: $gray-light;
+  font-size: 1.5em;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+.student-graduate {
+  border: solid 2px $brand-primary;
+  border-radius: 100%;
+  color: $black;
+  font-size: .9em;
+  padding: .4em;
+}
+
+.graduates-in {
+  color: $grey;
+  font-size: 1.2em;
+}
+
+.student-seb {
+  color: $grey;
+}
+
+.student-seb-title {
+  background-image: url('../imgs/red-line.png');
+  background-position: bottom left;
+  background-repeat: no-repeat;
+  background-size: 13px 2px;
+  font-size: 1.8em;
+  font-weight: 200;
+  letter-spacing: 1px;
+}
+
+.student-seb-list {
+  font-size: 1.1em;
+  font-weight: 300;
+  letter-spacing: .5px;
+  line-height: 1.5em;
+  list-style: none;
+  margin-left: -20px;
+}
+
+.student-seb-list-items::before {
+  color: $brand-primary;
+  content: '• ';
+  font-size: 1em;
+}
+
+.student-seb-list-item-space {
+  padding-left: 1em;
+}
