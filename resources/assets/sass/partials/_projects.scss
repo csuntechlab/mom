@@ -120,6 +120,9 @@
   font-size: 1.8em;
   font-weight: 200;
   letter-spacing: 1px;
+  width: auto;
+  text-transform: uppercase;
+  color: $gray-base;
 }
 
 .student-seb-list {
@@ -129,6 +132,24 @@
   line-height: 1.5em;
   list-style: none;
   margin-left: -20px;
+  padding-bottom:1.5em;
+
+  &-input {
+    border-radius: 5px;
+    border: solid 1px $gray-light;
+    font-size: 0.9em;
+    padding-left:1em;
+  }
+
+  &-del {
+    color: $gray-light;
+    margin-left: 10px;
+
+    &:hover {
+      cursor: pointer;
+      color: $gray-base;
+    }
+  }
 }
 
 .student-seb-list-items::before {
@@ -139,4 +160,10 @@
 
 .student-seb-list-item-space {
   padding-left: 1em;
+}
+
+/* Edit Student Profile */
+.add-seb {
+  color: $brand-primary;
+  padding-left: 5px;
 }
