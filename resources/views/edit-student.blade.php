@@ -24,17 +24,17 @@
 			<div class="col-xs-1"></div>
 	    	<div class="col-xs-11 text-left"><img class="student-image" src="http://placehold.it/200x200" alt="student image"></div>
 		</div>
-		<div class="row">
+		<div class="row social-media">
 			<div class="col-xs-1"></div>
-	    	<div class="col-xs-11 text-left"><img class="social-media-btn-img" src="{{ asset('imgs/linkden.svg' ) }}" alt="linkedin" /><input type="text"></div>
+	    	<div class="col-xs-11 text-left"><img class="social-media-btn-img" src="{{ asset('imgs/linkden.svg' ) }}" alt="linkedin" /><input type="text" class="input-text" placeholder="Add URL"></div>
 		</div>
-		<div class="row">
+		<div class="row social-media">
 			<div class="col-xs-1"></div>
-	    	<div class="col-xs-11 text-left"><img class="social-media-btn-img" src="{{ asset('imgs/linkden.svg' ) }}" alt="linkedin" /><input type="text"></div>
+	    	<div class="col-xs-11 text-left"><img class="social-media-btn-img" src="{{ asset('imgs/github.svg' ) }}" alt="linkedin" /><input type="text" class="input-text" placeholder="Add URL"></div>
 		</div>
-		<div class="row">
+		<div class="row social-media">
 			<div class="col-xs-1"></div>
-	    	<div class="col-xs-11 text-left"><img class="social-media-btn-img" src="{{ asset('imgs/Hover.svg' ) }}" alt="linkedin" /><input type="text"></div>
+	    	<div class="col-xs-11 text-left"><img class="social-media-btn-img" src="{{ asset('imgs/Hover.svg' ) }}" alt="linkedin" /><input type="text" class="input-text" placeholder="Add URL"></div>
 	    	<!--<div class="col-xs-2 text-left">
 	    		<div class="social-media-btn">
 	    			<a href="#">
@@ -51,7 +51,7 @@
 	    	<div class="col-sm-10 text-left student-seb">
 	    		<label class="student-seb-title">Skills</label><i class="fa fa-plus-circle add-seb"></i>
 	    		<ul class="student-seb-list">
-	    			<li class="student-seb-list-items"><input type="text" class="student-seb-list-input" placeholder="Add skill"><span class="student-seb-list-del">X</a>
+	    			<li class="student-seb-list-items"><input type="text" class="input-text" placeholder="Add skill"><span class="student-seb-list-del">X</a>
 	    			</li>
 	    		</ul>
 
@@ -63,7 +63,7 @@
 	    	<div class="col-sm-10 text-left student-seb">
 	    		<label class="student-seb-title">Experience</label><i class="fa fa-plus-circle add-seb"></i>
 	    		<ul class="student-seb-list">
-	    			<li class="student-seb-list-items"><input type="text" class="student-seb-list-input" placeholder="Add experience"><span class="student-seb-list-del">X</a>
+	    			<li class="student-seb-list-items"><input type="text" class="input-text" placeholder="Add experience"><span class="student-seb-list-del">X</a>
 	    			</li>
 	    		</ul>
 	    	</div>
@@ -74,13 +74,13 @@
 	    	<div class="col-sm-10 text-left student-seb">
 	    		<label class="student-seb-title">Background</label><i class="fa fa-plus-circle add-seb"></i>
 	    		<ul class="student-seb-list">
-	    			<li class="student-seb-list-items"><input type="text" class="student-seb-list-input" placeholder="Add background"><span class="student-seb-list-del">X</a>
+	    			<li class="student-seb-list-items"><input type="text" class="input-text" placeholder="Add background"><span class="student-seb-list-del">X</a>
 	    			</li>
 	    		</ul>
 	    	</div>
 	    	<div class="col-sm-1"></div>
 	    </div>
-	    <div class="row">
+	    <div class="row edit-student-buttons">
 	    	<div class="col-xs-12 col-sm-1"></div>
 	    	<div class="col-xs-12 col-sm-2"><button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Preview</button></div>
 	   	<div class="col-xs-12 col-sm-2"><button class="btn btn-default">Save</button></div>
@@ -93,7 +93,7 @@
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		  <div class="modal-dialog" role="document">
 		    <div class="modal-content">
-		      <div class="modal-body student">
+		      <div class="modal-body student lines-back">
 		        <div class="row">
 		        	<div class="col-xs-1"></div>
 		        	<div class="col-xs-2 text-right">

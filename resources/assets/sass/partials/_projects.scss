@@ -35,13 +35,21 @@
 /* Student Modal */
 
 .student {
+  font-family: $font-family-sans-serif;
+  margin-top: 1em;
+  padding-bottom: 2em;
+}
+
+.lines-back{
   background-image: url('../imgs/lines-right-2.png');
   background-position: bottom right;
   background-repeat: no-repeat;
   background-size: 300px;
-  font-family: $font-family-sans-serif;
-  margin-top: 1em;
-  padding-bottom: 2em;
+}
+
+
+.social-media{
+  padding-top:1em;
 }
 
 .social-media-btn {
@@ -123,6 +131,7 @@
   width: auto;
   text-transform: uppercase;
   color: $gray-base;
+  padding-top:1em;
 }
 
 .student-seb-list {
@@ -132,14 +141,7 @@
   line-height: 1.5em;
   list-style: none;
   margin-left: -20px;
-  padding-bottom:1.5em;
 
-  &-input {
-    border-radius: 5px;
-    border: solid 1px $gray-light;
-    font-size: 0.9em;
-    padding-left:1em;
-  }
 
   &-del {
     color: $gray-light;
@@ -163,7 +165,19 @@
 }
 
 /* Edit Student Profile */
+.input-text {
+  border-radius: 5px;
+  border: solid 1px $gray-light;
+  font-size: 0.9em;
+  padding-left:1em;
+  margin-left: 1em;
+}
+
 .add-seb {
   color: $brand-primary;
   padding-left: 5px;
+}
+
+.edit-student-buttons{
+  padding-top: 2em;
 }
