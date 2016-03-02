@@ -13,7 +13,7 @@
 			@endforeach
 			</ul>
 		@endif
-	@endif		
+	@endif
 </p>
 
 {!! Form::open(['url' => url('project')]) !!}

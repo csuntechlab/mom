@@ -5941,6 +5941,16 @@ hr.line-inline {
   .work-block:hover p {
     opacity: 1; }
 
+.page-header {
+  margin-top: 60px;
+  height: 120px;
+  position: relative;
+  border: none; }
+  .page-header h2 {
+    position: absolute;
+    bottom: 0px;
+    border-bottom: 1px solid white; }
+
 address {
   line-height: 1.8; }
   address strong {

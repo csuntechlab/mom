@@ -33,5 +33,6 @@ Route::get('profile', function() {
 */
 
 Route::group(['middleware' => ['web']], function () {
-	Route::resource('project', 'ProjectController');
+    Route::resource('project', 'ProjectController');
+    Route::controller('admin', 'AdminController');
 });
