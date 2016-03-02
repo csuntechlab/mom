@@ -17,28 +17,13 @@ class AdminController extends Controller
      */
     public function getIndex() 
     {
-        $projects = ProjectMeta::with('dates')->get();
+        $projects = ProjectMeta::with('dates')->orderBy('updated_at', 'DESC')->get();
+        // remove 'projects:' from project_id to only have the integers
+        foreach($projects as $project){
+            $id = explode(':', $project->project_id);
+            $project->project_id = array_pop($id);
+        }
         return view('pages.admin.index', compact('projects'));
-    }
-
-    public function getCreateProject()
-    {
-
-    }
-
-    public function postCreateProject()
-    {
-
-    }
-
-    public function editProject()
-    {
-
-    }
-
-    public function postEditProject()
-    {
-
     }
 
 }

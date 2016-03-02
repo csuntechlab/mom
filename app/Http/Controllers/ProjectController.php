@@ -84,7 +84,7 @@ class ProjectController extends Controller
             'end_date'   => $end_date,
         ]);
 
-        return redirect()->to('project');
+        return redirect()->to('admin');
     }
 
     /**
@@ -157,7 +157,7 @@ class ProjectController extends Controller
         $project->touch();
 
         return redirect()
-                ->to('project/' . $id)
+                ->to('admin')
                 ->with('message', "Project {$projectMeta->title} updated successfully!");
     }
 

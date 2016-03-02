@@ -5941,16 +5941,6 @@ hr.line-inline {
   .work-block:hover p {
     opacity: 1; }
 
-.page-header {
-  margin-top: 60px;
-  height: 120px;
-  position: relative;
-  border: none; }
-  .page-header h2 {
-    position: absolute;
-    bottom: 0px;
-    border-bottom: 1px solid white; }
-
 address {
   line-height: 1.8; }
   address strong {
@@ -6370,3 +6360,26 @@ address {
 
 .student-seb-list-item-space {
   padding-left: 1em; }
+
+.projects h1, .projects h2, .projects h3, .projects h4, .projects h5, .projects h6 {
+  text-transform: none; }
+
+.projects li.media {
+  margin-top: 40px;
+  border: .5px solid #CD1C26;
+  border-radius: 3px;
+  padding: 25px; }
+
+.projects .media-object {
+  margin-right: 15px; }
+
+.bk-btn {
+  margin: 20px 0px; }
+  .bk-btn span {
+    font-size: 1.4em; }
+
+.project-form input.form-control, .project-form textarea.form-control {
+  color: black; }
+
+.gform_wrapper textarea:active, textarea:focus {
+  height: initial !important; }

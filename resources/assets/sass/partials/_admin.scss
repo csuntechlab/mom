@@ -1,0 +1,39 @@
+.projects {
+
+    h1, h2, h3, h4, h5, h6 { text-transform: none; }
+
+    li.media {
+
+        margin-top: 40px;
+        border: .5px solid #CD1C26;
+        border-radius: 3px;
+        padding: 25px;
+    }
+
+    .media-object {
+        margin-right: 15px;
+    }
+}
+
+.bk-btn {
+
+    margin: 20px 0px;
+
+    span {
+        font-size: 1.4em;
+    }
+}
+
+.project-form {
+
+    input, textarea {
+
+        &.form-control {
+            color: black;
+        }
+    }
+}
+
+.gform_wrapper textarea:active, textarea:focus {
+    height: initial !important;
+}

@@ -21,7 +21,7 @@
 
         {{-- APP CONTENT BEGINS --}}
         @include('layouts.partials.nav')
-            <div class="container-fluid">
+            <div>
                 @yield('content')
             </div>
             {{-- MODALS --}}
