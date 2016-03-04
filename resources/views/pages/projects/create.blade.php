@@ -23,7 +23,19 @@
 	{!! Form::label('start_date', 'Start date:') !!}
         {!! Form::input('start_date', 'start_date', date('Y-m-d')) !!}
     {!! Form::label('end_date', 'Estimated end date:') !!}
-        {!! Form::input('end_date', 'end_date', date('Y-m-d', strtotime("+30 days"))) !!}    
+        {!! Form::input('end_date', 'end_date', date('Y-m-d', strtotime("+30 days"))) !!}
+    <br/><br/>    
+    {!! Form::label('product_owner', 'Product Owner:') !!}    
+    	{!! Form::select('product_owner', $users, null, 
+    		['placeholder' => 'Select Product Owner', 'role' => 'Select Team Members' ])!!}
+    <br/><br/>
+    {!! Form::label('scrum_master', 'Scrum Master:') !!}    
+    	{!! Form::select('scrum_master', $users, null, 
+    		['placeholder' => 'Select Scrum Master', 'role' => 'Select Team Members' ])!!}
+    <br/><br/>     
+    {!! Form::label('members[]', 'Team Members:') !!}    
+    	{!! Form::select('members[]', $users, null, 
+    		['class' => 'form-control chosen-select', 'multiple' => '', 'role' => 'Select Team Members' ])!!}
+    <br/><br/>     
 	{!! Form::submit('Create Project') !!}
-
 {!! Form::close() !!}

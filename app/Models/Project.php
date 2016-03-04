@@ -14,9 +14,6 @@ class Project extends Model
     	'start_date',
     	'end_date',
     ];
-    protected $hidden = [
-    	'project_id',
-    ];
 
     // formatted as Carbon instances on database in order to use ->format('Y-m-d') in views.
     protected $dates = [
@@ -25,4 +22,27 @@ class Project extends Model
         'start_date',
         'end_date',
     ];
+
+    public function meta() {
+        return $this->hasOne('Mom\Models\ProjectMeta', 'project_id');
+    }
+
+    public function members() {
+        return $this->belongsToMany('Mom\Models\User', 'nemo.memberships', 'parent_entities_id', 'individuals_id')
+                ->withPivot('role_position')
+                ->wherePivot('role_position', 'member');
+    }
+
+    public function productOwner() {
+        return $this->belongsToMany('Mom\Models\User', 'nemo.memberships', 'parent_entities_id', 'individuals_id')
+                ->withPivot('role_position')
+                ->wherePivot('role_position', 'product_owner');
+    }
+
+    public function scrumMaster() {
+        return $this->belongsToMany('Mom\Models\User', 'nemo.memberships', 'parent_entities_id', 'individuals_id')
+                ->withPivot('role_position')
+                ->wherePivot('role_position', 'scrum_master');
+    }
+
 }
