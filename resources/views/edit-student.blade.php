@@ -22,7 +22,12 @@
 				</div>
 			</div> -->
 			<div class="col-xs-1"></div>
-	    	<div class="col-xs-11 text-left"><img class="student-image" src="http://placehold.it/200x200" alt="student image"></div>
+	    	<div class="col-xs-11 text-left">
+	    	<label for="profile_image_file">
+	    	<img class="student-image" id="profile_image_preview" src="http://placehold.it/200x200" alt="student image" style="cursor: pointer;">
+	    	</label>
+	    	{{ Form::file('profile_image', ['id' => 'profile_image_file', 'style' => 'display: none;']) }}
+	    	</div>
 		</div>
 		<div class="row social-media">
 			<div class="col-xs-1"></div>
@@ -49,9 +54,9 @@
 	    <div class="row">
 	    	<div class="col-sm-1"></div>
 	    	<div class="col-sm-10 text-left student-seb">
-	    		<label class="student-seb-title">Skills</label><i class="fa fa-plus-circle add-seb"></i>
-	    		<ul class="student-seb-list">
-	    			<li class="student-seb-list-items"><input type="text" class="input-text" placeholder="Add skill"><span class="student-seb-list-del">X</a>
+	    		<label class="student-seb-title">Skills</label><button style="background: transparent; border: 0;" id="add_skill"><i class="fa fa-plus-circle add-seb"></i></button>
+	    		<ul id="skills_list" class="student-seb-list">
+	    			<li class="student-seb-list-items"><input name="skill1" type="text" class="input-text" placeholder="Add skill">
 	    			</li>
 	    		</ul>
 
@@ -61,9 +66,9 @@
 	    <div class="row">
 	    	<div class="col-sm-1"></div>
 	    	<div class="col-sm-10 text-left student-seb">
-	    		<label class="student-seb-title">Experience</label><i class="fa fa-plus-circle add-seb"></i>
-	    		<ul class="student-seb-list">
-	    			<li class="student-seb-list-items"><input type="text" class="input-text" placeholder="Add experience"><span class="student-seb-list-del">X</a>
+	    		<label class="student-seb-title">Experience</label><button style="background: transparent; border: 0;" id="add_experience"><i class="fa fa-plus-circle add-seb"></i></button>
+	    		<ul id="experience_list" class="student-seb-list">
+	    			<li class="student-seb-list-items"><input name="experience1" type="text" class="input-text" placeholder="Add experience">
 	    			</li>
 	    		</ul>
 	    	</div>
@@ -72,9 +77,9 @@
 	    <div class="row">
 	    	<div class="col-sm-1"></div>
 	    	<div class="col-sm-10 text-left student-seb">
-	    		<label class="student-seb-title">Background</label><i class="fa fa-plus-circle add-seb"></i>
-	    		<ul class="student-seb-list">
-	    			<li class="student-seb-list-items"><input type="text" class="input-text" placeholder="Add background"><span class="student-seb-list-del">X</a>
+	    		<label class="student-seb-title">Background</label><button style="background: transparent; border: 0;" id="add_background"><i class="fa fa-plus-circle add-seb"></i></button>
+	    		<ul id="background_list" class="student-seb-list">
+	    			<li class="student-seb-list-items"><input name="background1" type="text" class="input-text" placeholder="Add background">
 	    			</li>
 	    		</ul>
 	    	</div>
