@@ -319,6 +319,7 @@ class ProjectController extends Controller
         $project->productOwner()->sync([]);
         $project->scrumMaster()->sync([]);
         $project->members()->sync([]);
+
         $project->delete();
         $projectMeta = NemoEntity::findOrFail('projects:' . $id);
         $projectMeta->delete();

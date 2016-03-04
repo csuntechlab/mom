@@ -6248,3 +6248,115 @@ address {
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex; }
+
+.projects {
+  padding-bottom: 5em; }
+
+/* Members */
+.members {
+  height: 300px;
+  margin: 0 auto;
+  position: relative;
+  text-align: center;
+  width: 300px; }
+
+.members--member {
+  height: 40px;
+  position: absolute; }
+
+.members--member-img {
+  border-radius: 20px; }
+
+.members--member-name {
+  color: #000;
+  font-size: 10px;
+  padding-top: 7px; }
+
+/* Student Modal */
+.student {
+  background-image: url("../imgs/lines-right-2.png");
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  background-size: 300px;
+  font-family: "FFDINWebPro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin-top: 1em;
+  padding-bottom: 2em; }
+
+.social-media-btn {
+  margin-top: 110px;
+  text-align: center; }
+  .social-media-btn a {
+    color: #999;
+    letter-spacing: .2px;
+    text-decoration: none; }
+  .social-media-btn :hover {
+    text-decoration: underline; }
+
+.social-media-btn-img {
+  height: auto;
+  width: 30px; }
+
+.student-image {
+  border-radius: 50%; }
+
+.product-owner {
+  box-shadow: 0 0 10px #CD1C26; }
+
+.student-name {
+  background-image: url("../imgs/red-line.png");
+  background-position: bottom left;
+  background-repeat: no-repeat;
+  background-size: 13px 2px;
+  display: table;
+  font-size: 2em;
+  font-weight: 400;
+  letter-spacing: 1px;
+  margin: 0 auto;
+  padding-bottom: .3em;
+  padding-top: .7em;
+  text-transform: uppercase; }
+
+.student-title {
+  color: #D8D8D8;
+  font-size: 1.5em;
+  font-weight: 300;
+  letter-spacing: 1px; }
+
+.student-graduate {
+  border: solid 2px #CD1C26;
+  border-radius: 100%;
+  color: #000;
+  font-size: .9em;
+  padding: .4em; }
+
+.graduates-in {
+  color: #999;
+  font-size: 1.2em; }
+
+.student-seb {
+  color: #999; }
+
+.student-seb-title {
+  background-image: url("../imgs/red-line.png");
+  background-position: bottom left;
+  background-repeat: no-repeat;
+  background-size: 13px 2px;
+  font-size: 1.8em;
+  font-weight: 200;
+  letter-spacing: 1px; }
+
+.student-seb-list {
+  font-size: 1.1em;
+  font-weight: 300;
+  letter-spacing: .5px;
+  line-height: 1.5em;
+  list-style: none;
+  margin-left: -20px; }
+
+.student-seb-list-items::before {
+  color: #CD1C26;
+  content: '• ';
+  font-size: 1em; }
+
+.student-seb-list-item-space {
+  padding-left: 1em; }
