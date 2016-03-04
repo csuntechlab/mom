@@ -10,7 +10,7 @@
 	@foreach($projects as $project)
 		<li>	 
 		<a href="{{ url('project/' . $project->project_id) }}">
-		{{ $project->title }}
+		{{ $project->meta->title }}
 		</a>
 		</li>
 	@endforeach
