@@ -140,7 +140,7 @@ class ProjectController extends Controller
         // ModelNotFoundException exception will be caught for
         // findOrFail under the /project URI
         // Columns are updated in their respective models
-        $projectMeta = ProjectMeta::findOrFail('projects:' . $id);
+        $projectMeta = NemoEntity::findOrFail('projects:' . $id);
         $projectMeta->fill([
             'title'         =>  $request->title,
             'description'   =>  $request->description,
@@ -173,7 +173,7 @@ class ProjectController extends Controller
         // ModelNotFoundException exception will be caught for
         // findOrFail under the /project URI
         // Must be deleted on both models
-        $projectMeta = ProjectMeta::findOrFail('projects:' . $id);
+        $projectMeta = NemoEntity::findOrFail('projects:' . $id);
         $projectMeta->delete();
         $project = Project::findOrFail('projects:' . $id);
         $project->delete();
