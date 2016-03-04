@@ -10,17 +10,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('layouts.master');
-});
-Route::get('projects', function () {
-    return view('projects');
-});
-
-Route::get('profile', function() {
-   return Mom\Models\Profile::all();
-});
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -33,5 +22,21 @@ Route::get('profile', function() {
 */
 
 Route::group(['middleware' => ['web']], function () {
+	Route::get('/', function () {
+    	return view('layouts.master');
+	});
+	Route::get('projects', function () {
+	    return view('projects');
+	});
+
+	Route::get('profile', function() {
+	   return Mom\Models\Profile::all();
+	});
+
 	Route::resource('project', 'ProjectController');
+
+	// authentication stuff
+	Route::get('login', 'AuthController@getLogin');
+	Route::post('login', 'AuthController@postLogin');
+	Route::get('logout', 'AuthController@getLogout');
 });
