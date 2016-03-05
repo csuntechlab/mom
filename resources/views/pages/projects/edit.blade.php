@@ -53,12 +53,12 @@
 							{!! Form::textarea('description', $project->description , ['placeholder' => 'Description', 'class' => 'form-control', 'rows' => '8'])!!}
 						</div>
 						<div class="form-group">
-							{!! Form::label('start_date', 'Start date:') !!}
-					        {!! Form::input('start_date', 'start_date', $project->dates->start_date->format('Y-m-d'), ['placeholder' => 'Description', 'class' => 'form-control']) !!}
+							{!! Form::label('start_date', 'Start Date:') !!}
+					        {!! Form::input('start_date', 'start_date', $project->dates->start_date->format('Y-m-d'), ['placeholder' => 'YYYY-MM-DD', 'class' => 'form-control']) !!}
 						</div>
 						<div class="form-group">
-					    	{!! Form::label('end_date', 'Estimated end date:') !!}
-					    	{!! Form::input('end_date', 'end_date', $project->dates->end_date ? $project->dates->end_date->format('Y-m-d'): date('Y-m-d', strtotime("+30 days")), ['placeholder' => 'Description', 'class' => 'form-control']) !!}    
+					    	{!! Form::label('end_date', 'Estimated End Date:') !!}
+					    	{!! Form::input('end_date', 'end_date', $project->dates->end_date ? $project->dates->end_date->format('Y-m-d') : "", ['placeholder' => 'YYYY-MM-DD', 'class' => 'form-control']) !!}    
 						</div>
 						<div class="form-group">
 							{!! Form::submit('Update Project', ['class' => 'btn btn-primary']) !!}

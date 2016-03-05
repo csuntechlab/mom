@@ -38,7 +38,7 @@
                                         <p class="project-description">{{ $project->description }}</p>
                                         <h4> Team Members: </h4>
                                         <h4> Start: {{ $project->dates->start_date->format('m-d-Y') }}
-                                        & End: {{ $project->dates->end_date ? $project->dates->end_date->format('m-d-Y'): date('m-d-Y', strtotime("+30 days"))}}</h4>
+                                        & End: {{ $project->dates->end_date ? $project->dates->end_date->format('m-d-Y') : "TBA" }}</h4>
                                     </div>
                                 </div>
                             </div>
