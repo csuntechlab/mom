@@ -46,19 +46,19 @@
 					{!! Form::open(['url' => url('project/' . $project->project_id), 'method' => 'PUT']) !!}
 						<div class="form-group">
 							{!! Form::label('title', 'Project Title') !!}
-							{!! Form::text('title', $project->title, ['placeholder' => 'Title', 'class' => 'form-control']) !!}
+							{!! Form::text('title', $project->meta->title, ['placeholder' => 'Title', 'class' => 'form-control']) !!}
 						</div>
 						<div class="form-group">
 							{!! Form::label('description', 'Project Description') !!}
-							{!! Form::textarea('description', $project->description , ['placeholder' => 'Description', 'class' => 'form-control', 'rows' => '8'])!!}
+							{!! Form::textarea('description', $project->meta->description , ['placeholder' => 'Description', 'class' => 'form-control', 'rows' => '8'])!!}
 						</div>
 						<div class="form-group">
 							{!! Form::label('start_date', 'Start Date:') !!}
-					        {!! Form::input('start_date', 'start_date', $project->dates->start_date->format('Y-m-d'), ['placeholder' => 'YYYY-MM-DD', 'class' => 'form-control']) !!}
+					        {!! Form::text('start_date', $project->start_date->format('Y-m-d'), ['placeholder' => 'YYYY-MM-DD', 'class' => 'form-control']) !!}
 						</div>
 						<div class="form-group">
 					    	{!! Form::label('end_date', 'Estimated End Date:') !!}
-					    	{!! Form::input('end_date', 'end_date', $project->dates->end_date ? $project->dates->end_date->format('Y-m-d') : "", ['placeholder' => 'YYYY-MM-DD', 'class' => 'form-control']) !!}    
+					    	{!! Form::text('end_date', $project->end_date ? $project->end_date->format('Y-m-d') : "", ['placeholder' => 'YYYY-MM-DD', 'class' => 'form-control']) !!}    
 						</div>
 						<div class="form-group">
 							{!! Form::submit('Update Project', ['class' => 'btn btn-primary']) !!}
@@ -74,3 +74,13 @@
 		</div>
 	</div>
 @stop
+<!-- PO, SM, and members to be styled
+{!! Form::label('product_owner', 'Product Owner:') !!}    
+    	{!! Form::select('product_owner', $users, $project->productOwner->user_id, ['placeholder' => 'Select Product Owner', 'role' => 'Select Product Owner'])!!}
+    
+    {!! Form::label('scrum_master', 'Scrum Master:') !!}    
+    	{!! Form::select('scrum_master', $users, $project->scrumMaster->user_id, ['placeholder' => 'Select Scrum Master', 'role' => 'Select Scrum Master'])!!}
+      
+    {!! Form::label('members[]', 'Team Members:') !!}    
+    	{!! Form::select('members[]', $users, null, ['class' => 'form-control', 'multiple' => '', 'role' => 'Select Team Members' ])!!}   
+-->        

@@ -5,7 +5,7 @@ namespace Mom\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Mom\Http\Requests;
-use Mom\Models\ProjectMeta;
+use Mom\Models\Project;
 use Mom\Http\Controllers\Controller;
 
 class AdminController extends Controller
@@ -17,7 +17,7 @@ class AdminController extends Controller
      */
     public function getIndex() 
     {
-        $projects = ProjectMeta::with('dates')->orderBy('updated_at', 'DESC')->get();
+        $projects = Project::with('meta', 'productOwner', 'scrumMaster', 'members')->orderBy('updated_at', 'DESC')->get();
         // remove 'projects:' from project_id to only have the integers
         foreach($projects as $project){
             $id = explode(':', $project->project_id);

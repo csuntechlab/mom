@@ -16,6 +16,7 @@
         {!! HTML::style('css/components.css') !!}
         {{-- APP SCRIPTS --}}
         {!! HTML::script('js/app.js') !!}
+        {!! HTML::script('js/profile/edit.js') !!}
     </head>
     <body>
 

@@ -34,11 +34,11 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-9">
-                                        <h3 class="media-heading">{{ $project->title }}</h3>
-                                        <p class="project-description">{{ $project->description }}</p>
+                                        <h3 class="media-heading">{{ $project->meta->title }}</h3>
+                                        <p class="project-description">{{ $project->meta->description }}</p>
                                         <h4> Team Members: </h4>
-                                        <h4> Start: {{ $project->dates->start_date->format('m-d-Y') }}
-                                        & End: {{ $project->dates->end_date ? $project->dates->end_date->format('m-d-Y') : "TBA" }}</h4>
+                                        <h4> Start: {{ $project->start_date->format('m-d-Y') }}
+                                        & End: {{ $project->end_date ? $project->end_date->format('m-d-Y') : "TBA" }}</h4>
                                     </div>
                                 </div>
                             </div>

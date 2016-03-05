@@ -13,9 +13,9 @@ class ProjectMeta extends Model
     	'title',
     	'description'
     ];
-
-    // start_date and end_date timestamps for each project
-    public function dates(){
-    	return $this->hasOne(Project::class, 'project_id');
-    }
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
+    
 }

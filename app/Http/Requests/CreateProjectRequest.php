@@ -23,11 +23,13 @@ class CreateProjectRequest extends Request
     public function rules()
     {
         $rules = [
-            'title' => 'required|unique:projectmeta,title|min:3',
-            'description' => 'required',
-            'start_date'  => 'required|date_format:Y-m-d',
+            'title'         => 'required|unique:projectmeta,title|min:3',
+            'description'   => 'required',
+            'start_date'    => 'required|date_format:Y-m-d',
             // if value is entered, then it will be validated and must be after start_date
-            'end_date'    => 'date_format:Y-m-d|after:' . Request::get('start_date'),
+            'end_date'      => 'date_format:Y-m-d|after:' . Request::get('start_date'),
+            // 'product_owner' => 'required',
+            // 'scrum_master'  => 'required',
         ];
         // retrieves primary key to ignore 'project name already exist' error
         // if keeping the same name on edit/update 

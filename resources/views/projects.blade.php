@@ -107,7 +107,7 @@
 		<div class="modal fade" id="myModal-productOwner" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		  <div class="modal-dialog" role="document">
 		    <div class="modal-content">
-		      <div class="modal-body student">
+		      <div class="modal-body student lines-back">
 		        <div class="row">
 		        	<div class="col-xs-1"></div>
 		        	<div class="col-xs-2 text-right">
@@ -194,7 +194,7 @@
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		  <div class="modal-dialog" role="document">
 		    <div class="modal-content">
-		      <div class="modal-body student">
+		      <div class="modal-body student lines-back">
 		        <div class="row">
 		        	<div class="col-xs-1"></div>
 		        	<div class="col-xs-2 text-right">

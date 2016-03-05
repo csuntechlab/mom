@@ -16,19 +16,30 @@
 @endif
 
 <h3>Project</h3>
-<p> {{$project->title }} </p>
+<p> {{ $project->meta->title }} </p>
 
 <h3>Description </h3>
-<p> {{$project->description }} </p>
+<p> {{ $project->meta->description }} </p>
 
+<h3>Product Owner</h3>
+<p> {{ $project->productOwner->display_name }} </p>
+
+<h3>Scrum Master</h3>
+<p> {{ $project->scrumMaster->display_name }} </p>
+
+<h3>Team Members</h3>
+@foreach($project->members as $member)
+	<p> {{ $member->display_name }} </p>
+@endforeach
+	
 <h3>Start Date </h3>
-<p> {{$project->dates->start_date }} </p>
+<p> {{ $project->start_date }} </p>
 
 <h3>Estimated End Date </h3>
-<p> {{$project->dates->end_date }} </p>
+<p> {{ $project->end_date }} </p>
 
 <h3>Created At Date </h3>
-<p> {{$project->created_at }} </p>
+<p> {{ $project->created_at }} </p>
 
 <h3>Updated At Last Date </h3>
-<p> {{$project->updated_at }} </p>
+<p> {{ $project->updated_at }} </p>
