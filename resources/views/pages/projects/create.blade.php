@@ -70,7 +70,7 @@
 	</div>
 @stop
 
-<!--	PO, SM, and members tags to style
+<!--	PO, SM, and members tags to style. Don't forget to remove comments in CreateProjectRequest for validation for PO & SM
     {!! Form::label('product_owner', 'Product Owner:') !!}    
     	{!! Form::select('product_owner', $users, null, 
     		['placeholder' => 'Select Product Owner', 'role' => 'Select Team Members' ])!!}

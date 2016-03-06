@@ -74,7 +74,7 @@
 		</div>
 	</div>
 @stop
-<!-- PO, SM, and members to be styled
+<!-- PO, SM, and members tags to style. Don't forget to remove comments in CreateProjectRequest for validation for PO & SM
 {!! Form::label('product_owner', 'Product Owner:') !!}    
     	{!! Form::select('product_owner', $users, $project->productOwner->user_id, ['placeholder' => 'Select Product Owner', 'role' => 'Select Product Owner'])!!}
     
