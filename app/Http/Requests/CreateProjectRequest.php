@@ -2,6 +2,7 @@
 
 use Mom\Http\Requests\Request;
 use Route;
+use DateTime;
 
 class CreateProjectRequest extends Request
 {
@@ -21,16 +22,29 @@ class CreateProjectRequest extends Request
      * @return array
      */
     public function rules()
-    {
+    {       
         $rules = [
             'title'         => 'required|unique:projectmeta,title|min:3',
             'description'   => 'required',
             'start_date'    => 'required|date_format:Y-m-d',
             // if value is entered, then it will be validated and must be after start_date
-            'end_date'      => 'date_format:Y-m-d|after:' . Request::get('start_date'),
+            'end_date'      => 'date_format:Y-m-d',
             // 'product_owner' => 'required',
             // 'scrum_master'  => 'required',
         ];
+
+        // check whether start_date input is properly formatted; if so, apply after
+        if(Request::has('start_date')){
+            $date_format = 'Y-m-d';
+            $start_date = Request::get('start_date');
+
+            $start_date = trim($start_date);
+            $date = strtotime($start_date);
+
+            if(date($date_format, $date) == $start_date)
+                // if date_format fails, bail will prevent 'after' from validating
+                $rules['end_date'] = "bail|date_format:Y-m-d|after:$start_date";
+        }
         // retrieves primary key to ignore 'project name already exist' error
         // if keeping the same name on edit/update 
         if($this['_method'] == 'PUT'){
