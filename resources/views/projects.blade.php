@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-<?php $i = 1; ?>
+<?php $y = 1; ?>
 <section class="section page-hero work-banner">
 	  <div class="dark-overlay"></div>
 		<div class="content">
@@ -17,7 +17,7 @@
 			</div>
 		</div>
 		<div class="row no-padding">
-			<div id="project{{$i}}" class="row-eq-height">
+			<div id="project{{$y}}" class="row-eq-height">
 				<div class="col-md-12">
 					
 					<div class="col-md-4">
@@ -31,15 +31,20 @@
 					</div>
 					<div class="col-md-4">
 						<div class="card card-light">
-							<div class="card-content-xl card-content-action work-block">
+							<div class="card-content-xl card-content-action">
 								<div class="row">
 									<div class="col-md-12">
 										<h3>Scope of Work</h3>
 									</div>
 									<div class="col-md-12">
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi accusantium illo, nobis nostrum temporibus exercitationem.</p>
+									</div>
+									<div class="col-md-12">
 										<h2 class="small">
 											Product Owner
 										</h2> 
+									</div><div class="col-md-12">
+										<img src="http://www.placehold.it/80x80" class="student-image" alt="">
 									</div>									
 								</div>	
 							</div>
@@ -98,7 +103,7 @@
 						</div>
 					</div>
 				</div> -->
-				<?php $i++; ?>
+				<?php $y++; ?>
 			</div>
 
 		</div>
@@ -288,7 +293,7 @@
 			</div>
 		</div>
 		<div class="row no-padding">
-			<div id="project{{$i}}" class="row-eq-height">
+			<div id="project{{$y}}" class="row-eq-height">
 				<div class="col-md-12">
 					
 					<div class="col-md-4">
@@ -302,15 +307,21 @@
 					</div>
 					<div class="col-md-4">
 						<div class="card card-light">
-							<div class="card-content-xl card-content-action work-block">
+							<div class="card-content-xl card-content-action">
 								<div class="row">
 									<div class="col-md-12">
 										<h3>Scope of Work</h3>
 									</div>
 									<div class="col-md-12">
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi accusantium illo, nobis nostrum temporibus exercitationem.</p>
+									</div>
+									<div class="col-md-12">
 										<h2 class="small">
 											Product Owner
 										</h2> 
+									</div>
+									<div class="col-md-12">
+										<img src="http://www.placehold.it/80x80" class="student-image" alt="">
 									</div>									
 								</div>	
 							</div>
@@ -325,12 +336,6 @@
 									<a href="#" class="members--member" data-toggle="modal" data-target="#myModal-productOwner">
 										<img class="members--member-img product-owner" src="http://placehold.it/60x60" alt="student image"><div class="members--member-name">
 											Student / Title</div>
-									</a>
-									<a href="#" class="members--member" data-toggle="modal" data-target="#myModal">
-										<img class="members--member-img" src="http://placehold.it/60x60" alt="student image"><div class="members--member-name">Student / Title</div>
-									</a>
-									<a href="#" class="members--member" data-toggle="modal" data-target="#myModal">
-										<img class="members--member-img" src="http://placehold.it/60x60" alt="student image"><div class="members--member-name">Student / Title</div>
 									</a>
 									<a href="#" class="members--member" data-toggle="modal" data-target="#myModal">
 										<img class="members--member-img" src="http://placehold.it/60x60" alt="student image"><div class="members--member-name">Student / Title</div>
@@ -369,7 +374,7 @@
 						</div>
 					</div>
 				</div> -->
-				<?php $i++; ?>
+				<?php $y++; ?>
 			</div>
 
 		</div>
@@ -555,9 +560,9 @@
 
 var projects = $('.projects').length;
 
-for(i=1; i <= projects; i++){
+for(y=1; y <= projects; y++){
 	var radius = 130;
-	var fields = $('#project'+i+' .members--member'), container = $('.members'), width = container.width(), height = container.height();
+	var fields = $('#project'+y+' .members--member'), container = $('.members'), width = container.width(), height = container.height();
 	var angle = (1.5*Math.PI), step = (2*Math.PI) / fields.length;
 
 	fields.each(function() {
