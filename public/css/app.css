@@ -6273,10 +6273,13 @@ address {
   padding-top: 7px; }
 
 /* Student Modal */
-.student {
+.student, .edit-student {
   font-family: "FFDINWebPro", "Helvetica Neue", Helvetica, Arial, sans-serif;
   margin-top: 1em;
   padding-bottom: 2em; }
+
+.edit-student {
+  text-align: center; }
 
 .lines-back {
   background-image: url("../imgs/lines-right-2.png");
@@ -6352,7 +6355,9 @@ address {
   width: auto;
   text-transform: uppercase;
   color: #151515;
-  padding-top: 1em; }
+  padding-top: 1em;
+  width: 500px;
+  text-align: left; }
 
 .student-seb-list {
   font-size: 1.1em;
@@ -6376,6 +6381,23 @@ address {
 .student-seb-list-item-space {
   padding-left: 1em; }
 
+/* Edit Student Profile */
+.input-text {
+  border-radius: 5px;
+  border: solid 1px #D8D8D8;
+  font-size: 1.3em;
+  padding-left: 1em;
+  margin-left: 1em;
+  width: 500px;
+  height: 45px; }
+
+.add-seb {
+  color: #CD1C26;
+  padding-left: 5px; }
+
+.edit-student-buttons {
+  padding-top: 2em; }
+
 .projects h1, .projects h2, .projects h3, .projects h4, .projects h5, .projects h6 {
   text-transform: none; }
 
@@ -6398,18 +6420,3 @@ address {
 
 .gform_wrapper textarea:active, textarea:focus {
   height: initial !important; }
-
-/* Edit Student Profile */
-.input-text {
-  border-radius: 5px;
-  border: solid 1px #D8D8D8;
-  font-size: 0.9em;
-  padding-left: 1em;
-  margin-left: 1em; }
-
-.add-seb {
-  color: #CD1C26;
-  padding-left: 5px; }
-
-.edit-student-buttons {
-  padding-top: 2em; }

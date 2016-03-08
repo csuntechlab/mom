@@ -10,7 +10,7 @@
 </section>
 <section class="section section-page section-white projects">
 <div class="container" style="background-color: #fff;">
-	<div class="student">
+	<div class="edit-student">
 	    <div class="row">
 	    	<!-- <div class="col-xs-1"></div> -->
 	    	<!-- <div class="col-xs-2 text-right">
@@ -21,75 +21,68 @@
 					</a>
 				</div>
 			</div> -->
-			<div class="col-xs-1"></div>
-	    	<div class="col-xs-11 text-left">
+	    	<div class="col-xs-12">
 	    	<label for="profile_image_file">
-	    	<img class="student-image" id="profile_image_preview" src="http://placehold.it/200x200" alt="student image" style="cursor: pointer;">
+	    	<img class="student-image" id="profile_image_preview" src="http://placehold.it/300x300" alt="student image" style="cursor: pointer;">
 	    	</label>
 	    	{{ Form::file('profile_image', ['id' => 'profile_image_file', 'style' => 'display: none;']) }}
 	    	</div>
 		</div>
 		<div class="row social-media">
-			<div class="col-xs-1"></div>
-	    	<div class="col-xs-11 text-left"><img class="social-media-btn-img" src="{{ asset('imgs/linkden.svg' ) }}" alt="linkedin" /><input type="text" class="input-text" placeholder="Add URL"></div>
+	    	<div class="col-xs-12">
+	    		<img class="social-media-btn-img" src="{{ asset('imgs/linkden.svg' ) }}" alt="linkedin" />
+	    		<input type="text" class="input-text" placeholder="Add URL">
+    		</div>
 		</div>
 		<div class="row social-media">
-			<div class="col-xs-1"></div>
-	    	<div class="col-xs-11 text-left"><img class="social-media-btn-img" src="{{ asset('imgs/github.svg' ) }}" alt="linkedin" /><input type="text" class="input-text" placeholder="Add URL"></div>
+	    	<div class="col-xs-12">
+	    		<img class="social-media-btn-img" src="{{ asset('imgs/github.svg' ) }}" alt="linkedin" />
+	    		<input type="text" class="input-text" placeholder="Add URL">
+    		</div>
 		</div>
 		<div class="row social-media">
-			<div class="col-xs-1"></div>
-	    	<div class="col-xs-11 text-left"><img class="social-media-btn-img" src="{{ asset('imgs/Hover.svg' ) }}" alt="linkedin" /><input type="text" class="input-text" placeholder="Add URL"></div>
-	    	<!--<div class="col-xs-2 text-left">
-	    		<div class="social-media-btn">
-	    			<a href="#">
-	    				<img class="social-media-btn-img" src="{{ asset('imgs/linkden.svg' ) }}" alt="linkedin" />
-	    				<p>LinkedIn</p>
-					</a>
-				</div>
-			</div>
-	    	<div class="col-md-1"></div> -->
+	    	<div class="col-xs-12">
+	    		<img class="social-media-btn-img" src="{{ asset('imgs/Hover.svg' ) }}" alt="linkedin" />
+	    		<input type="text" class="input-text" placeholder="Add URL">
+    		</div>
 	    </div>
 	   
 	    <div class="row">
-	    	<div class="col-sm-1"></div>
-	    	<div class="col-sm-10 text-left student-seb">
-	    		<label class="student-seb-title">Skills</label><button style="background: transparent; border: 0;" id="add_skill"><i class="fa fa-plus-circle add-seb"></i></button>
+	    	<div class="col-sm-12 student-seb">
+	    		<label class="student-seb-title">Skills <button style="background: transparent; border: 0;" id="add_skill"><i class="fa fa-plus-circle add-seb"></i></button></label>
 	    		<ul id="skills_list" class="student-seb-list">
 	    			<li class="student-seb-list-items"><input name="skill1" type="text" class="input-text" placeholder="Add skill">
 	    			</li>
 	    		</ul>
-
 	    	</div>
-	    	<div class="col-sm-1"></div>
 	    </div>
 	    <div class="row">
-	    	<div class="col-sm-1"></div>
-	    	<div class="col-sm-10 text-left student-seb">
-	    		<label class="student-seb-title">Experience</label><button style="background: transparent; border: 0;" id="add_experience"><i class="fa fa-plus-circle add-seb"></i></button>
+	    	<div class="col-sm-12 student-seb">
+	    		<label class="student-seb-title">Experience
+	    		<button style="background: transparent; border: 0;" id="add_experience">
+	    			<i class="fa fa-plus-circle add-seb"></i>
+    			</button></label>
 	    		<ul id="experience_list" class="student-seb-list">
 	    			<li class="student-seb-list-items"><input name="experience1" type="text" class="input-text" placeholder="Add experience">
 	    			</li>
 	    		</ul>
 	    	</div>
-	    	<div class="col-sm-1"></div>
 	    </div>
 	    <div class="row">
-	    	<div class="col-sm-1"></div>
-	    	<div class="col-sm-10 text-left student-seb">
-	    		<label class="student-seb-title">Background</label><button style="background: transparent; border: 0;" id="add_background"><i class="fa fa-plus-circle add-seb"></i></button>
+	    	<div class="col-sm-12 student-seb">
+	    		<label class="student-seb-title">Background <button style="background: transparent; border: 0;" id="add_background"><i class="fa fa-plus-circle add-seb"></i></button></label>
 	    		<ul id="background_list" class="student-seb-list">
 	    			<li class="student-seb-list-items"><input name="background1" type="text" class="input-text" placeholder="Add background">
 	    			</li>
 	    		</ul>
 	    	</div>
-	    	<div class="col-sm-1"></div>
 	    </div>
 	    <div class="row edit-student-buttons">
-	    	<div class="col-xs-12 col-sm-1"></div>
-	    	<div class="col-xs-12 col-sm-2"><button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Preview</button></div>
-	   	<div class="col-xs-12 col-sm-2"><button class="btn btn-default">Save</button></div>
-	    	<div class="col-xs-12 col-sm-7"></div>
+	    	
+	    		<button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Preview</button>
+	   	
+	   		<button class="btn btn-default">Save</button>
+	    	
 	    </div>
 	    
 	</div>
