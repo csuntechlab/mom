@@ -28,17 +28,55 @@
                             </div>
                             <div class="media-body">
                                 <div class="row">
-                                    <div class="col-sm-3 pull-right">
+                                    <div class="col-sm-2 pull-right">
                                         <div class="text-right">
                                             <a href="{{ url('project/' . $project->project_id . '/edit') }}" type="button" class="btn btn-primary">Edit</a>
                                         </div>
                                     </div>
-                                    <div class="col-sm-9">
-                                        <h3 class="media-heading">{{ $project->meta->title }}</h3>
-                                        <p class="project-description">{{ $project->meta->description }}</p>
-                                        <h4> Team Members: </h4>
-                                        <h4> Start: {{ $project->start_date->format('m-d-Y') }}
-                                        & End: {{ $project->end_date ? $project->end_date->format('m-d-Y') : "TBA" }}</h4>
+                                    <div class="col-sm-10">
+                                        <dl class="dl-horizontal">
+                                            <dt>Project</dt>
+                                            <dd>{{ $project->meta->title }}</dd>
+                                            <dt>Start Date</dt>
+                                            <dd>{{ $project->start_date->format('m-d-Y') }}</dd>
+                                            <dt>End Date</dt>
+                                            <dd>{{ $project->end_date ? $project->end_date->format('m-d-Y') : "TBA" }}</dd>
+                                            <dt>Product Owner</dt>
+                                            <dd>
+                                                @if(count($project->productOwner))
+                                                    @foreach($project->productOwner as $owner)
+                                                        {{ $owner->display_name }}
+                                                    @endforeach
+                                                @else
+                                                    Not Assigned
+                                                @endif
+                                            </dd>
+                                            <dt>Scrum Master</dt>
+                                            <dd>
+                                                @if(count($project->scrumMaster))  
+                                                    @foreach($project->scrumMaster as $master)
+                                                       {{ $master->display_name }}
+                                                    @endforeach
+                                                @else
+                                                    Not Assigned
+                                                @endif
+                                            </dd>
+                                            <dt>Team Members</dt>
+                                            <dd>
+                                                @if(count($project->members))
+                                                    <?php $count = 0; ?>
+                                                    @foreach ($project->members as $member)
+                                                        <?php $count++; ?>
+                                                        <span class="team-member-name">{{ $member->display_name }}</span>
+                                                        @if($count < $project->members->count())
+                                                            {{ '|' }}
+                                                        @endif
+                                                    @endforeach
+                                                @else
+                                                    Not Assigned
+                                                @endif
+                                            </dd>
+                                        </dl>
                                     </div>
                                 </div>
                             </div>

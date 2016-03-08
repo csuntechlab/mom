@@ -10,7 +10,9 @@
   "private": true,
   "dependencies": {
     "bootstrap-sass": "^3.3.6",
-    "font-awesome": "fontawesome#^4.5.0"
+    "font-awesome": "fontawesome#^4.5.0",
+    "chosen": "^1.5.1",
+    "bootstrap-chosen": "^1.0.1"
   },
   "devDependencies": {}
 }
