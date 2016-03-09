@@ -42,36 +42,18 @@
                                             <dt>End Date</dt>
                                             <dd>{{ $project->end_date ? $project->end_date->format('m-d-Y') : "TBA" }}</dd>
                                             <dt>Product Owner</dt>
-                                            <dd>
-                                                @if(count($project->productOwner))
-                                                    @foreach($project->productOwner as $owner)
-                                                        {{ $owner->display_name }}
-                                                    @endforeach
-                                                @else
-                                                    Not Assigned
-                                                @endif
-                                            </dd>
+                                            <dd> {{ $project->productOwner->display_name or 'Not Assigned'}} </dd>
                                             <dt>Scrum Master</dt>
-                                            <dd>
-                                                @if(count($project->scrumMaster))  
-                                                    @foreach($project->scrumMaster as $master)
-                                                       {{ $master->display_name }}
-                                                    @endforeach
-                                                @else
-                                                    Not Assigned
-                                                @endif
-                                            </dd>
+                                            <dd> {{ $project->scrumMaster->display_name or 'Not Assigned' }} </dd>
                                             <dt>Team Members</dt>
                                             <dd>
                                                 @if(count($project->members))
-                                                    <?php $count = 0; ?>
-                                                    @foreach ($project->members as $member)
-                                                        <?php $count++; ?>
-                                                        <span class="team-member-name">{{ $member->display_name }}</span>
-                                                        @if($count < $project->members->count())
+                                                    @for($i=0; $i < count($project->members); $i++)
+                                                        {{ $project->members[$i]->display_name }}
+                                                        @if($i < count($project->members) - 1)
                                                             {{ '|' }}
                                                         @endif
-                                                    @endforeach
+                                                    @endfor
                                                 @else
                                                     Not Assigned
                                                 @endif
