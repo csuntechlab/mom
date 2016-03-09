@@ -10,6 +10,7 @@
 |
 */
 
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -39,4 +40,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('login', 'AuthController@getLogin');
 	Route::post('login', 'AuthController@postLogin');
 	Route::get('logout', 'AuthController@getLogout');
+
+    Route::resource('project', 'ProjectController');
+    Route::controller('admin', 'AdminController');
 });

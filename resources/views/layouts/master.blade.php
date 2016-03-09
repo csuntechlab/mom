@@ -13,12 +13,16 @@
             {{-- APP STYLESHEETS --}}
         {{-- {!! HTML::style('css/components.css') !!} --}}
         {!! HTML::style('css/app.css') !!}
+        {!! HTML::style('css/components.css') !!}
+        {{-- APP SCRIPTS --}}
+        {!! HTML::script('js/app.js') !!}
+        {!! HTML::script('js/profile/edit.js') !!}
     </head>
     <body>
 
         {{-- APP CONTENT BEGINS --}}
         @include('layouts.partials.nav')
-            <div class="container-fluid">
+            <div>
                 @yield('content')
             </div>
             {{-- MODALS --}}
@@ -26,7 +30,6 @@
         @include('layouts.partials.footer')
         {{-- APP CONTENT ENDS --}}
         
-        {{-- APP SCRIPTS --}}
-        {!! HTML::script('js/app.js') !!}
+        
     </body>
 </html>

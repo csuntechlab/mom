@@ -1,11 +1,17 @@
-<?php namespace Mom\Models;
+<?php
+
+namespace Mom\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Role extends Model {
-	protected $fillable = [];
-	protected $primaryKey = "system_name";
+class Role extends Model
+{
+    protected $table = 'mom.roles';
+    protected $primaryKey = 'system_name';
+    public $incrementing = false;
+    protected $fillable = [];
 
-	// this must be set for models that do not use an auto-incrementing PK
-	public $incrementing = false;
+    public function user() {
+		return $this->belongsToMany('Mom\Models\User');
+	}
 }
