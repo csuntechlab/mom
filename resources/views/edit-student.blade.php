@@ -23,7 +23,8 @@
 			</div> -->
 	    	<div class="col-xs-12">
 	    	<label for="profile_image_file">
-	    	<img class="student-image" id="profile_image_preview" src="http://placehold.it/300x300" alt="student image" style="cursor: pointer;">
+	    	<!-- <img class="student-image" id="profile_image_preview" src="http://placehold.it/300x300" alt="student image" style="cursor: pointer;"> -->
+	    	<div id="profile_image_preview" style="cursor: pointer; border-radius: 50%; width: 300px; height: 300px; background: #f2f2f2; position: relative;"> <span id="profile_image_preview_text" style="position: absolute; top: 20%; left: 50%; transform: translate(-50%, 50%); font-size: 200%;">Upload Image</span></div>
 	    	</label>
 	    	{{ Form::file('profile_image', ['id' => 'profile_image_file', 'style' => 'display: none;']) }}
 	    	</div>
