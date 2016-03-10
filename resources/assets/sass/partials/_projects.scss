@@ -4,6 +4,10 @@
 
 .projects {
   padding-bottom: 5em;
+  background-image: url('/imgs/lines-right-white.png'); 
+  background-size: contain; 
+  background-position: top right; 
+  background-repeat: no-repeat;
 }
 
 /* Members */
@@ -81,6 +85,10 @@
   border-radius: 50%;
 }
 
+#profile_image_preview {
+  cursor: pointer;  
+}
+
 .product-owner {
   box-shadow: 0 0 10px $brand-primary;
 }
@@ -139,6 +147,11 @@
   padding-top:1em;
   width: 500px;
   text-align: left;
+}
+
+.add_seb {
+  background: transparent; 
+  border: 0;
 }
 
 .student-seb-list {

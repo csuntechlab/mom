@@ -9,7 +9,7 @@
 		</div>
 	<div class="gradient-overlay"></div>
 </section>
-<section class="section section-page section-white projects" style="background-image: url({{ asset('/imgs/lines-right-white.png') }}); background-size: contain; background-position: top right; background-repeat: no-repeat;">
+<section class="section section-page section-white projects">
 	<div class="container">
 		<div class="row no-padding">
 			<div class="col-xs-6 col-sm-4">

@@ -23,7 +23,7 @@
 			</div> -->
 	    	<div class="col-xs-12">
 	    	<label for="profile_image_file">
-	    	<img class="student-image" id="profile_image_preview" src="http://placehold.it/300x300" alt="student image" style="cursor: pointer;">
+	    	<img class="student-image" id="profile_image_preview" src="http://placehold.it/300x300" alt="student image">
 	    	</label>
 	    	{{ Form::file('profile_image', ['id' => 'profile_image_file', 'style' => 'display: none;']) }}
 	    	</div>
@@ -49,7 +49,7 @@
 	   
 	    <div class="row">
 	    	<div class="col-sm-12 student-seb">
-	    		<label class="student-seb-title">Skills <button style="background: transparent; border: 0;" id="add_skill"><i class="fa fa-plus-circle add-seb"></i></button></label>
+	    		<label class="student-seb-title">Skills <button class="add_seb" id="add_skill"><i class="fa fa-plus-circle add-seb"></i></button></label>
 	    		<ul id="skills_list" class="student-seb-list">
 	    			<li class="student-seb-list-items"><input name="skill1" type="text" class="input-text" placeholder="Add skill">
 	    			</li>
@@ -59,7 +59,7 @@
 	    <div class="row">
 	    	<div class="col-sm-12 student-seb">
 	    		<label class="student-seb-title">Experience
-	    		<button style="background: transparent; border: 0;" id="add_experience">
+	    		<button class="add_seb" id="add_experience">
 	    			<i class="fa fa-plus-circle add-seb"></i>
     			</button></label>
 	    		<ul id="experience_list" class="student-seb-list">
@@ -70,7 +70,7 @@
 	    </div>
 	    <div class="row">
 	    	<div class="col-sm-12 student-seb">
-	    		<label class="student-seb-title">Background <button style="background: transparent; border: 0;" id="add_background"><i class="fa fa-plus-circle add-seb"></i></button></label>
+	    		<label class="student-seb-title">Background <button class="add_seb" id="add_background"><i class="fa fa-plus-circle add-seb"></i></button></label>
 	    		<ul id="background_list" class="student-seb-list">
 	    			<li class="student-seb-list-items"><input name="background1" type="text" class="input-text" placeholder="Add background">
 	    			</li>
