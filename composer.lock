@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a02ed13899b161c00860baff058e511b",
-    "content-hash": "0feb6af5bef0e094e776fba476c27e7c",
+    "hash": "2e570e8b8f8b167c750b7fc9ae6b823c",
+    "content-hash": "a16d2283780b1837f8a0ea84890f6a04",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -1779,6 +1779,56 @@
             "time": "2016-01-07 13:38:51"
         },
         {
+            "name": "tiesa/ldap",
+            "version": "dev-master",
+            "target-dir": "Toyota/Component/Ldap",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ccottet/ldap.git",
+                "reference": "0759f17996fbb434ee5155dc527b95d8059c6d41"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ccottet/ldap/zipball/0759f17996fbb434ee5155dc527b95d8059c6d41",
+                "reference": "0759f17996fbb434ee5155dc527b95d8059c6d41",
+                "shasum": ""
+            },
+            "require": {
+                "ext-ldap": "*",
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": ">=3.7.13"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Toyota\\Component\\Ldap\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Cyril Cottet",
+                    "email": "cyril.cottet@gmail.com"
+                }
+            ],
+            "description": "LDAP made easy & practical to use in PHP",
+            "homepage": "https://github.com/ccottet/ldap",
+            "keywords": [
+                "ldap"
+            ],
+            "time": "2013-02-04 07:37:38"
+        },
+        {
             "name": "vlucas/phpdotenv",
             "version": "v2.2.0",
             "source": {
@@ -3058,7 +3108,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "tiesa/ldap": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
