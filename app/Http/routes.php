@@ -43,4 +43,9 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::resource('project', 'ProjectController');
     Route::controller('admin', 'AdminController');
+    
+    // remove after code reviewing
+    Route::get('individuals', function() {
+    	return Mom\Models\NemoIndividual::findOrFail('members:106417582');
+    });
 });
