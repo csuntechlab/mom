@@ -19,8 +19,7 @@ $(document).ready(function(){
 		var newTextBox = $(document.createElement('li')).attr('class', 'student-seb-list-items');
                 
         // Textbox
-		newTextBox.after().html('<input type="text" class="input-text" placeholder="' + placeholder + '" name="' + name + ob.counter + 
-	      '" value="" ><button style="background: transparent; border: 0;" id="' + name + '"><span class="student-seb-list-del">X</span></button>');
+		newTextBox.after().html('<input type="text" class="input-text" placeholder="' + placeholder + '" name="' + name + '[]" value="" ><button style="background: transparent; border: 0;" id="' + name + '"><span class="student-seb-list-del">X</span></button>');
 
 		selector.prepend(newTextBox);
             
@@ -51,9 +50,10 @@ $(document).ready(function(){
 	})
 
 	// Add a skill textbox
-	$('#add_skill').click(function()
-	{
-		addTextbox(skill_counter, 'skill', 'Add skill', $('#skills_list'));
+	$('#add_skill').click(function(e)
+	{	
+		e.preventDefault();
+		addTextbox(skill_counter, 'skills', 'Add skill', $('#skills_list'));
 	})
 
 	// Remove a skill textbox
@@ -67,9 +67,10 @@ $(document).ready(function(){
 	})
 
 	// Add an experience textbox
-	$('#add_experience').click(function()
+	$('#add_experience').click(function(e)
 	{
-		addTextbox(exp_counter, 'experience', 'Add experience', $('#experience_list'));
+		e.preventDefault();
+		addTextbox(exp_counter, 'experiences', 'Add experience', $('#experience_list'));
 	})
 
 	// Remove an experience textbox
@@ -83,9 +84,10 @@ $(document).ready(function(){
 	})
 
 	// Add a background textbox
-	$('#add_background').click(function()
+	$('#add_background').click(function(e)
 	{
-		addTextbox(back_counter, 'background', 'Add background', $('#background_list'));
+		e.preventDefault();
+		addTextbox(back_counter, 'backgrounds', 'Add background', $('#background_list'));
 	})
 
 	// Remove a background textbox
