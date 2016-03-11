@@ -6273,10 +6273,13 @@ address {
   padding-top: 7px; }
 
 /* Student Modal */
-.student {
+.student, .edit-student {
   font-family: "FFDINWebPro", "Helvetica Neue", Helvetica, Arial, sans-serif;
   margin-top: 1em;
   padding-bottom: 2em; }
+
+.edit-student {
+  text-align: center; }
 
 .lines-back {
   background-image: url("../imgs/lines-right-2.png");
@@ -6352,7 +6355,9 @@ address {
   width: auto;
   text-transform: uppercase;
   color: #151515;
-  padding-top: 1em; }
+  padding-top: 1em;
+  width: 500px;
+  text-align: left; }
 
 .student-seb-list {
   font-size: 1.1em;
@@ -6380,9 +6385,11 @@ address {
 .input-text {
   border-radius: 5px;
   border: solid 1px #D8D8D8;
-  font-size: 0.9em;
+  font-size: 1.3em;
   padding-left: 1em;
-  margin-left: 1em; }
+  margin-left: 1em;
+  width: 500px;
+  height: 45px; }
 
 .add-seb {
   color: #CD1C26;
@@ -6451,3 +6458,4 @@ address {
 .chosen-container .chosen-results li.highlighted {
   background-color: #CD1C26;
   background-image: linear-gradient(#CD1C26 20%, #CD1C26 90%); }
+
