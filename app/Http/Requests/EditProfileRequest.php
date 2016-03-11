@@ -28,13 +28,11 @@ class EditProfileRequest extends Request
             'linkedin_url'   => 'url',
             'github_url'     => 'url',
             'portfolium_url' => 'url',
-            'skill'          => 'required',
-            'skills'         => 'required',
-            'experience'     => 'required',
-            'background'     => 'required'
+            // 'skill'          => 'required',
+            // 'skills'         => 'required',
+            // 'experience'     => 'required',
+            // 'background'     => 'required'
         ];
-
-        // $rules['skills']->each('skills', ['required']);
 
         // foreach($this->request->get('skills') as $key)
         // {
