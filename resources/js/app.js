@@ -1,3 +1,7 @@
+$(document).ready(function(){
+    $(".chosen-select").chosen();
+});
+
 $(document).ready(function() {
 
     var $navigation = $('.navbar-default');

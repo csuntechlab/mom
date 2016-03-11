@@ -2,7 +2,7 @@
 
 @section('content')
 
-	<div class="">
+	<div class="header">
 	    <section class="section page-hero work-banner">
 	          <div class="dark-overlay"></div>
 	            <div class="content">
@@ -59,6 +59,21 @@
 						<div class="form-group">
 					    	{!! Form::label('end_date', 'Estimated End Date:') !!}
 					    	{!! Form::text('end_date', date('Y-m-d', strtotime("+30 days")), ['placeholder' => 'YYYY-MM-DD', 'class' => 'form-control']) !!}    
+						</div>
+						<div class="form-group">
+							{!! Form::label('product_owner', 'Product Owner:') !!}    
+							{!! Form::select('product_owner', $users, null, 
+							['placeholder' => 'Select Product Owner', 'role' => 'Select Team Members', 'class' => 'form-control chosen-select']) !!}
+						</div>
+						<div class="form-group">
+							{!! Form::label('scrum_master', 'Scrum Master:') !!}    
+							{!! Form::select('scrum_master', $users, null, 
+							['placeholder' => 'Select Scrum Master', 'role' => 'Select Team Members', 'class' => 'form-control chosen-select']) !!}  
+						</div>
+						<div class="form-group">
+							{!! Form::label('members[]', 'Team Members:') !!}    
+							{!! Form::select('members[]', $users, null, 
+							['multiple' => '', 'role' => 'Select Team Members', 'class' => 'form-control chosen-select']) !!}
 						</div>
 						<div class="form-group">
 							{!! Form::submit('Create Project', ['class' => 'btn btn-primary']) !!}

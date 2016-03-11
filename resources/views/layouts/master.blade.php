@@ -12,8 +12,8 @@
         
             {{-- APP STYLESHEETS --}}
         {{-- {!! HTML::style('css/components.css') !!} --}}
-        {!! HTML::style('css/app.css') !!}
         {!! HTML::style('css/components.css') !!}
+        {!! HTML::style('css/app.css') !!}
         {{-- APP SCRIPTS --}}
         {!! HTML::script('js/app.js') !!}
         {!! HTML::script('js/profile/edit.js') !!}
