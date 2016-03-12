@@ -40,6 +40,11 @@
   padding-bottom: 2em;
 }
 
+.edit-student {
+  @extend .student;
+  text-align: center;
+}
+
 .lines-back{
   background-image: url('../imgs/lines-right-2.png');
   background-position: bottom right;
@@ -132,6 +137,8 @@
   text-transform: uppercase;
   color: $gray-base;
   padding-top:1em;
+  width: 500px;
+  text-align: left;
 }
 
 .student-seb-list {
@@ -168,9 +175,11 @@
 .input-text {
   border-radius: 5px;
   border: solid 1px $gray-light;
-  font-size: 0.9em;
+  font-size: 1.3em;
   padding-left:1em;
   margin-left: 1em;
+  width: 500px;
+  height: 45px;
 }
 
 .add-seb {

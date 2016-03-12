@@ -37,7 +37,17 @@ $(document).ready(function(){
 	        
 	        reader.onload = function (e) 
 	        {
-	            $('#profile_image_preview').attr('src', e.target.result).css({'width' : '200px' , 'height' : '200px'});
+	        	// Hide the profile image text 'Upload Image'
+	        	$('#profile_image_preview_text').css('display', 'none');
+
+	        	// Show the what the image looks like before uploading
+	            $('#profile_image_preview').css({
+	            	'background': 'url("'+ e.target.result +'") no-repeat center center',
+	            	'background-size': 'cover',
+	            	'width': '300px', 
+	            	'height': '300px',
+	            	'border-radius': '50%'
+	            });
 	        }
 	        
 	        reader.readAsDataURL(input.files[0]);
