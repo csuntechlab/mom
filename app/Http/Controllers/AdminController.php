@@ -11,6 +11,11 @@ use Mom\Http\Controllers\Controller;
 
 class AdminController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+        $this->middleware('admin');
+    }
+
     /**
      * Serve up the index page for the admins.
      * List the projects at metalab.

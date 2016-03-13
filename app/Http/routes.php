@@ -30,9 +30,7 @@ Route::group(['middleware' => ['web']], function () {
 	    return view('projects');
 	});
 
-	Route::get('profile', function() {
-	   return Mom\Models\Profile::all();
-	});
+	Route::get('profile/{id}', 'ProfileController@getUserProfile');
 
 	Route::resource('project', 'ProjectController');
 
@@ -41,6 +39,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::post('login', 'AuthController@postLogin');
 	Route::get('logout', 'AuthController@getLogout');
 
-    Route::resource('project', 'ProjectController');
     Route::controller('admin', 'AdminController');
+    Route::resource('project', 'ProjectController');
+
 });

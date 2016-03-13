@@ -14,6 +14,17 @@ use Carbon\Carbon;
 class ProjectController extends Controller
 {
 
+    public function __construct(){
+        // apply middleware as needed
+        // use 'only' instead of 'except' if it's a short array
+        $this->middleware('auth', ['except' => [
+            'show',
+        ]]);
+        $this->middleware('admin', ['except' => [
+            'show',
+        ]]);
+    }
+
     /**
      * Generate new project_id.
      *
@@ -86,7 +97,7 @@ class ProjectController extends Controller
         $title = $request->title;
         $description = $request->description;
         $start_date = $request->start_date;
-        $end_date = $request->end_date  === "" ? NULL: $request->end_date;
+        $end_date = $request->end_date  === "" ? NULL : $request->end_date;
         // product_owner and scrum_master are required fields validated in CreateProjectRequest
         $product_owner = $request->product_owner;
         $scrum_master = $request->scrum_master;

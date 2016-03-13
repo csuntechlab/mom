@@ -52,8 +52,16 @@ class AuthController extends Controller
       // attempt to perform the authentication
       try {
         if(Auth::attempt($creds)) {
-            // redirect back to the landing page if no original target
-            return redirect()->intended('/');
+          // redirect user to their profile
+          if(Auth::user()->isStudent() && Auth::user()->hasProfile())
+            return redirect()->intended('profiles/' . Auth::user()->profile_id);
+          
+          // redirect user to admin panel, if user has the admin role  
+          if(Auth::user()->hasRole('admin'))
+            return redirect()->intended('admin');
+
+          // redirect back to the landing page if no original target
+          return redirect()->intended('/');
         }
         else
         {
