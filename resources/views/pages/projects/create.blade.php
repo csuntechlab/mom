@@ -44,39 +44,80 @@
 			<div class="project-form">
 				<div class="col-sm-10 col-sm-offset-1">
 					{!! Form::open(['url' => url('project')]) !!}
-						<div class="form-group">
-							{!! Form::label('title', 'Project Title') !!}
-							{!! Form::text('title', '', ['placeholder' => 'Title', 'class' => 'form-control']) !!}
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label for="project_img">
+										Image Upload: 
+										<div id="profile_image_preview" style="cursor: pointer;">
+											<img class="img-responsive thumbnail" src="http://placehold.it/560x250" alt="">
+										</div>
+									</label>
+									{{ Form::file('profile_image', ['id' => 'project_img', 'style' => 'display: none;']) }}
+								</div>
+							</div>
 						</div>
-						<div class="form-group">
-							{!! Form::label('description', 'Project Description') !!}
-							{!! Form::textarea('description', '' , ['placeholder' => 'Description', 'class' => 'form-control', 'rows' => '8'])!!}
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="form-group">
+									{!! Form::label('title', 'Project Title') !!}
+									{!! Form::text('title', '', ['placeholder' => 'Title', 'class' => 'form-control']) !!}
+								</div>
+							</div>
 						</div>
-						<div class="form-group">
-							{!! Form::label('start_date', 'Start Date:') !!}
-					        {!! Form::text('start_date', date('Y-m-d'), ['placeholder' => 'YYYY-MM-DD', 'class' => 'form-control']) !!}
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="form-group">
+									{!! Form::label('description', 'Project Description') !!}
+									{!! Form::textarea('description', '' , ['placeholder' => 'Description', 'class' => 'form-control', 'rows' => '8'])!!}
+								</div>
+							</div>
 						</div>
-						<div class="form-group">
-					    	{!! Form::label('end_date', 'Estimated End Date:') !!}
-					    	{!! Form::text('end_date', date('Y-m-d', strtotime("+30 days")), ['placeholder' => 'YYYY-MM-DD', 'class' => 'form-control']) !!}    
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="form-group">
+									{!! Form::label('start_date', 'Start Date:') !!}
+							        {!! Form::text('start_date', date('Y-m-d'), ['placeholder' => 'YYYY-MM-DD', 'class' => 'form-control']) !!}
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="form-group">
+							    	{!! Form::label('end_date', 'Estimated End Date:') !!}
+							    	{!! Form::text('end_date', date('Y-m-d', strtotime("+30 days")), ['placeholder' => 'YYYY-MM-DD', 'class' => 'form-control']) !!}    
+								</div>
+							</div>
 						</div>
-						<div class="form-group">
-							{!! Form::label('product_owner', 'Product Owner:') !!}    
-							{!! Form::select('product_owner', $users, null, 
-							['placeholder' => 'Select Product Owner', 'role' => 'Select Team Members', 'class' => 'form-control chosen-select']) !!}
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="form-group">
+									{!! Form::label('product_owner', 'Product Owner:') !!}    
+									{!! Form::select('product_owner', $users, null, 
+									['placeholder' => 'Select Product Owner', 'role' => 'Select Team Members', 'class' => 'form-control chosen-select']) !!}
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="form-group">
+									{!! Form::label('scrum_master', 'Scrum Master:') !!}    
+									{!! Form::select('scrum_master', $users, null, 
+									['placeholder' => 'Select Scrum Master', 'role' => 'Select Team Members', 'class' => 'form-control chosen-select']) !!}  
+								</div>
+							</div>
 						</div>
-						<div class="form-group">
-							{!! Form::label('scrum_master', 'Scrum Master:') !!}    
-							{!! Form::select('scrum_master', $users, null, 
-							['placeholder' => 'Select Scrum Master', 'role' => 'Select Team Members', 'class' => 'form-control chosen-select']) !!}  
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="form-group">
+									{!! Form::label('members[]', 'Team Members:') !!}    
+									{!! Form::select('members[]', $users, null, 
+									['multiple' => '', 'role' => 'Select Team Members', 'class' => 'form-control chosen-select']) !!}
+								</div>
+							</div>
 						</div>
-						<div class="form-group">
-							{!! Form::label('members[]', 'Team Members:') !!}    
-							{!! Form::select('members[]', $users, null, 
-							['multiple' => '', 'role' => 'Select Team Members', 'class' => 'form-control chosen-select']) !!}
-						</div>
-						<div class="form-group">
-							{!! Form::submit('Create Project', ['class' => 'btn btn-primary']) !!}
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="form-group">
+									{!! Form::submit('Create Project', ['class' => 'btn btn-primary']) !!}
+								</div>
+							</div>
 						</div>
 					{!! Form::close() !!}
 				</div>
@@ -84,20 +125,3 @@
 		</div>
 	</div>
 @stop
-
-<!--	PO, SM, and members tags to style. Don't forget to remove comments in CreateProjectRequest for validation for PO & SM
-    {!! Form::label('product_owner', 'Product Owner:') !!}    
-    	{!! Form::select('product_owner', $users, null, 
-    		['placeholder' => 'Select Product Owner', 'role' => 'Select Team Members' ])!!}
-    <br/><br/>
-    {!! Form::label('scrum_master', 'Scrum Master:') !!}    
-    	{!! Form::select('scrum_master', $users, null, 
-    		['placeholder' => 'Select Scrum Master', 'role' => 'Select Team Members' ])!!}
-    <br/><br/>     
-    {!! Form::label('members[]', 'Team Members:') !!}    
-    	{!! Form::select('members[]', $users, null, 
-    		['class' => 'form-control chosen-select', 'multiple' => '', 'role' => 'Select Team Members' ])!!}
-    <br/><br/>     
-	{!! Form::submit('Create Project') !!}
-{!! Form::close() !!}
--->

@@ -22,7 +22,10 @@
                     @foreach($projects as $project)
                         <li class="media">
                             <div class="media-left">
-                                <img class="media-object thumbnail" src="http://placehold.it/225x150" alt="...">
+                                <!-- Add link for project demo here -->
+                                <a href="" title="">
+                                    <img class="media-object thumbnail" src="http://placehold.it/225x150" alt="...">
+                                </a>
                             </div>
                             <div class="media-body">
                                 <div class="row">
