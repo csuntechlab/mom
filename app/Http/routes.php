@@ -10,20 +10,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('layouts.master');
-});
-Route::get('projects', function () {
-    return view('projects');
-});
-
-Route::get('edit-student', function () {
-    return view('edit-student');
-});
-
-Route::get('profile', function() {
-   return Mom\Models\Profile::all();
-});
 
 /*
 |--------------------------------------------------------------------------
