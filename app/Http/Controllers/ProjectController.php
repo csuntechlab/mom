@@ -183,10 +183,13 @@ class ProjectController extends Controller
         // if count > 1 then it is true
         $project->productOwner =  count($project->productOwner) ? $project->productOwner[0] : new User();
         $project->scrumMaster =  count($project->scrumMaster) ? $project->scrumMaster[0] : new User();
-
         $users = User::where('status', 'Active')->get()->lists('display_name', 'user_id');
         // Change view as needed
-        return view('pages.projects.edit', compact('project', 'users'));
+         
+        //return members to the view as well.
+        $members = $project->members->pluck('user_id')->toArray();
+
+        return view('pages.projects.edit', compact('project', 'users', 'members'));
     }
 
     /**

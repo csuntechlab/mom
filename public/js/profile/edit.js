@@ -9,7 +9,7 @@ $(document).ready(function(){
 	function addTextbox(ob, name, placeholder, selector)
 	{
 		// No more than 10 textboxes can be created
-		if(ob.counter > 10)
+		if(selector.children().length >= 10)
 		{
             alert("Only 10 textboxes allowed");
             return false;
@@ -36,7 +36,17 @@ $(document).ready(function(){
 	        
 	        reader.onload = function (e) 
 	        {
-	            $('#profile_image_preview').attr('src', e.target.result).css({'width' : '200px' , 'height' : '200px'});
+	        	// Hide the profile image text 'Upload Image'
+	        	$('#profile_image_preview_text').css('display', 'none');
+
+	        	// Show the what the image looks like before uploading
+	            $('#profile_image_preview').css({
+	            	'background': 'url("'+ e.target.result +'") no-repeat center center',
+	            	'background-size': 'cover',
+	            	'width': '300px', 
+	            	'height': '300px',
+	            	'border-radius': '50%'
+	            });
 	        }
 	        
 	        reader.readAsDataURL(input.files[0]);
@@ -49,23 +59,6 @@ $(document).ready(function(){
     	previewImage(this);
 	})
 
-	// Add a skill textbox
-	$('#add_skill').click(function(e)
-	{	
-		e.preventDefault();
-		addTextbox(skill_counter, 'skills', 'Add skill', $('#skills_list'));
-	})
-
-	// Remove a skill textbox
-	$('#skills_list').on('click', '#skill', function(e)
-	{
-		e.preventDefault();
-
-		$(this).parent('li').remove();
-
-		skill_counter.counter--;
-	})
-
 	// Add an experience textbox
 	$('#add_experience').click(function(e)
 	{
@@ -74,7 +67,7 @@ $(document).ready(function(){
 	})
 
 	// Remove an experience textbox
-	$('#experience_list').on('click', '#experience', function(e)
+	$('#experience_list').on('click', '#experiences', function(e)
 	{
 		e.preventDefault();
 
@@ -83,22 +76,44 @@ $(document).ready(function(){
 		exp_counter.counter--;
 	})
 
-	// Add a background textbox
-	$('#add_background').click(function(e)
-	{
+	// Prevents modal button click from submitting form
+	$('#edit-profile-modal-btn').click(function(e){
 		e.preventDefault();
-		addTextbox(back_counter, 'backgrounds', 'Add background', $('#background_list'));
 	})
+
+	// Add a skill textbox
+	// $('#add_skill').click(function(e)
+	// {	
+	// 	e.preventDefault();
+	// 	addTextbox(skill_counter, 'skills', 'Add skill', $('#skills_list'));
+	// })
+
+	// Remove a skill textbox
+	// $('#skills_list').on('click', '#skill', function(e)
+	// {
+	// 	e.preventDefault();
+
+	// 	$(this).parent('li').remove();
+
+	// 	skill_counter.counter--;
+	// })
+
+	// Add a background textbox
+	// $('#add_background').click(function(e)
+	// {
+	// 	e.preventDefault();
+	// 	addTextbox(back_counter, 'backgrounds', 'Add background', $('#background_list'));
+	// })
 
 	// Remove a background textbox
-	$('#background_list').on('click', '#background', function(e)
-	{
-		e.preventDefault();
+	// $('#background_list').on('click', '#background', function(e)
+	// {
+	// 	e.preventDefault();
 
-		$(this).parent('li').remove();
+	// 	$(this).parent('li').remove();
 
-		back_counter.counter--;
-	})
+	// 	back_counter.counter--;
+	// })
 })
 
 

@@ -28,10 +28,9 @@ class EditProfileRequest extends Request
             'linkedin_url'   => 'url',
             'github_url'     => 'url',
             'portfolium_url' => 'url',
-            // 'skill'          => 'required',
-            // 'skills'         => 'required',
-            // 'experience'     => 'required',
-            // 'background'     => 'required'
+            'skills'         => 'required',
+            'experiences'    => 'required',
+            'background'     => 'required'
         ];
 
         // foreach($this->request->get('skills') as $key)
@@ -49,10 +48,10 @@ class EditProfileRequest extends Request
             'profile_image.image' => 'Acceptable file types for profile image are .jpg, .png, .svg, .bmp',
             'linkedin_url.url'    => 'LinkedIn url is not valid',
             'github_url.url'      => 'GitHub url is not valid',
-            'portfolium_url.url'      => 'Portfolium url is not valid',
-            'skill.required'      => 'A minimum of 1 skill is required',
-            'experience.required' => 'A minimum of 1 experience is required',
-            'background.required' => 'A minimum of 1 background is required'        
+            'portfolium_url.url'  => 'Portfolium url is not valid',
+            'skills.required'     => 'A minimum of 1 skill is required',
+            'experiences.required'=> 'A minimum of 1 experience is required',
+            'background.required' => 'A background description must be provided'        
         ];
     }
 }

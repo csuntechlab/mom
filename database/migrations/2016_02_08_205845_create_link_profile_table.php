@@ -29,6 +29,6 @@ class CreateLinkProfileTable extends Migration
      */
     public function down()
     {
-        Schema::drop('link_person');
+        Schema::drop('link_profile');
     }
 }

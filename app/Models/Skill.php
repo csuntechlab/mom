@@ -6,4 +6,6 @@ class Skill extends Model
 {
    protected $table = 'mom.research';
    protected $primaryKey = 'research_id';
+
+   public $incrementing = false;
 }

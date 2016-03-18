@@ -13,6 +13,18 @@
     .media-object {
         margin-right: 15px;
     }
+
+    dl {
+        font-family: "FFDINWebPro","Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-weight: 300;
+        font-size: 1.1em;
+        letter-spacing: 1px;
+
+        dt {
+            margin: 2px 0px;
+        }
+
+    }
 }
 
 .bk-btn {
@@ -36,4 +48,39 @@
 
 .gform_wrapper textarea:active, textarea:focus {
     height: initial !important;
+}
+
+.chosen-container-single .chosen-single {
+    border-radius: 0px;
+    height: 44px;
+    line-height: 1.42857;
+    padding: 12px 18px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    font-family: inherit;
+    letter-spacing: .5px;
+    line-height: initial;
+}
+
+.chosen-container-multi .chosen-choices {
+    height: 60px !important;
+    color: black;
+    padding: 12px 18px;
+}
+
+.chosen-container-multi .chosen-choices li.search-field input[type="text"] {
+    color: #444;
+    font-family: inherit;
+    text-transform: uppercase;
+}
+
+.chosen-container-multi .chosen-choices li.search-choice  {
+    border: 1px solid #CD1C26;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 0px;
+}
+
+.chosen-container .chosen-results li.highlighted {
+    background-color: #CD1C26;
+    background-image: linear-gradient(#CD1C26 20%, #CD1C26 90%);
 }

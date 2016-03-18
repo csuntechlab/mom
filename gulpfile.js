@@ -20,33 +20,38 @@ var components = elixir.config.bowerDir;
 var paths = {
    'jquery': components + '/jquery/dist/',
    'bootstrap': components + '/bootstrap-sass/assets/',
-   'fontawesome': components + '/font-awesome/'
-}
+   'fontawesome': components + '/font-awesome/',
+   'chosen': components + '/chosen/',
+};
 
 // Begin Elixir Project
 elixir(function(mix) {
 
   // Add Styles to project
   mix.copy(paths.bootstrap + 'stylesheets', 'resources/assets/bootstrap-sass')
-     .copy(paths.fontawesome + 'css/font-awesome.css', 'resources/css/font-awesome.css');
+     .copy(paths.fontawesome + 'css/font-awesome.css', 'resources/css/vendor/font-awesome.css')
+     .copy(paths.chosen + 'chosen.css', 'resources/css/chosen.css');
 
   // Add Fonts to project
   mix.copy(paths.fontawesome + 'fonts', 'public/fonts');
 
   // Add Scripts to project
   mix.copy(paths.jquery + 'jquery.js', 'resources/js/jquery/jquery.js')
-     .copy(paths.bootstrap + 'javascripts/bootstrap.js', 'resources/js/bootstrap-js/bootstrap.js');
+     .copy(paths.bootstrap + 'javascripts/bootstrap.js', 'resources/js/bootstrap-js/bootstrap.js')
+     .copy(paths.chosen + 'chosen.jquery.js', 'resources/js/chosen/chosen.js');
 
   // Merge Styles
   mix.styles([
-    'font-awesome.css'
+    'font-awesome.css',
+    'chosen.css'
   ],'public/css/components.css', 'resources/css');
 
   // Merge Scripts
   mix.scripts([
     'jquery/jquery.js', 
-    'app.js', 
-    'bootstrap-js/bootstrap.js'
+    'bootstrap-js/bootstrap.js',
+    'chosen/chosen.js',
+    'app.js'
   ],'public/js/app.js', 'resources/js');
 
   // Compile SASS

@@ -23,6 +23,20 @@
 */
 
 Route::group(['middleware' => ['web']], function () {
+	Route::get('/', function () {
+    	return view('layouts.master');
+	});
+	Route::get('projects', function () {
+	    return view('projects');
+	});
+
+	Route::resource('project', 'ProjectController');
+
+	// authentication stuff
+	Route::get('login', 'AuthController@getLogin');
+	Route::post('login', 'AuthController@postLogin');
+	Route::get('logout', 'AuthController@getLogout');
+
     Route::resource('project', 'ProjectController');
     Route::controller('admin', 'AdminController');
     Route::controller('profile', 'ProfileController');
