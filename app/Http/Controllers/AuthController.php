@@ -54,7 +54,7 @@ class AuthController extends Controller
         if(Auth::attempt($creds)) {
           // redirect user to their profile
           if(Auth::user()->isStudent() && Auth::user()->hasProfile())
-            return redirect()->intended('profiles/' . Auth::user()->profile_id);
+            return redirect()->intended('profile/' . Auth::user()->profile_id);
           
           // redirect user to admin panel, if user has the admin role  
           if(Auth::user()->hasRole('admin'))
