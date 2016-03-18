@@ -95,7 +95,7 @@ class User extends MetaUser
     public function profile() {
         return $this->hasOne('Mom\Models\Profile', 'individuals_id');
     }
-    
+
     public function isStudent(){
         return $this->hasRole('student');
     }
@@ -104,7 +104,7 @@ class User extends MetaUser
         return (null !== (Profile::where('individuals_id', $this->user_id)->first()));
     }
 
-    
+
     public function getProfileIdAttribute(){
         return Profile::where('individuals_id', $this->user_id)->first()->profile_id;
     }
