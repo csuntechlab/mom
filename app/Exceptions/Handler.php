@@ -45,11 +45,16 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
+        
+        if($e instanceof PermissionDeniedException) {
+            return response(view('pages.errors.401', compact('e')), 401);
+        }
         // Handle findOrFail($id) exception
-        if($e instanceof ModelNotFoundException) {
+        else if($e instanceof ModelNotFoundException) {
             if(starts_with($request->getRequestUri(), '/project/')) {
                 return redirect()->to('project');
             }
+            //return response(view('pages.errors.404'), 404);
         }
         return parent::render($request, $e);
     }

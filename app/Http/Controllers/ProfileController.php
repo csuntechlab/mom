@@ -19,6 +19,19 @@ use Mom\Models\FrescoExpertise;
 
 class ProfileController extends Controller
 {
+
+    public function __construct(){
+        // apply middleware as needed
+        // use 'except' instead of 'only' if it's a short array
+        $this->middleware('auth', ['only' => [
+            'show',
+        ]]);
+        // authenticated users can edit and update their profiles 
+        $this->middleware('admin', ['only' => [
+            'index', 'create', 'store', 'destroy',
+        ]]);
+    }
+
 	// Updates the user's url
 	private function updateURL($id, $request, $link_id, $input)
 	{
@@ -48,7 +61,7 @@ class ProfileController extends Controller
         $github_url     = LinkProfile::link($id, 3)->link_url;
 
     	// Return corresponding indiviudals profile edit page
-    	return view('edit-student', compact('skills', 'profile', 'profile_skills', 'linkedin_url', 'portfolium_url', 'github_url'));
+    	return view('pages.profiles.edit-student', compact('skills', 'profile', 'profile_skills', 'linkedin_url', 'portfolium_url', 'github_url'));
     }
 
     // Update the user's profile
@@ -164,6 +177,6 @@ class ProfileController extends Controller
         }
 
     	return redirect()->back();
-
     }
+
 }

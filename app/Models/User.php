@@ -1,6 +1,7 @@
 <?php namespace Mom\Models;
 
 use METALab\Auth\MetaUser;
+use Mom\Models\Profile;
 
 class User extends MetaUser
 {
@@ -95,4 +96,16 @@ class User extends MetaUser
         return $this->hasOne('Mom\Models\Profile', 'individuals_id');
     }
 
+    public function isStudent(){
+        return $this->hasRole('student');
+    }
+
+    public function hasProfile(){
+        return (null !== (Profile::where('individuals_id', $this->user_id)->first()));
+    }
+
+
+    public function getProfileIdAttribute(){
+        return Profile::where('individuals_id', $this->user_id)->first()->profile_id;
+    }
 }
