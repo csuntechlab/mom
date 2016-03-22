@@ -14,27 +14,27 @@ use Carbon\Carbon;
 class ProjectController extends Controller
 {
 
-    /**
-     * Generate new project_id.
-     *
-     * @return Mom\Models\NemoEntity project_id
-     */
-    private function generateProjectNewID(){
-        $latestID = NemoEntity::where('entities_id', 'like', 'projects:%')->latest()->first()->entities_id;
-        // strip split string 'projects:#' into an array and add 1 with ':' delimiter
-        $project_id = explode(':', $latestID);
-        return 'projects:' . ($project_id[1] + 1);
+    public function __construct(){
+        // apply middleware as needed
+        // use 'only' instead of 'except' if it's a short array
+        $this->middleware('auth', ['except' => [
+            'show',
+        ]]);
+        $this->middleware('admin', ['except' => [
+            'show',
+        ]]);
     }
 
     /**
-     * Add individual's role to this project.
+     * Generate new project_id.
      *
-     * @return Mom\Models\NemoEntity project_id
+     * @return Integer project_id
      */
-    private function addIndividualsRoleToProject($userId, $role, $project_id){
-        $role = Role::findOrFail($role);
-        $user = User::findOrFail($userId);
-        $user->roles()->attach($role->system_name, ['parent_entities_id' => $project_id]);
+    private function generateProjectNewID() {
+        $latestID = NemoEntity::where('entities_id', 'LIKE', 'projects:%')->latest()->first()->entities_id;
+        // split string 'projects:#' into an array with ':' delimiter and then append 'projects:' after adding 1
+        $project_id = explode(':', $latestID);
+        return 'projects:' . (array_pop($project_id) + 1);
     }
 
     /**
@@ -47,8 +47,8 @@ class ProjectController extends Controller
         $projects = Project::with(['meta', 'productOwner', 'scrumMaster', 'members'])->get();
         // remove 'projects:' from project_id to only have the integers
         // Take into account projects with no product owner and scrum master
-        // if count > 1 then it is true
-        foreach($projects as $project){
+        // if count > 0 then it is true
+        foreach($projects as $project) {
             $id = explode(':', $project->project_id);
             $project->project_id = array_pop($id);
             $project->productOwner =  count($project->productOwner) ? $project->productOwner[0] : new User();
@@ -86,7 +86,7 @@ class ProjectController extends Controller
         $title = $request->title;
         $description = $request->description;
         $start_date = $request->start_date;
-        $end_date = $request->end_date  === "" ? NULL: $request->end_date;
+        $end_date = $request->end_date  === "" ? NULL : $request->end_date;
         // product_owner and scrum_master are required fields validated in CreateProjectRequest
         $product_owner = $request->product_owner;
         $scrum_master = $request->scrum_master;
@@ -94,7 +94,7 @@ class ProjectController extends Controller
         $members = $request->members;
         // account for an empty array
 
-        try{
+        try {
             NemoEntity::create([
                 'entities_id' => $project_id,
                 'parent_entities_id' => 'departments:10390',
@@ -103,39 +103,33 @@ class ProjectController extends Controller
                 'description' => $description,
             ]);
 
-             Project::create([
+             $project = Project::create([
                 'project_id' => $project_id,
                 'start_date' => $start_date,
                 'end_date'   => $end_date,
             ]);
-        } catch (\PDOException $e){
+        } 
+        catch (\PDOException $e) {
             // add some sort of notification of error
             return redirect()->back();
         }
 
-        // DO NOT DELETE, MAY HAVE TO USE THIS CODE INSTEAD
-        // add product_owner role to this user
-        // $role = Role::findOrFail('product_owner');
-        // $product_owner = User::findOrFail($product_owner);
-        // $product_owner->roles()->attach($role->system_name, ['parent_entities_id' => $project_id]);
-        $this->addIndividualsRoleToProject($product_owner, 'product_owner', $project_id);
-        
-        // DO NOT DELETE, MAY HAVE TO USE THIS CODE INSTEAD
-        // add scrum_master role to this user
-        // $role = Role::findOrFail('scrum_master');
-        // $scrum_master = User::findOrFail($scrum_master);
-        // $scrum_master->roles()->attach($role->system_name, ['parent_entities_id' => $project_id]);
-        $this->addIndividualsRoleToProject($scrum_master, 'scrum_master', $project_id);
+        // lazy load relationships to add PO, SM, and members.
+        $project->load('meta', 'productOwner', 'scrumMaster', 'members');
+        // Only add product_owner and scrum_master roles into the project if $product_owner and $scrum_master exists
+        if(!empty($product_owner))
+            $project->productOwner()->sync([$product_owner => ['role_position' => 'product_owner']]);
+        if(!empty($scrum_master))
+            $project->scrumMaster()->sync([$scrum_master => ['role_position' => 'scrum_master']]);
 
-        // add members to this project, if any were given
-        //$role = Role::findOrFail('member');
-        if($members !== null){
-            foreach($members as $member){
-                // $user = User::findOrFail($member);
-                // $user->roles()->attach($role->system_name, ['parent_entities_id' => $project_id]);
-                $this->addIndividualsRoleToProject($member, 'member', $project_id);
+        $membersToAdd = array();
+        // $members comes in as an array 
+        if(isset($members)) {
+            foreach ($members as $value) {
+                $membersToAdd[$value] = ['role_position' => 'member'];
             }
         }
+        $project->members()->sync($membersToAdd);
 
         return redirect()->to('admin');
     }
@@ -156,7 +150,7 @@ class ProjectController extends Controller
         $project->project_id = $id;
         
         // Take into account projects with no product owner and scrum master
-        // if count > 1 then it is true
+        // if count > 0 then it is true
         $project->productOwner =  count($project->productOwner) ? $project->productOwner[0] : new User();
         $project->scrumMaster =  count($project->scrumMaster) ? $project->scrumMaster[0] : new User();
         
@@ -180,9 +174,9 @@ class ProjectController extends Controller
         $project->project_id = $id;
 
         // Take into account projects with no product owner and scrum master
-        // if count > 1 then it is true
-        $project->productOwner =  count($project->productOwner) ? $project->productOwner[0] : new User();
-        $project->scrumMaster =  count($project->scrumMaster) ? $project->scrumMaster[0] : new User();
+        // if count > 0 then it is true
+        $project->productOwner = count($project->productOwner) ? $project->productOwner[0] : new User();
+        $project->scrumMaster  = count($project->scrumMaster) ? $project->scrumMaster[0] : new User();
         $users = User::where('status', 'Active')->get()->lists('display_name', 'user_id');
         // Change view as needed
          
@@ -233,77 +227,34 @@ class ProjectController extends Controller
 
         // lazy load relationships to update PO, SM, and members. Also title and description (meta).
         $project->load('productOwner', 'scrumMaster', 'members', 'meta');
-        $project->productOwner()->sync([$request->product_owner => ['role_position' => 'product_owner']]);
-        // DO NOT DELETE, MAY HAVE TO USE THIS CODE INSTEAD
-        // $currentProductOwner = $project->productOwner[0]->user_id;
-        // //$PO = User::findOrFail($request->product_owner);
-        // if($currentProductOwner !== $request->product_owner){
-        //     $this->removeIndividualsRoleFromProject($currentProductOwner,
-        //         'product_owner', $project->project_id);
-        //     //$PO->roles()->attach($role->system_name, ['parent_entities_id' => $project->project_id]);
-        //     $this->addIndividualsRoleToProject($request->product_owner,
-        //         'product_owner', $project->project_id);
-        // }
 
-        $project->scrumMaster()->sync([$request->scrum_master => ['role_position' => 'scrum_master']]);
-        // DO NOT DELETE, MAY HAVE TO USE THIS CODE INSTEAD
-        // $currentScrumMaster = $project->scrumMaster[0]->user_id;
-        // if($currentScrumMaster !== $request->scrum_master){
-        //     $this->removeIndividualsRoleFromProject($currentScrumMaster,
-        //         'scrum_master', $project->project_id);
-        //     //$PO->roles()->attach($role->system_name, ['parent_entities_id' => $project->project_id]);
-        //     $this->addIndividualsRoleToProject($request->scrum_master,
-        //         'scrum_master', $project->project_id);
-        // }
+        // Checks to see if the product owner or scrum master slots are empty strings before syncing.
+        // The sync method accepts an array of IDs with it's associated role to store. 
+        // If Any IDs with it's associated role are not in the given array that were on the table before, will be removed.
+        // Must use associate array to attach the role to members id as a key
+        $emptyArr = array();
+        if(!empty($request->product_owner))
+            $project->productOwner()->sync([$request->product_owner => ['role_position' => 'product_owner']]);
+        else
+            $project->productOwner()->sync($emptyArr);
+        
+        if(!empty($request->scrum_master))
+            $project->scrumMaster()->sync([$request->scrum_master => ['role_position' => 'scrum_master']]);
+        else 
+            $project->scrumMaster()->sync($emptyArr);
 
-        // Update members in project
+        // Update members in this project with sync as well
         $updatedMembers = array(); 
-        if($request->members !== NULL) {
+        if(isset($request->members)) {
             foreach ($request->members as $value) {
                 $updatedMembers[$value] = ['role_position' => 'member'];
             }
         }
         $project->members()->sync($updatedMembers);
-        // DO NOT DELETE, MAY HAVE TO USE THIS CODE INSTEAD
-        // $updatedMembers = array();
-        // if($request->members !== NULL){
-        //     foreach($request->members as $member)
-        //         array_push($updatedMembers, $member);
-        // }
-        //
-        // members to add to this project with a member role, if any
-        // if(!empty($updatedMembers)){
-        //     // array_diff returns an array of the $updatedMembers values not in $currentMembers
-        //     $membersToAdd = array_diff($updatedMembers, $currentMembers);
-        //     foreach ($membersToAdd as $member) {
-        //         $this->addIndividualsRoleToProject($member, 'member', $project->project_id);
-        //     }
-        // }
         
-        // // members to remove from this project with the member role, if any
-        // //dd(array_diff($currentMembers, $updatedMembers));
-        // $membersToRemove = array_diff($currentMembers, $updatedMembers);
-        // foreach ($membersToRemove as $member) {
-        //     $this->removeIndividualsRoleFromProject($member, 'member', $project->project_id);
-        // }
         return redirect()
                 ->to('admin')
                 ->with('message', "Project {$project->meta->title} updated successfully!");
-    }
-
-    /**
-     * Removes the role of given the individuals ID and particular role position in
-     * this project from the database.
-     *
-     * @param string $individualsId The individuals ID of the editor
-     * @param string $role The system name from which to remove from the individual
-     */
-    private function removeIndividualsRoleFromProject($individualsId, $role, $project_id) {
-        NemoMembership::where('parent_entities_id', $project_id)
-            ->where('individuals_id', $individualsId)
-            ->where('role_position', $role)
-            ->delete();
-
     }
 
     /**
