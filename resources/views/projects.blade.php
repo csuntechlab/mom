@@ -9,27 +9,74 @@
 		</div>
 	<div class="gradient-overlay"></div>
 </section>
-<section class="section section-page section-white projects" style="background-image: url({{ asset('/imgs/lines-right-white.png') }}); background-size: contain; background-position: top right; background-repeat: no-repeat;">
+<section class="section section-page section-white projects " style="background-image: url({{ asset('/imgs/lines-right-white.png') }}); background-size: contain; background-position: top right; background-repeat: no-repeat;">
 	<div class="container">
 		<div class="row no-padding">
-			<div class="col-xs-6 col-sm-4">
-				<h1 class="heading-block">Products</h1>
+			<div class="col-xs-6 col-sm-6 col-md-4">
+				<!--<h1 class=" heading-block display hidden-xs hidden-sm"> -->
+				<h1 class=" heading-block display ">Products</h1>
 			</div>
 		</div>
 		<div class="row no-padding">
 			<div id="project{{$y}}" class="row-eq-height">
 				<div class="col-md-12">
 					
-					<div class="col-md-4">
+					<div class="col-sm-12 col-md-4">
 						<div class="card card-light">
 							<div class="card-content-xl card-content-action">
 								<h2>Metaphor</h2>
 								<hr class="line-inline">
 								<img src="{{ asset('/imgs/macbook-pro-placeholder.png') }}" alt="Product image" class="img-responsive">
+<!-- MOBILE DROPDOWN  -->
+								<div class="row hidden-md hidden-lg hidden-xl">
+									<div class="col-xs-6">
+										Scope of Work
+									</div>
+									<div class="col-xs-6">
+										<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true" aria-controls="collapseExample">View+</button>
+									</div>
+								</div>
+
+								<div class="collapse in hidden-md hidden-lg hidden-xl" id="collapseExample" aria-expanded="true"> 
+									<!-- part 1 of well 1 -->
+									<div class="well card-dropdown card-light">
+										<div class="">
+											<div class="row">
+												<div class="col-xs-7 ">
+													<h3>Scope of Work</h3>
+												</div>
+												<div class="col-xs-12 col-sm-12">
+													<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi accusantium illo, nobis nostrum temporibus exercitationem.</p>
+												</div>
+											</div>
+										</div>
+										<!--  part two of first well-->
+										<div class="">
+											<div class="row">
+												<div class="col-xs-7">
+													<h2 class="small">
+														Product Owner
+													</h2> 
+												</div>
+												<div class="col-xs-7 col-sm-7">
+													<img src="http://www.placehold.it/80x80" class="student-image" alt="">
+												</div>				
+											</div>
+										</div>
+									</div>
+
+									<div class="well card-dropdown card-light col-xs-7 col-sm-7"> 
+										Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. 
+									</div> 
+									
+
+								</div>
+								<!-- </div> -->
+<!-- END OF MOBILE DROPDOWN  -->
 							</div>
 						</div>
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-4 hidden-sm hidden-xs">
 						<div class="card card-light">
 							<div class="card-content-xl card-content-action">
 								<div class="row">
@@ -43,14 +90,15 @@
 										<h2 class="small">
 											Product Owner
 										</h2> 
-									</div><div class="col-md-12">
+									</div>
+									<div class="col-md-12">
 										<img src="http://www.placehold.it/80x80" class="student-image" alt="">
 									</div>									
 								</div>	
 							</div>
 						</div>
 					</div>					
-					<div class="col-md-4">
+					<div class="col-md-4 hidden-sm hidden-xs">
 						<div class="card card-light">
 							<div class="card-content-xl card-content-action">
 								<!-- <h2>Members</h2>
@@ -288,9 +336,10 @@
 <section class="section section-page section-white projects" style="background-image: url({{ asset('/imgs/lines-right-white.png') }}); background-size: contain; background-position: top right; background-repeat: no-repeat;">
 	<div class="container">
 		<div class="row no-padding">
+<!-- testing to see if we want this to be repeated or not
 			<div class="col-xs-6 col-sm-4">
-				<h1 class="heading-block">Products</h1>
-			</div>
+				<h1 class="heading-block hidden-xs hidden-sm">Products</h1>
+			</div> -->
 		</div>
 		<div class="row no-padding">
 			<div id="project{{$y}}" class="row-eq-height">

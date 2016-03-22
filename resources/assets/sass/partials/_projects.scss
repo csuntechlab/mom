@@ -1,3 +1,4 @@
+@import "../bootstrap-sass/bootstrap/variables";
 //* Projects
 //
 //#
@@ -189,4 +190,27 @@
 
 .edit-student-buttons{
   padding-top: 2em;
+}
+// 
+// Mobile View of projects based on comps
+// Under dev. so its free of jugment 
+// 
+
+@media (max-width: $screen-phone)  {
+  // Center the h2 text 
+  h1 {
+    text-align: center;
+  }
+  // Center the red bar 
+  hr.line-inline {
+    margin: 5px 3px 5px 30%2; 
+    width: 75px;
+  } 
+}
+.card-dropdown {
+  outline: 1px solid transparent;
+  background-color: #fff;
+}
+.card-content-xl img {
+  margin: 0 auto;
 }

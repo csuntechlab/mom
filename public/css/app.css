@@ -6398,6 +6398,20 @@ address {
 .edit-student-buttons {
   padding-top: 2em; }
 
+@media (max-width: 480px) {
+  h1 {
+    text-align: center; }
+  hr.line-inline {
+    margin: 5px 3px 5px 30% 2;
+    width: 75px; } }
+
+.card-dropdown {
+  outline: 1px solid transparent;
+  background-color: #fff; }
+
+.card-content-xl img {
+  margin: 0 auto; }
+
 .projects h1, .projects h2, .projects h3, .projects h4, .projects h5, .projects h6 {
   text-transform: none; }
 
@@ -6458,4 +6472,3 @@ address {
 .chosen-container .chosen-results li.highlighted {
   background-color: #CD1C26;
   background-image: linear-gradient(#CD1C26 20%, #CD1C26 90%); }
-
