@@ -47,13 +47,13 @@
 						<div class="row">
 							<div class="col-sm-6">
 								<div class="form-group">
-									<label for="project_img">
-										Image Upload: 
-										<div id="profile_image_preview" style="cursor: pointer;">
-											<img class="img-responsive thumbnail" src="http://placehold.it/560x250" alt="">
+									<label for="project_image_file">
+										Upload Image: 
+										<div id="project_image_preview" class="img-rounded text-center">
+											<span id="project_image_preview_icon"><i class="fa fa-upload fa-2x"></i></span>
 										</div>
 									</label>
-									{{ Form::file('profile_image', ['id' => 'project_img', 'style' => 'display: none;']) }}
+									{{ Form::file('project_image', ['id' => 'project_image_file', 'style' => 'display: none;']) }}
 								</div>
 							</div>
 						</div>

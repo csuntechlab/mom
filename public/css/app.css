@@ -6398,6 +6398,21 @@ address {
 .edit-student-buttons {
   padding-top: 2em; }
 
+#project_image_preview {
+  height: 75px;
+  width: 125px;
+  border: 1px solid white;
+  margin-top: 7px;
+  padding: 20px;
+  background-color: #FFFFFF;
+  border-radius: 3px;
+  border: 2px solid #FBFBFB; }
+  #project_image_preview:hover {
+    background: #F8F8F8;
+    cursor: pointer; }
+  #project_image_preview i {
+    color: black; }
+
 .projects h1, .projects h2, .projects h3, .projects h4, .projects h5, .projects h6 {
   text-transform: none; }
 

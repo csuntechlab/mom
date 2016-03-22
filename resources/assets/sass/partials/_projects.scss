@@ -190,3 +190,24 @@
 .edit-student-buttons{
   padding-top: 2em;
 }
+
+//projet crud view styles
+#project_image_preview {
+    height: 75px;
+    width: 125px;
+    border: 1px solid white;
+    margin-top: 7px;
+    padding: 20px;
+    background-color: #FFFFFF;
+    border-radius: 3px;
+    border: 2px solid #FBFBFB;
+
+    &:hover{
+        background: #F8F8F8;
+        cursor: pointer;
+    }
+
+    i {
+        color: black;
+    }
+}

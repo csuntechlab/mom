@@ -51,6 +51,7 @@ elixir(function(mix) {
     'jquery/jquery.js', 
     'bootstrap-js/bootstrap.js',
     'chosen/chosen.js',
+    'project/create.js',
     'app.js'
   ],'public/js/app.js', 'resources/js');
 

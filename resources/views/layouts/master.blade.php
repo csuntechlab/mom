@@ -29,7 +29,6 @@
             @yield('modal')
         @include('layouts.partials.footer')
         {{-- APP CONTENT ENDS --}}
-        
-        
+                                
     </body>
 </html>
