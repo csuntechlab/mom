@@ -40,14 +40,12 @@
 								<div class="collapse in hidden-md hidden-lg hidden-xl" id="collapseExample" aria-expanded="true"> 
 									<!-- part 1 of well 1 -->
 									<div class="well card-dropdown card-light">
-										<div class="">
-											<div class="row">
-												<div class="col-xs-7 ">
-													<h3>Scope of Work</h3>
-												</div>
-												<div class="col-xs-12 col-sm-12">
-													<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi accusantium illo, nobis nostrum temporibus exercitationem.</p>
-												</div>
+										<div class="row">
+											<div class="col-xs-7 ">
+												<h3>Scope of Work</h3>
+											</div>
+											<div class="col-xs-12 col-sm-12">
+												<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi accusantium illo, nobis nostrum temporibus exercitationem.</p>
 											</div>
 										</div>
 										<!--  part two of first well-->
@@ -65,10 +63,22 @@
 										</div>
 									</div>
 
-									<div class="well card-dropdown card-light col-xs-7 col-sm-7"> 
-										Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. 
+									<div class="well card-dropdown card-light col-xs-12 col-sm-7"> 
+										{{-- expr --}}
+										<div class="container">
+											<div class="row">
+											@for ($i = 0; $i < 5; $i++)
+
+												<div class="col-xs-3 col-xs-offset-3">
+													<img class="members--member-img " src="http://placehold.it/60x60" alt="student image">
+												</div>
+												<div class="col-xs-12">
+													<h3 class="small">Student / Title / Full Name {!! $i !!}</h3>
+												</div>
+											@endfor
+											</div>
+										</div>
 									</div> 
-									
 
 								</div>
 								<!-- </div> -->
