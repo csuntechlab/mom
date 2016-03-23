@@ -17,7 +17,7 @@ class Profile extends Model
   * @return Builder
   */
   public function image() {
-    return $this->morphOne('Mom\Models\Image', 'imageable');
+    return $this->hasOne('Mom\Models\Image', 'imageable_id');
   }
 
   /**
@@ -39,6 +39,14 @@ class Profile extends Model
     return $this->belongsToMany('Mom\Models\Skill', 'mom.person_expertise', 'individuals_id', 'expertise_id');
   }
 
+  /*
+  * Relates this person to their experience
+  *
+  */
+  public function experience() {
+    return $this->hasMany('Mom\Models\ProfileExperience', 'individuals_id');
+  }
+
   /**
   * Returns the full name of the person.
   *
@@ -47,4 +55,6 @@ class Profile extends Model
   public function fullName() {
       return User::where('user_id', $this->individuals_id)->value('display_name');
   }
+
+
 }

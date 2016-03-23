@@ -9,7 +9,7 @@ $(document).ready(function(){
 	function addTextbox(ob, name, placeholder, selector)
 	{
 		// No more than 10 textboxes can be created
-		if(ob.counter > 10)
+		if(selector.children().length >= 10)
 		{
             alert("Only 10 textboxes allowed");
             return false;
@@ -19,8 +19,7 @@ $(document).ready(function(){
 		var newTextBox = $(document.createElement('li')).attr('class', 'student-seb-list-items');
                 
         // Textbox
-		newTextBox.after().html('<input type="text" class="input-text" placeholder="' + placeholder + '" name="' + name + ob.counter + 
-	      '" value="" ><button style="background: transparent; border: 0;" id="' + name + '"><span class="student-seb-list-del">X</span></button>');
+		newTextBox.after().html('<input type="text" class="input-text" placeholder="' + placeholder + '" name="' + name + '[]" value="" ><button style="background: transparent; border: 0;" id="' + name + '"><span class="student-seb-list-del">X</span></button>');
 
 		selector.prepend(newTextBox);
             
@@ -60,30 +59,15 @@ $(document).ready(function(){
     	previewImage(this);
 	})
 
-	// Add a skill textbox
-	$('#add_skill').click(function()
-	{
-		addTextbox(skill_counter, 'skill', 'Add skill', $('#skills_list'));
-	})
-
-	// Remove a skill textbox
-	$('#skills_list').on('click', '#skill', function(e)
+	// Add an experience textbox
+	$('#add_experience').click(function(e)
 	{
 		e.preventDefault();
-
-		$(this).parent('li').remove();
-
-		skill_counter.counter--;
-	})
-
-	// Add an experience textbox
-	$('#add_experience').click(function()
-	{
-		addTextbox(exp_counter, 'experience', 'Add experience', $('#experience_list'));
+		addTextbox(exp_counter, 'experiences', 'Add experience', $('#experience_list'));
 	})
 
 	// Remove an experience textbox
-	$('#experience_list').on('click', '#experience', function(e)
+	$('#experience_list').on('click', '#experiences', function(e)
 	{
 		e.preventDefault();
 
@@ -92,21 +76,44 @@ $(document).ready(function(){
 		exp_counter.counter--;
 	})
 
-	// Add a background textbox
-	$('#add_background').click(function()
-	{
-		addTextbox(back_counter, 'background', 'Add background', $('#background_list'));
+	// Prevents modal button click from submitting form
+	$('#edit-profile-modal-btn').click(function(e){
+		e.preventDefault();
 	})
+
+	// Add a skill textbox
+	// $('#add_skill').click(function(e)
+	// {	
+	// 	e.preventDefault();
+	// 	addTextbox(skill_counter, 'skills', 'Add skill', $('#skills_list'));
+	// })
+
+	// Remove a skill textbox
+	// $('#skills_list').on('click', '#skill', function(e)
+	// {
+	// 	e.preventDefault();
+
+	// 	$(this).parent('li').remove();
+
+	// 	skill_counter.counter--;
+	// })
+
+	// Add a background textbox
+	// $('#add_background').click(function(e)
+	// {
+	// 	e.preventDefault();
+	// 	addTextbox(back_counter, 'backgrounds', 'Add background', $('#background_list'));
+	// })
 
 	// Remove a background textbox
-	$('#background_list').on('click', '#background', function(e)
-	{
-		e.preventDefault();
+	// $('#background_list').on('click', '#background', function(e)
+	// {
+	// 	e.preventDefault();
 
-		$(this).parent('li').remove();
+	// 	$(this).parent('li').remove();
 
-		back_counter.counter--;
-	})
+	// 	back_counter.counter--;
+	// })
 })
 
 

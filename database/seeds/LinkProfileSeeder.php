@@ -1,10 +1,11 @@
 <?php
 
+use Mom\Models\LinkProfile;
 use Illuminate\Database\Seeder;
-use Mom\Models\LinkPerson;
 
 
-class LinkPersonSeeder extends Seeder
+
+class LinkProfileSeeder extends Seeder
 {
     /**
      * Run the database seeds.

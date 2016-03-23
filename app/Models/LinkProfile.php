@@ -9,4 +9,10 @@ class LinkProfile extends Model
    protected $fillable = [
       'individuals_id', 'link_id', 'link_url'
    ];
+
+   // Get the profile's link
+   public function scopeLink($q, $id, $link_id)
+   {
+   		return $q->where('individuals_id', $id)->where('link_id', $link_id)->first();
+   }
 }

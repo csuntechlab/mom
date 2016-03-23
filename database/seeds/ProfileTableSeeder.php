@@ -1,6 +1,6 @@
 <?php
 
-use Mom\Models\Person;
+use Mom\Models\Profile;
 use Illuminate\Database\Seeder;
 
 class ProfileTableSeeder extends Seeder
