@@ -296,8 +296,6 @@ class ProjectController extends Controller
             $project->productOwner =  count($project->productOwner) ? $project->productOwner[0] : new User();
             $project->scrumMaster =  count($project->scrumMaster) ? $project->scrumMaster[0] : new User();
         }
-
-        return $projects;
         
         return view('projects', compact($projects));
     }
