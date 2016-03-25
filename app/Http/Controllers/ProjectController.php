@@ -292,6 +292,12 @@ class ProjectController extends Controller
             'members.profile.links', 'members.profile.skills', 'members.profile.experience', 'members.profile.image',
             ])
             ->get();
+        foreach($projects as $project) {
+            $project->productOwner =  count($project->productOwner) ? $project->productOwner[0] : new User();
+            $project->scrumMaster =  count($project->scrumMaster) ? $project->scrumMaster[0] : new User();
+        }
+
+        return $projects;
         
         return view('projects', compact($projects));
     }
