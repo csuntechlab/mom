@@ -18,10 +18,10 @@ class ProjectController extends Controller
         // apply middleware as needed
         // use 'only' instead of 'except' if it's a short array
         $this->middleware('auth', ['except' => [
-            'show',
+            'projects',
         ]]);
         $this->middleware('admin', ['except' => [
-            'show',
+            'projects',
         ]]);
     }
 
@@ -282,5 +282,19 @@ class ProjectController extends Controller
         return redirect()
             ->to('project/')
             ->with('message', "Project {$project->meta->title} has been deleted successfully!");
+    }
+
+    public function projects(){
+        $projects = Project::with([
+            'meta', 
+            'productOwner.profile.links', 'productOwner.profile.skills', 'productOwner.profile.experience', 'productOwner.profile.image',
+            'scrumMaster.profile.links', 'scrumMaster.profile.skills', 'scrumMaster.profile.experience', 'scrumMaster.profile.image', 
+            'members.profile.links', 'members.profile.skills', 'members.profile.experience', 'members.profile.image',
+            ])
+            ->get();
+        
+        return $projects;
+        // Change view as needed
+        return view('projects');
     }
 }
