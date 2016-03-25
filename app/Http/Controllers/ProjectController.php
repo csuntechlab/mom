@@ -293,8 +293,6 @@ class ProjectController extends Controller
             ])
             ->get();
         
-        return $projects;
-        // Change view as needed
-        return view('projects');
+        return view('projects', compact($projects));
     }
 }
