@@ -108,4 +108,31 @@ class User extends MetaUser
     public function getProfileIdAttribute(){
         return Profile::where('individuals_id', $this->user_id)->first()->profile_id;
     }
+
+    /**
+   * Returns whether this person has the ability to edit the passed model or
+   * object.
+   *
+   * @param Model|Object $user_id The model or object to check
+   * @return boolean
+   */
+  public function canEdit($user_id) {
+      // the parameter object is the same class as this class; in our
+      // case, this would be another Person object
+      if($this->isOwner($user_id) || $this->hasRole('admin')) {
+        // owners can always edit themselves
+        return true;
+      }
+    return false;
+  }
+    /**
+   * Returns whether the individuals_id value for this Person and the provided
+   * parameter are the same value.
+   *
+   * @param string $id The individuals_id value to check
+   * @return boolean
+   */
+  public function isOwner($id) {
+    return ($this->user_id == $id);
+  }
 }

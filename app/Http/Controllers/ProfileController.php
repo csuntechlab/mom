@@ -23,12 +23,8 @@ class ProfileController extends Controller
     public function __construct(){
         // apply middleware as needed
         // use 'except' instead of 'only' if it's a short array
-        $this->middleware('auth', ['only' => [
-            'show',
-        ]]);
-        // authenticated users can edit and update their profiles 
-        $this->middleware('admin', ['only' => [
-            'index', 'create', 'store', 'destroy',
+        $this->middleware('auth', ['except' => [
+            'getShowProfile',
         ]]);
     }
 
@@ -43,8 +39,12 @@ class ProfileController extends Controller
 	}
 
 	// Get user profile based off individuals id passed through
-    public function getUserProfile($id)
+    public function getEditProfile($id)
     {
+        if(!Auth::user()->canEdit()){
+            return redirect()->back();
+        }
+
         // Find the user profile
         $profile        = Profile::with('skills')->findOrFail($id);
 
