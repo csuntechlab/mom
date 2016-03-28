@@ -23,22 +23,18 @@
 */
 
 Route::group(['middleware' => ['web']], function () {
-	Route::get('/', function () {
-    	return view('layouts.master');
-	});
-	Route::get('projects', 'ProjectController@projects');
-
-
-	Route::get('profile/{id}', 'ProfileController@getUserProfile');
-
+    // app index
+    Route::get('/', 'ProjectController@index');
+    Route::get('/work', 'ProjectController@index');
+    // admin projects index
+    Route::get('admin', 'ProjectController@getAdminIndex');
+    // projects
 	Route::resource('project', 'ProjectController');
-
-	// authentication stuff
-	Route::get('login', 'AuthController@getLogin');
-	Route::post('login', 'AuthController@postLogin');
-	Route::get('logout', 'AuthController@getLogout');
-
-    Route::controller('admin', 'AdminController');
+    // profiles
+    Route::get('profile/{id}', 'ProfileController@getUserProfile');
     Route::controller('profile', 'ProfileController');
-
+    // authentication stuff
+    Route::get('login', 'AuthController@getLogin');
+    Route::post('login', 'AuthController@postLogin');
+    Route::get('logout', 'AuthController@getLogout');
 });

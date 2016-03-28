@@ -5,7 +5,7 @@
         <section class="section page-hero work-banner">
               <div class="dark-overlay"></div>
                 <div class="content">
-                    <h1 class="text-center">Welcome Yazmin</h1>
+                    <h1 class="text-center">Welcome {{Auth::user()->first_name}}</h1>
                     <hr class="line-lg line-center">
                 </div>
             <div class="gradient-overlay"></div>
