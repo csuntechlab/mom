@@ -5946,6 +5946,10 @@ address {
   address strong {
     text-transform: uppercase; }
 
+.login {
+  max-width: 500px;
+  margin: 170px auto 0; }
+
 .contact-form input, .contact-form textarea {
   background-color: #151515;
   border: none;
