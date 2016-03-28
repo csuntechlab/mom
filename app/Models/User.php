@@ -116,10 +116,10 @@ class User extends MetaUser
    * @param Model|Object $user_id The model or object to check
    * @return boolean
    */
-  public function canEdit($user_id) {
+  public function canEdit() {
       // the parameter object is the same class as this class; in our
       // case, this would be another Person object
-      if($this->isOwner($user_id) || $this->hasRole('admin')) {
+      if($this->isOwner($this->user_id) || $this->hasRole('admin')) {
         // owners can always edit themselves
         return true;
       }
