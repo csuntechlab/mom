@@ -143,7 +143,7 @@
 							@if($link->type == 'github' && !empty($link->pivot->link_url))
 			        			<div class="social-media-btn">
 			        			<a href="{{$link->pivot->link_url}}">
-			        				<img class="social-media-btn-img" src="{{ asset('imgs/linkden.svg' ) }}" alt="github" />
+			        				<img class="social-media-btn-img" src="{{ asset('imgs/github.svg' ) }}" alt="github" />
 			        				<p>GitHub</p>
 			    				</a>
 			    			</div>
@@ -151,7 +151,7 @@
 							@if($link->type == 'website' && !empty($link->pivot->link_url))
 			        			<div class="social-media-btn">
 			        			<a href="{{$link->pivot->link_url}}">
-			        				<img class="social-media-btn-img" src="{{ asset('imgs/linkden.svg' ) }}" alt="website" />
+			        				<img class="social-media-btn-img" src="{{ asset('imgs/sphere.svg' ) }}" alt="website" />
 			        				<p>Website</p>
 			    				</a>
 			    			</div>
