@@ -23,11 +23,8 @@
 */
 
 Route::group(['middleware' => ['web']], function () {
-    // app index
-    Route::get('/', 'ProjectController@index');
-    Route::get('/work', 'ProjectController@index');
-    // admin projects index
-    Route::get('admin', 'ProjectController@getAdminIndex');
+    
+    Route::get('work', 'ProjectController@work');
     // projects
 	Route::resource('project', 'ProjectController');
     // profiles
@@ -37,4 +34,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('login', 'AuthController@getLogin');
     Route::post('login', 'AuthController@postLogin');
     Route::get('logout', 'AuthController@getLogout');
+
+    Route::get('admin/dashboard', function(){
+        return view('pages.admin.dashboard');
+    });
 });

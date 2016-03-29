@@ -17,11 +17,11 @@ class ProjectController extends Controller
     public function __construct(){
         // apply middleware as needed
         // use 'only' instead of 'except' if it's a short array
-        $this->middleware('auth', ['only' => [
-            'getAdminIndex',
+        $this->middleware('auth', ['except' => [
+            'work',
         ]]);
-        $this->middleware('admin', ['only' => [
-            'getAdminIndex',
+        $this->middleware('admin', ['except' => [
+            'work',
         ]]);
     }
 
@@ -44,7 +44,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::with(['meta', 'productOwner', 'scrumMaster', 'members'])->get();
+         $projects = Project::with(['meta', 'productOwner', 'scrumMaster', 'members'])->get();
         // remove 'projects:' from project_id to only have the integers
         // Take into account projects with no product owner and scrum master
         // if count > 0 then it is true
@@ -57,23 +57,6 @@ class ProjectController extends Controller
         
         // Change view as needed
         return view('pages.projects.index', compact('projects'));
-    }
-
-    public function getAdminIndex()
-    {
-        $projects = Project::with(['meta', 'productOwner', 'scrumMaster', 'members'])->get();
-        // remove 'projects:' from project_id to only have the integers
-        // Take into account projects with no product owner and scrum master
-        // if count > 0 then it is true
-        foreach($projects as $project) {
-            $id = explode(':', $project->project_id);
-            $project->project_id = array_pop($id);
-            $project->productOwner =  count($project->productOwner) ? $project->productOwner[0] : new User();
-            $project->scrumMaster =  count($project->scrumMaster) ? $project->scrumMaster[0] : new User();
-        }
-        
-        // Change view as needed
-        return view('pages.projects.admin_index', compact('projects'));
     }
 
     /**
@@ -301,7 +284,7 @@ class ProjectController extends Controller
             ->with('message', "Project {$project->meta->title} has been deleted successfully!");
     }
 
-    public function projects(){
+    public function work(){
         $projects = Project::with([
             'meta', 
             'productOwner.profile.links', 'productOwner.profile.skills', 'productOwner.profile.experience', 'productOwner.profile.image',
@@ -314,6 +297,6 @@ class ProjectController extends Controller
             $project->scrumMaster =  count($project->scrumMaster) ? $project->scrumMaster[0] : new User();
         }
         
-        return view('projects', compact($projects));
+        return view('pages.projects.work', compact($projects));
     }
 }

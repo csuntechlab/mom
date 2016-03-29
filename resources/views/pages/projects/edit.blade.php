@@ -16,7 +16,7 @@
 		<div class="row">
 			<div class="col-sm-10 col-sm-offset-1">
 				<div class="bk-btn">
-					<a href="{{ url('admin') }}">
+					<a href="{{ url('project') }}">
 						<i class="fa fa-arrow-left fa-2x"></i><span> return</span>
 					</a>
 				</div>
