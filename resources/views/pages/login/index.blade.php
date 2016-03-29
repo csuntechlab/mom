@@ -15,7 +15,7 @@ Login
 <div class="container">
 	<div class="row">
 		<div class="col-sm-12">
-			<h1>Login</h1>
+			
 		</div>
 	</div>
 </div>
@@ -44,22 +44,30 @@ Login
 		</div>
 	</div>
 	@endif
-	<div class="row">
-		<div class="col-sm-5">
-		{!! Form::open(array('url' => url('login'))) !!}
-			<div class="form-group">
-				{!! Form::label('username','Username') !!}
-				{!! Form::input('username', 'username', '', ['class'=>'form-control'] )!!}
+
+	<div class="login">
+		<div class="row">
+			<div class="col-xs-12 text-center">
+				<h1>Login</h1>
 			</div>
-			<div class="form-group">
-				{!! Form::label('password','Password')!!}
-				{!! Form::input('password', 'password', '', ['class'=>'form-control']) !!}
-			</div>
-			<div class="form-group">
-				{!! Form::submit('Login', ['class'=>'btn btn-primary-outline btn-lg'])!!}
-			</div>
-		{!! Form::close() !!}
-		</div>				
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+			{!! Form::open(array('url' => url('login'), 'class' => 'loginForm')) !!}
+				<div class="form-group">
+					{!! Form::label('username','Username') !!}
+					{!! Form::input('username', 'username', '', ['class'=>'form-control'] )!!}
+				</div>
+				<div class="form-group">
+					{!! Form::label('password','Password')!!}
+					{!! Form::input('password', 'password', '', ['class'=>'form-control']) !!}
+				</div>
+				<div class="form-group">
+					{!! Form::submit('Login', ['class'=>'btn btn-primary btn-lg'])!!}
+				</div>
+			{!! Form::close() !!}
+			</div>				
+		</div>
 	</div>
 </div>
 @stop

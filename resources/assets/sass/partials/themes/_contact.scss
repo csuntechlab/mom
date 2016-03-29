@@ -5,6 +5,11 @@ address{
 	line-height: 1.8;
 }
 
+.login{
+	max-width:500px;
+	margin: 170px auto 0;
+}
+
 .contact-form input, .contact-form textarea{
 	background-color: $gray-base;
 	border: none;
