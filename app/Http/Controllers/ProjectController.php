@@ -297,6 +297,6 @@ class ProjectController extends Controller
             $project->scrumMaster =  count($project->scrumMaster) ? $project->scrumMaster[0] : new User();
         }
         
-        return view('pages.projects.work', compact($projects));
+        return view('pages.projects.work', compact('projects'));
     }
 }

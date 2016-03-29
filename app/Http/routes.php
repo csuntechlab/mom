@@ -25,7 +25,11 @@
 Route::group(['middleware' => ['web']], function () {
     
     Route::get('work', 'ProjectController@work');
-    // projects
+
+	Route::get('/', function () {
+    	return view('layouts.master');
+	});
+
 	Route::resource('project', 'ProjectController');
     // profiles
     Route::get('profile/{id}', 'ProfileController@getUserProfile');
@@ -37,5 +41,5 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('admin/dashboard', function(){
         return view('pages.admin.dashboard');
-    });
+    })->middleware(['auth', 'admin']);
 });

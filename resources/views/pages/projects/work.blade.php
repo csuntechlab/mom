@@ -9,11 +9,12 @@
         </div>
     <div class="gradient-overlay"></div>
 </section>
+@foreach($projects as $project)
 <section class="section section-page section-white projects" style="background-image: url({{ asset('/imgs/lines-right-white.png') }}); background-size: contain; background-position: top right; background-repeat: no-repeat;">
     <div class="container">
         <div class="row no-padding">
             <div class="col-xs-6 col-sm-4">
-                <h1 class="heading-block">Products</h1>
+                <h1 class="heading-block">Project</h1>
             </div>
         </div>
         <div class="row no-padding">
@@ -23,7 +24,7 @@
                     <div class="col-md-4">
                         <div class="card card-light">
                             <div class="card-content-xl card-content-action">
-                                <h2>Metaphor</h2>
+                                <h2>{{ $project->meta->title }}</h2>
                                 <hr class="line-inline">
                                 <img src="{{ asset('/imgs/macbook-pro-placeholder.png') }}" alt="Product image" class="img-responsive">
                             </div>
@@ -37,14 +38,17 @@
                                         <h3>Scope of Work</h3>
                                     </div>
                                     <div class="col-md-12">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi accusantium illo, nobis nostrum temporibus exercitationem.</p>
+                                        <p>{{$project->meta->description}}</p>
                                     </div>
                                     <div class="col-md-12">
                                         <h2 class="small">
                                             Product Owner
                                         </h2> 
-                                    </div><div class="col-md-12">
-                                        <img src="http://www.placehold.it/80x80" class="student-image" alt="">
+                                    </div>
+                                    <div class="col-md-12">
+                                    @if(!empty($project->productOwner->profile) && !empty($project->productOwner->profile->image))
+                                        <img class="members--member-img" src="{{ asset('user-profile/image/' . $project->productOwner->profile->image->src)}}" alt="">
+                                    @endif
                                     </div>                                  
                                 </div>  
                             </div>
@@ -56,379 +60,130 @@
                                 <!-- <h2>Members</h2>
                                 <hr class="line-inline"> -->
                                 <div class="members">
-                                    <a href="#" class="members--member" data-toggle="modal" data-target="#myModal-productOwner">
-                                        <img class="members--member-img product-owner" src="http://placehold.it/60x60" alt="student image"><div class="members--member-name">
-                                            Student / Title</div>
+                                    <?php $productOwner = "product-owner";
+                                    $productOwnerID = $project->productOwner->user_id; ?>
+
+                                    @foreach($project->members as $member)
+                                    
+                                    <?php $memberID = $member->user_id; 
+                                    $memberIdModal = explode(":", $memberID);
+
+                                    if($productOwnerID == $memberID){
+                                        $productOwner = "product-owner";
+                                    }
+                                    else {
+                                        $productOwner = "";
+                                    }?>
+
+                                    <a href="#" class="members--member" data-toggle="modal" data-target="#<?php echo $memberIdModal[1]; ?>">
+                                    @if(!empty($member->profile) && !empty($member->profile->image))
+                                        <img class="members--member-img <?php echo $productOwner; ?>" src="{{ asset('user-profile/image/' . $member->profile->image->src)}}" alt="{{$member->display_name}}">
+                                    @else
+                                        <img class="members--member-img <?php echo $productOwner; ?>" src="http://www.placehold.it/50x50" alt="{{$member->display_name}}">
+                                    @endif
+                                    <div class="members--member-name">{{$member->display_name}}</div>
                                     </a>
-                                    <a href="#" class="members--member" data-toggle="modal" data-target="#myModal">
-                                        <img class="members--member-img" src="http://placehold.it/60x60" alt="student image"><div class="members--member-name">Student / Title</div>
-                                    </a>
-                                    <a href="#" class="members--member" data-toggle="modal" data-target="#myModal">
-                                        <img class="members--member-img" src="http://placehold.it/60x60" alt="student image"><div class="members--member-name">Student / Title</div>
-                                    </a>
-                                    <a href="#" class="members--member" data-toggle="modal" data-target="#myModal">
-                                        <img class="members--member-img" src="http://placehold.it/60x60" alt="student image"><div class="members--member-name">Student / Title</div>
-                                    </a>
-                                    <a href="#" class="members--member" data-toggle="modal" data-target="#myModal">
-                                        <img class="members--member-img" src="http://placehold.it/60x60" alt="student image"><div class="members--member-name">Student / Title</div>
-                                    </a>
-                                    <a href="#" class="members--member" data-toggle="modal" data-target="#myModal">
-                                        <img class="members--member-img" src="http://placehold.it/60x60" alt="student image"><div class="members--member-name">Student / Title</div>
-                                    </a>
+
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
                     </div>
-<!--                    <div class="card card-light">
-                        <div class="card-content-xl card-content-action work-block product-faculty">
-                            <h2>Faculty</h2>
-                            <hr class="line-inline">
-                            <span>Web Application</span>
-                            <img src="{{ asset('/imgs/faculty-mobile.png') }}" alt="Faculty Application Mockup">
-                            <p></p>
-                            <a class="btn btn-link-default" href="http://www.metalab.csun.edu/faculty/" target="_blank"><button class="btn btn-round-default"><i class="fa fa-plus"></i></button>View</a>
-                        </div>
-                    </div> -->
-
                 </div>
-<!--                <div class="col-sm-6 col-md-4">
-                    <div class="card card-light">
-                        <div class="card-content-xl card-content-action work-block product-jewel">
-                            <h2>Jewel</h2>
-                            <hr class="line-inline">
-                            <span>Web Service</span>
-                            <img src="{{ asset('/imgs/jewel-mockup.png') }}" alt="Jewel Web Service Mockup">
-                            <p></p>
-                            <a class="btn btn-link-default" href="https://jewel.ptg.csun.edu/" target="_blank"><button class="btn btn-round-default"><i class="fa fa-plus"></i></button>View</a>
-                        </div>
-                    </div>
-                </div> -->
                 <?php $y++; ?>
             </div>
-
         </div>
 
         <!-- Student Modal -->
-        <div class="modal fade" id="myModal-productOwner" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        @foreach($project->members as $member)
+        <?php
+            $memberID = $member->user_id; 
+            $memberIdModal = explode(":", $memberID);
+
+                if($productOwnerID == $memberID){
+                    $productOwner = "product-owner";
+                }
+                else {
+                    $productOwner = "";
+                }
+         ?>
+        <div class="modal fade" id="<?php echo $memberIdModal[1]; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-body student lines-back">
                 <div class="row">
-                    <div class="col-xs-1"></div>
-                    <div class="col-xs-2 text-right">
-                        <div class="social-media-btn">
-                            <a href="#">
-                                <img class="social-media-btn-img" src="{{ asset('imgs/Hover.svg' ) }}" alt="portfolium" />
-                                <p>Portfolium</p>
-                            </a>
-                        </div>
+                    <div class="col-xs-12 text-center">
+                        @if(!empty($member->profile) && !empty($member->profile->image))
+                            <img class="student-image <?php echo $productOwner; ?>" src="{{ asset('user-profile/image/' . $member->profile->image->src)}}" alt="student image">
+                        @else
+                            <img class="student-image <?php echo $productOwner; ?>" src="http://www.placehold.it/200x200" alt="student image">
+                        @endif
                     </div>
-                    
-                    <div class="col-xs-6 text-center"><img class="student-image product-owner" src="http://placehold.it/200x200" alt="student image"></div>
-                    <div class="col-xs-2 text-left">
-                        <div class="social-media-btn">
-                            <a href="#">
-                                <img class="social-media-btn-img" src="{{ asset('imgs/linkden.svg' ) }}" alt="linkedin" />
-                                <p>LinkedIn</p>
-                            </a>
-                        </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 text-center">
+                        @if(!empty($member->profile) && !empty($member->profile->links))
+                        @foreach($member->profile->links as $link)
+                            @if($link->type == 'linkedin' && !empty($link->pivot->link_url))
+                            <div class="social-media-btn">
+                                <a href="{{$link->pivot->link_url}}">
+                                    <img class="social-media-btn-img" src="{{ asset('imgs/linkden.svg' ) }}" alt="linkedin" />
+                                    <p>LinkedIn</p>
+                                </a>
+                            </div>
+                            @endif
+                            @if($link->type == 'portfolium' && !empty($link->pivot->link_url))
+                            <div class="social-media-btn">
+                                <a href="{{$link->pivot->link_url}}">
+                                    <img class="social-media-btn-img" src="{{ asset('imgs/Hover.svg' ) }}" alt="portfolium" />
+                                    <p>Portfolium</p>
+                                </a>
+                            </div>
+                            @endif
+                            @if($link->type == 'github' && !empty($link->pivot->link_url))
+                                <div class="social-media-btn">
+                                <a href="{{$link->pivot->link_url}}">
+                                    <img class="social-media-btn-img" src="{{ asset('imgs/github.svg' ) }}" alt="github" />
+                                    <p>GitHub</p>
+                                </a>
+                            </div>
+                            @endif
+                            @if($link->type == 'website' && !empty($link->pivot->link_url))
+                                <div class="social-media-btn">
+                                <a href="{{$link->pivot->link_url}}">
+                                    <img class="social-media-btn-img" src="{{ asset('imgs/sphere.svg' ) }}" alt="website" />
+                                    <p>Website</p>
+                                </a>
+                            </div>
+                            @endif
+                        @endforeach
+                        @endif
                     </div>
-                    <div class="col-md-1"></div>
                 </div>
                 
                 <div class="row">
                     <div class="col-sm-12 text-center">
-                        <p class="student-name">FirstName Lastname</p>
+                        <p class="student-name">{{$member->display_name}}</p>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-12 text-center"><p class="student-title">Title</p></div>
+                    <div class="col-sm-12 text-center"><p class="student-title">{{$member->profile['position']}}</p></div>
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-sm-12 text-center"><i class="fa fa-graduation-cap student-graduate"></i> <span class="graduates-in">Graduates in 20XY</span></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-1"></div>
-                    <div class="col-sm-10 text-left student-seb">
-                        <h2 class="student-seb-title">Skills</h2>
-                        <ul class="student-seb-list">
-                            <?php
-                                
-                                for($i=1; $i <= 3; $i++){
-                                echo '<li class="student-seb-list-items"><span class="student-seb-list-item-space"></span>Skill #'.$i.'</li>';
-                                }
-                            ?>
-                        </ul>
-                    </div>
-                    <div class="col-sm-1"></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-1"></div>
-                    <div class="col-sm-10 text-left student-seb">
-                        <h2 class="student-seb-title">Experience</h2>
-                        <ul class="student-seb-list">
-                            <?php
-                                
-                                for($i=1; $i <= 3; $i++){
-                                echo '<li class="student-seb-list-items"><span class="student-seb-list-item-space"></span>Experience #'.$i.'</li>';
-                                }
-                            ?>
-                        </ul>
-                    </div>
-                    <div class="col-sm-1"></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-1"></div>
-                    <div class="col-sm-10 text-left student-seb">
-                        <h2 class="student-seb-title">Background</h2>
-                        <ul class="student-seb-list">
-                            <?php
-                                
-                                for($i=1; $i <= 3; $i++){
-                                echo '<li class="student-seb-list-items"><span class="student-seb-list-item-space"></span>Background #'.$i.'</li>';
-                                }
-                            ?>
-                        </ul>
-                    </div>
-                    <div class="col-sm-1"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-body student lines-back">
-                <div class="row">
-                    <div class="col-xs-1"></div>
-                    <div class="col-xs-2 text-right">
-                        <div class="social-media-btn">
-                            <a href="#">
-                                <img class="social-media-btn-img" src="{{ asset('imgs/Hover.svg' ) }}" alt="portfolium" />
-                                <p>Portfolium</p>
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <div class="col-xs-6 text-center"><img class="student-image" src="http://placehold.it/200x200" alt="student image"></div>
-                    <div class="col-xs-2 text-left">
-                        <div class="social-media-btn">
-                            <a href="#">
-                                <img class="social-media-btn-img" src="{{ asset('imgs/linkden.svg' ) }}" alt="linkedin" />
-                                <p>LinkedIn</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-1"></div>
-                </div>
-                
-                <div class="row">
-                    <div class="col-sm-12 text-center">
-                        <p class="student-name">FirstName Lastname</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12 text-center"><p class="student-title">Title</p></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12 text-center"><i class="fa fa-graduation-cap student-graduate"></i> <span class="graduates-in">Graduates in 20XY</span></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-1"></div>
-                    <div class="col-sm-10 text-left student-seb">
-                        <h2 class="student-seb-title">Skills</h2>
-                        <ul class="student-seb-list">
-                            <?php
-                                
-                                for($i=1; $i <= 3; $i++){
-                                echo '<li class="student-seb-list-items"><span class="student-seb-list-item-space"></span>Skill #'.$i.'</li>';
-                                }
-                            ?>
-                        </ul>
-                    </div>
-                    <div class="col-sm-1"></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-1"></div>
-                    <div class="col-sm-10 text-left student-seb">
-                        <h2 class="student-seb-title">Experience</h2>
-                        <ul class="student-seb-list">
-                            <?php
-                                
-                                for($i=1; $i <= 3; $i++){
-                                echo '<li class="student-seb-list-items"><span class="student-seb-list-item-space"></span>Experience #'.$i.'</li>';
-                                }
-                            ?>
-                        </ul>
-                    </div>
-                    <div class="col-sm-1"></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-1"></div>
-                    <div class="col-sm-10 text-left student-seb">
-                        <h2 class="student-seb-title">Background</h2>
-                        <ul class="student-seb-list">
-                            <?php
-                                
-                                for($i=1; $i <= 3; $i++){
-                                echo '<li class="student-seb-list-items"><span class="student-seb-list-item-space"></span>Background #'.$i.'</li>';
-                                }
-                            ?>
-                        </ul>
-                    </div>
-                    <div class="col-sm-1"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-    </div>
-</section>
-<section class="section section-page section-white projects" style="background-image: url({{ asset('/imgs/lines-right-white.png') }}); background-size: contain; background-position: top right; background-repeat: no-repeat;">
-    <div class="container">
-        <div class="row no-padding">
-            <div class="col-xs-6 col-sm-4">
-                <h1 class="heading-block">Products</h1>
-            </div>
-        </div>
-        <div class="row no-padding">
-            <div id="project{{$y}}" class="row-eq-height">
-                <div class="col-md-12">
-                    
-                    <div class="col-md-4">
-                        <div class="card card-light">
-                            <div class="card-content-xl card-content-action">
-                                <h2>Metaphor</h2>
-                                <hr class="line-inline">
-                                <img src="{{ asset('/imgs/macbook-pro-placeholder.png') }}" alt="Product image" class="img-responsive">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card card-light">
-                            <div class="card-content-xl card-content-action">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <h3>Scope of Work</h3>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi accusantium illo, nobis nostrum temporibus exercitationem.</p>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <h2 class="small">
-                                            Product Owner
-                                        </h2> 
-                                    </div>
-                                    <div class="col-md-12">
-                                        <img src="http://www.placehold.it/80x80" class="student-image" alt="">
-                                    </div>                                  
-                                </div>  
-                            </div>
-                        </div>
-                    </div>                  
-                    <div class="col-md-4">
-                        <div class="card card-light">
-                            <div class="card-content-xl card-content-action">
-                                <!-- <h2>Members</h2>
-                                <hr class="line-inline"> -->
-                                <div class="members">
-                                    <a href="#" class="members--member" data-toggle="modal" data-target="#myModal-productOwner">
-                                        <img class="members--member-img product-owner" src="http://placehold.it/60x60" alt="student image"><div class="members--member-name">
-                                            Student / Title</div>
-                                    </a>
-                                    <a href="#" class="members--member" data-toggle="modal" data-target="#myModal">
-                                        <img class="members--member-img" src="http://placehold.it/60x60" alt="student image"><div class="members--member-name">Student / Title</div>
-                                    </a>
-                                    <a href="#" class="members--member" data-toggle="modal" data-target="#myModal">
-                                        <img class="members--member-img" src="http://placehold.it/60x60" alt="student image"><div class="members--member-name">Student / Title</div>
-                                    </a>
-                                    <a href="#" class="members--member" data-toggle="modal" data-target="#myModal">
-                                        <img class="members--member-img" src="http://placehold.it/60x60" alt="student image"><div class="members--member-name">Student / Title</div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-<!--                    <div class="card card-light">
-                        <div class="card-content-xl card-content-action work-block product-faculty">
-                            <h2>Faculty</h2>
-                            <hr class="line-inline">
-                            <span>Web Application</span>
-                            <img src="{{ asset('/imgs/faculty-mobile.png') }}" alt="Faculty Application Mockup">
-                            <p></p>
-                            <a class="btn btn-link-default" href="http://www.metalab.csun.edu/faculty/" target="_blank"><button class="btn btn-round-default"><i class="fa fa-plus"></i></button>View</a>
-                        </div>
-                    </div> -->
-
-                </div>
-<!--                <div class="col-sm-6 col-md-4">
-                    <div class="card card-light">
-                        <div class="card-content-xl card-content-action work-block product-jewel">
-                            <h2>Jewel</h2>
-                            <hr class="line-inline">
-                            <span>Web Service</span>
-                            <img src="{{ asset('/imgs/jewel-mockup.png') }}" alt="Jewel Web Service Mockup">
-                            <p></p>
-                            <a class="btn btn-link-default" href="https://jewel.ptg.csun.edu/" target="_blank"><button class="btn btn-round-default"><i class="fa fa-plus"></i></button>View</a>
-                        </div>
-                    </div>
                 </div> -->
-                <?php $y++; ?>
-            </div>
-
-        </div>
-
-        <!-- Student Modal -->
-        <div class="modal fade" id="myModal-productOwner" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-body student">
-                <div class="row">
-                    <div class="col-xs-1"></div>
-                    <div class="col-xs-2 text-right">
-                        <div class="social-media-btn">
-                            <a href="#">
-                                <img class="social-media-btn-img" src="{{ asset('imgs/Hover.svg' ) }}" alt="portfolium" />
-                                <p>Portfolium</p>
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <div class="col-xs-6 text-center"><img class="student-image product-owner" src="http://placehold.it/200x200" alt="student image"></div>
-                    <div class="col-xs-2 text-left">
-                        <div class="social-media-btn">
-                            <a href="#">
-                                <img class="social-media-btn-img" src="{{ asset('imgs/linkden.svg' ) }}" alt="linkedin" />
-                                <p>LinkedIn</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-1"></div>
-                </div>
-                
-                <div class="row">
-                    <div class="col-sm-12 text-center">
-                        <p class="student-name">FirstName Lastname</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12 text-center"><p class="student-title">Title</p></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12 text-center"><i class="fa fa-graduation-cap student-graduate"></i> <span class="graduates-in">Graduates in 20XY</span></div>
-                </div>
                 <div class="row">
                     <div class="col-sm-1"></div>
                     <div class="col-sm-10 text-left student-seb">
                         <h2 class="student-seb-title">Skills</h2>
                         <ul class="student-seb-list">
-                            <?php
-                                
-                                for($i=1; $i <= 3; $i++){
-                                echo '<li class="student-seb-list-items"><span class="student-seb-list-item-space"></span>Skill #'.$i.'</li>';
-                                }
-                            ?>
+                        @if(!empty($member->profile))
+                            @foreach($member->profile->skills as $skill)
+                                <li class="student-seb-list-items"><span class="student-seb-list-item-space"></span>{{$skill->title}}</li>
+                            @endforeach
+                        @else
+                            <li class="student-seb-list-items"><span class="student-seb-list-item-space"></span>Student has not registrered any skills.</li>
+                        @endif
                         </ul>
                     </div>
                     <div class="col-sm-1"></div>
@@ -438,12 +193,13 @@
                     <div class="col-sm-10 text-left student-seb">
                         <h2 class="student-seb-title">Experience</h2>
                         <ul class="student-seb-list">
-                            <?php
-                                
-                                for($i=1; $i <= 3; $i++){
-                                echo '<li class="student-seb-list-items"><span class="student-seb-list-item-space"></span>Experience #'.$i.'</li>';
-                                }
-                            ?>
+                            @if(!empty($member->profile))
+                            @foreach($member->profile->experience as $experience)
+                                <li class="student-seb-list-items"><span class="student-seb-list-item-space"></span>{{$experience->title}}</li>
+                            @endforeach
+                        @else
+                            <li class="student-seb-list-items"><span class="student-seb-list-item-space"></span>Student has not registrered any experience.</li>
+                        @endif
                         </ul>
                     </div>
                     <div class="col-sm-1"></div>
@@ -453,12 +209,9 @@
                     <div class="col-sm-10 text-left student-seb">
                         <h2 class="student-seb-title">Background</h2>
                         <ul class="student-seb-list">
-                            <?php
-                                
-                                for($i=1; $i <= 3; $i++){
-                                echo '<li class="student-seb-list-items"><span class="student-seb-list-item-space"></span>Background #'.$i.'</li>';
-                                }
-                            ?>
+                        
+                                <li class="student-seb-list-items"><span class="student-seb-list-item-space"></span>{{$member->profile['background']}}</li>
+                        
                         </ul>
                     </div>
                     <div class="col-sm-1"></div>
@@ -467,95 +220,10 @@
             </div>
           </div>
         </div>
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-body student">
-                <div class="row">
-                    <div class="col-xs-1"></div>
-                    <div class="col-xs-2 text-right">
-                        <div class="social-media-btn">
-                            <a href="#">
-                                <img class="social-media-btn-img" src="{{ asset('imgs/Hover.svg' ) }}" alt="portfolium" />
-                                <p>Portfolium</p>
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <div class="col-xs-6 text-center"><img class="student-image" src="http://placehold.it/200x200" alt="student image"></div>
-                    <div class="col-xs-2 text-left">
-                        <div class="social-media-btn">
-                            <a href="#">
-                                <img class="social-media-btn-img" src="{{ asset('imgs/linkden.svg' ) }}" alt="linkedin" />
-                                <p>LinkedIn</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-1"></div>
-                </div>
-                
-                <div class="row">
-                    <div class="col-sm-12 text-center">
-                        <p class="student-name">FirstName Lastname</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12 text-center"><p class="student-title">Title</p></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12 text-center"><i class="fa fa-graduation-cap student-graduate"></i> <span class="graduates-in">Graduates in 20XY</span></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-1"></div>
-                    <div class="col-sm-10 text-left student-seb">
-                        <h2 class="student-seb-title">Skills</h2>
-                        <ul class="student-seb-list">
-                            <?php
-                                
-                                for($i=1; $i <= 3; $i++){
-                                echo '<li class="student-seb-list-items"><span class="student-seb-list-item-space"></span>Skill #'.$i.'</li>';
-                                }
-                            ?>
-                        </ul>
-                    </div>
-                    <div class="col-sm-1"></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-1"></div>
-                    <div class="col-sm-10 text-left student-seb">
-                        <h2 class="student-seb-title">Experience</h2>
-                        <ul class="student-seb-list">
-                            <?php
-                                
-                                for($i=1; $i <= 3; $i++){
-                                echo '<li class="student-seb-list-items"><span class="student-seb-list-item-space"></span>Experience #'.$i.'</li>';
-                                }
-                            ?>
-                        </ul>
-                    </div>
-                    <div class="col-sm-1"></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-1"></div>
-                    <div class="col-sm-10 text-left student-seb">
-                        <h2 class="student-seb-title">Background</h2>
-                        <ul class="student-seb-list">
-                            <?php
-                                
-                                for($i=1; $i <= 3; $i++){
-                                echo '<li class="student-seb-list-items"><span class="student-seb-list-item-space"></span>Background #'.$i.'</li>';
-                                }
-                            ?>
-                        </ul>
-                    </div>
-                    <div class="col-sm-1"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        @endforeach
     </div>
 </section>
+@endforeach
 <script>
 
 var projects = $('.projects').length;
