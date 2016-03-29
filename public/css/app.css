@@ -6265,7 +6265,9 @@ address {
   position: absolute; }
 
 .members--member-img {
-  border-radius: 20px; }
+  border-radius: 20px;
+  width: 50px;
+  height: 50px; }
 
 .members--member-name {
   color: #000;
@@ -6291,8 +6293,8 @@ address {
   padding-top: 1em; }
 
 .social-media-btn {
-  margin-top: 110px;
-  text-align: center; }
+  display: inline-block;
+  padding: 2em 0.5em 1em; }
   .social-media-btn a {
     color: #999;
     letter-spacing: .2px;
@@ -6305,7 +6307,9 @@ address {
   width: 30px; }
 
 .student-image {
-  border-radius: 50%; }
+  border-radius: 50%;
+  width: 200px;
+  height: 200px; }
 
 .product-owner {
   box-shadow: 0 0 10px #CD1C26; }

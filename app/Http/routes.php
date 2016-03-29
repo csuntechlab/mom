@@ -23,12 +23,15 @@
 */
 
 Route::group(['middleware' => ['web']], function () {
-    // app index
-    Route::get('/', 'ProjectController@index');
-    Route::get('/work', 'ProjectController@index');
-    // admin projects index
-    Route::get('admin', 'ProjectController@getAdminIndex');
-    // projects
+
+	Route::get('/', function () {
+    	return view('layouts.master');
+	});
+	Route::get('work', 'ProjectController@projects');
+
+
+	Route::get('profile/{id}', 'ProfileController@getUserProfile');
+
 	Route::resource('project', 'ProjectController');
     // profiles
     Route::get('profile/{id}', 'ProfileController@getUserProfile');
