@@ -77,8 +77,11 @@ class ProfileController extends Controller
     public function postEdit(EditProfileRequest $request, $id)
     {
 
-        $profile = Profile::find($id);
-
+        $profile = Profile::findOrFail($id);
+        // handle unauthorized POST requests
+        if(!Auth::user()->canEdit($profile->individuals_id)){
+            throw new PermissionDeniedException();
+        }
     	// If user has uploaded an image for their profile
     	if($request->hasFile('profile_image'))
     	{
