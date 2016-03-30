@@ -2,6 +2,7 @@
 
 namespace Mom\Http\Controllers;
 
+use Auth;
 use Illuminate\Http\Request;
 
 use Mom\Http\Requests;
@@ -14,8 +15,9 @@ use Mom\Models\ProfileExperience;
 use Mom\Models\Image;
 use Mom\Models\LinkProfile;
 use Mom\Models\Skill;
-
 use Mom\Models\FrescoExpertise;
+
+use Mom\Exceptions\PermissionDeniedException;
 
 class ProfileController extends Controller
 {
@@ -39,15 +41,15 @@ class ProfileController extends Controller
 	}
 
 	// Get user profile based off individuals id passed through
-    public function getEditProfile($id)
+    public function getUserProfile($id)
     {
-        if(!Auth::user()->canEdit()){
-            return redirect()->back();
-        }
 
         // Find the user profile
-        $profile        = Profile::with('skills')->findOrFail($id);
+        $profile        = Profile::with('skills', 'links', 'image')->findOrFail($id);
 
+        if(!Auth::user()->canEdit($profile->individuals_id)){
+            throw new PermissionDeniedException();
+        }
         // Get the user's skills if he's updated any
         $profile_skills = $profile->skills->lists('research_id')->toArray();
         //return $profile_skills;
@@ -56,10 +58,14 @@ class ProfileController extends Controller
         $skills         = Skill::all()->lists('title', 'research_id')->toArray();
 
         // Get profile's linkedin, github, or portfolium link
-        $linkedin_url   = LinkProfile::link($id, 1)->link_url;
-        $portfolium_url = LinkProfile::link($id, 2)->link_url;
-        $github_url     = LinkProfile::link($id, 3)->link_url;
-
+        // views handling if variables are set before displaying
+        foreach($profile->links as $link){
+            switch($link->type){
+                case "linkedin":    $linkedin_url   = $link->pivot->link_url; break;
+                case "portfolium":  $portfolium_url = $link->pivot->link_url; break;
+                case "github":      $github_url     = $link->pivot->link_url; break;
+            }
+        }
     	// Return corresponding indiviudals profile edit page
     	return view('pages.profiles.edit-student', compact('skills', 'profile', 'profile_skills', 'linkedin_url', 'portfolium_url', 'github_url'));
     }

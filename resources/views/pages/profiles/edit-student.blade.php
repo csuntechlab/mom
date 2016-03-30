@@ -27,7 +27,8 @@
 	    	<div class="col-xs-11 text-left">
 	    	<label for="profile_image_file">
 	    	<!-- <img class="student-image" id="profile_image_preview" src="http://placehold.it/300x300" alt="student image" style="cursor: pointer;"> -->
-	    	@if($profile->image->src)
+	    	@if(isset($profile->image->src))
+
 			<div id="profile_image_preview" style="cursor: pointer; border-radius: 50%; width: 300px; height: 300px; background: url('{{ asset('user-profile/image/' . $profile->image->src) }}') no-repeat center center; background-size: cover; position: relative;">
 	    	</div>
 	    	@else
@@ -49,15 +50,15 @@
 		</div>
 		<div class="row social-media">
 			<div class="col-xs-1"></div>
-	    	<div class="col-xs-11 text-left"><img class="social-media-btn-img" src="{{ asset('imgs/linkden.svg' ) }}" alt="linkedin" />{!! Form::text('linkedin_url', $linkedin_url, ['placeholder' => 'Add URL', 'class' => 'input-text']) !!}</div>
+	    	<div class="col-xs-11 text-left"><img class="social-media-btn-img" src="{{ asset('imgs/linkden.svg' ) }}" alt="linkedin" />{!! Form::text('linkedin_url', isset($linkedin_url) ? $linkedin_url : "", ['placeholder' => 'Add URL', 'class' => 'input-text']) !!}</div>
 		</div>
 		<div class="row social-media">
 			<div class="col-xs-1"></div>
-	    	<div class="col-xs-11 text-left"><img class="social-media-btn-img" src="{{ asset('imgs/github.svg' ) }}" alt="linkedin" />{!! Form::text('github_url', $github_url, ['placeholder' => 'Add URL', 'class' => 'input-text']) !!}</div>
+	    	<div class="col-xs-11 text-left"><img class="social-media-btn-img" src="{{ asset('imgs/github.svg' ) }}" alt="linkedin" />{!! Form::text('github_url', isset($github_url) ? $github_url : "", ['placeholder' => 'Add URL', 'class' => 'input-text']) !!}</div>
 		</div>
 		<div class="row social-media">
 			<div class="col-xs-1"></div>
-	    	<div class="col-xs-11 text-left"><img class="social-media-btn-img" src="{{ asset('imgs/Hover.svg' ) }}" alt="linkedin" />{!! Form::text('portfolium_url', $portfolium_url, ['placeholder' => 'Add URL', 'class' => 'input-text']) !!}</div>
+	    	<div class="col-xs-11 text-left"><img class="social-media-btn-img" src="{{ asset('imgs/Hover.svg' ) }}" alt="linkedin" />{!! Form::text('portfolium_url', isset($portfolium_url) ? $portfolium_url : "", ['placeholder' => 'Add URL', 'class' => 'input-text']) !!}</div>
 	    	<!--<div class="col-xs-2 text-left">
 	    		<div class="social-media-btn">
 	    			<a href="#">
@@ -133,8 +134,8 @@
 		        	<div class="col-xs-1"></div>
 		        	<div class="col-xs-2 text-right">
 		        		<div class="social-media-btn">
-		        		@if($portfolium_url)
-		        			<a href="{{ $portfolium_url }}">
+		        		@if(isset($portfolium_url))
+		        			<a href="{{ ($portfolium_url) }}">
 		        				<img class="social-media-btn-img" src="{{ asset('imgs/Hover.svg' ) }}" alt="portfolium" />
 		        				<p>Portfolium</p>
 		    				</a>
@@ -143,7 +144,7 @@
 					</div>
 					
 		        	<div class="col-xs-6 text-center">
-		        	@if($profile->image->src)
+		        	@if(isset($profile->image->src))
 					<div id="profile_image_preview" style="border-radius: 50%; width: 200px; height: 200px; background: url('{{ asset('user-profile/image/' . $profile->image->src) }}') no-repeat center center; background-size: cover; position: relative;">
 			    	</div>
 			    	@else
@@ -153,7 +154,7 @@
 		        	</div>
 		        	<div class="col-xs-2 text-left">
 		        		<div class="social-media-btn">
-		        		@if($linkedin_url)
+		        		@if(isset($linkedin_url))
 		        			<a href="{{ $linkedin_url }}">
 		        				<img class="social-media-btn-img" src="{{ asset('imgs/linkden.svg' ) }}" alt="linkedin" />
 		        				<p>LinkedIn</p>

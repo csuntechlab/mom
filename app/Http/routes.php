@@ -29,7 +29,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('projects', 'ProjectController@projects');
 
 
-	Route::get('profile/{id}', 'ProfileController@getEditProfile');
+	Route::get('profile/{id}', 'ProfileController@getUserProfile');
 
 	Route::resource('project', 'ProjectController');
 
