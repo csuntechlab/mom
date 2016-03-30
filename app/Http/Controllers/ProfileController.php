@@ -58,7 +58,9 @@ class ProfileController extends Controller
         $skills         = Skill::all()->lists('title', 'research_id')->toArray();
 
         // Get profile's linkedin, github, or portfolium link
-        // views handling if variables are set before displaying
+        $linkedin_url = NULL;
+        $portfolium_url = NULL;
+        $github_url = NULL;
         foreach($profile->links as $link){
             switch($link->type){
                 case "linkedin":    $linkedin_url   = $link->pivot->link_url; break;
@@ -66,6 +68,7 @@ class ProfileController extends Controller
                 case "github":      $github_url     = $link->pivot->link_url; break;
             }
         }
+
     	// Return corresponding indiviudals profile edit page
     	return view('pages.profiles.edit-student', compact('skills', 'profile', 'profile_skills', 'linkedin_url', 'portfolium_url', 'github_url'));
     }
