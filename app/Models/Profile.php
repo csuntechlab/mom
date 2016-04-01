@@ -55,6 +55,4 @@ class Profile extends Model
   public function fullName() {
       return User::where('user_id', $this->individuals_id)->value('display_name');
   }
-
-
 }

@@ -9,6 +9,7 @@ use Mom\Http\Requests;
 use Mom\Http\Requests\EditProfileRequest;
 use Mom\Http\Controllers\Controller;
 
+use Mom\Models\User;
 use Mom\Models\Profile;
 use Mom\Models\ProfileSkill;
 use Mom\Models\ProfileExperience;
@@ -49,9 +50,11 @@ class ProfileController extends Controller
 	}
 
 	// Get user profile based off individuals id passed through
-    public function getUserProfile($id)
-    {
-
+    public function getUserProfile($email)
+    {   
+        //Will have to be refactored when Matt removes the prefixed 'nr_' in emails
+        $id = User::where('email', 'nr_'.$email.'@my.csun.edu')->firstOrFail()->user_id;
+        
         // Find the user profile
         $profile        = Profile::with('skills', 'links', 'image')->findOrFail($id);
 
@@ -66,9 +69,9 @@ class ProfileController extends Controller
         $skills         = Skill::all()->lists('title', 'research_id')->toArray();
 
         // Get profile's linkedin, github, or portfolium link
-        $linkedin_url = NULL;
+        $linkedin_url   = NULL;
         $portfolium_url = NULL;
-        $github_url = NULL;
+        $github_url     = NULL;
         foreach($profile->links as $link){
             switch($link->type){
                 case "linkedin":    $linkedin_url   = $link->pivot->link_url; break;

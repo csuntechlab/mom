@@ -32,7 +32,7 @@ Route::group(['middleware' => ['web']], function () {
 
 	Route::resource('projects', 'ProjectController');
     // profiles
-    Route::get('profiles/{id}', 'ProfileController@getUserProfile');
+    Route::get('profiles/{email}', 'ProfileController@getUserProfile');
     Route::controller('profiles', 'ProfileController');
     // authentication stuff
     Route::get('login', 'AuthController@getLogin');

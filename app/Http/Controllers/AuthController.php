@@ -56,7 +56,7 @@ class AuthController extends Controller
           // redirect user to their profile
           if(Auth::user()->isStudent()){ 
               if(Auth::user()->hasProfile())
-                      return redirect()->intended('profiles/' . Auth::user()->user_id);
+                      return redirect()->intended('profiles/' . Auth::user()->email_uri);
               else {
                 try{
                   $profile = Profile::create([
@@ -69,7 +69,7 @@ class AuthController extends Controller
                   // add some sort of notification of error
                   return redirect()->back();
                 }
-                return redirect()->intended('profiles/' . Auth::user()->user_id);
+                return redirect()->intended('profiles/' . Auth::user()->email_uri);
               }
 
           }

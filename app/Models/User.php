@@ -142,4 +142,17 @@ class User extends MetaUser
       $q->where('user_role.role_name', 'student');
     });
   }
+
+  /**
+   * Returns the email URI for this Person without the domain suffix
+   *
+   * @return string
+   */
+  public function getEmailURIAttribute() {
+      $email = strtok($this->email, '@');
+        if(substr($email, 0, 3) == 'nr_'){
+          $email = substr_replace($email, "", 0, 3);  
+        }
+        return $email;
+  }
 }
