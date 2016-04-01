@@ -19,7 +19,7 @@
         </div>
         <div class="row no-padding">
             <div id="project{{$y}}" class="row-eq-height">
-                <div class="col-md-12">
+                <div class="col-xs-12">
                     
                     <div class="col-md-4">
                         <div class="card card-light">
@@ -27,13 +27,75 @@
                                 <h2>{{ $project->meta->title }}</h2>
                                 <hr class="line-inline">
                                 <img src="{{ asset('/imgs/macbook-pro-placeholder.png') }}" alt="Product image" class="img-responsive">
+<!-- MOBILE DROP DOWN FUNCTIONS  -->
+                                <div class="row hidden-md hidden-lg hidden-xl">
+                                    <div class="col-xs-12">
+                                        <button class="btn btn--view btn-sm btn-primary center-block" type="button" data-toggle="collapse" data-target="#collapse{{ $y }}" aria-expanded="false" aria-controls="collapseExample">View +</button>
+                                    </div>
+                                </div>
+
+                                <div class="collapse out hidden-md hidden-lg hidden-xl" id="collapse{{ $y }}" aria-expanded="false"> 
+                                    <!-- part 1 of well 1 -->
+                                    <div class="padding well card-dropdown card-light">
+                                        <div class="row">
+                                            <div class="col-xs-7 ">
+                                                <h3>Scope of Work</h3>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-12">
+                                                <p>{{$project->meta->description}}</p>
+                                            </div>
+                                        </div>
+                                        <!--  part two of first well-->
+                                        <div class="">
+                                            <div class="row">
+                                                <div class="col-xs-7">
+                                                    <h2 class="small">
+                                                        Product Owner
+                                                    </h2> 
+                                                </div>
+
+                                                <div class="col-xs-7 col-sm-7">
+                                                    <?php $productOwner = "product-owner";
+                                                    $productOwnerID = $project->productOwner->user_id; ?>  
+                                                                                                  
+                                                    @if(!empty($project->productOwner->profile) && !empty($project->productOwner->profile->image))
+                                                        <img class="members--member-img" src="{{ asset('user-profile/image/' . $project->productOwner->profile->image->src)}}" alt="">
+                                                    @endif                                                    
+                                                </div> 
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="padding well card-dropdown card-light col-xs-12 col-sm-12"> 
+                                        <div class="container">
+                                        @foreach($project->members as $member)
+                                            <div class="row">
+                                                <div class="padding col-xs-3 col-xs-offset-3">
+                                                    <?php $memberID = $member->user_id; 
+                                                    $memberIdModal = explode(":", $memberID); ?>
+                                                    <a href="#" data-toggle="modal" data-target="#<?php echo $memberIdModal[1]; ?>">
+                                                        @if(!empty($member->profile) && !empty($member->profile->image))
+                                                            <img class="members--member-img" src="{{ asset('user-profile/image/' . $member->profile->image->src)}}" alt="">
+                                                        @endif 
+                                                    </a>                                                     
+                                                </div>
+                                                <div class="col-xs-12">
+                                                    <h3 class="small">{{$member->display_name}}</h3>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                        </div>
+                                    </div> 
+                                </div>                                                                
+<!-- END MOBILE DROPDOWN  -->
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 hidden-sm hidden-xs">
                         <div class="card card-light">
                             <div class="card-content-xl card-content-action">
-                                <div class="row">
+                                <div class="row ">
                                     <div class="col-md-12">
                                         <h3>Scope of Work</h3>
                                     </div>
@@ -54,14 +116,27 @@
                             </div>
                         </div>
                     </div>                  
-                    <div class="col-md-4">
+                    <div class="col-md-4 hidden-sm hidden-xs">
                         <div class="card card-light">
-                            <div class="card-content-xl card-content-action">
+                            <div class="card-content-xl hidden-md card-content-action">
+<!-- MEMBER DISPLAY FOR IPAD 
+                                 @foreach ($project->members as $member)
+                                    <?php $memberID = $member->user_id; 
+                                    $memberIdModal = explode(":", $memberID);
+
+                                    if($productOwnerID == $memberID){
+                                        $productOwner = "product-owner";
+                                    }
+                                    else {
+                                        $productOwner = "";
+                                    }?>                                
+                                    
+                                @endforeach 
+<!-- END FOR IPAD -->
                                 <!-- <h2>Members</h2>
                                 <hr class="line-inline"> -->
                                 <div class="members">
-                                    <?php $productOwner = "product-owner";
-                                    $productOwnerID = $project->productOwner->user_id; ?>
+
 
                                     @foreach($project->members as $member)
                                     
@@ -89,10 +164,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>  
                 <?php $y++; ?>
             </div>
-        </div>
+        </div> <!-- edn of row --->
 
         <!-- Student Modal -->
         @foreach($project->members as $member)

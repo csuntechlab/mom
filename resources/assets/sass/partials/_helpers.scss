@@ -42,6 +42,16 @@
 	}
 }
 
+.padding  [class*='col-']  {
+
+	@media (min-width: $screen-sm){
+		padding-left: 20px !important;
+		padding-right: 20px !important;
+		margin-left: 20px !important;
+		margin-right: 20px !important;
+	}
+}
+
 .row-eq-height{
 	display: -webkit-box;
 	display: -webkit-flex;
