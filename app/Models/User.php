@@ -37,7 +37,8 @@ class User extends MetaUser
       // exist in an academic department or they are assigned an application-specific
       // role instead
       return $this->belongsToMany('Mom\Models\Role', 'user_role', 'user_id', 'role_name')
-         ->withPivot('parent_entities_id');
+         ->withPivot('parent_entities_id')
+         ->withPivot('role_name');
    }
 
    /**
@@ -134,5 +135,11 @@ class User extends MetaUser
    */
   public function isOwner($id) {
     return ($this->user_id == $id);
+  }
+
+  public function scopeStudents($query){
+    return $query->whereHas('roles', function($q){
+      $q->where('user_role.role_name', 'student');
+    });
   }
 }

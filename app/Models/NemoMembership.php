@@ -7,12 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class NemoMembership extends Model
 {
     protected $table = 'nemo.memberships';
+    protected $primaryKey = 'parent_entities_id';
 	protected $fillable = [
 		'individuals_id',
 		'parent_entities_id',
 		'role_position',
-		'ad_hoc_member',
-		'confidential',
-		'member_status'
 	];
+	public $incrementing = false;
 }

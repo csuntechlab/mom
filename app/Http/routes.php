@@ -30,16 +30,19 @@ Route::group(['middleware' => ['web']], function () {
     	return view('layouts.master');
 	});
 
-	Route::resource('project', 'ProjectController');
+	Route::resource('projects', 'ProjectController');
     // profiles
-    Route::get('profile/{id}', 'ProfileController@getUserProfile');
-    Route::controller('profile', 'ProfileController');
+    Route::get('profiles/{id}', 'ProfileController@getUserProfile');
+    Route::controller('profiles', 'ProfileController');
     // authentication stuff
     Route::get('login', 'AuthController@getLogin');
     Route::post('login', 'AuthController@postLogin');
     Route::get('logout', 'AuthController@getLogout');
-
-    Route::get('admin/dashboard', function(){
-        return view('pages.admin.dashboard');
-    })->middleware(['auth', 'admin']);
+    // admin stuff
+    Route::get('admin', 'AdminController@dashboard');
+    Route::get('admin/manage-students', 'AdminController@studentsIndex');
+    Route::get('admin/manage-students/add', 'AdminController@studentsAddMembership');
+    Route::post('admin/manage-students/add', 'AdminController@postStudentsAddMembership');
+    Route::get('admin/manage-students/remove', 'AdminController@studentsRemoveMembership');
+    Route::post('admin/manage-students/remove', 'AdminController@postStudentsRemoveMembership');
 });

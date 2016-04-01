@@ -11,7 +11,7 @@
 <section class="section section-page section-white projects">
 <div class="container" style="background-color: #fff;">
 	<div class="student">
-		{{ Form::open(['url' => 'profile/edit/' . $profile->individuals_id, 'files' => 'true']) }}
+		{{ Form::open(['url' => 'profiles/edit/' . $profile->individuals_id, 'files' => 'true']) }}
 
 	    <div class="row">
 	    	<!-- <div class="col-xs-1"></div> -->

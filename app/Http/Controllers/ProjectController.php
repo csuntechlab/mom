@@ -3,7 +3,6 @@
 use Mom\Models\Project;
 use Mom\Models\ProjectMeta;
 use Mom\Models\NemoEntity;
-use Mom\Models\NemoMembership;
 use Mom\Models\User;
 use Mom\Models\Role;
 use Mom\Http\Requests;

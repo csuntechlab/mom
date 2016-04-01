@@ -33,11 +33,19 @@ class ProfileController extends Controller
 	// Updates the user's url
 	private function updateURL($id, $request, $link_id, $input)
 	{
-		LinkProfile::where('individuals_id', $id)
+		$link = LinkProfile::where('individuals_id', $id)
     		->where('link_id', $link_id)
-    		->update([
-    			'link_url' => $request->input($input)
-    		]);
+    		->first();
+        // If link does not return null/empty then update, else create new link.    
+        if(!empty($link))
+            $link->update(['link_url' => $request->input($input)]);
+        else {
+            LinkProfile::create([
+                'individuals_id'    => $id,
+                'link_id'           => $link_id,
+                'link_url'          => $request->input($input)
+            ]);
+        }
 	}
 
 	// Get user profile based off individuals id passed through

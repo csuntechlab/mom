@@ -7,7 +7,7 @@ class Profile extends Model
   protected $table = 'mom.profiles';
   protected $primaryKey = 'individuals_id';
   protected $fillable = [
-    'background', 'position', 'grad_date'
+    'individuals_id', 'background', 'position', 'grad_date'
   ];
   public $incrementing = false;
 

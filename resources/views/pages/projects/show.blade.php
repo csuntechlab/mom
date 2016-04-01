@@ -1,10 +1,10 @@
 <h1>Project Details</h1>
 
-<a href="{{ url('project') }}">
+<a href="{{ url('projects') }}">
 	&larr; Go Back
 </a>
 |
-<a href="{{ url('project/' . $project->project_id . '/edit') }}">
+<a href="{{ url('projects/' . $project->project_id . '/edit') }}">
 	Edit Project
 </a>
 

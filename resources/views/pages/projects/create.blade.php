@@ -1,5 +1,7 @@
 @extends('layouts.master')
-
+@section('title')
+Create Project
+@stop
 @section('content')
 
 	<div class="header">
@@ -16,7 +18,7 @@
 		<div class="row">
 			<div class="col-sm-10 col-sm-offset-1">
 				<div class="bk-btn">
-					<a href="{{ url('project') }}">
+					<a href="{{ url('projects') }}">
 						<i class="fa fa-arrow-left fa-2x"></i><span> return</span>
 					</a>
 				</div>
@@ -43,7 +45,7 @@
 		<div class="row">
 			<div class="project-form">
 				<div class="col-sm-10 col-sm-offset-1">
-					{!! Form::open(['url' => url('project')]) !!}
+					{!! Form::open(['url' => url('projects')]) !!}
 						<div class="row">
 							<div class="col-sm-6">
 								<div class="form-group">

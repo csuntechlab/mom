@@ -1,5 +1,7 @@
 @extends('layouts.master')
-
+@section('title')
+Projects
+@stop
 @section('content')
     <div class="">
         <section class="section page-hero work-banner">
@@ -15,7 +17,7 @@
         <div class="projects">
             <div class="text-left">
                 <h2>Meta+Lab Projects</h2>  
-                <a href="{{ url('project/create') }}" type="button" class="btn btn-primary">Add a New Project</a>
+                <a href="{{ url('projects/create') }}" type="button" class="btn btn-primary">Add a New Project</a>
             </div>
             @if(count($projects))
                 <ul class="media-list">
@@ -31,7 +33,7 @@
                                 <div class="row">
                                     <div class="col-sm-2 pull-right">
                                         <div class="text-right">
-                                            <a href="{{ url('project/' . $project->project_id . '/edit') }}" type="button" class="btn btn-primary">Edit</a>
+                                            <a href="{{ url('projects/' . $project->project_id . '/edit') }}" type="button" class="btn btn-primary">Edit</a>
                                         </div>
                                     </div>
                                     <div class="col-sm-10">
