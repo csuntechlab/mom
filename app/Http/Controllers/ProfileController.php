@@ -16,7 +16,7 @@ use Mom\Models\ProfileExperience;
 use Mom\Models\Image;
 use Mom\Models\LinkProfile;
 use Mom\Models\Skill;
-use Mom\Models\FrescoExpertise;
+use Mom\Models\FrescoExpertiseEntity;
 
 use Mom\Exceptions\PermissionDeniedException;
 
@@ -134,11 +134,11 @@ class ProfileController extends Controller
             if(count($profile->skills) > 0)
             {
 
-                FrescoExpertise::where('entities_id', $id)->delete();
+                FrescoExpertiseEntity::where('entities_id', $id)->delete();
 
                 foreach ($request->skills as $val) 
                 {
-                    FrescoExpertise::create([
+                    FrescoExpertiseEntity::create([
                         'entities_id'  => $id,
                         'expertise_id' => $val
                     ]);
@@ -149,7 +149,7 @@ class ProfileController extends Controller
             {
                 foreach ($request->skills as $value)
                 {
-                    FrescoExpertise::create([
+                    FrescoExpertiseEntity::create([
                         'entities_id'  => $id,
                         'expertise_id' => $value
                     ]);
