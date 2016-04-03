@@ -5683,6 +5683,13 @@ hr.line-inline {
     z-index: 10000; }
     #footer a:hover, #footer a:active {
       opacity: 0.4; }
+  #footer li > ul {
+    border-radius: 2px; }
+    #footer li > ul a {
+      color: black;
+      padding: 0 5px; }
+      #footer li > ul a:hover, #footer li > ul a:active {
+        opacity: 0.8; }
 
 .fourohfour {
   height: 100%; }
