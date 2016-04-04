@@ -79,9 +79,13 @@ class ProfileController extends Controller
                 case "github":      $github_url     = $link->pivot->link_url; break;
             }
         }
+        //these two variables are temporary and need to be filled in accurately. 
+        $years = ['2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2018', '2019', '2020'];
+        $graduation_year = '2011';
+        $position = 'Back End Developer';
 
     	// Return corresponding indiviudals profile edit page
-    	return view('pages.profiles.edit-student', compact('skills', 'profile', 'profile_skills', 'linkedin_url', 'portfolium_url', 'github_url'));
+    	return view('pages.profiles.edit-student', compact('skills', 'profile', 'profile_skills', 'linkedin_url', 'portfolium_url', 'github_url', 'years', 'graduation_year', 'position'));
     }
 
     // Update the user's profile
