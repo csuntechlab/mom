@@ -1,0 +1,32 @@
+.form-control {
+    color: black;
+    border-radius: 3px;
+
+    &.chosen-select {
+        border-radius: 0px;
+    }
+}
+
+.input-group-addon {
+    border-radius: 3px;
+}
+
+.social-media {
+    .form-control {
+        height: 56px;
+    }
+}
+
+.fa-graduation-cap {
+    width: 30px;
+    color: #212529;
+}
+
+.chosen-container-single .chosen-single{
+    height: 56px;
+    border-radius: 0px 3px 3px 0px;
+
+    span {
+        margin-top: 8px;
+    }
+}

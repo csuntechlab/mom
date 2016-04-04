@@ -16,10 +16,10 @@ $(document).ready(function(){
 		}   
 		
 		// New li to hold each input
-		var newTextBox = $(document.createElement('li')).attr('class', 'student-seb-list-items');
+		var newTextBox = $(document.createElement('li'));
                 
         // Textbox
-		newTextBox.after().html('<input type="text" class="input-text" placeholder="' + placeholder + '" name="' + name + '[]" value="" ><button style="background: transparent; border: 0;" id="' + name + '"><span class="student-seb-list-del">X</span></button>');
+		newTextBox.after().html('<input type="text" class="form-control" placeholder="' + placeholder + '" name="' + name + '[]" value="" ><button style="background: transparent; border: 0;" id="' + name + '"><span class="student-seb-list-del">X</span></button>');
 
 		selector.prepend(newTextBox);
             
