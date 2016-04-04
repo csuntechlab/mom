@@ -56,7 +56,7 @@ class ProfileController extends Controller
         $id = User::where('email', 'nr_'.$email.'@my.csun.edu')->firstOrFail()->user_id;
         
         // Find the user profile
-        $profile        = Profile::with('skills', 'links', 'image')->findOrFail($id);
+        $profile = Profile::with('skills', 'links', 'image')->findOrFail($id);
 
         if(!Auth::user()->canEdit($profile->individuals_id)){
             throw new PermissionDeniedException();
@@ -66,7 +66,7 @@ class ProfileController extends Controller
         //return $profile_skills;
 
         // Get the entire collection of skills from research view
-        $skills         = Skill::all()->lists('title', 'research_id')->toArray();
+        $skills = Skill::all()->lists('title', 'research_id')->toArray();
 
         // Get profile's linkedin, github, or portfolium link
         $linkedin_url   = NULL;
@@ -105,6 +105,14 @@ class ProfileController extends Controller
 				'src' => $file->getClientOriginalName()
 			]);
     	}
+
+        // If user has included graduation year 
+        if($request->has('graduation_year'))
+        {
+            Profile::where('individuals_id', $id)->update([
+                'grad_date' => $request->input('graduation_year')
+            ]);
+        }
 
     	// If user has included linkedin in url
     	if($request->has('linkedin_url'))
