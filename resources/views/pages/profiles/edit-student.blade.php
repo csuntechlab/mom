@@ -73,13 +73,28 @@
 					    </div>
 					</div>
 					<div class="col-sm-8 col-sm-offset-2">
+						<!-- Using social-media class temporarly -->
 						<div class="social-media">
-							<div class="form-group">
-								<div class="input-group">
-									<div class="input-group-addon">
-										<i class="fa fa-2x fa-graduation-cap"></i>
+							<div class="row">
+								<div class="col-sm-6">
+									<div class="form-group">
+										<div class="input-group">
+											<div class="input-group-addon">
+												<i class="fa fa-2x fa-graduation-cap"></i>
+											</div>
+											{!! Form::select('graduation_year', $years, isset($graduation_year) ? $graduation_year : "", ['placeholder'=> 'Graduation Year', 'class' => 'grad-year-select form-control chosen-select']) !!}
+										</div>
 									</div>
-									{!! Form::select('graduation_year', $years, isset($graduation_year) ? $graduation_year : "", ['placeholder'=> 'Graduation Year', 'class' => 'grad-year-select form-control chosen-select']) !!}
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group">
+										<div class="input-group">
+											<div class="input-group-addon">
+												<i class="fa fa-2x fa-briefcase"></i>
+											</div>
+											{!! Form::text('Position', isset($position) ? $position : "", ['class' => 'form-control', 'placeholder' => 'Position']) !!}
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
