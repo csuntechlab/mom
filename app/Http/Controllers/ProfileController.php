@@ -199,6 +199,13 @@ class ProfileController extends Controller
             ]);
         }
 
+        if($request->has('position'))
+        {
+            Profile::where('individuals_id', Auth::user()->user_id)->update([
+                'position' => $request->input('position')
+            ]);
+        }
+
     	return redirect()->back();
     }
 

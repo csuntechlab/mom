@@ -30,7 +30,8 @@ class EditProfileRequest extends Request
             'portfolium_url' => 'url',
             // 'skills'         => 'required',
             // 'experiences'    => 'required',
-            // 'background'     => 'required'
+            // 'background'     => 'required',
+            'position'       => 'required'
         ];
 
         // foreach($this->request->get('skills') as $key)
@@ -51,7 +52,8 @@ class EditProfileRequest extends Request
             'portfolium_url.url'  => 'Portfolium url is not valid',
             // 'skills.required'     => 'A minimum of 1 skill is required',
             // 'experiences.required'=> 'A minimum of 1 experience is required',
-            // 'background.required' => 'A background description must be provided'        
+            // 'background.required' => 'A background description must be provided',
+            'position.required'   => 'Your position at MetaLab is required'        
         ];
     }
 }
