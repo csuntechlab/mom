@@ -25,7 +25,7 @@ class EditProfileRequest extends Request
     {
         $rules = [
             'profile_image'   => 'image',
-            'graduation_year' => 'required|digits:4',
+            'graduation_year' => 'required',
             'linkedin_url'    => 'url',
             'github_url'      => 'url',
             'portfolium_url'  => 'url',

@@ -9,123 +9,164 @@
 	<div class="gradient-overlay"></div>
 </section>
 <section class="section section-page section-white projects">
-<div class="container" style="background-color: #fff;">
-	<div class="student">
-		{{ Form::open(['url' => 'profiles/edit/' . $profile->individuals_id, 'files' => 'true']) }}
-
-	    <div class="row">
-	    	<!-- <div class="col-xs-1"></div> -->
-	    	<!-- <div class="col-xs-2 text-right">
-	    		<div class="social-media-btn">
-	    			<a href="#">
-	    				<img class="social-media-btn-img" src="{{ asset('imgs/Hover.svg' ) }}" alt="portfolium" />
-	    				<p>Portfolium</p>
-					</a>
+	<div class="container" style="background-color: #fff;">
+		<div class="student">
+			{{ Form::open(['url' => 'profiles/edit/' . $profile->individuals_id, 'files' => 'true']) }}
+			    <div class="row">
+			    	<div class="col-sm-4 col-sm-offset-4 text-center">
+			    		<label for="profile_image_file">
+				    		@if(isset($profile->image->src))
+								<div id="profile_image_preview" style="cursor: pointer; border-radius: 50%; width: 300px; height: 300px; background: url('{{ asset('user-profile/image/' . $profile->image->src) }}') no-repeat center center; background-size: cover; position: relative;">
+				    			</div>
+				    		@else
+				    			<div id="profile_image_preview" style="cursor: pointer; border-radius: 50%; width: 300px; height: 300px; background: #f2f2f2; position: relative;"> <span id="profile_image_preview_text" style="position: absolute; top: 20%; left: 50%; transform: translate(-45%, 50%); font-size: 200%;">Upload Image</span>
+				    			</div>
+				    		@endif
+			    		</label>
+			    		@if($errors->any())
+			    			<div class="alert alert-danger">
+			    				<ul>
+					    			@foreach($errors->all() as $error)
+									<li>{{ $error }}</li>
+									@endforeach
+			    				</ul>
+							</div>
+			    		@endif
+			    		{!! Form::file('profile_image', ['id' => 'profile_image_file', 'style' => 'display: none;']) !!}
+			    	</div>
 				</div>
-			</div> -->
-			<div class="col-xs-1"></div>
-	    	<div class="col-xs-11 text-left">
-	    	<label for="profile_image_file">
-	    	<!-- <img class="student-image" id="profile_image_preview" src="http://placehold.it/300x300" alt="student image" style="cursor: pointer;"> -->
-	    	@if(isset($profile->image->src))
-
-			<div id="profile_image_preview" style="cursor: pointer; border-radius: 50%; width: 300px; height: 300px; background: url('{{ asset('user-profile/image/' . $profile->image->src) }}') no-repeat center center; background-size: cover; position: relative;">
-	    	</div>
-	    	@else
-	    	<div id="profile_image_preview" style="cursor: pointer; border-radius: 50%; width: 300px; height: 300px; background: #f2f2f2; position: relative;"> <span id="profile_image_preview_text" style="position: absolute; top: 20%; left: 50%; transform: translate(-30%, 50%); font-size: 200%;">Upload Image</span>
-	    	</div>
-	    	@endif
-	    	</label>
-	    	@if($errors->any())
-	    	<div class="alert alert-danger">
-	    		<ul>
-	    			@foreach($errors->all() as $error)
-					<li>{{ $error }}</li>
-					@endforeach
-	    		</ul>
-			</div>
-	    	@endif
-	    	{!! Form::file('profile_image', ['id' => 'profile_image_file', 'style' => 'display: none;']) !!}
-	    	</div>
-		</div>
-		<div class="row social-media">
-			<div class="col-xs-1"></div>
-	    	<div class="col-xs-11 text-left"><img class="social-media-btn-img" src="{{ asset('imgs/linkden.svg' ) }}" alt="linkedin" />{!! Form::text('linkedin_url', isset($linkedin_url) ? $linkedin_url : "", ['placeholder' => 'Add URL', 'class' => 'input-text']) !!}</div>
-		</div>
-		<div class="row social-media">
-			<div class="col-xs-1"></div>
-	    	<div class="col-xs-11 text-left"><img class="social-media-btn-img" src="{{ asset('imgs/github.svg' ) }}" alt="linkedin" />{!! Form::text('github_url', isset($github_url) ? $github_url : "", ['placeholder' => 'Add URL', 'class' => 'input-text']) !!}</div>
-		</div>
-		<div class="row social-media">
-			<div class="col-xs-1"></div>
-	    	<div class="col-xs-11 text-left"><img class="social-media-btn-img" src="{{ asset('imgs/Hover.svg' ) }}" alt="linkedin" />{!! Form::text('portfolium_url', isset($portfolium_url) ? $portfolium_url : "", ['placeholder' => 'Add URL', 'class' => 'input-text']) !!}</div>
-	    	<!--<div class="col-xs-2 text-left">
-	    		<div class="social-media-btn">
-	    			<a href="#">
-	    				<img class="social-media-btn-img" src="{{ asset('imgs/linkden.svg' ) }}" alt="linkedin" />
-	    				<p>LinkedIn</p>
-					</a>
+				<div class="row">
+					<div class="col-sm-8 col-sm-offset-2">
+						<div class="social-media">
+				    		<div class="form-group">
+				    			<div class="input-group">
+				    				<div class="input-group-addon">
+						    			<img class="social-media-btn-img" src="{{ asset('imgs/linkden.svg' ) }}" alt="linkedin" />
+				    				</div>
+				    				{!! Form::text('linkedin_url', isset($linkedin_url) ? $linkedin_url : "", ['placeholder' => 'Add URL', 'class' => 'form-control']) !!}
+				    			</div>
+					    	</div>
+				    	</div>
+				    </div>
+				    <div class="col-sm-8 col-sm-offset-2">
+						<div class="social-media">
+				    		<div class="form-group">
+				    			<div class="input-group">
+					    			<div class="input-group-addon">
+						    			<img class="social-media-btn-img" src="{{ asset('imgs/github.svg' ) }}" alt="linkedin" />
+					    			</div>
+						    		{!! Form::text('github_url', isset($github_url) ? $github_url : "", ['placeholder' => 'Add URL', 'class' => 'form-control']) !!}
+				    			</div>
+				    		</div>
+				    	</div>
+				    </div>
+				    <div class="col-sm-8 col-sm-offset-2">
+						<div class="social-media">
+				    		<div class="form-group">
+				    			<div class="input-group">
+				    				<div class="input-group-addon">
+						    			<img class="social-media-btn-img" src="{{ asset('imgs/Hover.svg' ) }}" alt="linkedin" />
+				    				</div>
+						    		{!! Form::text('portfolium_url', isset($portfolium_url) ? $portfolium_url : "", ['placeholder' => 'Add URL', 'class' => 'form-control']) !!}
+				    			</div>
+				    		</div>
+					    </div>
+					</div>
+					<div class="col-sm-8 col-sm-offset-2">
+						<!-- Using social-media class temporarly -->
+						<div class="social-media">
+							<div class="row">
+								<div class="col-sm-6">
+									<div class="form-group">
+										<div class="input-group">
+											<div class="input-group-addon">
+												<i class="fa fa-2x fa-graduation-cap"></i>
+											</div>
+											{!! Form::select('graduation_year', $years, $profile->grad_date, ['placeholder'=> 'Graduation Year', 'class' => 'grad-year-select form-control chosen-select']) !!}
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group">
+										<div class="input-group">
+											<div class="input-group-addon">
+												<i class="fa fa-2x fa-briefcase"></i>
+											</div>
+											{!! Form::text('position', $profile->position, ['class' => 'form-control', 'placeholder' => 'Position']) !!}
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
-			</div>
-	    	<div class="col-md-1"></div> -->
-	    </div>
-	   
-	    <div class="row">
-	    	<div class="col-sm-12 student-seb">
-	    		<label class="student-seb-title">Skills <!-- <button style="background: transparent; border: 0;" id="add_skill"><i class="fa fa-plus-circle add-seb"></i></button> -->
-	    		</label>
-	    		<ul id="skills_list" class="student-seb-list">
-	    			<li class="student-seb-list-items">
-	    			{!! Form::select('skills[]', $skills, $profile_skills, ['multiple' => '', 'class' => 'input-text chosen-select', 'placeholder' => 'Add skill']) !!}
-	    			</li>
-	    		</ul>
-	    	</div>
-	    </div>
-	    <div class="row">
-	    	<div class="col-sm-12 student-seb">
-	    		<label class="student-seb-title">Experience
-	    		<button style="background: transparent; border: 0;" id="add_experience">
-	    			<i class="fa fa-plus-circle add-seb"></i>
-    			</button></label>
-    			@if($profile->experience->count() > 0)
-    				<ul id="experience_list" class="student-seb-list">
-    					@foreach($profile->experience as $exp)
-						<li class="student-seb-list-items">
-							<input type="text" name="experiences[]" value="{{ $exp->experience }}" placeholder="Add experience" class="input-text">
-							<button style="background: transparent; border: 0;" id="experiences"><span class="student-seb-list-del">X</span></button>
-						</li>
-    					@endforeach
-    				</ul>
-				@else
-	    		<ul id="experience_list" class="student-seb-list">
-	    			<li class="student-seb-list-items">{{--{{ Form::text('experiences', NULL, ['placeholder' => 'Add experience', 'class' => 'input-text']) }}--}}
-	    			<input type="text" name="experiences[]" placeholder="Add experience" class="input-text">
-	    			</li>
-	    		</ul>
-	    		@endif
-	    	</div>
-	    </div>
-	    <div class="row">
-	    	<div class="col-sm-12 student-seb">
-	    		<label class="student-seb-title">Background <!-- <button style="background: transparent; border: 0;" id="add_background"><i class="fa fa-plus-circle add-seb"></i></button> --></label>
-	    		<ul id="background_list" class="student-seb-list">
-	    			<li class="student-seb-list-items">{!! Form::text('background', $profile->background, ['placeholder' => 'Add background', 'class' => 'input-text']) !!}
-	    			</li>
-	    		</ul>
-	    	</div>
-	    </div>
-	    <div class="row edit-student-buttons">
-	    	<div class="col-xs-12 col-sm-1"></div>
-	    	<div class="col-xs-12 col-sm-2"><button id="edit-profile-modal-btn" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Preview</button>
-	    	</div>
-	   		<div class="col-xs-12 col-sm-2">{!! Form::submit('Save', ['class' => 'btn btn-default']) !!}</div>
-	    	<div class="col-xs-12 col-sm-7"></div>
-	    </div>
-	    {!! Form::close() !!}
-	    
-	</div>
-
-	<!-- Student Modal -->
+			    <div class="row">
+			    	<div class="col-sm-8 col-sm-offset-2">
+				    	<div class="student-seb">
+				    		<div class="form-group">
+					    		<label class="student-seb-title">Skills</label>
+					    		<ul id="skills_list" class="list-unstyled">
+					    			<li>
+					    				{!! Form::select('skills[]', $skills, $profile_skills, ['multiple' => '', 'class' => 'chosen-select form-control', 'placeholder' => 'Add skill']) !!}
+					    			</li>
+					    		</ul>
+				    		</div>
+				    	</div>
+			    	</div>
+			    </div>
+			    <div class="row">
+			    	<div class="col-sm-8 col-sm-offset-2">
+				    	<div class="form-group">
+				    		<label class="student-seb-title">Experience
+					    		<button style="background: transparent; border: 0;" id="add_experience">
+					    			<i class="fa fa-plus-circle add-seb"></i>
+				    			</button>
+			    			</label>
+			    			@if($profile->experience->count() > 0)
+			    				<ul id="experience_list" class="list-unstyled">
+			    					@foreach($profile->experience as $exp)
+									<li>
+										<input type="text" name="experiences[]" value="{{ $exp->experience }}" placeholder="Add experience">
+										<button style="background: transparent; border: 0;" id="experiences"><span class="student-seb-list-del">X</span></button>
+									</li>
+			    					@endforeach
+			    				</ul>
+							@else
+				    		<ul id="experience_list" class="list-unstyled">
+				    			<li>
+				    				<input type="text" name="experiences[]" placeholder="Add experience" class="form-control">
+				    			</li>
+				    		</ul>
+				    		@endif
+				    	</div>
+			    	</div>
+			    </div>
+			    <div class="row">
+			    	<div class="col-sm-8 col-sm-offset-2">
+				    	<div class="student-seb">
+				    		<label class="student-seb-title">Background</label>
+				    		<ul id="background_list" class="list-unstyled">
+				    			<li>
+				    				{!! Form::text('background', $profile->background, ['placeholder' => 'Add background', 'class' => 'form-control']) !!}
+				    			</li>
+				    		</ul>
+				    	</div>
+			    	</div>
+			    </div>
+				<div class="row">
+					<div class="col-sm-12">
+				    	<div class="edit-student-buttons text-center">
+					    	<div class="col-xs-4 col-xs-offset-2">
+					    		<button id="edit-profile-modal-btn" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Preview</button>
+					    	</div>
+					   		<div class="col-xs-4">
+					   			{!! Form::submit('Save', ['class' => 'btn btn-default']) !!}
+					   		</div>
+					    </div>
+					</div>
+			    </div>
+		    {!! Form::close() !!}
+		</div>
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		  <div class="modal-dialog" role="document">
 		    <div class="modal-content">
@@ -226,5 +267,5 @@
 		    </div>
 		  </div>
 		</div>
-</div> 
+	</div> 
 @endsection

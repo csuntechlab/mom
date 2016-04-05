@@ -69,7 +69,8 @@ class ProfileController extends Controller
         $skills = Skill::all()->lists('title', 'research_id')->toArray();
 
         // Create a years range for graduation year
-        $years = range(date("Y"), date("Y") + 4);
+        $range = range(date("Y"), date("Y") + 4);
+        $years = array_combine($range, $range);
 
         // Get profile's linkedin, github, or portfolium link
         $linkedin_url   = NULL;
@@ -85,12 +86,12 @@ class ProfileController extends Controller
 
     	// Return corresponding indiviudals profile edit page
     	return view('pages.profiles.edit-student', compact('skills', 'profile', 'profile_skills', 'linkedin_url', 'portfolium_url', 'github_url', 'years'));
+
     }
 
     // Update the user's profile
     public function postEdit(EditProfileRequest $request, $id)
     {
-
         $profile = Profile::findOrFail($id);
         // handle unauthorized POST requests
         if(!Auth::user()->canEdit($profile->individuals_id)){
