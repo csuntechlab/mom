@@ -215,7 +215,7 @@
 		        	<div class="col-sm-12 text-center"><p class="student-title">{{ $profile->position }}</p></div>
 		        </div>
 		        <div class="row">
-		        	<div class="col-sm-12 text-center"><i class="fa fa-graduation-cap student-graduate"></i> <span class="graduates-in">Graduates in {{ date('Y', strtotime($profile->grad_date)) }}</span></div>
+		        	<div class="col-sm-12 text-center"><i class="fa fa-graduation-cap student-graduate"></i> <span class="graduates-in">Graduates in {{ $profile->grad_date }}</span></div>
 		        </div>
 		        <div class="row">
 		        	<div class="col-sm-1"></div>
