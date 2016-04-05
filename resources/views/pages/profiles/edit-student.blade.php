@@ -82,7 +82,7 @@
 											<div class="input-group-addon">
 												<i class="fa fa-2x fa-graduation-cap"></i>
 											</div>
-											{!! Form::select('graduation_year', $years, isset($graduation_year) ? $graduation_year : "", ['placeholder'=> 'Graduation Year', 'class' => 'grad-year-select form-control chosen-select']) !!}
+											{!! Form::select('graduation_year', $years, $profile->grad_date, ['placeholder'=> 'Graduation Year', 'class' => 'grad-year-select form-control chosen-select']) !!}
 										</div>
 									</div>
 								</div>

@@ -56,7 +56,7 @@ class ProfileController extends Controller
         $id = User::where('email', 'nr_'.$email.'@my.csun.edu')->firstOrFail()->user_id;
         
         // Find the user profile
-        $profile        = Profile::with('skills', 'links', 'image')->findOrFail($id);
+        $profile = Profile::with('skills', 'links', 'image')->findOrFail($id);
 
         if(!Auth::user()->canEdit($profile->individuals_id)){
             throw new PermissionDeniedException();
@@ -66,7 +66,11 @@ class ProfileController extends Controller
         //return $profile_skills;
 
         // Get the entire collection of skills from research view
-        $skills         = Skill::all()->lists('title', 'research_id')->toArray();
+        $skills = Skill::all()->lists('title', 'research_id')->toArray();
+
+        // Create a years range for graduation year
+        $range = range(date("Y"), date("Y") + 4);
+        $years = array_combine($range, $range);
 
         // Get profile's linkedin, github, or portfolium link
         $linkedin_url   = NULL;
@@ -79,19 +83,15 @@ class ProfileController extends Controller
                 case "github":      $github_url     = $link->pivot->link_url; break;
             }
         }
-        //these two variables are temporary and need to be filled in accurately. 
-        $years = ['2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2018', '2019', '2020'];
-        // $graduation_year = '2011';
-        // $position = 'Back End Developer';
 
     	// Return corresponding indiviudals profile edit page
-    	return view('pages.profiles.edit-student', compact('skills', 'profile', 'profile_skills', 'linkedin_url', 'portfolium_url', 'github_url', 'years', 'graduation_year', 'position'));
+    	return view('pages.profiles.edit-student', compact('skills', 'profile', 'profile_skills', 'linkedin_url', 'portfolium_url', 'github_url', 'years'));
+
     }
 
     // Update the user's profile
     public function postEdit(EditProfileRequest $request, $id)
     {
-
         $profile = Profile::findOrFail($id);
         // handle unauthorized POST requests
         if(!Auth::user()->canEdit($profile->individuals_id)){
@@ -109,6 +109,14 @@ class ProfileController extends Controller
 				'src' => $file->getClientOriginalName()
 			]);
     	}
+
+        // If user has included graduation year 
+        if($request->has('graduation_year'))
+        {
+            Profile::where('individuals_id', $id)->update([
+                'grad_date' => $request->input('graduation_year')
+            ]);
+        }
 
     	// If user has included linkedin in url
     	if($request->has('linkedin_url'))
