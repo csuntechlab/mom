@@ -92,7 +92,7 @@
 											<div class="input-group-addon">
 												<i class="fa fa-2x fa-briefcase"></i>
 											</div>
-											{!! Form::text('Position', isset($position) ? $position : "", ['class' => 'form-control', 'placeholder' => 'Position']) !!}
+											{!! Form::text('position', $profile->position, ['class' => 'form-control', 'placeholder' => 'Position']) !!}
 										</div>
 									</div>
 								</div>
