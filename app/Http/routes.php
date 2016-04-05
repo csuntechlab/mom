@@ -24,11 +24,8 @@
 
 Route::group(['middleware' => ['web']], function () {
     
+	Route::get('/', 'ProjectController@work');
     Route::get('work', 'ProjectController@work');
-
-	Route::get('/', function () {
-    	return view('layouts.master');
-	});
 
 	Route::resource('projects', 'ProjectController');
     // profiles
