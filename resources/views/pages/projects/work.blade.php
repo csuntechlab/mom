@@ -118,8 +118,8 @@
                     </div>                  
                     <div class="col-md-4 hidden-sm hidden-xs">
                         <div class="card card-light">
-                            <div class="card-content-xl hidden-md card-content-action">
-<!-- MEMBER DISPLAY FOR IPAD 
+                            <div class="card-content-xl card-content-action">
+<!-- MEMBER DISPLAY FOR IPAD -->
                                  @foreach ($project->members as $member)
                                     <?php $memberID = $member->user_id; 
                                     $memberIdModal = explode(":", $memberID);
@@ -131,11 +131,27 @@
                                         $productOwner = "";
                                     }?>                                
                                     
+                                    <div class="hidden-lg">
+                                        <div class="col-md-4">
+                                            <div class="">
+                                              <div class="no-padding">
+                                                <a href="#" class="thumbnail">
+                                                    @if(!empty($member->profile) && !empty($member->profile->image))
+                                                        <img class="members--member-img <?php echo $productOwner; ?>" src="{{ asset('user-profile/image/' . $member->profile->image->src)}}" alt="{{$member->display_name}}">
+                                                    @else
+                                                        <img class="members--member-img <?php echo $productOwner; ?>" src="http://www.placehold.it/50x50" alt="{{$member->display_name}}">
+                                                    @endif
+                                                </a>
+                                              </div>
+<!--                                               Name -->
+                                            </div>
+                                        </div>
+                                    </div>
                                 @endforeach 
 <!-- END FOR IPAD -->
                                 <!-- <h2>Members</h2>
                                 <hr class="line-inline"> -->
-                                <div class="members">
+                                <div class="members hidden-xs hidden-md">
 
 
                                     @foreach($project->members as $member)

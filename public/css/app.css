@@ -5945,6 +5945,9 @@ hr.line-inline {
   .work-block:hover p {
     opacity: 1; }
 
+.testing {
+  display: inline-block; }
+
 address {
   line-height: 1.8; }
   address strong {
