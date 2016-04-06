@@ -5,23 +5,23 @@ background-size: contain; background-position: top right; background-repeat: no-
       <div class="container-fluid full-height">
         <nav>
           <ul id="menu-main-nav" class="menu">
-            <li id="menu-item-11" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-4 current_page_item menu-item-11">
-              <a href="/">Home</a>
+            <li id="menu-item-11" class="menu-item menu-item-type-post_type menu-item-object-page  page_item page-item-4 menu-item-11">
+              <a href="http://www.metalab.csun.edu">Home</a>
             </li>
             <li id="menu-item-328" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-328">
-              <a href="/about/">About</a>
+              <a href="http://www.metalab.csun.edu/about/">About</a>
             </li>
             <li id="menu-item-331" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-331">
-              <a href="/our-team/">Our Team</a>
+              <a href="http://www.metalab.csun.edu/our-team/">Our Team</a>
               </li>
-              <li id="menu-item-96" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-96">
+              <li id="menu-item-96" class="menu-item menu-item-type-post_type current_page_item menu-item-object-page current-menu-item menu-item-96">
                 <a href="/work/">Work</a>
                 </li>
               <li id="menu-item-327" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-327">
-                <a href="/contact/">Contact</a>
+                <a href="http://www.metalab.csun.edu/contact/">Contact</a>
               </li>
               <li id="menu-item-228" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-228">
-                <a href="/blog/">Blog &#038; Events</a>
+                <a href="http://www.metalab.csun.edu/blog/">Blog &#038; Events</a>
               </li></ul>        
             </nav>
       </div>
