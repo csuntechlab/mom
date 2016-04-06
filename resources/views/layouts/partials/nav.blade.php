@@ -1,3 +1,34 @@
+<div class="overlay overlay-slidedown" style="background-image: url(http://www.metalab.csun.edu/wp-content/themes/metalab-v2/assets/imgs/lines-right.png);
+background-size: contain; background-position: top right; background-repeat: no-repeat;">
+    <!-- <button type="button" class="overlay-close">Close</button> -->
+    <div class="col-sm-7 col-sm-offset-2 full-height">
+      <div class="container-fluid full-height">
+        <nav>
+          <ul id="menu-main-nav" class="menu">
+            <li id="menu-item-11" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-4 current_page_item menu-item-11">
+              <a href="/">Home</a>
+            </li>
+            <li id="menu-item-328" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-328">
+              <a href="/about/">About</a>
+            </li>
+            <li id="menu-item-331" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-331">
+              <a href="/our-team/">Our Team</a>
+              </li>
+              <li id="menu-item-96" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-96">
+                <a href="/work/">Work</a>
+                </li>
+              <li id="menu-item-327" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-327">
+                <a href="/contact/">Contact</a>
+              </li>
+              <li id="menu-item-228" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-228">
+                <a href="/blog/">Blog &#038; Events</a>
+              </li></ul>        
+            </nav>
+      </div>
+    </div>
+  </div>
+
+
 <nav class="navbar navbar-fixed-top navbar-default" role="navigation">
     <div class="container-fluid">
 
