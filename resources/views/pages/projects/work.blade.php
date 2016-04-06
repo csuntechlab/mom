@@ -27,7 +27,7 @@
                                 <h2>{{ $project->meta->title }}</h2>
                                 <hr class="line-inline">
                                 <img src="{{ asset('/imgs/macbook-pro-placeholder.png') }}" alt="Product image" class="img-responsive">
-<!-- MOBILE DROP DOWN FUNCTIONS  -->
+<!-- MOBILE DROP DOWN FUNCTIONS done -->
                                 <div class="row hidden-md hidden-lg hidden-xl">
                                     <div class="col-xs-12">
                                         <button class="btn btn--view btn-sm btn-primary center-block" type="button" data-toggle="collapse" data-target="#collapse{{ $y }}" aria-expanded="false" aria-controls="collapseExample">View +</button>
