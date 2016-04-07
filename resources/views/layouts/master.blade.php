@@ -22,13 +22,13 @@
 
         {{-- APP CONTENT BEGINS --}}
         @include('layouts.partials.nav')
-            <div>
+            <div id="content">
                 @yield('content')
-            </div>
+            
             {{-- MODALS --}}
             @yield('modal')
         @include('layouts.partials.footer')
         {{-- APP CONTENT ENDS --}}
-                                
+            </div>                                
     </body>
 </html>
