@@ -275,7 +275,7 @@ class ProjectController extends Controller
         // findOrFail under the /project URI
         // Must be deleted on both models
         // projects and respective relationships are just being deleted for testing purposes
-        $project = Project::with(['meta', 'productOwners', 'scrumMasters', 'members'])->findOrFail('projects:' . $id);
+        $project = Project::with(['meta', 'productOwners', 'scrumMasters', 'members', 'projectLinks'])->findOrFail('projects:' . $id);
         $project->productOwners()->sync([]);
         $project->scrumMasters()->sync([]);
         $project->members()->sync([]);
