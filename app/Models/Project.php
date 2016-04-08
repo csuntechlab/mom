@@ -23,6 +23,13 @@ class Project extends Model
         'end_date',
     ];
 
+    // 
+    protected $appends = [
+        'project_link',
+        'product_owner',
+        'scrum_master',
+    ];
+
     public function meta() {
         return $this->hasOne('Mom\Models\ProjectMeta', 'project_id');
     }
@@ -33,16 +40,32 @@ class Project extends Model
                 ->wherePivot('role_position', 'member');
     }
 
-    public function productOwner() {
+    public function productOwners() {
         return $this->belongsToMany('Mom\Models\User', 'nemo.memberships', 'parent_entities_id', 'individuals_id')
                 ->withPivot('role_position')
                 ->wherePivot('role_position', 'product_owner');
     }
 
-    public function scrumMaster() {
+    public function scrumMasters() {
         return $this->belongsToMany('Mom\Models\User', 'nemo.memberships', 'parent_entities_id', 'individuals_id')
                 ->withPivot('role_position')
                 ->wherePivot('role_position', 'scrum_master');
     }
 
+    public function projectLinks() {
+        return $this->belongsToMany('Mom\Models\Link', 'link_entity', 'entities_id', 'link_id')
+                ->withPivot('link_url');
+    }
+
+    public function getProjectLinkAttribute() {
+        return $this->projectLinks->first() ?: new Link;
+    }
+
+    public function getProductOwnerAttribute(){
+        return $this->productOwners->first() ?: new User;
+    }
+
+    public function getScrumMasterAttribute(){
+        return $this->scrumMasters->first() ?: new User;
+    }
 }

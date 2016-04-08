@@ -26,7 +26,7 @@ class Profile extends Model
   * @return Builder
   */
   public function links() {
-    return $this->belongsToMany('Mom\Models\Link', 'link_profile', 'individuals_id', 'link_id')
+    return $this->belongsToMany('Mom\Models\Link', 'link_entity', 'entities_id', 'link_id')
         ->withPivot('link_url');
   }
 

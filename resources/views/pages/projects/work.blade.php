@@ -49,8 +49,8 @@ Our Work
                                         </h2> 
                                     </div>
                                     <div class="col-md-12">
-                                    @if(!empty($project->productOwner->profile) && !empty($project->productOwner->profile->image))
-                                        <img class="members--member-img" src="{{ asset('user-profile/image/' . $project->productOwner->profile->image->src)}}" alt="">
+                                    @if(!empty($project->product_owner->profile) && !empty($project->product_owner->profile->image))
+                                        <img class="members--member-img" src="{{ asset('user-profile/image/' . $project->product_owner->profile->image->src)}}" alt="">
                                     @endif
                                     </div>                                  
                                 </div>  
@@ -64,7 +64,7 @@ Our Work
                                 <hr class="line-inline"> -->
                                 <div class="members">
                                     <?php $productOwner = "product-owner";
-                                    $productOwnerID = $project->productOwner->user_id; ?>
+                                    $productOwnerID = $project->product_owner->user_id; ?>
 
                                     @foreach($project->members as $member)
                                     

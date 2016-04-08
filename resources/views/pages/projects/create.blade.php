@@ -70,6 +70,14 @@ Create Project
 						<div class="row">
 							<div class="col-sm-12">
 								<div class="form-group">
+									{!! Form::label('project_link', 'Project URL Link') !!}
+									{!! Form::text('project_link', '', ['placeholder' => 'URL Link', 'class' => 'form-control']) !!}
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="form-group">
 									{!! Form::label('description', 'Project Description') !!}
 									{!! Form::textarea('description', '' , ['placeholder' => 'Description', 'class' => 'form-control', 'rows' => '8'])!!}
 								</div>
