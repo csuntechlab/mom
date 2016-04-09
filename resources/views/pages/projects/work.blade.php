@@ -51,6 +51,8 @@ Our Work
                                     <div class="col-md-12">
                                     @if(!empty($project->product_owner->profile) && !empty($project->product_owner->profile->image))
                                         <img class="members--member-img" src="{{ asset('user-profile/image/' . $project->product_owner->profile->image->src)}}" alt="">
+                                    @else
+                                        <img class="members--member-img" src="http://www.placehold.it/50x50" alt="{{$member->display_name}}">
                                     @endif
                                     </div>                                  
                                 </div>  
