@@ -11,22 +11,22 @@
 					<div class="col-sm-8">
 						<ul class="list-inline footer-nav">
 							<li>
-								<a href="/">Home</a>
+								<a href="http://www.metalab.csun.edu/">Home</a>
 							</li>
 							<li>
-								<a href="/about/">About</a>
+								<a href="http://www.metalab.csun.edu/about/">About</a>
 							</li>
 							<li>
-								<a href="/our-team/">Our Team</a>
+								<a href="http://www.metalab.csun.edu/our-team/">Our Team</a>
 							</li>
 							<li>
 								<a href="{{ url('/work') }}">Work</a>
 							</li>
 							<li>
-								<a href="/contact/">Contact</a>
+								<a href="http://www.metalab.csun.edu/contact/">Contact</a>
 							</li>
 							<li>
-								<a href="/blog/">Blog</a>
+								<a href="http://www.metalab.csun.edu/blog/">Blog</a>
 							</li>
 							@if(Auth::guest())
 								<li><a href="{{ url('/login') }}">Login</a></li>

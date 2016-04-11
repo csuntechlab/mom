@@ -12,15 +12,15 @@ class CreateProfilesTable extends Migration
      */
     public function up()
     {
-        Schema::create('profiles', function(Blueprint $table){
-            $table->increments('profile_id')->unsigned();
-            $table->string('individuals_id');
-            $table->text('background');
-            $table->string('position');
-            $table->integer('grad_date')->unsigned();
-            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updated_at')->nullable();
-        });
+        // Schema::create('profiles', function(Blueprint $table){
+        //     $table->increments('profile_id')->unsigned();
+        //     $table->string('individuals_id');
+        //     $table->text('background');
+        //     $table->string('position');
+        //     $table->integer('grad_date')->unsigned();
+        //     $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+        //     $table->timestamp('updated_at')->nullable();
+        // });
     }
 
     /**
@@ -30,6 +30,6 @@ class CreateProfilesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('profiles');
+        // Schema::drop('profiles');
     }
 }

@@ -22,10 +22,13 @@
 <p> {{ $project->meta->description }} </p>
 
 <h3>Product Owner</h3>
-<p> {{ $project->productOwner->display_name }} </p>
+<p> {{ $project->product_owner->display_name }} </p>
 
 <h3>Scrum Master</h3>
-<p> {{ $project->scrumMaster->display_name }} </p>
+<p> {{ $project->scrum_master->display_name }} </p>
+
+<h3>Project Link</h3>
+<p> {{ $project->project_link->pivot->link_url }} </p>
 
 <h3>Team Members</h3>
 @foreach($project->members as $member)
