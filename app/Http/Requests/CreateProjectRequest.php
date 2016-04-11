@@ -4,7 +4,7 @@ use Mom\Http\Requests\Request;
 use Route;
 use DateTime;
 
-class ProjectRequest extends Request
+class CreateProjectRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,6 @@ class ProjectRequest extends Request
     {       
         $rules = [
             'title'         => 'required|unique:projectmeta,title|min:3',
-            'project_link'  => 'url',
             'description'   => 'required',
             'start_date'    => 'required|date_format:Y-m-d',
             // if value is entered, then it will be validated and must be after start_date

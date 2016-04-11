@@ -137,85 +137,8 @@
 					    				<input type="text" name="experiences[]" placeholder="Add experience" class="form-control">
 					    			</li>
 					    		</ul>
-				    		</div>
-				    	</div>
-			    	</div>
-			    </div>
-			    <div class="row">
-			    	<div class="col-sm-8 col-sm-offset-2">
-				    	<div class="form-group">
-				    		<label class="student-seb-title">Experience
-					    		<button style="background: transparent; border: 0;" id="add_experience">
-					    			<i class="fa fa-plus-circle add-seb"></i>
-				    			</button>
-			    			</label>
-			    			@if($profile->experience->count() > 0)
-			    				<ul id="experience_list" class="list-unstyled">
-			    					@foreach($profile->experience as $exp)
-									<li>
-										<input type="text" name="experiences[]" value="{{ $exp->experience }}" placeholder="Add experience">
-										<button style="background: transparent; border: 0;" id="experiences"><span class="student-seb-list-del">X</span></button>
-									</li>
-			    					@endforeach
-			    				</ul>
-							@else
-				    		<ul id="experience_list" class="list-unstyled">
-				    			<li>
-				    				<input type="text" name="experiences[]" placeholder="Add experience" class="form-control">
-				    			</li>
-				    		</ul>
-				    		@endif
-				    	</div>
-			    	</div>
-			    </div>
-			    <div class="row">
-			    	<div class="col-sm-8 col-sm-offset-2">
-				    	<div class="student-seb">
-				    		<label class="student-seb-title">Background</label>
-				    		<ul id="background_list" class="list-unstyled">
-				    			<li>
-				    				{!! Form::text('background', $profile->background, ['placeholder' => 'Add background', 'class' => 'form-control']) !!}
-				    			</li>
-				    		</ul>
-				    	</div>
-			    	</div>
-			    </div>
-			    <div class="row">
-			    	<div class="col-sm-8 col-sm-offset-2">
-				    	<div class="form-group">
-				    		<label class="student-seb-title">Experience
-					    		<button style="background: transparent; border: 0;" id="add_experience">
-					    			<i class="fa fa-plus-circle add-seb"></i>
-				    			</button>
-			    			</label>
-			    			@if($profile->experience->count() > 0)
-			    				<ul id="experience_list" class="list-unstyled">
-			    					@foreach($profile->experience as $exp)
-									<li>
-										<input type="text" name="experiences[]" value="{{ $exp->experience }}" placeholder="Add experience" class="form-control">
-										<button style="background: transparent; border: 0;" id="experiences"><span class="student-seb-list-del">X</span></button>
-									</li>
-			    					@endforeach
-			    				</ul>
-							@else
-				    		<ul id="experience_list" class="list-unstyled">
-				    			<li>
-				    				<input type="text" name="experiences[]" placeholder="Add experience" class="form-control">
-				    			</li>
-				    		</ul>
-				    		@endif
-				    	</div>
-			    	</div>
-			    </div>
-			    <div class="row">
-			    	<div class="col-sm-8 col-sm-offset-2">
-				    	<div class="student-seb">
-				    		<label class="student-seb-title">Background</label>
-				    		<ul id="background_list" class="list-unstyled">
-				    			<li>
-				    				{!! Form::text('background', $profile->background, ['placeholder' => 'Add background', 'class' => 'form-control']) !!}
-				    			</li>
-				    		</ul>
+					    		@endif
+					    	</div>
 				    	</div>
 				    </div>
 				    <div class="row">

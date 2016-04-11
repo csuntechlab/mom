@@ -45,9 +45,9 @@ Projects
                                             <dt>End Date</dt>
                                             <dd>{{ $project->end_date ? $project->end_date->format('m-d-Y') : "TBA" }}</dd>
                                             <dt>Product Owner</dt>
-                                            <dd> {{ $project->product_owner->display_name or 'Not Assigned'}} </dd>
+                                            <dd> {{ $project->productOwner->display_name or 'Not Assigned'}} </dd>
                                             <dt>Scrum Master</dt>
-                                            <dd> {{ $project->scrum_master->display_name or 'Not Assigned' }} </dd>
+                                            <dd> {{ $project->scrumMaster->display_name or 'Not Assigned' }} </dd>
                                             <dt>Team Members</dt>
                                             <dd>
                                                 @if(count($project->members))
