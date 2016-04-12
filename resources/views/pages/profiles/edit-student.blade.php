@@ -126,7 +126,7 @@
 				    				<ul id="experience_list" class="list-unstyled">
 				    					@foreach($profile->experience as $exp)
 										<li>
-											<input type="text" name="experiences[]" value="{{ $exp->experience }}" placeholder="Add experience">
+											<input type="text" name="experiences[]" value="{{ $exp->experience }}" placeholder="Add experience" class="form-control">
 											<button style="background: transparent; border: 0;" id="experiences"><span class="student-seb-list-del">X</span></button>
 										</li>
 				    					@endforeach
