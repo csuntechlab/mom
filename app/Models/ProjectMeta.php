@@ -10,7 +10,7 @@ class ProjectMeta extends Model
     protected $primaryKey = 'project_id';
     public $incrementing = false;
     protected $fillable = [
-    	'display_name',
+    	'title',
     	'description'
     ];
     protected $hidden = [

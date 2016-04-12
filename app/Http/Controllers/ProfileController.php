@@ -14,7 +14,7 @@ use Mom\Models\Profile;
 use Mom\Models\ProfileSkill;
 use Mom\Models\ProfileExperience;
 use Mom\Models\Image;
-use Mom\Models\LinkEntity;
+use Mom\Models\LinkProfile;
 use Mom\Models\Skill;
 use Mom\Models\FrescoExpertiseEntity;
 
@@ -34,15 +34,15 @@ class ProfileController extends Controller
 	// Updates the user's url
 	private function updateURL($id, $request, $link_id, $input)
 	{
-		$link = LinkEntity::where('entities_id', $id)
+		$link = LinkProfile::where('individuals_id', $id)
     		->where('link_id', $link_id)
     		->first();
         // If link does not return null/empty then update, else create new link.    
         if(!empty($link))
             $link->update(['link_url' => $request->input($input)]);
         else {
-            LinkEntity::create([
-                'entities_id'    => $id,
+            LinkProfile::create([
+                'individuals_id'    => $id,
                 'link_id'           => $link_id,
                 'link_url'          => $request->input($input)
             ]);

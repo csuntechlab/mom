@@ -70,14 +70,6 @@ Edit Project
 						<div class="row">
 							<div class="col-sm-12">
 								<div class="form-group">
-									{!! Form::label('project_link', 'Project URL Link') !!}
-									{!! Form::text('project_link', isset($project->project_link->pivot) ? $project->project_link->pivot->link_url : NULL, ['placeholder' => 'URL Link', 'class' => 'form-control']) !!}
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-12">
-								<div class="form-group">
 									{!! Form::label('description', 'Project Description') !!}
 									{!! Form::textarea('description', $project->meta->description , ['placeholder' => 'Description', 'class' => 'form-control', 'rows' => '8'])!!}
 								</div>
@@ -101,14 +93,14 @@ Edit Project
 							<div class="col-sm-6">
 								<div class="form-group">
 									{!! Form::label('product_owner', 'Product Owner:') !!}    
-									{!! Form::select('product_owner', $users, $project->product_owner->user_id,
+									{!! Form::select('product_owner', $users, $project->productOwner->user_id,
 									['placeholder' => 'Select Product Owner', 'role' => 'Select Team Members', 'class' => 'form-control chosen-select']) !!}
 								</div>
 							</div>
 							<div class="col-sm-6">
 								<div class="form-group">
 									{!! Form::label('scrum_master', 'Scrum Master:') !!}
-									{!! Form::select('scrum_master', $users, $project->scrum_master->user_id,
+									{!! Form::select('scrum_master', $users, $project->scrumMaster->user_id,
 									['placeholder' => 'Select Scrum Master', 'role' => 'Select Team Members', 'class' => 'form-control chosen-select']) !!}
 								</div>
 							</div>
