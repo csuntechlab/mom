@@ -4,6 +4,7 @@ use Auth;
 use Request;
 use Validator;
 use Illuminate\Support\MessageBag;
+use Mom\Models\Profile;
 
 use Toyota\Component\Ldap\Exception\SearchException;
 
@@ -53,12 +54,28 @@ class AuthController extends Controller
       try {
         if(Auth::attempt($creds)) {
           // redirect user to their profile
-          if(Auth::user()->isStudent() && Auth::user()->hasProfile())
-            return redirect()->intended('profile/' . Auth::user()->user_id);
-          
+          if(Auth::user()->isStudent()){ 
+              if(Auth::user()->hasProfile())
+                      return redirect()->intended('profiles/' . Auth::user()->email_uri);
+              else {
+                try{
+                  $profile = Profile::create([
+                    'individuals_id'  => Auth::user()->user_id,
+                    'background'      => "",
+                    'position'        => "",
+                    'grad_date'       => date('Y-m-d')
+                  ]);
+                } catch (\PDOException $e){
+                  // add some sort of notification of error
+                  return redirect()->back();
+                }
+                return redirect()->intended('profiles/' . Auth::user()->email_uri);
+              }
+
+          }
           // redirect user to admin panel, if user has the admin role  
           if(Auth::user()->hasRole('admin'))
-            return redirect()->intended('admin/dashboard');
+            return redirect()->intended('admin');
 
           // redirect back to the landing page if no original target
           return redirect()->intended('/');
@@ -95,7 +112,7 @@ class AuthController extends Controller
     Auth::logout();
 
     // re-direct back to the landing page without HTTPS
-    $landing = str_replace('https:', 'http:', url('/'));
+    $landing = str_replace('https:', 'http:', url('/work'));
     return redirect($landing);
   }
 

@@ -229,6 +229,20 @@ hr.line-inline{
 			opacity: 0.4;
 		}
 	}
+
+	li > ul {
+		
+		border-radius: 2px;
+
+		a {
+			color: black;
+			padding: 0 5px;
+
+			&:hover, &:active{
+				opacity: 0.8;
+			}
+		}
+	}
 }
 
 .fourohfour{

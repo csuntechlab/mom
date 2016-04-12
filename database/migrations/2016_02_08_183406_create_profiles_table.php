@@ -17,7 +17,7 @@ class CreateProfilesTable extends Migration
             $table->string('individuals_id');
             $table->text('background');
             $table->string('position');
-            $table->date('grad_date');
+            $table->integer('grad_date')->unsigned();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->nullable();
         });

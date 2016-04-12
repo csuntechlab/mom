@@ -4,7 +4,7 @@ namespace Mom\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class FrescoExpertise extends Model
+class FrescoExpertiseEntity extends Model
 {
     protected $table = 'fresco.expertise_entity';
     protected $fillable = [

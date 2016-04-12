@@ -7,7 +7,7 @@ class Profile extends Model
   protected $table = 'mom.profiles';
   protected $primaryKey = 'individuals_id';
   protected $fillable = [
-    'background', 'position', 'grad_date'
+    'individuals_id', 'background', 'position', 'grad_date'
   ];
   public $incrementing = false;
 
@@ -26,7 +26,7 @@ class Profile extends Model
   * @return Builder
   */
   public function links() {
-        return $this->belongsToMany('Mom\Models\Link', 'link_entity', 'entities_id', 'link_id')
+    return $this->belongsToMany('Mom\Models\Link', 'link_entity', 'entities_id', 'link_id')
         ->withPivot('link_url');
   }
 
@@ -55,6 +55,4 @@ class Profile extends Model
   public function fullName() {
       return User::where('user_id', $this->individuals_id)->value('display_name');
   }
-
-
 }

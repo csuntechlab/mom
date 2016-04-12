@@ -1,4 +1,7 @@
 @extends('layouts.master')
+@section('title')
+Our Work
+@stop
 @section('content')
 <?php $y = 1; ?>
 <section class="section page-hero work-banner">

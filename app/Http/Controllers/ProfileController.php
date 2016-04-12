@@ -9,13 +9,14 @@ use Mom\Http\Requests;
 use Mom\Http\Requests\EditProfileRequest;
 use Mom\Http\Controllers\Controller;
 
+use Mom\Models\User;
 use Mom\Models\Profile;
 use Mom\Models\ProfileSkill;
 use Mom\Models\ProfileExperience;
 use Mom\Models\Image;
 use Mom\Models\LinkProfile;
 use Mom\Models\Skill;
-use Mom\Models\FrescoExpertise;
+use Mom\Models\FrescoExpertiseEntity;
 
 use Mom\Exceptions\PermissionDeniedException;
 
@@ -33,19 +34,29 @@ class ProfileController extends Controller
 	// Updates the user's url
 	private function updateURL($id, $request, $link_id, $input)
 	{
-		LinkProfile::where('individuals_id', $id)
+		$link = LinkProfile::where('individuals_id', $id)
     		->where('link_id', $link_id)
-    		->update([
-    			'link_url' => $request->input($input)
-    		]);
+    		->first();
+        // If link does not return null/empty then update, else create new link.    
+        if(!empty($link))
+            $link->update(['link_url' => $request->input($input)]);
+        else {
+            LinkProfile::create([
+                'individuals_id'    => $id,
+                'link_id'           => $link_id,
+                'link_url'          => $request->input($input)
+            ]);
+        }
 	}
 
 	// Get user profile based off individuals id passed through
-    public function getUserProfile($id)
-    {
-
+    public function getUserProfile($email)
+    {   
+        //Will have to be refactored when Matt removes the prefixed 'nr_' in emails
+        $id = User::where('email', 'nr_'.$email.'@my.csun.edu')->firstOrFail()->user_id;
+        
         // Find the user profile
-        $profile        = Profile::with('skills', 'links', 'image')->findOrFail($id);
+        $profile = Profile::with('skills', 'links', 'image')->findOrFail($id);
 
         if(!Auth::user()->canEdit($profile->individuals_id)){
             throw new PermissionDeniedException();
@@ -55,12 +66,16 @@ class ProfileController extends Controller
         //return $profile_skills;
 
         // Get the entire collection of skills from research view
-        $skills         = Skill::all()->lists('title', 'research_id')->toArray();
+        $skills = Skill::all()->lists('title', 'research_id')->toArray();
+
+        // Create a years range for graduation year
+        $range = range(date("Y"), date("Y") + 4);
+        $years = array_combine($range, $range);
 
         // Get profile's linkedin, github, or portfolium link
-        $linkedin_url = NULL;
+        $linkedin_url   = NULL;
         $portfolium_url = NULL;
-        $github_url = NULL;
+        $github_url     = NULL;
         foreach($profile->links as $link){
             switch($link->type){
                 case "linkedin":    $linkedin_url   = $link->pivot->link_url; break;
@@ -70,13 +85,13 @@ class ProfileController extends Controller
         }
 
     	// Return corresponding indiviudals profile edit page
-    	return view('pages.profiles.edit-student', compact('skills', 'profile', 'profile_skills', 'linkedin_url', 'portfolium_url', 'github_url'));
+    	return view('pages.profiles.edit-student', compact('skills', 'profile', 'profile_skills', 'linkedin_url', 'portfolium_url', 'github_url', 'years'));
+
     }
 
     // Update the user's profile
     public function postEdit(EditProfileRequest $request, $id)
     {
-
         $profile = Profile::findOrFail($id);
         // handle unauthorized POST requests
         if(!Auth::user()->canEdit($profile->individuals_id)){
@@ -94,6 +109,14 @@ class ProfileController extends Controller
 				'src' => $file->getClientOriginalName()
 			]);
     	}
+
+        // If user has included graduation year 
+        if($request->has('graduation_year'))
+        {
+            Profile::where('individuals_id', $id)->update([
+                'grad_date' => $request->input('graduation_year')
+            ]);
+        }
 
     	// If user has included linkedin in url
     	if($request->has('linkedin_url'))
@@ -123,11 +146,11 @@ class ProfileController extends Controller
             if(count($profile->skills) > 0)
             {
 
-                FrescoExpertise::where('entities_id', $id)->delete();
+                FrescoExpertiseEntity::where('entities_id', $id)->delete();
 
                 foreach ($request->skills as $val) 
                 {
-                    FrescoExpertise::create([
+                    FrescoExpertiseEntity::create([
                         'entities_id'  => $id,
                         'expertise_id' => $val
                     ]);
@@ -138,7 +161,7 @@ class ProfileController extends Controller
             {
                 foreach ($request->skills as $value)
                 {
-                    FrescoExpertise::create([
+                    FrescoExpertiseEntity::create([
                         'entities_id'  => $id,
                         'expertise_id' => $value
                     ]);
@@ -185,6 +208,13 @@ class ProfileController extends Controller
         {
             Profile::where('individuals_id', $id)->update([
                 'background' => $request->input('background')
+            ]);
+        }
+
+        if($request->has('position'))
+        {
+            Profile::where('individuals_id', Auth::user()->user_id)->update([
+                'position' => $request->input('position')
             ]);
         }
 
