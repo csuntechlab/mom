@@ -3,13 +3,20 @@
 	<section class="section page-hero work-banner">
 		  <div class="dark-overlay"></div>
 			<div class="content">
-				<h1 class="text-center">Edit Profile</h1>
+				<h1 class="text-center">
+				@if(!Auth::user()->canEdit($profile->individuals_id))
+				{{ $profile->fullName() }}
+				@else
+				Edit Profile
+				@endif
+				</h1>
 				<hr class="line-lg line-center">
 			</div>
 		<div class="gradient-overlay"></div>
 	</section>
 	<section class="section section-page section-white projects">
 		<div class="container" style="background-color: #fff;">
+			@if(Auth::user()->canEdit($profile->individuals_id))
 			<div class="student">
 				{{ Form::open(['url' => 'profiles/edit/' . $profile->individuals_id, 'files' => 'true']) }}
 				    <div class="row">
@@ -167,6 +174,105 @@
 				    </div>
 			    {!! Form::close() !!}
 			</div>
+			@else
+			  <div>
+			    <div>
+			      <div class="modal-body student lines-back">
+			        <div class="row">
+			        	<div class="col-xs-1"></div>
+			        	<div class="col-xs-2 text-right">
+			        		<div class="social-media-btn">
+			        		@if(isset($portfolium_url))
+			        			<a href="{{ ($portfolium_url) }}">
+			        				<img class="social-media-btn-img" src="{{ asset('imgs/Hover.svg' ) }}" alt="portfolium" />
+			        				<p>Portfolium</p>
+			    				</a>
+			    			@endif
+							</div>
+						</div>
+						
+			        	<div class="col-xs-6 text-center">
+			        	@if(isset($profile->image->src))
+						<div id="profile_image_preview" style="border-radius: 50%; width: 200px; height: 200px; background: url('{{ asset('user-profile/image/' . $profile->image->src) }}') no-repeat center center; background-size: cover; position: relative;">
+				    	</div>
+				    	@else
+				    	<img class="student-image product-owner" src="http://placehold.it/200x200" alt="student image">
+				    	</div>
+				    	@endif
+			        	</div>
+			        	<div class="col-xs-2 text-left">
+			        		<div class="social-media-btn">
+			        		@if(isset($linkedin_url))
+			        			<a href="{{ $linkedin_url }}">
+			        				<img class="social-media-btn-img" src="{{ asset('imgs/linkden.svg' ) }}" alt="linkedin" />
+			        				<p>LinkedIn</p>
+			    				</a>
+			    			@endif
+							</div>
+						</div>
+			        	<div class="col-md-1"></div>
+			        </div>
+			        
+			        <div class="row">
+			        	<div class="col-sm-12 text-center">
+			        		<p class="student-name">{{ $profile->fullName() }}</p>
+		    			</div>
+			        </div>
+			        <div class="row">
+			        	<div class="col-sm-12 text-center"><p class="student-title">{{ $profile->position }}</p></div>
+			        </div>
+			        <div class="row">
+			        	<div class="col-sm-12 text-center"><i class="fa fa-graduation-cap student-graduate"></i> <span class="graduates-in">Graduates in {{ $profile->grad_date }}</span></div>
+			        </div>
+			        <div class="row">
+			        	<div class="col-sm-1"></div>
+			        	<div class="col-sm-10 text-left student-seb">
+			        		<h2 class="student-seb-title">Skills</h2>
+			        		<ul class="student-seb-list">
+			        		@if($profile->skills->count() > 0)
+			        			@foreach($profile->skills as $skill)
+									<li class="student-seb-list-items">{{ $skill->title }}</li>
+			        			@endforeach
+			        		@else
+								<li class="student-seb-list-items">No skills added yet</li>
+			        		@endif
+			        		</ul>
+			        	</div>
+			        	<div class="col-sm-1"></div>
+			        </div>
+			        <div class="row">
+			        	<div class="col-sm-1"></div>
+			        	<div class="col-sm-10 text-left student-seb">
+			        		<h2 class="student-seb-title">Experience</h2>
+			        		<ul class="student-seb-list">
+			        		@if($profile->experience->count() > 0)
+			        			@foreach($profile->experience as $exp)
+									<li class="student-seb-list-items">{{ $exp->experience }}</li>
+			        			@endforeach
+			        		@else
+								<li class="student-seb-list-items">No experience added yet</li>
+			        		@endif
+			        		</ul>
+			        	</div>
+			        	<div class="col-sm-1"></div>
+			        </div>
+			        <div class="row">
+			        	<div class="col-sm-1"></div>
+			        	<div class="col-sm-10 text-left student-seb">
+			        		<h2 class="student-seb-title">Background</h2>
+			        		<ul class="student-seb-list">
+			        		@if($profile->background)
+								<li class="student-seb-list-items">{{ $profile->background }}</li>
+			        		@else
+								<li class="student-seb-list-items">No background added yet</li>
+			        		@endif
+			        		</ul>
+			        	</div>
+			        	<div class="col-sm-1"></div>
+			        </div>
+			      </div>
+			    </div>
+		@endif
 			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 			  <div class="modal-dialog" role="document">
 			    <div class="modal-content">

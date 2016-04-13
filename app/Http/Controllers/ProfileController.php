@@ -58,9 +58,9 @@ class ProfileController extends Controller
         // Find the user profile
         $profile = Profile::with('skills', 'links', 'image')->findOrFail($id);
 
-        if(!Auth::user()->canEdit($profile->individuals_id)){
-            throw new PermissionDeniedException();
-        }
+        // if(!Auth::user()->canEdit($profile->individuals_id)){
+        //     throw new PermissionDeniedException();
+        // }
         // Get the user's skills if he's updated any
         $profile_skills = $profile->skills->lists('research_id')->toArray();
         //return $profile_skills;
