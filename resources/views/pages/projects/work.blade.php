@@ -51,19 +51,38 @@ Our Work
                                         <!--  part two of first well-->
                                         <div class="">
                                             <div class="row">
-                                                <div class="col-xs-7">
+                                                <div class="col-xs-6">
                                                     <h2 class="small">
                                                         Product Owner
                                                     </h2> 
                                                 </div>
-
-                                                <div class="col-xs-7 col-sm-7">
+                                                <div class="col-xs-6">
+                                                    <h2 class="small">
+                                                        Scrum Master
+                                                    </h2> 
+                                                </div>
+                                                <div class="col-xs-6 col-sm-6">
                                                     <?php $productOwner = "product-owner";
                                                     $productOwnerID = $project->productOwner->user_id; ?>  
                                                                                                   
                                                     @if(!empty($project->productOwner->profile) && !empty($project->productOwner->profile->image))
                                                         <img class="members--member-img" src="{{ asset('user-profile/image/' . $project->productOwner->profile->image->src)}}" alt="">
+                                                    @else
+                                                        <img class="members--member-img" src="http://www.placehold.it/50x50" alt="">
                                                     @endif                                                    
+                                                </div> 
+                                                <div class="col-xs-6 col-sm-6">                    
+                                                    @if(!empty($project->scumMaster->profile) && !empty($project->scrumMaster->profile->image))
+                                                        <img class="members--member-img" src="{{ asset('user-profile/image/' . $project->scrumMaster->profile->image->src)}}" alt="">
+                                                    @else
+                                                        <img class="members--member-img" src="http://www.placehold.it/50x50" alt="">
+                                                    @endif                                                    
+                                                </div>
+                                                <div class="col-xs-6 col-sm-6">
+                                                    <p>{{$project->productOwner->display_name}}</p>
+                                                </div>
+                                                <div class="col-xs-6 col-sm-6">
+                                                    <p>{{$project->scrumMaster->display_name}}</p>
                                                 </div> 
 
                                             </div>
@@ -130,10 +149,10 @@ Our Work
                                     @endif
                                     </div>
                                     <div class="col-md-6">
-                                        <p>{{$project->productOwner->display_name}}</p>
+                                        <p class="small">{{$project->productOwner->display_name}}</p>
                                     </div> 
                                     <div class="col-md-6">
-                                        <p>{{$project->scrumMaster->display_name}}</p>
+                                        <p class="small">{{$project->scrumMaster->display_name}}</p>
                                     </div>                                 
                                 </div>  
                             </div>
