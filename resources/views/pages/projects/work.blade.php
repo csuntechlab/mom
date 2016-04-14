@@ -105,16 +105,36 @@ Our Work
                                     <div class="col-md-12">
                                         <p>{{$project->meta->description}}</p>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <h2 class="small">
                                             Product Owner
                                         </h2> 
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
+                                        <h2 class="small">
+                                            Scrum Master
+                                        </h2> 
+                                    </div>
+                                    <div class="col-md-6">
                                     @if(!empty($project->productOwner->profile) && !empty($project->productOwner->profile->image))
                                         <img class="members--member-img" src="{{ asset('user-profile/image/' . $project->productOwner->profile->image->src)}}" alt="">
+                                    @else
+                                        <img class="members--member-img" src="http://www.placehold.it/50x50" alt="{{$member->display_name}}">
                                     @endif
-                                    </div>                                  
+                                    </div>  
+                                    <div class="col-md-6">
+                                    @if(!empty($project->scrumMaster->profile) && !empty($project->scrumMaster->profile->image))
+                                        <img class="members--member-img" src="{{ asset('user-profile/image/' . $project->scrumMaster->profile->image->src)}}" alt="">
+                                    @else
+                                        <img class="members--member-img" src="http://www.placehold.it/50x50" alt="{{$member->display_name}}">
+                                    @endif
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{$project->productOwner->display_name}}</p>
+                                    </div> 
+                                    <div class="col-md-6">
+                                        <p>{{$project->scrumMaster->display_name}}</p>
+                                    </div>                                 
                                 </div>  
                             </div>
                         </div>

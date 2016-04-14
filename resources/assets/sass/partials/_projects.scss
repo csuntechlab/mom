@@ -31,8 +31,13 @@
   color: $black;
   font-size: 10px;
   padding-top: 7px;
+  width: 100px;
+  word-wrap: break-word;
 }
 
+.card-content-xl .members--member-img {
+  margin: 0;
+}
 
 /* Student Modal */
 
