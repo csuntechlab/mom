@@ -14,6 +14,15 @@ Projects
         </section>
     </div>
     <div class="container">
+        <div class="row">
+            <div class="col-sm-10">
+                <div class="bk-btn">
+                    <a href="{{ url('admin/manage-students') }}">
+                        <i class="fa fa-arrow-left fa-2x"></i><span> return</span>
+                    </a>
+                </div>
+            </div>
+        </div>
         <div class="projects">
             <div class="text-left">
                 <h2>Meta+Lab Projects</h2>  

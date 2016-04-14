@@ -16,7 +16,7 @@ Manage Students
 
 	<div class="container">
         <div class="row">
-            <div class="col-sm-10 col-sm-offset-1">
+            <div class="col-sm-12">
                 <div class="bk-btn">
                     <a href="{{ url('admin/') }}">
                         <i class="fa fa-arrow-left fa-2x"></i><span> return</span>
@@ -25,7 +25,7 @@ Manage Students
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-10 col-sm-offset-1">
+            <div class="col-sm-12">
         		<a href="{{ url('admin/manage-students/add') }}" type="button" class="btn btn-primary">Add Students</a>
         		<a href="{{ url('admin/manage-students/remove') }}" type="button" class="btn btn-primary">Remove Students</a>
             </div>

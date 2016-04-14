@@ -20,7 +20,7 @@ Add Student
 
 <div class="container">
 	<div class="row">
-			<div class="col-sm-10 col-sm-offset-1">
+			<div class="col-sm-12">
 				<div class="bk-btn">
 					<a href="{{ url('admin/manage-students') }}">
 						<i class="fa fa-arrow-left fa-2x"></i><span> return</span>
@@ -30,7 +30,7 @@ Add Student
 	</div>
 	@if( Session::has('message') || !$errors->isEmpty() )
 		<div class="row">
-			<div class="col-sm-10 col-sm-offset-1">
+			<div class="col-sm-12">
 			@if ($errors->isEmpty())
 	   			<div class="alert alert-success">{{ Session::get('message') }}</div>
 	   		@else
@@ -47,7 +47,7 @@ Add Student
 	   	</div>
 	@endif
 	<div class="row">
-		<div class="col-sm-10 col-sm-offset-1">
+		<div class="col-sm-12">
 			{!! Form::open(['url' => url('admin/manage-students/add'), 'method' => 'POST']) !!}
 				{!! Form::text('student_id', null, ['placeholder' => 'Student ID', 'class' => 'form-control']) !!}
 				{!! Form::submit('Add Student', ['class' => 'btn btn-primary']) !!}
