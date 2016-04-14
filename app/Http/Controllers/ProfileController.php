@@ -105,9 +105,12 @@ class ProfileController extends Controller
 			$file->move('user-profile/image', $file->getClientOriginalName());
 
 			// Save file name to images table
-			Image::where('imageable_id', $id)->update([
-				'src' => $file->getClientOriginalName()
-			]);
+			Image::where('imageable_id', $id)->firstOrCreate([
+                'imageable_id'   => $id,
+                'imageable_type' => 'Mom\Models\Image'
+			])->update([
+                'src' => $file->getClientOriginalName()
+            ]);
     	}
 
         // If user has included graduation year 
