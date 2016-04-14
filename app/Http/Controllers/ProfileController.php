@@ -10,12 +10,12 @@ use Mom\Http\Requests\EditProfileRequest;
 use Mom\Http\Controllers\Controller;
 
 use Mom\Models\User;
+use Mom\Models\Skill;
+use Mom\Models\Image;
 use Mom\Models\Profile;
 use Mom\Models\ProfileSkill;
 use Mom\Models\ProfileExperience;
-use Mom\Models\Image;
-use Mom\Models\LinkProfile;
-use Mom\Models\Skill;
+use Mom\Models\LinkEntity;
 use Mom\Models\FrescoExpertiseEntity;
 
 use Mom\Exceptions\PermissionDeniedException;
@@ -34,15 +34,15 @@ class ProfileController extends Controller
 	// Updates the user's url
 	private function updateURL($id, $request, $link_id, $input)
 	{
-		$link = LinkProfile::where('individuals_id', $id)
+		$link = LinkEntity::where('entities_id', $id)
     		->where('link_id', $link_id)
     		->first();
         // If link does not return null/empty then update, else create new link.    
         if(!empty($link))
             $link->update(['link_url' => $request->input($input)]);
         else {
-            LinkProfile::create([
-                'individuals_id'    => $id,
+            LinkEntity::create([
+                'entities_id'       => $id,
                 'link_id'           => $link_id,
                 'link_url'          => $request->input($input)
             ]);
@@ -117,27 +117,13 @@ class ProfileController extends Controller
                 'grad_date' => $request->input('graduation_year')
             ]);
         }
-
-    	// If user has included linkedin in url
-    	if($request->has('linkedin_url'))
-    	{
-    		// Update link_profile table - updateURL function located on line 18
-    		$this->updateURL($id, $request, '1', 'linkedin_url');
-    	}
-
-    	// If user has included portfolium url
-    	if($request->has('portfolium_url'))
-    	{
+        
+    	$this->updateURL($id, $request, '1', 'linkedin_url');
     		
-    		$this->updateURL($id, $request, '2', 'portfolium_url');
-    	}
-
-    	// If user has included github url
-    	if($request->has('github_url'))
-    	{
-    		
-    		$this->updateURL($id, $request, '3', 'github_url');
-    	}
+    	$this->updateURL($id, $request, '2', 'portfolium_url');
+    	
+    	$this->updateURL($id, $request, '3', 'github_url');
+    
 
         // If user has included something in the skills textbox
         if($request->has('skills')) 
