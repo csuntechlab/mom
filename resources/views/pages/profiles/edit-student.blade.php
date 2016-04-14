@@ -181,7 +181,7 @@
 			        <div class="row">
 			        	<div class="text-center">
 			        	@if(isset($profile->image->src))
-						<div id="profile_image_preview" style="border-radius: 50%; width: 200px; height: 200px; background: url('{{ asset('user-profile/image/' . $profile->image->src) }}') no-repeat center center; background-size: cover; position: relative;">
+						<div id="profile_image_preview" style="border-radius: 50%; width: 200px; height: 200px; background: url('{{ asset('user-profile/image/' . $profile->image->src) }}') no-repeat center center; background-size: cover; position: relative; margin: auto;">
 				    	</div>
 				    	@else
 				    	<img class="student-image product-owner" src="http://placehold.it/200x200" alt="student image">
