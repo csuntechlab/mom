@@ -239,15 +239,3 @@
 .card-content-xl img {
   margin: 0 auto;
 }
-// 
-// IPad View of projects based on comps
-//  Under construction :/
-// 
-
-@media (min-width: 768px)  {
-  // Center the h2 text 
- .projects {
-    @extend .bolock-center;
-    background-color: red;
-  }
-}
