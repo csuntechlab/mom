@@ -43,22 +43,36 @@ Our Work
                                     <div class="col-md-12">
                                         <p>{{$project->meta->description}}</p>
                                     </div>
-                                    <div class="col-md-12">
-                                        <h2 class="small">
-                                            Product Owner
-                                        </h2> 
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h2 class="small">
+                                                Product Owner
+                                            </h2> 
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h2 class="small">
+                                                Scrum Master
+                                            </h2> 
+                                        </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-3">
+                                        <?php
+                                            $ownerMemberID = $project->productOwner->user_id; 
+                                            $ownerMemberIdModal = explode(":", $ownerMemberID);
+                                         ?>                                    
                                         @if(!empty($project->productOwner->profile) && !empty($project->productOwner->profile->image))
-                                            <a class="modal fade" href="<?php echo $project->productOwner->user_id; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                                <img class="members--member-img" src="{{ asset('user-profile/image/' . $project->productOwner->profile->image->src)}}" alt="Student Image">
-                                            </a>
-                                            <!-- <div class="members--member-name">{{$project->scrumMaster->profile->name}}</div> -->
+                                                 <a href="#" data-target="#<?php echo $ownerMemberIdModal[1]; ?>" data-toggle="modal" > 
+                                                    <img class="members--member-img" src="{{ asset('user-profile/image/' . $project->productOwner->profile->image->src)}}" alt="Student Image">
+                                                </a>
                                         @endif
                                     </div>
                                      <div class="col-md-6">
+                                        <?php
+                                            $scrumMemberID = $project->productOwner->user_id; 
+                                            $scrumMemberIdModal = explode(":", $scrumMemberID);
+                                         ?>                                           
                                         @if(!empty($project->productOwner->profile) && !empty($project->scrumMaster->profile->image))
-                                            <a class="modal fade" href="<?php echo $project->scrumMaster->user_id; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                            <a href="#" data-target="#<?php echo $ownerMemberIdModal[1]; ?>" data-toggle="modal"> 
                                                 <img class="members--member-img" src="{{ asset('user-profile/image/' . $project->scrumMaster->profile->image->src)}}" alt="Student Image">
                                             </a>
                                         @endif

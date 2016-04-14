@@ -28,7 +28,7 @@
             @foreach($member->profile->links as $link)
                 @if($link->type == 'linkedin' && !empty($link->pivot->link_url))
                 <div class="social-media-btn">
-                    <a href="{{$link->pivot->link_url}}">
+                    <a target="_blank" href="{{$link->pivot->link_url}}">
                         <img class="social-media-btn-img" src="{{ asset('imgs/linkden.svg' ) }}" alt="linkedin" />
                         <p>LinkedIn</p>
                     </a>
@@ -36,7 +36,7 @@
                 @endif
                 @if($link->type == 'portfolium' && !empty($link->pivot->link_url))
                 <div class="social-media-btn">
-                    <a href="{{$link->pivot->link_url}}">
+                    <a target="_blank" href="{{$link->pivot->link_url}}">
                         <img class="social-media-btn-img" src="{{ asset('imgs/Hover.svg' ) }}" alt="portfolium" />
                         <p>Portfolium</p>
                     </a>
@@ -44,7 +44,7 @@
                 @endif
                 @if($link->type == 'github' && !empty($link->pivot->link_url))
                     <div class="social-media-btn">
-                    <a href="{{$link->pivot->link_url}}">
+                    <a target="_blank" href="{{$link->pivot->link_url}}">
                         <img class="social-media-btn-img" src="{{ asset('imgs/github.svg' ) }}" alt="github" />
                         <p>GitHub</p>
                     </a>
@@ -52,7 +52,7 @@
                 @endif
                 @if($link->type == 'website' && !empty($link->pivot->link_url))
                     <div class="social-media-btn">
-                    <a href="{{$link->pivot->link_url}}">
+                    <a target="_blank" href="{{$link->pivot->link_url}}">
                         <img class="social-media-btn-img" src="{{ asset('imgs/sphere.svg' ) }}" alt="website" />
                         <p>Website</p>
                     </a>
