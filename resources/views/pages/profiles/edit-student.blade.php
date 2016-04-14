@@ -167,105 +167,121 @@
 				    </div>
 			    {!! Form::close() !!}
 			</div>
+		</section>
+<!-- MODAL -->
+
 			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 			  <div class="modal-dialog" role="document">
 			    <div class="modal-content">
 			      <div class="modal-body student lines-back">
 			        <div class="row">
-			        	<div class="col-xs-1"></div>
-			        	<div class="col-xs-2 text-right">
-			        		<div class="social-media-btn">
-			        		@if(isset($portfolium_url))
-			        			<a href="{{ ($portfolium_url) }}">
-			        				<img class="social-media-btn-img" src="{{ asset('imgs/Hover.svg' ) }}" alt="portfolium" />
-			        				<p>Portfolium</p>
-			    				</a>
-			    			@endif
-							</div>
-						</div>
-						
-			        	<div class="col-xs-6 text-center">
-			        	@if(isset($profile->image->src))
-						<div id="profile_image_preview" style="border-radius: 50%; width: 200px; height: 200px; background: url('{{ asset('user-profile/image/' . $profile->image->src) }}') no-repeat center center; background-size: cover; position: relative;">
-				    	</div>
-				    	@else
-				    	<img class="student-image product-owner" src="http://placehold.it/200x200" alt="student image">
-				    	</div>
-				    	@endif
-			        	</div>
-			        	<div class="col-xs-2 text-left">
-			        		<div class="social-media-btn">
-			        		@if(isset($linkedin_url))
-			        			<a href="{{ $linkedin_url }}">
-			        				<img class="social-media-btn-img" src="{{ asset('imgs/linkden.svg' ) }}" alt="linkedin" />
-			        				<p>LinkedIn</p>
-			    				</a>
-			    			@endif
-							</div>
-						</div>
-			        	<div class="col-md-1"></div>
+<!-- STUDENT IMG -->
+				        <div class="col-xs-12 text-center">
+				        	@if(!empty($profile)&& !empty($profile->image))	
+				        		<img class="student-image" src="{{ asset('user-profile/image/' . $profile->image->src) }}" alt="Student Image">
+				        	@else
+				        		<img class="student-image" src="http://www.placehold.it/200x200" alt="Student Image">
+				        	@endif
+				        </div>
+
+				       </div>
+<!-- PRINTING OUT THE CONTANT LINKS -->
+				       <div class="row">
+				       		<div class="col-xs-12 text-center">
+					            @if(!empty($profile) && !empty($profile->links))
+					            @foreach($profile->links as $link)
+					                @if($link->type == 'linkedin' && !empty($link->pivot->link_url))
+					                <div class="social-media-btn">
+					                    <a href="{{$link->pivot->link_url}}">
+					                        <img class="social-media-btn-img" src="{{ asset('imgs/linkden.svg' ) }}" alt="linkedin" />
+					                        <p>LinkedIn</p>
+					                    </a>
+					                </div>
+					                @endif				       			
+					                @if($link->type == 'github' && !empty($link->pivot->link_url))
+				                    <div class="social-media-btn">
+					                    <a href="{{$link->pivot->link_url}}">
+					                        <img class="social-media-btn-img" src="{{ asset('imgs/github.svg' ) }}" alt="github" />
+					                        <p>GitHub</p>
+					                    </a>
+					                </div>
+					                @endif
+					                @if($link->type == 'portfolium' && !empty($link->pivot->link_url))
+					                <div class="social-media-btn">
+					                    <a href="{{$link->pivot->link_url}}">
+					                        <img class="social-media-btn-img" src="{{ asset('imgs/Hover.svg' ) }}" alt="portfolium" />
+					                        <p>Portfolium</p>
+					                    </a>
+					                </div>
+					                @endif
+					                @if($link->type == 'website' && !empty($link->pivot->link_url))
+					                    <div class="social-media-btn">
+					                    <a href="{{$link->pivot->link_url}}">
+					                        <img class="social-media-btn-img" src="{{ asset('imgs/sphere.svg' ) }}" alt="website" />
+					                        <p>Website</p>
+					                    </a>
+					                </div>
+					                @endif
+					            @endforeach
+					            @endif					                					                
+				       		</div>
+				       </div>
+
+					    <div class="row">
+					        <div class="col-sm-12 text-center">
+					            <p class="student-name">{{$profile->display_name}}</p>
+					        </div>
+					    </div>
+					    <div class="row">
+					        <div class="col-sm-12 text-center"><p class="student-title">{{$profile['position']}}</p></div>
+					    </div>					    				       
+
+					    <div class="row">
+					        <div class="col-sm-1"></div>
+					        <div class="col-sm-10 text-left student-seb">
+					            <h2 class="student-seb-title">Skills</h2>
+					            <ul class="student-seb-list">
+					            @if(!empty($profile))
+					                @foreach($profile->skills as $skill)
+					                    <li class="student-seb-list-items"><span class="student-seb-list-item-space"></span>{{$skill->title}}</li>
+					                @endforeach
+					            @else
+					                <li class="student-seb-list-items"><span class="student-seb-list-item-space"></span>Student has not registrered any skills.</li>
+					            @endif
+					            </ul>
+					        </div>
+					        <div class="col-sm-1"></div>
+					    </div>					    
+
+					    <div class="row">
+					        <div class="col-sm-1"></div>
+					        <div class="col-sm-10 text-left student-seb">
+					            <h2 class="student-seb-title">Experience</h2>
+					            <ul class="student-seb-list">
+					                @if(!empty($profile))
+					                @foreach($profile->experience as $experience)
+					                    <li class="student-seb-list-items"><span class="student-seb-list-item-space"></span>{{$experience->title}}</li>
+					                @endforeach
+					            @else
+					                <li class="student-seb-list-items"><span class="student-seb-list-item-space"></span>Student has not registrered any experience.</li>
+					            @endif
+					            </ul>
+					        </div>
+					        <div class="col-sm-1"></div>
+					    </div>
+					    <div class="row">
+					        <div class="col-sm-1"></div>
+					        <div class="col-sm-10 text-left student-seb">
+					            <h2 class="student-seb-title">Background</h2>
+					            <ul class="student-seb-list">
+				                    <li class="student-seb-list-items"><span class="student-seb-list-item-space"></span>{{$profile['background']}}</li>
+					            </ul>
+					        </div>
+					        <div class="col-sm-1"></div>
+					    </div>					    
 			        </div>
-			        
-			        <div class="row">
-			        	<div class="col-sm-12 text-center">
-			        		<p class="student-name">{{ $profile->fullName() }}</p>
-		    			</div>
-			        </div>
-			        <div class="row">
-			        	<div class="col-sm-12 text-center"><p class="student-title">{{ $profile->position }}</p></div>
-			        </div>
-			        <div class="row">
-			        	<div class="col-sm-12 text-center"><i class="fa fa-graduation-cap student-graduate"></i> <span class="graduates-in">Graduates in {{ $profile->grad_date }}</span></div>
-			        </div>
-			        <div class="row">
-			        	<div class="col-sm-1"></div>
-			        	<div class="col-sm-10 text-left student-seb">
-			        		<h2 class="student-seb-title">Skills</h2>
-			        		<ul class="student-seb-list">
-			        		@if($profile->skills->count() > 0)
-			        			@foreach($profile->skills as $skill)
-									<li class="student-seb-list-items">{{ $skill->title }}</li>
-			        			@endforeach
-			        		@else
-								<li class="student-seb-list-items">No skills added yet</li>
-			        		@endif
-			        		</ul>
-			        	</div>
-			        	<div class="col-sm-1"></div>
-			        </div>
-			        <div class="row">
-			        	<div class="col-sm-1"></div>
-			        	<div class="col-sm-10 text-left student-seb">
-			        		<h2 class="student-seb-title">Experience</h2>
-			        		<ul class="student-seb-list">
-			        		@if($profile->experience->count() > 0)
-			        			@foreach($profile->experience as $exp)
-									<li class="student-seb-list-items">{{ $exp->experience }}</li>
-			        			@endforeach
-			        		@else
-								<li class="student-seb-list-items">No experience added yet</li>
-			        		@endif
-			        		</ul>
-			        	</div>
-			        	<div class="col-sm-1"></div>
-			        </div>
-			        <div class="row">
-			        	<div class="col-sm-1"></div>
-			        	<div class="col-sm-10 text-left student-seb">
-			        		<h2 class="student-seb-title">Background</h2>
-			        		<ul class="student-seb-list">
-			        		@if($profile->background)
-								<li class="student-seb-list-items">{{ $profile->background }}</li>
-			        		@else
-								<li class="student-seb-list-items">No background added yet</li>
-			        		@endif
-			        		</ul>
-			        	</div>
-			        	<div class="col-sm-1"></div>
-			        </div>
-			      </div>
-			    </div>
-			</div>
-		</div>
-	</section>
+		       </div>
+
+	      </div>
+	    </div>
 @endsection

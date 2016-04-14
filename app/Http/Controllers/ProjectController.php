@@ -52,6 +52,7 @@ class ProjectController extends Controller
             $project->project_id = array_pop($id);
             $project->productOwner =  count($project->productOwner) ? $project->productOwner[0] : new User();
             $project->scrumMaster =  count($project->scrumMaster) ? $project->scrumMaster[0] : new User();
+            
         }
         
         // Change view as needed
