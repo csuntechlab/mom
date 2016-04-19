@@ -37,7 +37,9 @@ class AdminController extends Controller
      * @return View
     */
     public function studentsIndex(){
-    	return view('pages.admin.manage-students.index');
+        $students = User::students()->lists('display_name', 'user_id');
+
+    	return view('pages.admin.manage-students.index', compact('students'));
     }
 
     /**
@@ -46,7 +48,9 @@ class AdminController extends Controller
      * @return View
     */
     public function studentsAddMembership(){
-        return view('pages.admin.manage-students.add');
+        $students = User::students()->lists('display_name', 'user_id');
+
+        return view('pages.admin.manage-students.add', compact('students'));
     }
 
     /**

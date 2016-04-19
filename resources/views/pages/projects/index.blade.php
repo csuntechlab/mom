@@ -15,12 +15,27 @@ Projects
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-sm-10">
-                <div class="bk-btn">
-                    <a href="{{ url('admin/manage-students') }}">
-                        <i class="fa fa-arrow-left fa-2x"></i><span> return</span>
-                    </a>
-                </div>
+            <div class="admin-nav">
+                <ul class="nav">
+                    <li>
+                        <a class="active" href="{{ url('projects/') }}">
+                            <i class="fa fa-cubes fa-3x"></i>
+                            <span>Projects</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url('admin/manage-students') }}">
+                            <i class="fa fa-users fa-3x"></i>
+                            <span>Students</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url('/logout') }}">
+                            <i class="fa fa-sign-out fa-3x"></i>
+                            <span>Logout</span>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
         <div class="projects">
