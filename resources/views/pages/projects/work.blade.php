@@ -68,14 +68,14 @@ Our Work
                                                     @if(!empty($project->productOwner->profile) && !empty($project->productOwner->profile->image))
                                                         <img class="members--member-img" src="{{ asset('user-profile/image/' . $project->productOwner->profile->image->src)}}" alt="">
                                                     @else
-                                                        <img class="members--member-img" src="http://www.placehold.it/50x50" alt="">
+                                                        <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="">
                                                     @endif                                                    
                                                 </div> 
                                                 <div class="col-xs-6 col-sm-6">                    
                                                     @if(!empty($project->scumMaster->profile) && !empty($project->scrumMaster->profile->image))
                                                         <img class="members--member-img" src="{{ asset('user-profile/image/' . $project->scrumMaster->profile->image->src)}}" alt="">
                                                     @else
-                                                        <img class="members--member-img" src="http://www.placehold.it/50x50" alt="">
+                                                        <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="">
                                                     @endif                                                    
                                                 </div>
                                                 <div class="col-xs-6 col-sm-6">
@@ -138,14 +138,14 @@ Our Work
                                     @if(!empty($project->productOwner->profile) && !empty($project->productOwner->profile->image))
                                         <img class="members--member-img" src="{{ asset('user-profile/image/' . $project->productOwner->profile->image->src)}}" alt="">
                                     @else
-                                        <img class="members--member-img" src="http://www.placehold.it/50x50" alt="{{$member->display_name}}">
+                                        <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="{{$member->display_name}}">
                                     @endif
                                     </div>  
                                     <div class="col-md-6">
                                     @if(!empty($project->scrumMaster->profile) && !empty($project->scrumMaster->profile->image))
                                         <img class="members--member-img" src="{{ asset('user-profile/image/' . $project->scrumMaster->profile->image->src)}}" alt="">
                                     @else
-                                        <img class="members--member-img" src="http://www.placehold.it/50x50" alt="{{$member->display_name}}">
+                                        <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="{{$member->display_name}}">
                                     @endif
                                     </div>
                                     <div class="col-md-6">
@@ -181,7 +181,7 @@ Our Work
                                                     @if(!empty($member->profile) && !empty($member->profile->image))
                                                         <img class="members--member-img <?php echo $productOwner; ?>" src="{{ asset('user-profile/image/' . $member->profile->image->src)}}" alt="{{$member->display_name}}">
                                                     @else
-                                                        <img class="members--member-img <?php echo $productOwner; ?>" src="http://www.placehold.it/50x50" alt="{{$member->display_name}}">
+                                                        <img class="members--member-img <?php echo $productOwner; ?>" src="{{ asset('/imgs/anonymous.png') }}" alt="{{$member->display_name}}">
                                                     @endif
                                                 </a>
                                               </div>
@@ -212,7 +212,7 @@ Our Work
                                     @if(!empty($member->profile) && !empty($member->profile->image))
                                         <img class="members--member-img <?php echo $productOwner; ?>" src="{{ asset('user-profile/image/' . $member->profile->image->src)}}" alt="{{$member->display_name}}">
                                     @else
-                                        <img class="members--member-img <?php echo $productOwner; ?>" src="http://www.placehold.it/50x50" alt="{{$member->display_name}}">
+                                        <img class="members--member-img <?php echo $productOwner; ?>" src="{{ asset('/imgs/anonymous.png') }}" alt="{{$member->display_name}}">
                                     @endif
                                     <div class="members--member-name">{{$member->display_name}}</div>
                                     </a>
@@ -249,7 +249,7 @@ Our Work
                         @if(!empty($member->profile) && !empty($member->profile->image))
                             <img class="student-image <?php echo $productOwner; ?>" src="{{ asset('user-profile/image/' . $member->profile->image->src)}}" alt="student image">
                         @else
-                            <img class="student-image <?php echo $productOwner; ?>" src="http://www.placehold.it/200x200" alt="student image">
+                            <img class="student-image <?php echo $productOwner; ?>" src="{{ asset('/imgs/anonymous.png') }}" alt="student image">
                         @endif
                     </div>
                 </div>
