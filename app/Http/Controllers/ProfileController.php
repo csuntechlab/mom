@@ -107,7 +107,7 @@ class ProfileController extends Controller
 			// Save file name to images table
 			Image::where('imageable_id', $id)->firstOrCreate([
                 'imageable_id'   => $id,
-                'imageable_type' => 'Mom\Models\Image'
+                'imageable_type' => 'Mom\Models\Profile'
 			])->update([
                 'src' => $file->getClientOriginalName()
             ]);
