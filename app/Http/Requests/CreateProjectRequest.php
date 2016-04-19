@@ -31,6 +31,7 @@ class CreateProjectRequest extends Request
             'end_date'      => 'date_format:Y-m-d',
             // 'product_owner' => 'required',
             // 'scrum_master'  => 'required',
+            // 'project_image' => 'image'
         ];
 
         // check whether start_date input is properly formatted; if so, apply after
@@ -68,6 +69,7 @@ class CreateProjectRequest extends Request
             'title.unique'          => 'The project ' . Request::get('title') . ' already exists.',
             'description.required'  => 'The project\'s description field is required.',
             'end_date.after'        =>  'The estimated end date must be a after the ' . Request::get('start_date') . ' date.',
+            // 'project_image.image'   => 'Acceptable file types for the project image are png, jpg, svg, bmp'
         ];
        
     }

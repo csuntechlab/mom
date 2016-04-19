@@ -50,7 +50,11 @@ Projects
                             <div class="media-left">
                                 <!-- Add link for project demo here -->
                                 <a href="" title="">
+                                    @if($project->image)
+                                    <div style="background: url({{ asset('imgs/projects/' . $project->image->src)  }}); background-size: cover; width: 200px; height: 200px;"></div>
+                                    @else
                                     <img class="media-object thumbnail" src="http://placehold.it/225x150" alt="...">
+                                    @endif
                                 </a>
                             </div>
                             <div class="media-body">

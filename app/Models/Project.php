@@ -23,6 +23,11 @@ class Project extends Model
         'end_date',
     ];
 
+    public function image()
+    {
+        return $this->hasOne('Mom\Models\Image', 'imageable_id');
+    }
+
     public function meta() {
         return $this->hasOne('Mom\Models\ProjectMeta', 'project_id');
     }
