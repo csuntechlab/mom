@@ -15,11 +15,6 @@ class ProjectController extends Controller
 {
 
     public function __construct(){
-        // apply middleware as needed
-        // use 'only' instead of 'except' if it's a short array
-        $this->middleware('auth', ['except' => [
-            'work',
-        ]]);
         $this->middleware('admin', ['except' => [
             'work',
         ]]);
@@ -338,7 +333,7 @@ class ProjectController extends Controller
 
     public function work(){
         $projects = Project::with([
-            'meta', 
+            'meta', 'image',
             'productOwner.profile.links', 'productOwner.profile.skills', 'productOwner.profile.experience', 'productOwner.profile.image',
             'scrumMaster.profile.links', 'scrumMaster.profile.skills', 'scrumMaster.profile.experience', 'scrumMaster.profile.image', 
             'members.profile.links', 'members.profile.skills', 'members.profile.experience', 'members.profile.image',

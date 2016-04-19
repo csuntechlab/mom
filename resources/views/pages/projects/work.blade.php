@@ -29,7 +29,11 @@ Our Work
                             <div class="card-content-xl card-content-action">
                                 <h2>{{ $project->meta->title }}</h2>
                                 <hr class="line-inline">
-                                <img src="{{ asset('/imgs/macbook-pro-placeholder.png') }}" alt="Product image" class="img-responsive">
+                                @if(!empty($project->image))
+                                    <img src="{{ asset('imgs/projects/'.$project->image->src)}}" alt="Product image" class="img-responsive">
+                                @else
+                                    <img src="{{ asset('imgs/macbook-pro-placeholder.png')}}" alt="" class="img-responsive">
+                                @endif
 <!-- MOBILE DROP DOWN FUNCTIONS done -->
                                 <div class="row hidden-md hidden-lg hidden-xl">
                                     <div class="col-xs-12">
