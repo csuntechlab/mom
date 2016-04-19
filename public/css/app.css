@@ -6483,6 +6483,43 @@ address {
 #description {
   resize: none; }
 
+.admin-nav ul {
+  text-align: center;
+  margin-top: 35px;
+  margin-bottom: 35px;
+  border-radius: 4px; }
+
+.admin-nav ul li {
+  display: inline-block;
+  margin-right: -5px;
+  margin-left: -5px; }
+
+.admin-nav ul li:first-child a {
+  border-radius: 10px 0px 0px 10px; }
+
+.admin-nav ul li:last-child a {
+  border-radius: 0px 10px 10px 0px; }
+
+.admin-nav ul a {
+  color: #B71922;
+  background: white;
+  transition: all .2s; }
+
+.admin-nav ul a:hover {
+  background: #B71922;
+  color: white; }
+
+.admin-nav ul li .active {
+  background: #B71922;
+  color: white; }
+
+.form_add {
+  margin: 25px;
+  margin-top: 75px; }
+
+.form_remove {
+  margin: 25px; }
+
 .bk-btn {
   margin: 20px 0px; }
   .bk-btn span {

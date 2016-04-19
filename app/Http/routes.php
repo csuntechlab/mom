@@ -36,7 +36,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('login', 'AuthController@postLogin');
     Route::get('logout', 'AuthController@getLogout');
     // admin stuff
-    Route::get('admin', 'AdminController@dashboard');
+    Route::get('admin', 'ProjectController@index');
     Route::get('admin/manage-students', 'AdminController@studentsIndex');
     Route::get('admin/manage-students/add', 'AdminController@studentsAddMembership');
     Route::post('admin/manage-students/add', 'AdminController@postStudentsAddMembership');

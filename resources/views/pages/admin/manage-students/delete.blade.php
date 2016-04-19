@@ -17,16 +17,36 @@ Remove Student Membership
         <div class="gradient-overlay"></div>
     </section>
 </div>
-
 <div class="container">
 	<div class="row">
-		<div class="col-sm-12">
-			<div class="bk-btn">
-				<a href="{{ url('admin/manage-students') }}">
-					<i class="fa fa-arrow-left fa-2x"></i><span> return</span>
-				</a>
-			</div>
-		</div>
+	    <div class="admin-nav">
+	        <ul class="nav">
+	            <li>
+	                <a href="">
+	                    <i class="fa fa-dashboard fa-3x"></i>
+	                    <span>Dashboard</span>
+	                </a>
+	            </li>
+	            <li>
+	                <a href="{{ url('projects/') }}">
+	                    <i class="fa fa-cubes fa-3x"></i>
+	                    <span>Projects</span>
+	                </a>
+	            </li>
+	            <li>
+	                <a href="{{ url('admin/manage-students') }}">
+	                    <i class="fa fa-users fa-3x"></i>
+	                    <span>Students</span>
+	                </a>
+	            </li>
+	            <li>
+	                <a href="">
+	                    <i class="fa fa-sign-out fa-3x"></i>
+	                    <span>Logout</span>
+	                </a>
+	            </li>
+	        </ul>
+	    </div>
 	</div>
 	@if( Session::has('message') || !$errors->isEmpty() )
 		<div class="row">
