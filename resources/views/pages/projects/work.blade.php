@@ -328,7 +328,7 @@ Our Work
                         <ul class="student-seb-list">
                             @if(!empty($member->profile))
                             @foreach($member->profile->experience as $experience)
-                                <li class="student-seb-list-items"><span class="student-seb-list-item-space"></span>{{$experience->title}}</li>
+                                <li class="student-seb-list-items"><span class="student-seb-list-item-space"></span>{{$experience->experience}}</li>
                             @endforeach
                         @else
                             <li class="student-seb-list-items"><span class="student-seb-list-item-space"></span>Student has not registrered any experience.</li>
