@@ -55,4 +55,16 @@ class Profile extends Model
   public function fullName() {
       return User::where('user_id', $this->individuals_id)->value('display_name');
   }
+
+  public function isConfidential()
+  {
+    
+    $user = User::where('user_id', $this->individuals_id)->first();
+    if($user->confidential == 1)
+    {
+      return true;
+    }
+    
+  }
+
 }
