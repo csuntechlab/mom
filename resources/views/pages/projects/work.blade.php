@@ -181,7 +181,7 @@ Our Work
                                         <div class="col-md-4">
                                             <div class="">
                                               <div class="no-padding">
-                                                <a href="{{! $project->members-> !}}" class="thumbnail">
+                                                <a href="#" class="thumbnail">
                                                     @if(!empty($member->profile) && !empty($member->profile->image))
                                                         <img class="members--member-img <?php echo $productOwner; ?>" src="{{ asset('user-profile/image/' . $member->profile->image->src)}}" alt="{{$member->display_name}}">
                                                     @else
