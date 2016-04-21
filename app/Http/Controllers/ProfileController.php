@@ -52,8 +52,12 @@ class ProfileController extends Controller
 	// Get user profile based off individuals id passed through
     public function getUserProfile($email)
     {   
-        //Will have to be refactored when Matt removes the prefixed 'nr_' in emails
-        $id = User::where('email', 'nr_'.$email.'@my.csun.edu')->firstOrFail()->user_id;
+        //This takes care the staging vs production email structure
+        if(env('APP_DEBUG') == true) {
+            $id = User::where('email', 'nr_'.$email.'@my.csun.edu')->firstOrFail()->user_id;
+        } else {
+            $id = User::where('email', $email.'@my.csun.edu')->firstOrFail()->user_id;
+        }
         
         // Find the user profile
         $profile = Profile::with('skills', 'links', 'image')->findOrFail($id);
