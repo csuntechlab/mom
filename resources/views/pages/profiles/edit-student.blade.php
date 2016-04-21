@@ -179,9 +179,9 @@
 			@else
 			  <div class="container wrapper card card-light">
 			  	<div class="card-content-xl">
-			      <div class="modal-body student">
+			      <div class="col-sm-12">
 			        <div class="row">
-			        	<div class="text-center col-sm-12 col-md-3 col-md-offset-2">
+			        	<div class="col-sm-12 col-md-3 col-md-offset-2">
 			        	@if(isset($profile->image->src))
 							<div id="profile_image_preview" style="border-radius: 50%; width: 200px; height: 200px; background: url('{{ asset('user-profile/image/' . $profile->image->src) }}') no-repeat center center; background-size: cover; position: relative; margin: auto;">
 					    	</div>
@@ -189,7 +189,7 @@
 					    	<img class="student-image product-owner" src="http://placehold.it/200x200" alt="student image">
 				    	</div>
 				    	@endif
-
+				    </div>
 			        	<div class="col-md-7">
 			        		<div class="row">		        			
 				        		<p class="col-sm-7 student--info student-name">{{ $profile->fullName() }}</p>
