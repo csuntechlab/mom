@@ -23,7 +23,7 @@
 */
 
 Route::group(['middleware' => ['web']], function () {
-    
+
 	Route::get('/', 'ProjectController@work');
     Route::get('work', 'ProjectController@work');
 

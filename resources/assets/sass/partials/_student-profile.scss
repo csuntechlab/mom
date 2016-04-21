@@ -30,3 +30,40 @@
         margin-top: 8px;
     }
 }
+.wrapper {
+    margin-top: 45px;
+}
+.student--info {
+    margin-bottom: 15px;
+}
+.student-info__skills {
+    margin-bottom: 45px;
+}
+
+h1.heading-block--profile{
+    position: relative;
+    font-size: 18px;
+    color: #fff !important;
+    background-color: $brand-primary;
+    margin: 0;
+    display: inline-block;
+    min-width: 240px;
+    width: 100%;
+    padding: 6px 120px 6px 25px;
+
+    &::after{
+        position: absolute;
+        content: "+";
+        right: 20px;
+        top: 50%;
+        margin-top: -28px;
+        color: $brand-secondary;
+        font-size: 24px;
+    }
+}
+.student--info__project-card .card-content-action{
+    width: 100%;
+    min-width: 252px;
+    min-height: 227px;
+    transition: box-shadow 0.3s ease-in-out;    
+}
