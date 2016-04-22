@@ -89,7 +89,22 @@ class ProfileController extends Controller
         }
 
     	// Return corresponding indiviudals profile edit page
-    	return view('pages.profiles.edit-student', compact('skills', 'profile', 'profile_skills', 'linkedin_url', 'portfolium_url', 'github_url', 'years'));
+        if($profile->isConfidential())
+        {
+            if(Auth::user()->isOwner($profile->individuals_id))
+            {
+                return view('pages.profiles.edit-student', compact('skills', 'profile', 'profile_skills', 'linkedin_url', 'portfolium_url', 'github_url', 'years'));
+            }
+
+            else
+            {
+                abort(404);
+            }
+    
+        }
+
+        return view('pages.profiles.edit-student', compact('skills', 'profile', 'profile_skills', 'linkedin_url', 'portfolium_url', 'github_url', 'years'));
+
 
     }
 
