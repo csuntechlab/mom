@@ -24,9 +24,19 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot(Router $router)
     {
-        //
-
         parent::boot($router);
+
+        // override the public schema if an override exists
+        $publicSchema = config("app.public_schema_override");
+        if(!empty($publicSchema)) {
+            URL::forceSchema($publicSchema);
+        }
+
+        // override the public root URL if an override exists
+        $publicOverride = config("app.public_url_override");
+        if(!empty($publicOverride)) {
+            URL::forceRootUrl($publicOverride);
+        }
     }
 
     /**
