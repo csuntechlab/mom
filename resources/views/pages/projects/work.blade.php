@@ -76,7 +76,7 @@ Our Work
                                                     @endif                                                    
                                                 </div> 
                                                 <div class="col-xs-6 col-sm-6">                    
-                                                    @if(!empty($project->scumMaster->profile) && !empty($project->scrumMaster->profile->image))
+                                                    @if(!empty($project->scrumMaster->profile) && !empty($project->scrumMaster->profile->image))
                                                         <img class="members--member-img" src="{{ asset('user-profile/image/' . $project->scrumMaster->profile->image->src)}}" alt="">
                                                     @else
                                                         <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="">
