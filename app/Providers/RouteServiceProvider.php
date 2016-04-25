@@ -2,6 +2,8 @@
 
 namespace Mom\Providers;
 
+use URL;
+
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
