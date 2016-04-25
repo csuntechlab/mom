@@ -5,7 +5,7 @@ use Mom\Models\Profile;
 
 class User extends MetaUser
 {
-    //protected $table = 'mom.users';
+    protected $table = 'users';
     protected $primaryKey = 'user_id';
     public $incrementing = false;
 
