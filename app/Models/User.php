@@ -97,8 +97,8 @@ class User extends MetaUser
         return $this->hasOne('Mom\Models\Profile', 'individuals_id');
     }
 
-    public function isStudent(){
-        return $this->hasRole('student');
+    public function isStudentOrStaff(){
+        return $this->hasRole('student') || $this->hasRole('staff');
     }
 
     public function hasProfile(){

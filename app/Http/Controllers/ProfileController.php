@@ -54,9 +54,15 @@ class ProfileController extends Controller
     {   
         //This takes care the staging vs production email structure
         if(env('APP_DEBUG') == true) {
-            $id = User::where('email', 'nr_'.$email.'@my.csun.edu')->firstOrFail()->user_id;
+            $id = User::where('email', 'nr_'.$email.'@my.csun.edu')
+            ->orWhere('email', 'nr_'.$email.'@csun.edu')
+            ->firstOrFail()
+            ->user_id;
         } else {
-            $id = User::where('email', $email.'@my.csun.edu')->firstOrFail()->user_id;
+            $id = User::where('email', $email.'@my.csun.edu')
+            ->orWhere('email', 'nr_'.$email.'@csun.edu')
+            ->firstOrFail()
+            ->user_id;
         }
         
         // Find the user profile

@@ -54,7 +54,7 @@ class AuthController extends Controller
       try {
         if(Auth::attempt($creds)) {
           // redirect user to their profile
-          if(Auth::user()->isStudent()){ 
+          if(Auth::user()->isStudentOrStaff()){ 
               if(Auth::user()->hasProfile())
                       return redirect()->intended('profiles/' . Auth::user()->email_uri);
               else {
