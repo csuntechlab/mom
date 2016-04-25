@@ -60,7 +60,7 @@ class ProfileController extends Controller
             ->user_id;
         } else {
             $id = User::where('email', $email.'@my.csun.edu')
-            ->orWhere('email', 'nr_'.$email.'@csun.edu')
+            ->orWhere('email', $email.'@csun.edu')
             ->firstOrFail()
             ->user_id;
         }
