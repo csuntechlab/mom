@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-use App\Project;
+use Mom\Models\Project;
 
 class ProjectsTableSeeder extends Seeder
 {
