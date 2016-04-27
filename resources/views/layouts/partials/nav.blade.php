@@ -1,4 +1,4 @@
-<div class="overlay overlay-slidedown" style="background-image: url(http://www.metalab.csun.edu/wp-content/themes/metalab-v2/assets/imgs/lines-right.png);
+<div class="overlay overlay-slidedown" style="background-image: url(https://www.metalab.csun.edu/wp-content/themes/metalab-v2/assets/imgs/lines-right.png);
 background-size: contain; background-position: top right; background-repeat: no-repeat;">
     <!-- <button type="button" class="overlay-close">Close</button> -->
     <div class="col-sm-7 col-sm-offset-2 full-height">

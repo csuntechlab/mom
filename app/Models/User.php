@@ -5,7 +5,7 @@ use Mom\Models\Profile;
 
 class User extends MetaUser
 {
-    //protected $table = 'mom.users';
+    protected $table = 'users';
     protected $primaryKey = 'user_id';
     public $incrementing = false;
 
@@ -97,8 +97,8 @@ class User extends MetaUser
         return $this->hasOne('Mom\Models\Profile', 'individuals_id');
     }
 
-    public function isStudent(){
-        return $this->hasRole('student');
+    public function isStudentOrStaff(){
+        return $this->hasRole('student') || $this->hasRole('staff');
     }
 
     public function hasProfile(){

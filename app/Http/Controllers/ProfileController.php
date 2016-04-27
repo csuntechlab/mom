@@ -52,8 +52,18 @@ class ProfileController extends Controller
 	// Get user profile based off individuals id passed through
     public function getUserProfile($email)
     {   
-        //Will have to be refactored when Matt removes the prefixed 'nr_' in emails
-        $id = User::where('email', 'nr_'.$email.'@my.csun.edu')->firstOrFail()->user_id;
+        //This takes care the staging vs production email structure
+        if(env('APP_DEBUG') == true) {
+            $id = User::where('email', 'nr_'.$email.'@my.csun.edu')
+            ->orWhere('email', 'nr_'.$email.'@csun.edu')
+            ->firstOrFail()
+            ->user_id;
+        } else {
+            $id = User::where('email', $email.'@my.csun.edu')
+            ->orWhere('email', $email.'@csun.edu')
+            ->firstOrFail()
+            ->user_id;
+        }
         
         // Find the user profile
         $profile = Profile::with('skills', 'links', 'image')->findOrFail($id);
@@ -85,7 +95,22 @@ class ProfileController extends Controller
         }
 
     	// Return corresponding indiviudals profile edit page
-    	return view('pages.profiles.edit-student', compact('skills', 'profile', 'profile_skills', 'linkedin_url', 'portfolium_url', 'github_url', 'years'));
+        if($profile->isConfidential())
+        {
+            if(Auth::user()->isOwner($profile->individuals_id))
+            {
+                return view('pages.profiles.edit-student', compact('skills', 'profile', 'profile_skills', 'linkedin_url', 'portfolium_url', 'github_url', 'years'));
+            }
+
+            else
+            {
+                abort(404);
+            }
+    
+        }
+
+        return view('pages.profiles.edit-student', compact('skills', 'profile', 'profile_skills', 'linkedin_url', 'portfolium_url', 'github_url', 'years'));
+
 
     }
 

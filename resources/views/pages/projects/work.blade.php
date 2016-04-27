@@ -76,7 +76,7 @@ Our Work
                                                     @endif                                                    
                                                 </div> 
                                                 <div class="col-xs-6 col-sm-6">                    
-                                                    @if(!empty($project->scumMaster->profile) && !empty($project->scrumMaster->profile->image))
+                                                    @if(!empty($project->scrumMaster->profile) && !empty($project->scrumMaster->profile->image))
                                                         <img class="members--member-img" src="{{ asset('user-profile/image/' . $project->scrumMaster->profile->image->src)}}" alt="">
                                                     @else
                                                         <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="">
@@ -332,7 +332,7 @@ Our Work
                         <ul class="student-seb-list">
                             @if(!empty($member->profile))
                             @foreach($member->profile->experience as $experience)
-                                <li class="student-seb-list-items"><span class="student-seb-list-item-space"></span>{{$experience->title}}</li>
+                                <li class="student-seb-list-items"><span class="student-seb-list-item-space"></span>{{$experience->experience}}</li>
                             @endforeach
                         @else
                             <li class="student-seb-list-items"><span class="student-seb-list-item-space"></span>Student has not registrered any experience.</li>

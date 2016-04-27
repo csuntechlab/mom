@@ -5918,7 +5918,7 @@ hr.line-inline {
     opacity: 1; }
 
 .work-banner {
-  background: url(/public/imgs/work-bg.jpg) no-repeat 0 0;
+  background: url("../imgs/work-bg.jpg") no-repeat 0 0;
   background-size: cover; }
 
 .product-faculty img {

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLinkProfileTable extends Migration
+class CreateLinkEntityTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,9 +12,9 @@ class CreateLinkProfileTable extends Migration
      */
     public function up()
     {
-        Schema::create('link_profile', function(Blueprint $table){
-            $table->increments('link_profile_id')->unsigned();
-            $table->string('individuals_id');
+        Schema::create('link_entity', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('entities_id');
             $table->integer('link_id')->unsigned();
             $table->string('link_url');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
@@ -29,6 +29,6 @@ class CreateLinkProfileTable extends Migration
      */
     public function down()
     {
-        Schema::drop('link_profile');
+        Schema::drop('link_entity');
     }
 }
