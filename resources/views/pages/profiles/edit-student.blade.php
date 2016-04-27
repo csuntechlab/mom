@@ -177,11 +177,11 @@
 			</div>
 <!-- NOT USER VIEW  -->
 			@else
-			  <div class="container wrapper card card-light">
+			<!-- removed card-light -->
+			  <div class="container wrapper card">
 			  	<div class="card-content-xl">
 			      <div class="col-sm-12">
-			        <div class="row">
-			        	<div class="col-sm-12 col-md-3 col-md-offset-2">
+			        	<div class="col-sm-5 col-md-3 col-md-offset-2">
 			        	@if(isset($profile->image->src))
 							<div id="profile_image_preview" style="border-radius: 50%; width: 200px; height: 200px; background: url('{{ asset('user-profile/image/' . $profile->image->src) }}') no-repeat center center; background-size: cover; position: relative; margin: auto;">
 					    	</div>
@@ -189,12 +189,11 @@
 					    	<img class="student-image product-owner" src="http://placehold.it/200x200" alt="student image">
 				    	</div>
 				    	@endif
-				    </div>
-			        	<div class="col-md-7">
+			        	<div class="col-sm-7 col-md-6 col-md-offset-1">
 			        		<div class="row">		        			
-				        		<p class="col-sm-7 student--info student-name">{{ $profile->fullName() }}</p>
-				        		<p class="col-sm-7 student--info student-title">{{ $profile->position }}</p>
-				        		<div class="col-sm-7">
+				        		<p class="col-xs-7 col-sm-7 student--info student-name">{{ $profile->fullName() }}</p>
+				        		<p class="col-xs-7 col-sm-7 student--info student-title">{{ $profile->position }}</p>
+				        		<div class="col-xs-7 col-sm-7">
 					        		<i class="student--info fa fa-graduation-cap student-graduate"></i> <span class="graduates-in">Graduates in {{ $profile->grad_date }}</span>
 				        		</div>
 
@@ -259,7 +258,7 @@
 			        		<ul class="student-seb-list">
 			        		@if($profile->experience->count() > 0)
 			        			@foreach($profile->experience as $exp)
-									<li class="student-seb-list-items">{{ $exp->experience }}</li>
+								<li class="student-seb-list-items">{{ $exp->experience }}</li>
 			        			@endforeach
 			        		@else
 								<li class="student-seb-list-items">No experience added yet</li>
@@ -270,36 +269,29 @@
 		        </div>
 		        <div class="container-fluid">
 			        <div class="row">
-			        	<div class="">
-					        <div class="">
 <!-- NEED TO ADD IN ALL OF THE PROJECTS NAMES -->
 			        @for ($i = 0; $i < 4; $i++)
-					            <div class=" col-sm-3">
+			            <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3">
+			            	<div class="row"> 
+				            	<div class="col-xs-4 col-md-6">
 					                <h1 class="heading-block--profile">Project</h1>
-					            </div>
-			        @endfor
-					        </div>		        		
-			        	</div>
+				            	</div>
+			            	</div>
+			            	<div class="row">		            		
+				            	<div class="col-xs-7 col-sm-4 col-md-6">	
+					        		<div class="card card-light student--info__project-card">
+							        	<div class="card-content-xl card-content-action">
+		<!-- NEED TO ADD IN ALL OF THE PROJECTS IMG & LINK					        	 -->
+							        		<a class="img-responsive" href="https://placeholdit.imgix.net/~text?txtsize=33&txt=350%C3%97150&w=350&h=150"><img src="" alt="Project Image"></a>
+							        	</div>
+							        </div>
+				            	</div>
+			            	</div>
+			        	</div>					            
+			        @endfor	        		
 			        </div>
-			        <div class="row">
-			        @for ($i = 0; $i < 4; $i++)
-			        	<div class="col-sm-3 no-padding">		
-			        		<div class="card card-light student--info__project-card">
-					        	<div class="card-content-xl card-content-action">
-<!-- NEED TO ADD IN ALL OF THE PROJECTS IMG & LINK					        	 -->
-					        		<a class="img-responsive" href="https://placeholdit.imgix.net/~text?txtsize=33&txt=350%C3%97150&w=350&h=150"><img src="" alt="Project Image"></a>
-					        	</div>
-					        </div>
-			        	</div>
-			        @endfor
-			        </div>
-		        </div>
-
-	        </div>
-
-
-        </div>
-
+		        </div><!-- end container-fluid -->
+	        </div><!-- end container -->
 		@endif
 			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 			  <div class="modal-dialog" role="document">
