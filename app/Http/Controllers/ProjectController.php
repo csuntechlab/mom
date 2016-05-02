@@ -212,7 +212,7 @@ class ProjectController extends Controller
         $projectMeta = NemoEntity::findOrFail('projects:' . $id);
         try {
             $projectMeta->fill([
-                'title'         =>  $request->title,
+                'display_name'         =>  $request->title,
                 'description'   =>  $request->description,
             ]);
             $projectMeta->save();
