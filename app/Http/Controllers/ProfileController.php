@@ -4,6 +4,7 @@ namespace Mom\Http\Controllers;
 
 use Auth;
 use Illuminate\Http\Request;
+use Mom\Traits\ImageHandler;
 
 use Mom\Http\Requests;
 use Mom\Http\Requests\EditProfileRequest;
@@ -22,6 +23,9 @@ use Mom\Exceptions\PermissionDeniedException;
 
 class ProfileController extends Controller
 {
+
+    // Trait used to resize image - found in Mom\Traits\ImageHandler.php
+    use ImageHandler;
 
     public function __construct(){
         // apply middleware as needed
@@ -125,8 +129,25 @@ class ProfileController extends Controller
     	// If user has uploaded an image for their profile
     	if($request->hasFile('profile_image'))
     	{
-    		// Move the file to public/profile/image 
+            // Has the profile uploaded an image before?
+            if(!is_null($profile->image))
+            {   
+                // Yes so delete all instances of that one to make room for the new one
+                $files = [
+                    'user-profile/image/' . $profile->image->src,
+                    'user-profile/image/small/' . $profile->image->src,
+                    'user-profile/image/large/' . $profile->image->src
+                ];
+
+                \File::delete($files);
+            }
+
+            // Resize image using Intervention
     		$file = $request->file('profile_image');
+            $smImage = $this->resizeImage($file, 50, 50, '/user-profile/image/small/');
+            $lgImage = $this->resizeImage($file, 200, 200, '/user-profile/image/large/');
+
+            // Move the original file to public/user-profile/image 
 			$file->move('user-profile/image', $file->getClientOriginalName());
 
 			// Save file name to images table

@@ -30,7 +30,7 @@ Our Work
                                 <h2>{{ $project->meta->title }}</h2>
                                 <hr class="line-inline">
                                 @if(!empty($project->image))
-                                    <img src="{{ asset('imgs/projects/'.$project->image->src)}}" alt="Product image" class="img-responsive">
+                                    <img src="{{ asset('imgs/projects/large/'.$project->image->src)}}" alt="Product image" class="img-responsive">
                                 @else
                                     <img src="{{ asset('imgs/macbook-pro-placeholder.png')}}" alt="" class="img-responsive">
                                 @endif
@@ -70,14 +70,14 @@ Our Work
                                                     $productOwnerID = $project->productOwner->user_id; ?>  
                                                                                                   
                                                     @if(!empty($project->productOwner->profile) && !empty($project->productOwner->profile->image))
-                                                        <img class="members--member-img" src="{{ asset('user-profile/image/' . $project->productOwner->profile->image->src)}}" alt="">
+                                                        <img class="members--member-img" src="{{ asset('user-profile/image/small/' . $project->productOwner->profile->image->src)}}" alt="">
                                                     @else
                                                         <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="">
                                                     @endif                                                    
                                                 </div> 
                                                 <div class="col-xs-6 col-sm-6">                    
                                                     @if(!empty($project->scrumMaster->profile) && !empty($project->scrumMaster->profile->image))
-                                                        <img class="members--member-img" src="{{ asset('user-profile/image/' . $project->scrumMaster->profile->image->src)}}" alt="">
+                                                        <img class="members--member-img" src="{{ asset('user-profile/image/small/' . $project->scrumMaster->profile->image->src)}}" alt="">
                                                     @else
                                                         <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="">
                                                     @endif                                                    
@@ -102,7 +102,7 @@ Our Work
                                                     $memberIdModal = explode(":", $memberID); ?>
                                                     <a href="#" data-toggle="modal" data-target="#<?php echo $memberIdModal[1]; ?>">
                                                         @if(!empty($member->profile) && !empty($member->profile->image))
-                                                            <img class="members--member-img" src="{{ asset('user-profile/image/' . $member->profile->image->src)}}" alt="">
+                                                            <img class="members--member-img" src="{{ asset('user-profile/image/small/' . $member->profile->image->src)}}" alt="">
                                                         @endif 
                                                     </a>                                                     
                                                 </div>
@@ -140,14 +140,14 @@ Our Work
                                     </div>
                                     <div class="col-md-6">
                                     @if(!empty($project->productOwner->profile) && !empty($project->productOwner->profile->image))
-                                        <img class="members--member-img" src="{{ asset('user-profile/image/' . $project->productOwner->profile->image->src)}}" alt="">
+                                        <img class="members--member-img" src="{{ asset('user-profile/image/small/' . $project->productOwner->profile->image->src)}}" alt="">
                                     @else
                                         <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="{{$member->display_name}}">
                                     @endif
                                     </div>  
                                     <div class="col-md-6">
                                     @if(!empty($project->scrumMaster->profile) && !empty($project->scrumMaster->profile->image))
-                                        <img class="members--member-img" src="{{ asset('user-profile/image/' . $project->scrumMaster->profile->image->src)}}" alt="">
+                                        <img class="members--member-img" src="{{ asset('user-profile/image/small/' . $project->scrumMaster->profile->image->src)}}" alt="">
                                     @else
                                         <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="{{$member->display_name}}">
                                     @endif
@@ -183,7 +183,7 @@ Our Work
                                               <div class="no-padding">
                                                 <a href="#" class="thumbnail">
                                                     @if(!empty($member->profile) && !empty($member->profile->image))
-                                                        <img class="members--member-img <?php echo $productOwner; ?>" src="{{ asset('user-profile/image/' . $member->profile->image->src)}}" alt="{{$member->display_name}}">
+                                                        <img class="members--member-img <?php echo $productOwner; ?>" src="{{ asset('user-profile/image/small/' . $member->profile->image->src)}}" alt="{{$member->display_name}}">
                                                     @else
                                                         <img class="members--member-img <?php echo $productOwner; ?>" src="{{ asset('/imgs/anonymous.png') }}" alt="{{$member->display_name}}">
                                                     @endif
@@ -214,7 +214,7 @@ Our Work
 
                                     <a href="#" class="members--member" data-toggle="modal" data-target="#<?php echo $memberIdModal[1]; ?>">
                                     @if(!empty($member->profile) && !empty($member->profile->image))
-                                        <img class="members--member-img <?php echo $productOwner; ?>" src="{{ asset('user-profile/image/' . $member->profile->image->src)}}" alt="{{$member->display_name}}">
+                                        <img class="members--member-img <?php echo $productOwner; ?>" src="{{ asset('user-profile/image/small/' . $member->profile->image->src)}}" alt="{{$member->display_name}}">
                                     @else
                                         <img class="members--member-img <?php echo $productOwner; ?>" src="{{ asset('/imgs/anonymous.png') }}" alt="{{$member->display_name}}">
                                     @endif
@@ -251,7 +251,7 @@ Our Work
                 <div class="row">
                     <div class="col-xs-12 text-center">
                         @if(!empty($member->profile) && !empty($member->profile->image))
-                            <img class="student-image <?php echo $productOwner; ?>" src="{{ asset('user-profile/image/' . $member->profile->image->src)}}" alt="student image">
+                            <img class="student-image <?php echo $productOwner; ?>" src="{{ asset('user-profile/image/large/' . $member->profile->image->src)}}" alt="student image">
                         @else
                             <img class="student-image <?php echo $productOwner; ?>" src="{{ asset('/imgs/anonymous.png') }}" alt="student image">
                         @endif

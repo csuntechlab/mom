@@ -8,7 +8,8 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
         "laravelcollective/html": "5.2.*",
-        "tiesa/ldap": "dev-master"
+        "tiesa/ldap": "dev-master",
+        "intervention/image": "^2.3"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -21,7 +22,8 @@
         "classmap": [
             "database",
             "app/Models",
-            "app/Auth"
+            "app/Auth",
+            "app/Traits"
         ],
         "psr-4": {
             "Mom\\": "app/"

@@ -1,5 +1,7 @@
 <?php namespace Mom\Http\Controllers;
 
+use Mom\Traits\ImageHandler;
+
 use Mom\Models\Image;
 use Mom\Models\Project;
 use Mom\Models\ProjectMeta;
@@ -13,6 +15,10 @@ use Carbon\Carbon;
 
 class ProjectController extends Controller
 {
+
+    // trait used to handle image resizing using Intervention
+    // found in app\Traits\ImageHandler.php
+    use ImageHandler;
 
     public function __construct(){
         $this->middleware('admin', ['except' => [
@@ -107,6 +113,8 @@ class ProjectController extends Controller
              if($request->hasFile('project_image'))
              {
                 $image = $request->file('project_image');
+                $smImage = $this->resizeImage($image, 150, 150, '/imgs/projects/small/');
+                $lgImage = $this->resizeImage($image, 290, 175, '/imgs/projects/large/');
 
                 $image->move('imgs/projects/', $image->getClientOriginalName());
 
@@ -242,16 +250,29 @@ class ProjectController extends Controller
         // Does incoming request have a file uploaded
         if($request->hasFile('project_image'))
         {  
+
+            $smImage = $this->resizeImage($file, 150, 150, '/imgs/projects/small/');
+            $lgImage = $this->resizeImage($file, 290, 175, '/imgs/projects/large/');
+
             // The project already has an image uploaded to DB
             if($projectImage)
             {
                 // Is it a different file?
                 if($projectImage->src !== $request->file('project_image')->getClientOriginalName())
                 {
-                    // Yes, so save new file in public/imgs/projects/
-                    // and update images table
+                    // Yes, so delete old images
+                    $files = [
+                        'imgs/projects/' . $projectImage->src,
+                        'imgs/projects/small/' . $projectImage->src,
+                        'imgs/projects/large/' . $projectImage->src
+                    ];
+
+                    \File::delete($files);
+
+                    // save new file in public/imgs/projects/
                     $file->move('imgs/projects/', $file->getClientOriginalName());
 
+                    // and update images table
                     $projectImage->update([
                         'src' => $file->getClientOriginalName()
                     ]);
