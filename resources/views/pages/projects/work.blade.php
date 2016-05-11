@@ -306,9 +306,9 @@ Our Work
                 <div class="row">
                     <div class="col-sm-12 text-center"><p class="student-title">{{$member->profile['position']}}</p></div>
                 </div>
-                <!-- <div class="row">
-                    <div class="col-sm-12 text-center"><i class="fa fa-graduation-cap student-graduate"></i> <span class="graduates-in">Graduates in 20XY</span></div>
-                </div> -->
+                <div class="row">
+                    <div class="col-sm-12 text-center"><i class="fa fa-graduation-cap student-graduate"></i> <span class="graduates-in">Graduates in {{$member->profile['grad_date']}}</span></div>
+                </div>
                 <div class="row">
                     <div class="col-sm-1"></div>
                     <div class="col-sm-10 text-left student-seb">
@@ -344,12 +344,14 @@ Our Work
                 <div class="row">
                     <div class="col-sm-1"></div>
                     <div class="col-sm-10 text-left student-seb">
-                        <h2 class="student-seb-title">Background</h2>
-                        <ul class="student-seb-list">
-                        
+                        <h2 class="student-seb-title">Education</h2>
+                        <div class="student-seb-list">
+                            @if(!empty($member->profile['background']))
                                 <li class="student-seb-list-items"><span class="student-seb-list-item-space"></span>{{$member->profile['background']}}</li>
-                        
-                        </ul>
+                            @else
+                                 <p><span class="student-seb-list-item-space"></span>Student has not registrered any education.</p>
+                            @endif
+                        </div>
                     </div>
                     <div class="col-sm-1"></div>
                 </div>
