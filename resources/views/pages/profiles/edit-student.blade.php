@@ -5,7 +5,7 @@
 			<div class="content">
 				<h1 class="text-center">
 				@if(!Auth::user()->canEdit($profile->individuals_id))
-				{{ $profile->fullName() }}
+				{{ $profile->display_name }}
 				@else
 				Edit Profile
 				@endif
@@ -213,7 +213,7 @@
 			        </div>
 			        <div class="row">
 			        	<div class="col-sm-12 text-center">
-			        		<p class="student-name">{{ $profile->fullName() }}</p>
+			        		<p class="student-name">{{ $profile->display_name }}</p>
 		    			</div>
 			        </div>
 			        <div class="row">
@@ -312,7 +312,7 @@
 			        
 			        <div class="row">
 			        	<div class="col-sm-12 text-center">
-			        		<p class="student-name">{{ $profile->fullName() }}</p>
+			        		<p class="student-name">{{ $profile->display_name }}</p>
 		    			</div>
 			        </div>
 			        <div class="row">

@@ -145,7 +145,7 @@ class ProfileController extends Controller
                 'grad_date' => $request->input('graduation_year')
             ]);
         }
-        
+        // this is needed to allow null links.. I think
     	$this->updateURL($id, $request, '1', 'linkedin_url');
     		
     	$this->updateURL($id, $request, '2', 'portfolium_url');

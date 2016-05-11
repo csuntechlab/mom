@@ -38,9 +38,8 @@
 									<ul class="dropdown-menu">
 										@if(Auth::user()->hasRole('admin'))
 											<li><a href="{{ url('/admin') }}">Dashboard</a></li>
-										@else
-											<li><a href="{{ url('profiles/'. Auth::user()->email_uri) }}">Edit Profile</a></li>
 										@endif
+										<li><a href="{{ url('profiles/'. Auth::user()->email_uri) }}">Edit Profile</a></li>
 										<li><a href="{{ url('/logout') }}">Logout</a></li>
 									</ul>
 								</li>

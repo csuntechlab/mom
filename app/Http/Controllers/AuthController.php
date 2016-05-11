@@ -53,36 +53,30 @@ class AuthController extends Controller
       // attempt to perform the authentication
       try {
         if(Auth::attempt($creds)) {
-          // redirect user to admin panel, if user has the admin role  
+          // No profile exists for this person, let's make one
+          if(!Auth::user()->hasProfile()) {
+            try{
+              $profile = Profile::create([
+                'individuals_id'  => Auth::user()->user_id,
+                'background'      => "",
+                'position'        => "",
+                'grad_date'       => NULL
+              ]);
+            } catch (\PDOException $e){
+              // add some sort of notification of error
+              return redirect()->back();
+            }
+          }
+       
+          // redirect to the appropriate place
           if(Auth::user()->hasRole('admin'))
             return redirect()->intended('admin');
-          
-          // redirect user to their profile
-          if(Auth::user()->isStudentOrStaff()){ 
-              if(Auth::user()->hasProfile())
-                      return redirect()->intended('profiles/' . Auth::user()->email_uri);
-              else {
-                try{
-                  $profile = Profile::create([
-                    'individuals_id'  => Auth::user()->user_id,
-                    'background'      => "",
-                    'position'        => "",
-                    'grad_date'       => date('Y-m-d')
-                  ]);
-                } catch (\PDOException $e){
-                  // add some sort of notification of error
-                  return redirect()->back();
-                }
-                return redirect()->intended('profiles/' . Auth::user()->email_uri);
-              }
-
-          }
+          if(Auth::user()->isStudentOrStaff())
+            return redirect()->intended('profiles/' . Auth::user()->email_uri);
 
           // redirect back to the landing page if no original target
           return redirect()->intended('/');
-        }
-        else
-        {
+        } else {
           // auth unsuccessful so return to the login page with an
           // instance of MessageBag containing the message
           $errorBag = new MessageBag([
@@ -90,14 +84,10 @@ class AuthController extends Controller
           ]);
           return redirect('login')->with('errors', $errorBag);
         }
-      }
-      catch (SearchException $e)
-      {
+      } catch (SearchException $e) {
         return redirect('login')->with('error','Incorrect username or password');
       }
-    }
-    else
-    {
+    } else {
       // spit back the error messages to the page
       return redirect('login')->with('errors', $vResult);
     }

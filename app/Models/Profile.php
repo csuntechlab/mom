@@ -6,8 +6,15 @@ class Profile extends Model
 {
   protected $table = 'mom.profiles';
   protected $primaryKey = 'individuals_id';
+  protected $appends = [
+    'display_name',
+    'confidential'
+  ];
   protected $fillable = [
-    'individuals_id', 'background', 'position', 'grad_date'
+    'individuals_id',
+    'background',
+    'position',
+    'grad_date'
   ];
   public $incrementing = false;
 
@@ -48,23 +55,19 @@ class Profile extends Model
   }
 
   /**
-  * Returns the full name of the person.
-  *
-  * @return String
+  * Returns the custom data attribute for display name of the person.
+  * @return String the display name of the individual
   */
-  public function fullName() {
-      return User::where('user_id', $this->individuals_id)->value('display_name');
+  public function getDisplayNameAttribute() {
+      return User::find($this->individuals_id)->display_name;
   }
 
-  public function isConfidential()
-  {
-    
-    $user = User::where('user_id', $this->individuals_id)->first();
-    if($user->confidential == 1)
-    {
-      return true;
-    }
-    
+  /**
+   * Builds the custom data attribute for the confidential flag
+   * @return Integer the value of true 1 or false 0
+   */
+  public function getConfidentialAttribute() {
+    return User::find($this->individuals_id)->confidential;
   }
 
 }

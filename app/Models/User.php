@@ -7,6 +7,9 @@ class User extends MetaUser
 {
     protected $table = 'users';
     protected $primaryKey = 'user_id';
+    protected $appends = [
+      'profile_link'
+    ];
     public $incrementing = false;
 
     /**
@@ -98,7 +101,7 @@ class User extends MetaUser
     }
 
     public function isStudentOrStaff(){
-        return $this->hasRole('student') || $this->hasRole('staff');
+        return $this->hasRole('student') || $this->hasRole('staff') || $this->hasRole('alumni');
     }
 
     public function hasProfile(){
@@ -139,7 +142,8 @@ class User extends MetaUser
 
   public function scopeStudents($query){
     return $query->whereHas('roles', function($q){
-      $q->where('user_role.role_name', 'student');
+      $q->where('user_role.role_name', 'student')
+        ->orWhere('user_role.role_name', 'alumni');
     });
   }
 
@@ -154,5 +158,13 @@ class User extends MetaUser
           $email = substr_replace($email, "", 0, 3);  
         }
         return $email;
+  }
+
+  /**
+   * Builds the custom data attribute for profile link
+   * @return String the url to the persons profile
+   */
+  public function getProfileLinkAttribute() {
+    return url('profiles') . '/' . strtok($this->email, '@');
   }
 }
