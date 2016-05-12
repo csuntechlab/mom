@@ -151,7 +151,7 @@
 				    <div class="row">
 				    	<div class="col-sm-8 col-sm-offset-2">
 					    	<div class="student-seb">
-					    		<label class="student-seb-title">Background</label>
+					    		<label class="student-seb-title">Education</label>
 					    		<ul id="background_list" class="list-unstyled">
 					    			<li>
 					    				{!! Form::text('background', $profile->background, ['placeholder' => 'Add background', 'class' => 'form-control']) !!}
