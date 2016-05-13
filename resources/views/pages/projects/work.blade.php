@@ -306,9 +306,11 @@ Our Work
                 <div class="row">
                     <div class="col-sm-12 text-center"><p class="student-title">{{$member->profile['position']}}</p></div>
                 </div>
-                <!-- <div class="row">
-                    <div class="col-sm-12 text-center"><i class="fa fa-graduation-cap student-graduate"></i> <span class="graduates-in">Graduates in 20XY</span></div>
-                </div> -->
+                @if(!empty($member->profile['grad_date']))
+                <div class="row">
+                    <div class="col-sm-12 text-center"><i class="fa fa-graduation-cap student-graduate"></i> <span class="graduates-in">Graduates in {{$member->profile['grad_date']}}</span></div>
+                </div>
+                @endif
                 <div class="row">
                     <div class="col-sm-1"></div>
                     <div class="col-sm-10 text-left student-seb">
