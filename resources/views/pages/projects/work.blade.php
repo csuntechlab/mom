@@ -30,9 +30,9 @@ Our Work
                                 <h2>{{ $project->meta->title }}</h2>
                                 <hr class="line-inline">
                                 @if(!empty($project->image))
-                                    <img src="{{ asset('imgs/projects/'.$project->image->src)}}" alt="Product image" class="img-responsive">
+                                    <img src="{{ asset('imgs/projects/'.$project->image->src)}}" alt="{{ $project->meta->title }}" class="img-responsive">
                                 @else
-                                    <img src="{{ asset('imgs/macbook-pro-placeholder.png')}}" alt="" class="img-responsive">
+                                    <img src="{{ asset('imgs/macbook-pro-placeholder.png')}}" alt="{{ $project->meta->title }}" class="img-responsive">
                                 @endif
 <!-- MOBILE DROP DOWN FUNCTIONS done -->
                                 <div class="row hidden-md hidden-lg hidden-xl">
@@ -70,16 +70,16 @@ Our Work
                                                     $productOwnerID = $project->productOwner->user_id; ?>  
                                                                                                   
                                                     @if(!empty($project->productOwner->profile) && !empty($project->productOwner->profile->image))
-                                                        <img class="members--member-img" src="{{ asset('user-profile/image/' . $project->productOwner->profile->image->src)}}" alt="">
+                                                        <img class="members--member-img" src="{{ asset('user-profile/image/' . $project->productOwner->profile->image->src)}}" alt="{{$project->productOwner->display_name}}">
                                                     @else
-                                                        <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="">
+                                                        <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="{{$project->productOwner->display_name}}">
                                                     @endif                                                    
                                                 </div> 
                                                 <div class="col-xs-6 col-sm-6">                    
                                                     @if(!empty($project->scrumMaster->profile) && !empty($project->scrumMaster->profile->image))
                                                         <img class="members--member-img" src="{{ asset('user-profile/image/' . $project->scrumMaster->profile->image->src)}}" alt="">
                                                     @else
-                                                        <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="">
+                                                        <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="{{$project->scrumMaster->display_name}}">
                                                     @endif                                                    
                                                 </div>
                                                 <div class="col-xs-6 col-sm-6">
@@ -142,14 +142,14 @@ Our Work
                                     @if(!empty($project->productOwner->profile) && !empty($project->productOwner->profile->image))
                                         <img class="members--member-img" src="{{ asset('user-profile/image/' . $project->productOwner->profile->image->src)}}" alt="">
                                     @else
-                                        <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="{{$member->display_name}}">
+                                        <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="{{$project->productOwner->display_name}}">
                                     @endif
                                     </div>  
                                     <div class="col-md-6">
                                     @if(!empty($project->scrumMaster->profile) && !empty($project->scrumMaster->profile->image))
                                         <img class="members--member-img" src="{{ asset('user-profile/image/' . $project->scrumMaster->profile->image->src)}}" alt="">
                                     @else
-                                        <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="{{$member->display_name}}">
+                                        <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="{{$project->scrumMaster->display_name}}">
                                     @endif
                                     </div>
                                     <div class="col-md-6">
@@ -306,9 +306,9 @@ Our Work
                 <div class="row">
                     <div class="col-sm-12 text-center"><p class="student-title">{{$member->profile['position']}}</p></div>
                 </div>
-                <!-- <div class="row">
-                    <div class="col-sm-12 text-center"><i class="fa fa-graduation-cap student-graduate"></i> <span class="graduates-in">Graduates in 20XY</span></div>
-                </div> -->
+                <div class="row">
+                    <div class="col-sm-12 text-center"><i class="fa fa-graduation-cap student-graduate"></i> <span class="graduates-in">Graduates in {{$member->profile['grad_date']}}</span></div>
+                </div>
                 <div class="row">
                     <div class="col-sm-1"></div>
                     <div class="col-sm-10 text-left student-seb">
@@ -344,12 +344,14 @@ Our Work
                 <div class="row">
                     <div class="col-sm-1"></div>
                     <div class="col-sm-10 text-left student-seb">
-                        <h2 class="student-seb-title">Background</h2>
-                        <ul class="student-seb-list">
-                        
+                        <h2 class="student-seb-title">Education</h2>
+                        <div class="student-seb-list">
+                            @if(!empty($member->profile['background']))
                                 <li class="student-seb-list-items"><span class="student-seb-list-item-space"></span>{{$member->profile['background']}}</li>
-                        
-                        </ul>
+                            @else
+                                 <p><span class="student-seb-list-item-space"></span>Student has not registrered any education.</p>
+                            @endif
+                        </div>
                     </div>
                     <div class="col-sm-1"></div>
                 </div>
