@@ -129,6 +129,18 @@ class ProfileController extends Controller
     	// If user has uploaded an image for their profile
     	if($request->hasFile('profile_image'))
     	{
+            // Resize image using Intervention
+            $file = $request->file('profile_image');
+            $time = time();
+            $smImage = 'sm_' . $time . $file->getClientOriginalName();
+            $lgImage = 'lg_' . $time . $file->getClientOriginalName();
+
+            // Small image
+            $this->resizeImage($file, 50, 50, '/user-profile/image/' . $smImage);
+            
+            // Large image
+            $this->resizeImage($file, 200, 200, '/user-profile/image/' . $lgImage);
+
             // Has the profile uploaded an image before?
             if(!is_null($profile->image))
             {   
@@ -140,18 +152,6 @@ class ProfileController extends Controller
 
                 \File::delete($files);
             }
-
-            // Resize image using Intervention
-    		$file = $request->file('profile_image');
-            $time = time();
-            $smImage = 'sm_' . $time . $file->getClientOriginalName();
-            $lgImage = 'lg_' . $time . $file->getClientOriginalName();
-
-            // Small image
-            $this->resizeImage($file, 50, 50, '/user-profile/image/' . $smImage);
-            
-            // Large image
-            $this->resizeImage($file, 200, 200, '/user-profile/image/' . $lgImage);
 
 			// Save file name to images table
 			Image::where('imageable_id', $id)->firstOrCreate([

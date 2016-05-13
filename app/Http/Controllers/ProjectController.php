@@ -125,7 +125,7 @@ class ProjectController extends Controller
                 Image::create([
                     'imageable_id'   => $project_id,
                     'imageable_type' => 'Mom\Models\Project',
-                    'src'            => $image->getClientOriginalName()
+                    'src'            => $time . $image->getClientOriginalName()
                 ]);
 
              }
@@ -262,36 +262,30 @@ class ProjectController extends Controller
             $this->resizeImage($image, 150, 150, '/imgs/projects/' . $smImage);
             $this->resizeImage($image, 290, 175, '/imgs/projects/' . $lgImage);
 
-            // The project already has an image uploaded to DB
+            // Does the project already have an image saved in DB?
             if($projectImage)
             {
-                // Is it a different file?
-                if($projectImage->src !== $request->file('project_image')->getClientOriginalName())
-                {
-                    // Yes, so delete old images
-                    $files = [
-                        'imgs/projects/' . 'sm_' . $projectImage->src,
-                        'imgs/projects/' . 'lg_' . $projectImage->src
-                    ];
+                // Yes, so delete old images
+                $files = [
+                    'imgs/projects/' . 'sm_' . $projectImage->src,
+                    'imgs/projects/' . 'lg_' . $projectImage->src
+                ];
 
-                    \File::delete($files);
+                \File::delete($files);
 
-                    // and update images table
-                    $projectImage->update([
-                        'src' => $time . $image->getClientOriginalName()
-                    ]);
-                }
+                // and update images table
+                $projectImage->update([
+                    'src' => $time . $image->getClientOriginalName()
+                ]);
             }
 
             // No image has ever been uploaded for project so create one
             else 
             {
-                $file->move('imgs/projects/', $file->getClientOriginalName());
-
                 Image::create([
                     'imageable_id'   => 'projects:' . $id,
                     'imageable_type' => 'Mom\Models\Project',
-                    'src'            => $file->getClientOriginalName()
+                    'src'            => $time . $image->getClientOriginalName()
                 ]);
             }
             
