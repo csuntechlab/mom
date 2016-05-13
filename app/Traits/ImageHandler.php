@@ -9,7 +9,7 @@ trait ImageHandler {
     {
         return \Intervention::make($file)
         ->fit($w, $h)
-        ->save(public_path($path . $file->getClientOriginalName()));
+        ->save(public_path($path));
     }
     
 }

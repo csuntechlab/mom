@@ -134,9 +134,8 @@ class ProfileController extends Controller
             {   
                 // Yes so delete all instances of that one to make room for the new one
                 $files = [
-                    'user-profile/image/' . $profile->image->src,
-                    'user-profile/image/small/' . $profile->image->src,
-                    'user-profile/image/large/' . $profile->image->src
+                    'user-profile/image/sm_' . $profile->image->src,
+                    'user-profile/image/lg_' . $profile->image->src
                 ];
 
                 \File::delete($files);
@@ -144,18 +143,22 @@ class ProfileController extends Controller
 
             // Resize image using Intervention
     		$file = $request->file('profile_image');
-            $smImage = $this->resizeImage($file, 50, 50, '/user-profile/image/small/');
-            $lgImage = $this->resizeImage($file, 200, 200, '/user-profile/image/large/');
+            $time = time();
+            $smImage = 'sm_' . $time . $file->getClientOriginalName();
+            $lgImage = 'lg_' . $time . $file->getClientOriginalName();
 
-            // Move the original file to public/user-profile/image 
-			$file->move('user-profile/image', $file->getClientOriginalName());
+            // Small image
+            $this->resizeImage($file, 50, 50, '/user-profile/image/' . $smImage);
+            
+            // Large image
+            $this->resizeImage($file, 200, 200, '/user-profile/image/' . $lgImage);
 
 			// Save file name to images table
 			Image::where('imageable_id', $id)->firstOrCreate([
                 'imageable_id'   => $id,
                 'imageable_type' => 'Mom\Models\Profile'
 			])->update([
-                'src' => $file->getClientOriginalName()
+                'src' => $time . $file->getClientOriginalName()
             ]);
     	}
 

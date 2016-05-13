@@ -52,7 +52,7 @@ Edit Project
 									<label for="project_image_file">
 										Upload Image: 
 										@if($project->image)
-										<div id="project_image_preview" style="background: url({{ asset('imgs/projects/' . $project->image->src)  }}) no-repeat center center; background-size: cover; width: 150px; height: 150px; border-radius: 2px;"></div>
+										<div id="project_image_preview" style="background: url({{ asset('imgs/projects/' . 'sm_' . $project->image->src)  }}) no-repeat center center; background-size: cover; width: 150px; height: 150px; border-radius: 2px;"></div>
 										@else
 										<div id="project_image_preview" class="img-rounded text-center">
 											<span id="project_image_preview_icon"><i class="fa fa-upload fa-2x"></i></span>

@@ -113,8 +113,12 @@ class ProjectController extends Controller
              if($request->hasFile('project_image'))
              {
                 $image = $request->file('project_image');
-                $smImage = $this->resizeImage($image, 150, 150, '/imgs/projects/small/');
-                $lgImage = $this->resizeImage($image, 290, 175, '/imgs/projects/large/');
+                $time = time();
+                $smImage = 'sm_' . $time . $image->getClientOriginalName();
+                $lgImage = 'lg_' . $time . $image->getClientOriginalName();
+
+                $this->resizeImage($image, 150, 150, '/imgs/projects/' . $smImage);
+                $this->resizeImage($image, 290, 175, '/imgs/projects/' . $lgImage);
 
                 $image->move('imgs/projects/', $image->getClientOriginalName());
 
@@ -250,9 +254,13 @@ class ProjectController extends Controller
         // Does incoming request have a file uploaded
         if($request->hasFile('project_image'))
         {  
+            $image = $request->file('project_image');
+            $time = time();
+            $smImage = 'sm_' . $time . $image->getClientOriginalName();
+            $lgImage = 'lg_' . $time . $image->getClientOriginalName();
 
-            $smImage = $this->resizeImage($file, 150, 150, '/imgs/projects/small/');
-            $lgImage = $this->resizeImage($file, 290, 175, '/imgs/projects/large/');
+            $this->resizeImage($image, 150, 150, '/imgs/projects/' . $smImage);
+            $this->resizeImage($image, 290, 175, '/imgs/projects/' . $lgImage);
 
             // The project already has an image uploaded to DB
             if($projectImage)
@@ -262,19 +270,15 @@ class ProjectController extends Controller
                 {
                     // Yes, so delete old images
                     $files = [
-                        'imgs/projects/' . $projectImage->src,
-                        'imgs/projects/small/' . $projectImage->src,
-                        'imgs/projects/large/' . $projectImage->src
+                        'imgs/projects/' . 'sm_' . $projectImage->src,
+                        'imgs/projects/' . 'lg_' . $projectImage->src
                     ];
 
                     \File::delete($files);
 
-                    // save new file in public/imgs/projects/
-                    $file->move('imgs/projects/', $file->getClientOriginalName());
-
                     // and update images table
                     $projectImage->update([
-                        'src' => $file->getClientOriginalName()
+                        'src' => $time . $image->getClientOriginalName()
                     ]);
                 }
             }
