@@ -183,9 +183,9 @@ Our Work
                                               <div class="no-padding">
                                                 <a href="#" class="thumbnail">
                                                     @if(!empty($member->profile) && !empty($member->profile->image))
-                                                        <img class="members--member-img <?php echo $productOwner; ?>" src="{{ asset('user-profile/image/' . $member->profile->image->src)}}" alt="{{$member->display_name}}">
+                                                        <img class="members--member-img " src="{{ asset('user-profile/image/' . $member->profile->image->src)}}" alt="{{$member->display_name}}">
                                                     @else
-                                                        <img class="members--member-img <?php echo $productOwner; ?>" src="{{ asset('/imgs/anonymous.png') }}" alt="{{$member->display_name}}">
+                                                        <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="{{$member->display_name}}">
                                                     @endif
                                                 </a>
                                               </div>
@@ -214,9 +214,9 @@ Our Work
 
                                     <a href="#" class="members--member" data-toggle="modal" data-target="#<?php echo $memberIdModal[1]; ?>">
                                     @if(!empty($member->profile) && !empty($member->profile->image))
-                                        <img class="members--member-img <?php echo $productOwner; ?>" src="{{ asset('user-profile/image/' . $member->profile->image->src)}}" alt="{{$member->display_name}}">
+                                        <img class="members--member-img" src="{{ asset('user-profile/image/' . $member->profile->image->src)}}" alt="{{$member->display_name}}">
                                     @else
-                                        <img class="members--member-img <?php echo $productOwner; ?>" src="{{ asset('/imgs/anonymous.png') }}" alt="{{$member->display_name}}">
+                                        <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="{{$member->display_name}}">
                                     @endif
                                     <div class="members--member-name">{{$member->display_name}}</div>
                                     </a>
