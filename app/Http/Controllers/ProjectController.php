@@ -13,7 +13,6 @@ use Carbon\Carbon;
 
 class ProjectController extends Controller
 {
-
     public function __construct(){
         $this->middleware('admin', ['except' => [
             'work',
@@ -49,7 +48,6 @@ class ProjectController extends Controller
             $project->productOwner =  count($project->productOwner) ? $project->productOwner[0] : new User();
             $project->scrumMaster =  count($project->scrumMaster) ? $project->scrumMaster[0] : new User();
         }
-        
         // Change view as needed
         return view('pages.projects.index', compact('projects'));
     }
@@ -344,6 +342,7 @@ class ProjectController extends Controller
             $project->productOwner =  count($project->productOwner) ? $project->productOwner[0] : new User();
             $project->scrumMaster =  count($project->scrumMaster) ? $project->scrumMaster[0] : new User();
         }
+
         
         return view('pages.projects.work', compact('projects'));
     }

@@ -8,6 +8,7 @@ class User extends MetaUser
     protected $table = 'users';
     protected $primaryKey = 'user_id';
     protected $appends = [
+      'email_uri',
       'profile_link'
     ];
     public $incrementing = false;
@@ -18,7 +19,9 @@ class User extends MetaUser
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+      'email_uri',  
+      'password',
+      'remember_token',
     ];
 
     /**
@@ -165,6 +168,6 @@ class User extends MetaUser
    * @return String the url to the persons profile
    */
   public function getProfileLinkAttribute() {
-    return url('profiles') . '/' . strtok($this->email, '@');
+    return url('profiles') . '/' . $this->email_uri;
   }
 }
