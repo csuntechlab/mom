@@ -45,7 +45,7 @@ Create Project
 		<div class="row">
 			<div class="project-form">
 				<div class="col-sm-10 col-sm-offset-1">
-					{!! Form::open(['url' => url('projects')]) !!}
+					{!! Form::open(['url' => url('projects'), 'files' => 'true']) !!}
 						<div class="row">
 							<div class="col-sm-6">
 								<div class="form-group">

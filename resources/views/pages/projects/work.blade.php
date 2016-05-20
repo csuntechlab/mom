@@ -30,7 +30,7 @@ Our Work
                                 <h2>{{ $project->meta->title }}</h2>
                                 <hr class="line-inline">
                                 @if(!empty($project->image))
-                                    <img src="{{ asset('imgs/projects/'.$project->image->src)}}" alt="{{ $project->meta->title }}" class="img-responsive">
+                                    <img src="{{ asset('imgs/projects/'.'lg_'.$project->image->src)}}" alt="Product image" class="img-responsive">
                                 @else
                                     <img src="{{ asset('imgs/macbook-pro-placeholder.png')}}" alt="{{ $project->meta->title }}" class="img-responsive">
                                 @endif
@@ -54,17 +54,29 @@ Our Work
                                         </div>
                                         <!--  part two of first well-->
                                         <div class="">
-                                            <div class="row">
-                                              
+                                            <div class="row">                    
                                                 <div class="col-xs-6 col-sm-6">
                                                     <?php $productOwner = "product-owner";
                                                     $productOwnerID = $project->productOwner->user_id; ?>  
-                                                                                                  
-                                                                                                      
+                                                    @if(!empty($project->productOwner->profile) && !empty($project->productOwner->profile->image))
+                                                        <img class="members--member-img" src="{{ asset('user-profile/image/' .'sm_'. $project->productOwner->profile->image->src)}}" alt="">
+                                                    @else
+                                                        <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="">
+                                                    @endif                                                    
                                                 </div> 
-                                               
-                                               
-
+                                                <div class="col-xs-6 col-sm-6">                    
+                                                    @if(!empty($project->scrumMaster->profile) && !empty($project->scrumMaster->profile->image))
+                                                        <img class="members--member-img" src="{{ asset('user-profile/image/' .'sm_'. $project->scrumMaster->profile->image->src)}}" alt="">
+                                                    @else
+                                                        <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="">
+                                                    @endif                                                    
+                                                </div>
+                                                <div class="col-xs-6 col-sm-6">
+                                                    <p>{{$project->productOwner->display_name}}</p>
+                                                </div>
+                                                <div class="col-xs-6 col-sm-6">
+                                                    <p>{{$project->scrumMaster->display_name}}</p>
+                                                </div> 
                                             </div>
                                         </div>
                                     </div>
@@ -78,7 +90,7 @@ Our Work
                                                     $memberIdModal = explode(":", $memberID); ?>
                                                     <a href="{{ $member->profile_link }}" data-toggle="modal" data-target="#<?php echo $memberIdModal[1]; ?>">
                                                         @if(!empty($member->profile) && !empty($member->profile->image))
-                                                            <img class="members--member-img" src="{{ asset('user-profile/image/' . $member->profile->image->src)}}" alt="">
+                                                            <img class="members--member-img" src="{{ asset('user-profile/image/' . 'sm_' . $member->profile->image->src)}}" alt="">
                                                         @endif 
                                                     </a>                                                     
                                                 </div>
@@ -104,7 +116,40 @@ Our Work
                                     <div class="col-md-12">
                                         <p>{{$project->meta->description}}</p>
                                     </div>
+<<<<<<< HEAD
                                                                     
+=======
+                                    <div class="col-md-6">
+                                        <h2 class="small">
+                                            Product Owner
+                                        </h2> 
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h2 class="small">
+                                            Scrum Master
+                                        </h2> 
+                                    </div>
+                                    <div class="col-md-6">
+                                    @if(!empty($project->productOwner->profile) && !empty($project->productOwner->profile->image))
+                                        <img class="members--member-img" src="{{ asset('user-profile/image/' . 'sm_' . $project->productOwner->profile->image->src)}}" alt="">
+                                    @else
+                                        <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="{{$member->display_name}}">
+                                    @endif
+                                    </div>  
+                                    <div class="col-md-6">
+                                    @if(!empty($project->scrumMaster->profile) && !empty($project->scrumMaster->profile->image))
+                                        <img class="members--member-img" src="{{ asset('user-profile/image/' . 'sm_' . $project->scrumMaster->profile->image->src)}}" alt="">
+                                    @else
+                                        <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="{{$member->display_name}}">
+                                    @endif
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p class="small">{{$project->productOwner->display_name}}</p>
+                                    </div> 
+                                    <div class="col-md-6">
+                                        <p class="small">{{$project->scrumMaster->display_name}}</p>
+                                    </div>                                 
+>>>>>>> MP-111
                                 </div>  
                             </div>
                         </div>
@@ -134,7 +179,11 @@ Our Work
                                               <div class="no-padding">
                                                 <a href="{{ $member->profile_link }}" class="thumbnail">
                                                     @if(!empty($member->profile) && !empty($member->profile->image))
+<<<<<<< HEAD
                                                         <img class="members--member-img" src="{{ asset('user-profile/image/' . $member->profile->image->src)}}" alt="{{$member->first_name}}">
+=======
+                                                        <img class="members--member-img <?php echo $productOwner; ?>" src="{{ asset('user-profile/image/' . 'sm_' . $member->profile->image->src)}}" alt="{{$member->display_name}}">
+>>>>>>> MP-111
                                                     @else
                                                         <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="{{$member->first_name}}">
                                                     @endif
@@ -165,7 +214,7 @@ Our Work
 
                                     <a href="{{ $member->profile_link }}" class="members--member" >
                                     @if(!empty($member->profile) && !empty($member->profile->image))
-                                        <img class="members--member-img <?php echo $productOwner; ?>" src="{{ asset('user-profile/image/' . $member->profile->image->src)}}" alt="{{$member->first_name}}">
+                                        <img class="members--member-img <?php echo $productOwner; ?>" src="{{ asset('user-profile/image/' . 'sm_' . $member->profile->image->src)}}" alt="{{$member->display_name}}">
                                     @else
                                         <img class="members--member-img <?php echo $productOwner; ?>" src="{{ asset('/imgs/anonymous.png') }}" alt="{{$member->first_name}}">
                                     @endif
@@ -202,7 +251,7 @@ Our Work
                 <div class="row">
                     <div class="col-xs-12 text-center">
                         @if(!empty($member->profile) && !empty($member->profile->image))
-                            <img class="student-image <?php echo $productOwner; ?>" src="{{ asset('user-profile/image/' . $member->profile->image->src)}}" alt="student image">
+                            <img class="student-image <?php echo $productOwner; ?>" src="{{ asset('user-profile/image/' . 'lg_' . $member->profile->image->src)}}" alt="student image">
                         @else
                             <img class="student-image <?php echo $productOwner; ?>" src="{{ asset('/imgs/anonymous.png') }}" alt="student image">
                         @endif

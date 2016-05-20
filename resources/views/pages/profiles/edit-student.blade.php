@@ -23,7 +23,7 @@
 				    	<div class="col-sm-4 col-sm-offset-4 text-center">
 				    		<label for="profile_image_file">
 					    		@if(isset($profile->image->src))
-									<div id="profile_image_preview" style="cursor: pointer; border-radius: 50%; width: 300px; height: 300px; background: url('{{ asset('user-profile/image/' . $profile->image->src) }}') no-repeat center center; background-size: cover; position: relative;">
+									<div id="profile_image_preview" style="cursor: pointer; border-radius: 50%; width: 200px; height: 200px; background: url('{{ asset('user-profile/image/' . 'lg_' . $profile->image->src) }}') no-repeat center center; background-size: cover; position: relative;">
 					    			</div>
 					    		@else
 					    			<div id="profile_image_preview" style="cursor: pointer; border-radius: 50%; width: 300px; height: 300px; background: #f2f2f2; position: relative;"> <span id="profile_image_preview_text" style="position: absolute; top: 20%; left: 50%; transform: translate(-45%, 50%); font-size: 200%;">Upload Image</span>

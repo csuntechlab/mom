@@ -1,5 +1,7 @@
 <?php namespace Mom\Http\Controllers;
 
+use Mom\Traits\ImageHandler;
+
 use Mom\Models\Image;
 use Mom\Models\Project;
 use Mom\Models\ProjectMeta;
@@ -13,6 +15,10 @@ use Carbon\Carbon;
 
 class ProjectController extends Controller
 {
+    // trait used to handle image resizing using Intervention
+    // found in app\Traits\ImageHandler.php
+    use ImageHandler;
+
     public function __construct(){
         $this->middleware('admin', ['except' => [
             'work',
@@ -105,13 +111,19 @@ class ProjectController extends Controller
              if($request->hasFile('project_image'))
              {
                 $image = $request->file('project_image');
+                $time = time();
+                $smImage = 'sm_' . $time . $image->getClientOriginalName();
+                $lgImage = 'lg_' . $time . $image->getClientOriginalName();
+
+                $this->resizeImage($image, 150, 150, '/imgs/projects/' . $smImage);
+                $this->resizeImage($image, 290, 175, '/imgs/projects/' . $lgImage);
 
                 $image->move('imgs/projects/', $image->getClientOriginalName());
 
                 Image::create([
                     'imageable_id'   => $project_id,
                     'imageable_type' => 'Mom\Models\Project',
-                    'src'            => $image->getClientOriginalName()
+                    'src'            => $time . $image->getClientOriginalName()
                 ]);
 
              }
@@ -240,31 +252,38 @@ class ProjectController extends Controller
         // Does incoming request have a file uploaded
         if($request->hasFile('project_image'))
         {  
-            // The project already has an image uploaded to DB
+            $image = $request->file('project_image');
+            $time = time();
+            $smImage = 'sm_' . $time . $image->getClientOriginalName();
+            $lgImage = 'lg_' . $time . $image->getClientOriginalName();
+
+            $this->resizeImage($image, 150, 150, '/imgs/projects/' . $smImage);
+            $this->resizeImage($image, 290, 175, '/imgs/projects/' . $lgImage);
+
+            // Does the project already have an image saved in DB?
             if($projectImage)
             {
-                // Is it a different file?
-                if($projectImage->src !== $request->file('project_image')->getClientOriginalName())
-                {
-                    // Yes, so save new file in public/imgs/projects/
-                    // and update images table
-                    $file->move('imgs/projects/', $file->getClientOriginalName());
+                // Yes, so delete old images
+                $files = [
+                    'imgs/projects/' . 'sm_' . $projectImage->src,
+                    'imgs/projects/' . 'lg_' . $projectImage->src
+                ];
 
-                    $projectImage->update([
-                        'src' => $file->getClientOriginalName()
-                    ]);
-                }
+                \File::delete($files);
+
+                // and update images table
+                $projectImage->update([
+                    'src' => $time . $image->getClientOriginalName()
+                ]);
             }
 
             // No image has ever been uploaded for project so create one
             else 
             {
-                $file->move('imgs/projects/', $file->getClientOriginalName());
-
                 Image::create([
                     'imageable_id'   => 'projects:' . $id,
                     'imageable_type' => 'Mom\Models\Project',
-                    'src'            => $file->getClientOriginalName()
+                    'src'            => $time . $image->getClientOriginalName()
                 ]);
             }
             
