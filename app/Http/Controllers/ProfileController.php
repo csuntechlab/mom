@@ -66,7 +66,7 @@ class ProfileController extends Controller
         }
         
         // Find the user profile
-        $profile = Profile::with('skills', 'links', 'image')->findOrFail($id);
+        $profile = Profile::with('skills', 'links', 'image', 'projects')->findOrFail($id);
 
         // if(!Auth::user()->canEdit($profile->individuals_id)){
         //     throw new PermissionDeniedException();

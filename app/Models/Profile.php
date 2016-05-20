@@ -70,4 +70,10 @@ class Profile extends Model
     return User::find($this->individuals_id)->confidential;
   }
 
+  // returns projects this profile is associated with
+  public function projects() {
+    return $this->belongsToMany('Mom\Models\Project', 'nemo.memberships', 'individuals_id', 'parent_entities_id')
+    ->withPivot('role_position');
+  }
+
 }
