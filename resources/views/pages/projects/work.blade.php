@@ -116,9 +116,6 @@ Our Work
                                     <div class="col-md-12">
                                         <p>{{$project->meta->description}}</p>
                                     </div>
-<<<<<<< HEAD
-                                                                    
-=======
                                     <div class="col-md-6">
                                         <h2 class="small">
                                             Product Owner
@@ -149,7 +146,6 @@ Our Work
                                     <div class="col-md-6">
                                         <p class="small">{{$project->scrumMaster->display_name}}</p>
                                     </div>                                 
->>>>>>> MP-111
                                 </div>  
                             </div>
                         </div>
@@ -179,11 +175,7 @@ Our Work
                                               <div class="no-padding">
                                                 <a href="{{ $member->profile_link }}" class="thumbnail">
                                                     @if(!empty($member->profile) && !empty($member->profile->image))
-<<<<<<< HEAD
-                                                        <img class="members--member-img" src="{{ asset('user-profile/image/' . $member->profile->image->src)}}" alt="{{$member->first_name}}">
-=======
                                                         <img class="members--member-img <?php echo $productOwner; ?>" src="{{ asset('user-profile/image/' . 'sm_' . $member->profile->image->src)}}" alt="{{$member->display_name}}">
->>>>>>> MP-111
                                                     @else
                                                         <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="{{$member->first_name}}">
                                                     @endif
