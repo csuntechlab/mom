@@ -86,6 +86,7 @@ class ProjectController extends Controller
         $description = $request->description;
         $start_date = $request->start_date;
         $end_date = $request->end_date  === "" ? NULL : $request->end_date;
+        $sponsor = $request->sponsor;
         // product_owner and scrum_master are required fields validated in CreateProjectRequest
         $product_owner = $request->product_owner;
         $scrum_master = $request->scrum_master;
@@ -106,6 +107,7 @@ class ProjectController extends Controller
                 'project_id' => $project_id,
                 'start_date' => $start_date,
                 'end_date'   => $end_date,
+                'sponsor'    => $sponsor,
             ]);
 
              if($request->hasFile('project_image'))
@@ -222,7 +224,7 @@ class ProjectController extends Controller
         $projectMeta = NemoEntity::findOrFail('projects:' . $id);
         try {
             $projectMeta->fill([
-                'display_name'         =>  $request->title,
+                'display_name'  =>  $request->title,
                 'description'   =>  $request->description,
             ]);
             $projectMeta->save();
@@ -237,6 +239,7 @@ class ProjectController extends Controller
             $project->fill([
                 'start_date' =>  $request->start_date,
                 'end_date'   =>  $request->end_date  === "" ? NULL: $request->end_date,
+                'sponsor'    =>  $request->sponsor,
             ]);
             $project->save();
             $project->touch();

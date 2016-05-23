@@ -68,6 +68,10 @@ Projects
                                         <dl class="dl-horizontal">
                                             <dt>Project</dt>
                                             <dd>{{ $project->meta->title }}</dd>
+                                            @if(isset($project->sponsor))
+                                                <dt>Sponsor</dt>
+                                                <dd>{{ $project->sponsor }}</dd>
+                                            @endif
                                             <dt>Start Date</dt>
                                             <dd>{{ $project->start_date->format('m-d-Y') }}</dd>
                                             <dt>End Date</dt>
