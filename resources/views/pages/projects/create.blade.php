@@ -71,7 +71,7 @@ Create Project
 							<div class="col-sm-12">
 								<div class="form-group">
 									{!! Form::label('url', 'Project URL') !!}
-									{!! Form::text('url', '',['placeholder' => 'https://', 'class'=> 'form-control']) !!}
+									{!! Form::url('url', '',['placeholder' => 'https://', 'class'=> 'form-control']) !!}
 								</div>
 							</div>
 						</div>

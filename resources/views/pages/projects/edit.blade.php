@@ -75,7 +75,7 @@ Edit Project
 							<div class="col-sm-12">
 								<div class="form-group">
 									{!! Form::label('url', 'Project URL') !!}
-									{!! Form::text('url', isset($project->link) ? $project->link->link_url : '', ['placeholder' => 'https://', 'class'=> 'form-control']) !!}
+									{!! Form::url('url', isset($project->link) ? $project->link->link_url : '', ['placeholder' => 'https://', 'class'=> 'form-control']) !!}
 								</div>
 							</div>
 						</div>
