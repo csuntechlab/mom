@@ -14,7 +14,8 @@
 			</div>
 		<div class="gradient-overlay"></div>
 	</section>
-	<section class="section section-page section-white projects">
+
+	<section class="section section-page section-white projects lines-back">
 		<div class="container" style="background-color: #fff;">
 			@if(Auth::user()->canEdit($profile->individuals_id))
 			<div class="student">
@@ -151,7 +152,7 @@
 				    <div class="row">
 				    	<div class="col-sm-8 col-sm-offset-2">
 					    	<div class="student-seb">
-					    		<label class="student-seb-title">Education</label>
+					    		<label class="student-seb-title">Background</label>
 					    		<ul id="background_list" class="list-unstyled">
 					    			<li>
 					    				{!! Form::text('background', $profile->background, ['placeholder' => 'Add background', 'class' => 'form-control']) !!}
@@ -174,57 +175,73 @@
 				    </div>
 			    {!! Form::close() !!}
 			</div>
+<!-- NOT USER VIEW  -->
 			@else
-			  <div>
-			    <div>
-			      <div class="modal-body student lines-back">
-			        <div class="row">
-			        	<div class="text-center">
+			<!-- removed card-light -->
+			  <div class="container wrapper card">
+			  	<div class="card-content-xl">
+			      <div class="col-sm-12">
+			        	<div class="col-sm-5 col-md-3 col-md-offset-2">
 			        	@if(isset($profile->image->src))
-						<div id="profile_image_preview" style="border-radius: 50%; width: 200px; height: 200px; background: url('{{ asset('user-profile/image/' . $profile->image->src) }}') no-repeat center center; background-size: cover; position: relative; margin: auto;">
-				    	</div>
+							<div id="profile_image_preview" style="border-radius: 50%; width: 200px; height: 200px; background: url('{{ asset('user-profile/image/' . $profile->image->src) }}') no-repeat center center; background-size: cover; position: relative; margin: auto;">
+					    	</div>
 				    	@else
-				    	<img class="student-image product-owner" src="http://placehold.it/200x200" alt="student image">
+					    	<img class="student-image product-owner" src="http://placehold.it/200x200" alt="student image">
 				    	</div>
 				    	@endif
-			        	</div>
-			        	@if(isset($linkedin_url) || isset($portfolium_url))
-			        	<div class="row" style="text-align: center; margin-top: 25px;">
-			        		<ul class="list-inline list-unstyled">
-			        			@if(isset($linkedin_url))
-			        			<li>
-				        			<a href="{{ $linkedin_url }}">
-				        				<img class="social-media-btn-img" src="{{ asset('imgs/linkden.svg' ) }}" alt="linkedin" />
-				        				<p>LinkedIn</p>
-				    				</a>
-			    				</li>
-			        			@endif
-			        			@if(isset($portfolium_url))
-			        			<li>
-			        				<a href="{{ ($portfolium_url) }}">
-			        				<img class="social-media-btn-img" src="{{ asset('imgs/Hover.svg' ) }}" alt="portfolium" />
-			        				<p>Portfolium</p>
-			    					</a>
-			        			</li>
-			        			@endif
-			        		</ul>
-			        	</div>
-			        	@endif
-			        </div>
-			        <div class="row">
-			        	<div class="col-sm-12 text-center">
-			        		<p class="student-name">{{ $profile->display_name }}</p>
+			        	<div class="col-sm-7 col-md-6 col-md-offset-1">
+			        		<div class="row">		        			
+				        		<p class="col-xs-7 col-sm-7 student--info student-name">{{ $profile->display_name }}</p>
+				        		<p class="col-xs-7 col-sm-7 student--info student-title">{{ $profile->position }}</p>
+				        		<div class="col-xs-7 col-sm-7">
+					        		<i class="student--info fa fa-graduation-cap student-graduate"></i> <span class="graduates-in">Graduates in {{ $profile->grad_date }}</span>
+				        		</div>
+
+					        	@if(isset($linkedin_url) || isset($portfolium_url))
+					        	<div class="col-sm-7">
+					        		<ul class="list-inline list-unstyled">
+					        			@if(isset($linkedin_url))
+					        			<li>
+						        			<a href="{{ $linkedin_url }}">
+						        				<img class="social-media-btn-img" src="{{ asset('imgs/linkden.svg' ) }}" alt="linkedin" />
+						        				<p>LinkedIn</p>
+						    				</a>
+					    				</li>
+					        			@endif
+					        			@if(isset($portfolium_url))
+					        			<li>
+					        				<a href="{{ ($portfolium_url) }}">
+					        				<img class="social-media-btn-img" src="{{ asset('imgs/Hover.svg' ) }}" alt="portfolium" />
+					        				<p>Portfolium</p>
+					    					</a>
+					        			</li>
+					        			@endif
+					        		</ul>
+					        	</div>
+					        	@endif					        		
+			        		
+			        		</div>
 		    			</div>
 			        </div>
-			        <div class="row">
-			        	<div class="col-sm-12 text-center"><p class="student-title">{{ $profile->position }}</p></div>
-			        </div>
-			        <div class="row">
-			        	<div class="col-sm-12 text-center"><i class="fa fa-graduation-cap student-graduate"></i> <span class="graduates-in">Graduates in {{ $profile->grad_date }}</span></div>
-			        </div>
-			        <div class="row">
-			        	<div class="col-sm-1"></div>
+		        </div>
+		        <div class="row">
+		        	<div class="col-md-10 col-md-offset-2">
 			        	<div class="col-sm-10 text-left student-seb">
+			        		<h2 class="student-seb-title">Background</h2>
+			        		<ul class="student-seb-list">
+			        		@if($profile->background)
+								<li class="student-seb-list-items">{{ $profile->background }}</li>
+			        		@else
+								<li class="student-seb-list-items">No background added yet</li>
+			        		@endif
+			        		</ul>
+			        	</div>
+		        	</div>
+		        </div>
+		        <div class="row">
+		        	<div class="student-info__skills col-md-10 col-md-offset-2">
+
+			        	<div class="col-sm-5 text-left student-seb">
 			        		<h2 class="student-seb-title">Skills</h2>
 			        		<ul class="student-seb-list">
 			        		@if($profile->skills->count() > 0)
@@ -236,40 +253,45 @@
 			        		@endif
 			        		</ul>
 			        	</div>
-			        	<div class="col-sm-1"></div>
-			        </div>
-			        <div class="row">
-			        	<div class="col-sm-1"></div>
-			        	<div class="col-sm-10 text-left student-seb">
+			        	<div class="col-sm-5 text-left student-seb">
 			        		<h2 class="student-seb-title">Experience</h2>
 			        		<ul class="student-seb-list">
 			        		@if($profile->experience->count() > 0)
 			        			@foreach($profile->experience as $exp)
-									<li class="student-seb-list-items">{{ $exp->experience }}</li>
+								<li class="student-seb-list-items">{{ $exp->experience }}</li>
 			        			@endforeach
 			        		@else
 								<li class="student-seb-list-items">No experience added yet</li>
 			        		@endif
 			        		</ul>
 			        	</div>
-			        	<div class="col-sm-1"></div>
-			        </div>
+		        	</div>
+		        </div>
+		        <div class="container-fluid">
 			        <div class="row">
-			        	<div class="col-sm-1"></div>
-			        	<div class="col-sm-10 text-left student-seb">
-			        		<h2 class="student-seb-title">Background</h2>
-			        		<ul class="student-seb-list">
-			        		@if($profile->background)
-								<li class="student-seb-list-items">{{ $profile->background }}</li>
-			        		@else
-								<li class="student-seb-list-items">No background added yet</li>
-			        		@endif
-			        		</ul>
-			        	</div>
-			        	<div class="col-sm-1"></div>
+<!-- NEED TO ADD IN ALL OF THE PROJECTS NAMES -->
+			        @for ($i = 0; $i < 4; $i++)
+			            <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3">
+			            	<div class="row"> 
+				            	<div class="col-xs-4 col-md-6">
+					                <h1 class="heading-block--profile">Project</h1>
+				            	</div>
+			            	</div>
+			            	<div class="row">		            		
+				            	<div class="col-xs-7 col-sm-4 col-md-6">	
+					        		<div class="card card-light student--info__project-card">
+							        	<div class="card-content-xl card-content-action">
+		<!-- NEED TO ADD IN ALL OF THE PROJECTS IMG & LINK					        	 -->
+							        		<a class="img-responsive" href="https://placeholdit.imgix.net/~text?txtsize=33&txt=350%C3%97150&w=350&h=150"><img src="" alt="Project Image"></a>
+							        	</div>
+							        </div>
+				            	</div>
+			            	</div>
+			        	</div>					            
+			        @endfor	        		
 			        </div>
-			      </div>
-			    </div>
+		        </div><!-- end container-fluid -->
+	        </div><!-- end container -->
 		@endif
 			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 			  <div class="modal-dialog" role="document">
@@ -340,36 +362,4 @@
 			        <div class="row">
 			        	<div class="col-sm-1"></div>
 			        	<div class="col-sm-10 text-left student-seb">
-			        		<h2 class="student-seb-title">Experience</h2>
-			        		<ul class="student-seb-list">
-			        		@if($profile->experience->count() > 0)
-			        			@foreach($profile->experience as $exp)
-									<li class="student-seb-list-items">{{ $exp->experience }}</li>
-			        			@endforeach
-			        		@else
-								<li class="student-seb-list-items">No experience added yet</li>
-			        		@endif
-			        		</ul>
-			        	</div>
-			        	<div class="col-sm-1"></div>
-			        </div>
-			        <div class="row">
-			        	<div class="col-sm-1"></div>
-			        	<div class="col-sm-10 text-left student-seb">
-			        		<h2 class="student-seb-title">Education</h2>
-			        		<ul class="student-seb-list">
-			        		@if($profile->background)
-								<li class="student-seb-list-items">{{ $profile->background }}</li>
-			        		@else
-								<li class="student-seb-list-items">No education added yet</li>
-			        		@endif
-			        		</ul>
-			        	</div>
-			        	<div class="col-sm-1"></div>
-			        </div>
-			      </div>
-			    </div>
-			</div>
-		</div>
-	</section>
-@endsection
+			        		
