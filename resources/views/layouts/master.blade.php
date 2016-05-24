@@ -17,6 +17,7 @@
         {{-- APP SCRIPTS --}}
         {!! HTML::script('js/app.js') !!}
         {!! HTML::script('js/profile/edit.js') !!}
+        @yield('scripts')
     </head>
     <body>
 

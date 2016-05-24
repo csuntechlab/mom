@@ -67,7 +67,7 @@ Edit Project
 							<div class="col-sm-12">
 								<div class="form-group">
 									{!! Form::label('title', 'Project Title') !!}
-									{!! Form::text('title', $project->meta->title, ['placeholder' => 'Title', 'class' => 'form-control']) !!}
+									{!! Form::text('title', $project->meta->title, ['placeholder' => 'Title', 'class' => 'form-control', 'maxlength' => '35']) !!}
 								</div>
 							</div>
 						</div>
@@ -83,7 +83,7 @@ Edit Project
 							<div class="col-sm-12">
 								<div class="form-group">
 									{!! Form::label('description', 'Project Description') !!}
-									{!! Form::textarea('description', $project->meta->description , ['placeholder' => 'Description', 'class' => 'form-control', 'rows' => '8'])!!}
+									{!! Form::textarea('description', $project->meta->description , ['placeholder' => 'Description', 'class' => 'form-control', 'rows' => '8', 'maxlength'=>'220'])!!}
 								</div>
 							</div>
 						</div>
