@@ -356,7 +356,7 @@ class ProjectController extends Controller
             'scrumMaster.profile.links', 'scrumMaster.profile.skills', 'scrumMaster.profile.experience', 'scrumMaster.profile.image', 
             'members.profile.links', 'members.profile.skills', 'members.profile.experience', 'members.profile.image',
             ])
-            ->get();
+            ->paginate(5);
         foreach($projects as $project) {
             $project->productOwner =  count($project->productOwner) ? $project->productOwner[0] : new User();
             $project->scrumMaster =  count($project->scrumMaster) ? $project->scrumMaster[0] : new User();
