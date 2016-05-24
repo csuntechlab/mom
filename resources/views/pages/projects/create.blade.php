@@ -2,6 +2,21 @@
 @section('title')
 Create Project
 @stop
+
+@section('scripts')
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#description').keyup(function(){
+			if($(this).val().length >= $(this).attr('maxlength'))
+			{	
+				var message = "Sorry {{ Auth::user()->first_name }}, the maximum character limit is " + $(this).attr('maxlength') + '.';
+				$(this).prev().html(message);
+			}
+		})
+	})
+</script>
+@stop
+
 @section('content')
 
 	<div class="header">
@@ -71,6 +86,7 @@ Create Project
 							<div class="col-sm-12">
 								<div class="form-group">
 									{!! Form::label('description', 'Project Description') !!}
+									<br><span></span>
 									{!! Form::textarea('description', '' , ['placeholder' => 'Description', 'class' => 'form-control', 'rows' => '8', 'maxlength'=>'220'])!!}
 								</div>
 							</div>
