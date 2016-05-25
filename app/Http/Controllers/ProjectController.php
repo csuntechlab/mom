@@ -341,6 +341,8 @@ class ProjectController extends Controller
         foreach($projects as $project) {
             $project->productOwner =  count($project->productOwner) ? $project->productOwner[0] : new User();
             $project->scrumMaster =  count($project->scrumMaster) ? $project->scrumMaster[0] : new User();
+
+            //return $projects;
         }
 
         

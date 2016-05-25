@@ -58,7 +58,8 @@ Our Work
                                               
                                                 <div class="col-xs-6 col-sm-6">
                                                     <?php $productOwner = "product-owner";
-                                                    $productOwnerID = $project->productOwner->user_id; ?>  
+                                                    $productOwnerID = $project->productOwner->user_id; 
+                                                    $scrumMasterID = $project->scrumMaster->user_id; ?>  
                                                                                                   
                                                                                                       
                                                 </div> 
@@ -97,15 +98,51 @@ Our Work
                     <div class="col-md-4 hidden-sm hidden-xs">
                         <div class="card card-light">
                             <div class="card-content-xl card-content-action">
-                                <div class="row ">
-                                    <div class="col-md-12">
-                                        <h3>Scope of Work</h3>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <p>{{$project->meta->description}}</p>
-                                    </div>
-                                                                    
-                                </div>  
+                                <div class="col-md-12">
+                                    <h3>Scope of Work</h3>
+                                </div>
+                                <div class="col-md-12">
+                                    <p>{{$project->meta->description}}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <h2 class="small">
+                                        Product Owner
+                                    </h2> 
+                                </div>
+                                <div class="col-md-6">
+                                    <h2 class="small">
+                                        Scrum Master
+                                    </h2> 
+                                </div>
+                                    
+                                @foreach($project->members as $member)
+                                    @if($member->user_id == $productOwnerID)
+                                        <div class="col-md-6">
+                                            <a href="{{$project->productOwner->profile_link}}">
+                                                @if(!empty($project->productOwner->profile->image))
+                                                    <img class="members--member-img" src="{{ asset('user-profile/image/' . $project->productOwner->profile->image)}}" alt="">
+                                                    <p class="small" style="padding-top: 1em;">{{$project->productOwner->first_name}}</p>
+                                                @else
+                                                    <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="{{$project->productOwner->first_name}}">
+                                                    <div class="members--member-name">{{$project->productOwner->first_name}}</div>
+                                                @endif
+                                            </a>
+                                        </div>
+                                    @endif
+                                    @if($member->user_id == $scrumMasterID)
+                                        <div class="col-md-6">
+                                            <a href="{{$project->scrumMaster->profile_link}}">
+                                                @if(!empty($project->scrumMaster->profile->image))
+                                                    <img class="members--member-img" src="{{ asset('user-profile/image/' . $project->scrumMaster->profile->image)}}" alt="">
+                                                    <p class="small" style="padding-top: 1em;">{{$project->scrumMaster->first_name}}</p>
+                                                @else
+                                                    <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="{{$project->scrumMaster->first_name}}">
+                                                    <div class="members--member-name">{{$project->scrumMaster->first_name}}</div>
+                                                @endif
+                                            </a>
+                                        </div>
+                                    @endif            
+                                @endforeach
                             </div>
                         </div>
                     </div>                  
@@ -253,6 +290,16 @@ Our Work
                 <div class="row">
                     <div class="col-sm-12 text-center"><p class="student-title">{{$member->profile['position']}}</p></div>
                 </div>
+                @if($productOwnerID == $memberID)
+                <div class="row">
+                    <div class="col-sm-12 text-center"><p class="student-title">Product Owner</p></div>
+                </div>
+                @elseif($scrumMasterID == $memberID)
+                 <div class="row">
+                    <div class="col-sm-12 text-center"><p class="student-title">Scrum Master</p></div>
+                </div>
+                @endif
+                
                 @if(!empty($member->profile['grad_date']))
                 <div class="row">
                     <div class="col-sm-12 text-center"><i class="fa fa-graduation-cap student-graduate"></i> <span class="graduates-in">Graduates in {{$member->profile['grad_date']}}</span></div>
