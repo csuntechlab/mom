@@ -17,14 +17,14 @@ Our Work
     <div class="container">
         <div class="row no-padding">
             <div class="col-xs-6 col-sm-4">
-                <h1 class="heading-block">Project</h1>
+                <h1 class="heading-block project-block">Project</h1>
             </div>
         </div>
         <div class="row no-padding">
             <div id="project{{$y}}" class="row-eq-height">
                 <div class="col-xs-12">
                     
-                    <div class="col-md-4">
+                    <div class="col-md-4 col-sm-12 col-xs-12">
                         <div class="card card-light">
                             <div class="card-content-xl card-content-action">
                                 <h2>{{ $project->meta->title }}</h2>
@@ -43,7 +43,7 @@ Our Work
 
                                 <div class="collapse out hidden-md hidden-lg hidden-xl" id="collapse{{ $y }}" aria-expanded="false"> 
                                     <!-- part 1 of well 1 -->
-                                    <div class="padding well card-dropdown card-light">
+                                    <div class="work padding well card-dropdown card-light">
                                         <div class="row">
                                             <div class="col-xs-7 ">
                                                 <h3>Scope of Work</h3>
@@ -55,7 +55,7 @@ Our Work
                                         <!--  part two of first well-->
                                         <div class="">
                                             <div class="row">                    
-                                                <div class="col-xs-6 col-sm-6">
+                                                <div class="col-xs-12 col-sm-12">
                                                     <?php $productOwner = "product-owner";
                                                     $productOwnerID = $project->productOwner->user_id; ?>  
                                                     @if(!empty($project->productOwner->profile) && !empty($project->productOwner->profile->image))
@@ -63,26 +63,26 @@ Our Work
                                                     @else
                                                         <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="">
                                                     @endif                                                    
+                                                </div>
+                                                <div class="col-xs-12 col-sm-12">
+                                                    <h3 class="small">{{$project->productOwner->first_name}}</h3>
                                                 </div> 
-                                                <div class="col-xs-6 col-sm-6">                    
+                                                <div class="col-xs-12 col-sm-12">                    
                                                     @if(!empty($project->scrumMaster->profile) && !empty($project->scrumMaster->profile->image))
                                                         <img class="members--member-img" src="{{ asset('user-profile/image/' .'sm_'. $project->scrumMaster->profile->image->src)}}" alt="">
                                                     @else
                                                         <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="">
                                                     @endif                                                    
                                                 </div>
-                                                <div class="col-xs-6 col-sm-6">
-                                                    <p>{{$project->productOwner->first_name}}</p>
-                                                </div>
-                                                <div class="col-xs-6 col-sm-6">
-                                                    <p>{{$project->scrumMaster->first_name}}</p>
+                                                <div class="col-xs-12 col-sm-12">
+                                                    <h3 class="small">{{$project->scrumMaster->first_name}}</h3>
                                                 </div> 
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="padding well card-dropdown card-light col-xs-12 col-sm-12"> 
-                                        <div class="container">
+                                    <div class="padding work well card-dropdown card-light col-xs-12 col-sm-12"> 
+                                        <div class="">
                                         @foreach($project->members as $member)
                                             <div class="row">
                                                 <div class="padding col-xs-3 col-xs-offset-3">

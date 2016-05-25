@@ -90,10 +90,6 @@
   height: 200px;
 }
 
-.product-owner {
-  box-shadow: 0 0 10px $brand-primary;
-}
-
 
 .student-name {
   background-image: url('../imgs/red-line.png');
@@ -243,4 +239,14 @@
 }
 .card-content-xl img {
   margin: 0 auto;
+}
+
+@media(max-width: 991px){
+  .work.well {
+    border: none;
+  }
+
+ h1.project-block{
+  min-width: 0 !important;
+ }
 }

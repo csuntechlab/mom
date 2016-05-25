@@ -5838,9 +5838,6 @@ address strong {
   width: 200px;
   height: 200px; }
 
-.product-owner {
-  box-shadow: 0 0 10px #CD1C26; }
-
 .student-name {
   background-image: url("../imgs/red-line.png");
   background-position: bottom left;
@@ -5957,6 +5954,12 @@ address strong {
 .card-content-xl img {
   margin: 0 auto; }
 
+@media (max-width: 991px) {
+  .work.well {
+    border: none; }
+
+  h1.project-block {
+    min-width: 0 !important; } }
 .projects h1, .projects h2, .projects h3, .projects h4, .projects h5, .projects h6 {
   text-transform: none; }
 .projects li.media {
