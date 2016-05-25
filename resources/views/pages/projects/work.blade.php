@@ -72,10 +72,10 @@ Our Work
                                                     @endif                                                    
                                                 </div>
                                                 <div class="col-xs-6 col-sm-6">
-                                                    <p>{{$project->productOwner->display_name}}</p>
+                                                    <p>{{$project->productOwner->first_name}}</p>
                                                 </div>
                                                 <div class="col-xs-6 col-sm-6">
-                                                    <p>{{$project->scrumMaster->display_name}}</p>
+                                                    <p>{{$project->scrumMaster->first_name}}</p>
                                                 </div> 
                                             </div>
                                         </div>
@@ -130,21 +130,21 @@ Our Work
                                     @if(!empty($project->productOwner->profile) && !empty($project->productOwner->profile->image))
                                         <img class="members--member-img" src="{{ asset('user-profile/image/' . 'sm_' . $project->productOwner->profile->image->src)}}" alt="">
                                     @else
-                                        <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="{{$member->display_name}}">
+                                        <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="{{$project->productOwner->first_name}}">
                                     @endif
                                     </div>  
                                     <div class="col-md-6">
                                     @if(!empty($project->scrumMaster->profile) && !empty($project->scrumMaster->profile->image))
                                         <img class="members--member-img" src="{{ asset('user-profile/image/' . 'sm_' . $project->scrumMaster->profile->image->src)}}" alt="">
                                     @else
-                                        <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="{{$member->display_name}}">
+                                        <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="{{$project->scrumMaster->first_name}}">
                                     @endif
                                     </div>
                                     <div class="col-md-6">
-                                        <p class="small">{{$project->productOwner->display_name}}</p>
+                                        <p class="small">{{$project->productOwner->first_name}}</p>
                                     </div> 
                                     <div class="col-md-6">
-                                        <p class="small">{{$project->scrumMaster->display_name}}</p>
+                                        <p class="small">{{$project->scrumMaster->first_name}}</p>
                                     </div>                                 
                                 </div>  
                             </div>
@@ -175,7 +175,7 @@ Our Work
                                               <div class="no-padding">
                                                 <a href="{{ $member->profile_link }}" class="thumbnail">
                                                     @if(!empty($member->profile) && !empty($member->profile->image))
-                                                        <img class="members--member-img <?php echo $productOwner; ?>" src="{{ asset('user-profile/image/' . 'sm_' . $member->profile->image->src)}}" alt="{{$member->display_name}}">
+                                                        <img class="members--member-img" src="{{ asset('user-profile/image/' . 'sm_' / $member->profile->image->src)}}" alt="{{$member->first_name}}">
                                                     @else
                                                         <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="{{$member->first_name}}">
                                                     @endif
@@ -206,7 +206,7 @@ Our Work
 
                                     <a href="{{ $member->profile_link }}" class="members--member" >
                                     @if(!empty($member->profile) && !empty($member->profile->image))
-                                        <img class="members--member-img <?php echo $productOwner; ?>" src="{{ asset('user-profile/image/' . 'sm_' . $member->profile->image->src)}}" alt="{{$member->display_name}}">
+                                        <img class="members--member-img <?php echo $productOwner; ?>" src="{{ asset('user-profile/image/' . 'sm_' . $member->profile->image->src)}}" alt="{{$member->first_name}}">
                                     @else
                                         <img class="members--member-img <?php echo $productOwner; ?>" src="{{ asset('/imgs/anonymous.png') }}" alt="{{$member->first_name}}">
                                     @endif
@@ -357,6 +357,9 @@ Our Work
     </div>
 </section>
 @endforeach
+<div class="text-center"> 
+{{ $projects->links() }} 
+</div>
 <script>
 
 var projects = $('.projects').length;
