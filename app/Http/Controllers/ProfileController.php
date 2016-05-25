@@ -70,7 +70,24 @@ class ProfileController extends Controller
         }
         
         // Find the user profile
-        $profile = Profile::with('skills', 'links', 'image')->findOrFail($id);
+        $profile = Profile::with('skills', 'links', 'image')->find($id);
+        // here let's handle the case were the user has not logged in ever
+        // and maybe he won't log in ever but people whould still be able to
+        // view the profile
+        if(is_null($profile)) {
+            try{
+              $profile = Profile::create([
+                'individuals_id'  => $id,
+                'background'      => "",
+                'position'        => "",
+                'grad_date'       => NULL
+              ]);
+            } catch (\PDOException $e){
+              // add some sort of notification of error
+              return redirect()->back();
+            }
+        }
+
 
         // if(!Auth::user()->canEdit($profile->individuals_id)){
         //     throw new PermissionDeniedException();
