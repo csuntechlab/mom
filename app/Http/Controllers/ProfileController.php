@@ -87,11 +87,6 @@ class ProfileController extends Controller
               return redirect()->back();
             }
         }
-
-
-        // if(!Auth::user()->canEdit($profile->individuals_id)){
-        //     throw new PermissionDeniedException();
-        // }
         // Get the user's skills if he's updated any
         $profile_skills = $profile->skills->lists('research_id')->toArray();
         //return $profile_skills;
@@ -115,24 +110,7 @@ class ProfileController extends Controller
             }
         }
 
-    	// Return corresponding indiviudals profile edit page
-        // if($profile->isConfidential())
-        // {
-        //     if(Auth::user()->isOwner($profile->individuals_id))
-        //     {
-        //         return view('pages.profiles.edit-student', compact('skills', 'profile', 'profile_skills', 'linkedin_url', 'portfolium_url', 'github_url', 'years'));
-        //     }
-
-        //     else
-        //     {
-        //         abort(404);
-        //     }
-    
-        // }
-
         return view('pages.profiles.edit-student', compact('skills', 'profile', 'profile_skills', 'linkedin_url', 'portfolium_url', 'github_url', 'years'));
-
-
     }
 
     // Update the user's profile
