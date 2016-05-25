@@ -59,6 +59,7 @@ Our Work
                                             <div class="row">                    
                                                 <div class="col-xs-6 col-sm-6">
                                                     <?php $productOwner = "product-owner";
+<<<<<<< HEAD
                                                     $productOwnerID = $project->productOwner->user_id; ?>  
                                                     @if(!empty($project->productOwner->profile) && !empty($project->productOwner->profile->image))
                                                         <img class="members--member-img" src="{{ asset('user-profile/image/' .'sm_'. $project->productOwner->profile->image->src)}}" alt="">
@@ -78,6 +79,12 @@ Our Work
                                                 </div>
                                                 <div class="col-xs-6 col-sm-6">
                                                     <p>{{$project->scrumMaster->first_name}}</p>
+=======
+                                                    $productOwnerID = $project->productOwner->user_id; 
+                                                    $scrumMasterID = $project->scrumMaster->user_id; ?>  
+                                                                                                  
+                                                                                                      
+>>>>>>> MP-132
                                                 </div> 
                                             </div>
                                         </div>
@@ -111,6 +118,7 @@ Our Work
                     <div class="col-md-4 hidden-sm hidden-xs">
                         <div class="card card-light">
                             <div class="card-content-xl card-content-action">
+<<<<<<< HEAD
                                 <div class="row ">
                                     <div class="col-md-12">
                                         <h3>Scope of Work</h3>
@@ -149,6 +157,53 @@ Our Work
                                         <p class="small">{{$project->scrumMaster->first_name}}</p>
                                     </div>                                 
                                 </div>  
+=======
+                                <div class="col-md-12">
+                                    <h3>Scope of Work</h3>
+                                </div>
+                                <div class="col-md-12">
+                                    <p>{{$project->meta->description}}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <h2 class="small">
+                                        Product Owner
+                                    </h2> 
+                                </div>
+                                <div class="col-md-6">
+                                    <h2 class="small">
+                                        Scrum Master
+                                    </h2> 
+                                </div>
+                                    
+                                @foreach($project->members as $member)
+                                    @if($member->user_id == $productOwnerID)
+                                        <div class="col-md-6">
+                                            <a href="{{$project->productOwner->profile_link}}">
+                                                @if(!empty($project->productOwner->profile->image))
+                                                    <img class="members--member-img" src="{{ asset('user-profile/image/' . $project->productOwner->profile->image)}}" alt="">
+                                                    <p class="small" style="padding-top: 1em;">{{$project->productOwner->first_name}}</p>
+                                                @else
+                                                    <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="{{$project->productOwner->first_name}}">
+                                                    <div class="members--member-name">{{$project->productOwner->first_name}}</div>
+                                                @endif
+                                            </a>
+                                        </div>
+                                    @endif
+                                    @if($member->user_id == $scrumMasterID)
+                                        <div class="col-md-6">
+                                            <a href="{{$project->scrumMaster->profile_link}}">
+                                                @if(!empty($project->scrumMaster->profile->image))
+                                                    <img class="members--member-img" src="{{ asset('user-profile/image/' . $project->scrumMaster->profile->image)}}" alt="">
+                                                    <p class="small" style="padding-top: 1em;">{{$project->scrumMaster->first_name}}</p>
+                                                @else
+                                                    <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="{{$project->scrumMaster->first_name}}">
+                                                    <div class="members--member-name">{{$project->scrumMaster->first_name}}</div>
+                                                @endif
+                                            </a>
+                                        </div>
+                                    @endif            
+                                @endforeach
+>>>>>>> MP-132
                             </div>
                         </div>
                     </div>                  
@@ -223,6 +278,7 @@ Our Work
                 </div>  
                 <?php $y++; ?>
             </div>
+<<<<<<< HEAD
         </div> <!-- edn of row --->
 
         <!-- Student Modal -->
@@ -356,6 +412,9 @@ Our Work
           </div>
         </div>
         @endforeach
+=======
+        </div> <!-- edn of row -->
+>>>>>>> MP-132
     </div>
 </section>
 @endforeach
