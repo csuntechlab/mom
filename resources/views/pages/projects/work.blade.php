@@ -59,7 +59,8 @@ Our Work
                                             <div class="row">                    
                                                 <div class="col-xs-6 col-sm-6">
                                                     <?php $productOwner = "product-owner";
-                                                    $productOwnerID = $project->productOwner->user_id; ?>  
+                                                    $productOwnerID = $project->productOwner->user_id; 
+                                                    $scrumMasterID = $project->scrumMaster->user_id;?>  
                                                     @if(!empty($project->productOwner->profile) && !empty($project->productOwner->profile->image))
                                                         <img class="members--member-img" src="{{ asset('user-profile/image/' .'sm_'. $project->productOwner->profile->image->src)}}" alt="">
                                                     @else
@@ -78,8 +79,7 @@ Our Work
                                                 </div>
                                                 <div class="col-xs-6 col-sm-6">
                                                     <p>{{$project->scrumMaster->first_name}}</p>
-                                                    $productOwnerID = $project->productOwner->user_id; 
-                                                    $scrumMasterID = $project->scrumMaster->user_id; ?>                                       
+                                                                                            
                                                 </div> 
                                             </div>
                                         </div>
