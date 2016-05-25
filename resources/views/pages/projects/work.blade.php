@@ -25,9 +25,9 @@ Our Work
                 <div class="col-xs-12">
                     
                     <div class="col-md-4 col-sm-12 col-xs-12">
-                        <div class="card card-light">
-                            <div class="card-content-xl card-content-action">
-                                <h2>{{ $project->meta->title }}</h2>
+                        <div class="card work card-light">
+                            <div class="work card-content-xl card-content-action">
+                                <h2 class="project-title">{{ $project->meta->title }}</h2>
                                 <hr class="line-inline">
                                 @if(!empty($project->image))
                                     <img src="{{ asset('imgs/projects/'.'lg_'.$project->image->src)}}" alt="Product image" class="img-responsive">
@@ -49,63 +49,76 @@ Our Work
                                                 <h3>Scope of Work</h3>
                                             </div>
                                             <div class="col-xs-12 col-sm-12">
-                                                <p>{{$project->meta->description}}</p>
+                                                <p style="padding-bottom: 1em;">{{$project->meta->description}}</p>
                                             </div>
                                         </div>
                                         <!--  part two of first well-->
                                         <div class="">
-                                            <div class="row">                    
-                                                <div class="col-xs-12 col-sm-12">
+                                            <div class="row">         
+                                                <div class="col-xs-6 col-sm-6">
+                                                    <p class="work small">Product Owner</p> 
+                                                </div>
+                                                <div class="col-xs-6 col-sm-6">
+                                                    <p class="work small">Scrum Master</p> 
+                                                </div>             
+                                                <div class="col-xs-6 col-sm-6">
                                                     <?php $productOwner = "product-owner";
                                                     $productOwnerID = $project->productOwner->user_id; ?>  
                                                     @if(!empty($project->productOwner->profile) && !empty($project->productOwner->profile->image))
                                                         <img class="members--member-img" src="{{ asset('user-profile/image/' .'sm_'. $project->productOwner->profile->image->src)}}" alt="">
                                                     @else
-                                                        <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="">
+                                                        <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="{{$project->productOwner->first_name}}">
                                                     @endif                                                    
                                                 </div>
-                                                <div class="col-xs-12 col-sm-12">
-                                                    <h3 class="small">{{$project->productOwner->first_name}}</h3>
-                                                </div> 
-                                                <div class="col-xs-12 col-sm-12">                    
+                                                <div class="col-xs-6 col-sm-6">                    
                                                     @if(!empty($project->scrumMaster->profile) && !empty($project->scrumMaster->profile->image))
                                                         <img class="members--member-img" src="{{ asset('user-profile/image/' .'sm_'. $project->scrumMaster->profile->image->src)}}" alt="">
                                                     @else
-                                                        <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="">
+                                                        <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="{{$project->scrumMaster->first_name}}">
                                                     @endif                                                    
                                                 </div>
-                                                <div class="col-xs-12 col-sm-12">
+                                                <div class="col-xs-6 col-sm-6">
+                                                    <h3 class="small">{{$project->productOwner->first_name}}</h3>
+                                                </div> 
+                                                
+                                                <div class="col-xs-6 col-sm-6">
                                                     <h3 class="small">{{$project->scrumMaster->first_name}}</h3>
                                                 </div> 
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="padding work well card-dropdown card-light col-xs-12 col-sm-12"> 
+                                    <div class="work well card-dropdown card-light col-xs-12 col-sm-12"> 
                                         <div class="">
+
+                                        <p class="work small" style="padding-bottom: 1em;">Team Members</p> 
+                                                
                                         @foreach($project->members as $member)
-                                            <div class="row">
-                                                <div class="padding col-xs-3 col-xs-offset-3">
+                                            <div class="row" style="padding-bottom: 1em;">
+                                                <div class="col-xs-6">
                                                     <?php $memberID = $member->user_id; 
                                                     $memberIdModal = explode(":", $memberID); ?>
                                                     <a href="{{ $member->profile_link }}" data-toggle="modal" data-target="#<?php echo $memberIdModal[1]; ?>">
                                                         @if(!empty($member->profile) && !empty($member->profile->image))
                                                             <img class="members--member-img" src="{{ asset('user-profile/image/' . 'sm_' . $member->profile->image->src)}}" alt="">
+                                                        @else
+                                                           <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="{{$member->first_name}}"> 
                                                         @endif 
                                                     </a>                                                     
                                                 </div>
-                                                <div class="col-xs-12">
+                                                <div class="col-xs-6" style="padding-top: 0.8em;">
                                                     <h3 class="small">{{$member->first_name}}</h3>
                                                 </div>
                                             </div>
                                         @endforeach
                                         </div>
                                     </div> 
-                                </div>                                                                
+                                </div> 
 <!-- END MOBILE DROPDOWN  -->
                             </div>
                         </div>
                     </div>
+
                     <div class="col-md-4 hidden-sm hidden-xs">
                         <div class="card card-light">
                             <div class="card-content-xl card-content-action">
@@ -221,139 +234,9 @@ Our Work
                 </div>  
                 <?php $y++; ?>
             </div>
-        </div> <!-- edn of row --->
 
-        <!-- Student Modal -->
-        @foreach($project->members as $member)
-        <?php
-            $memberID = $member->user_id; 
-            $memberIdModal = explode(":", $memberID);
-
-                if($productOwnerID == $memberID){
-                    $productOwner = "product-owner";
-                }
-                else {
-                    $productOwner = "";
-                }
-         ?>
-        <div class="modal fade" id="<?php echo $memberIdModal[1]; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-body student lines-back">
-                <div class="row">
-                    <div class="col-xs-12 text-center">
-                        @if(!empty($member->profile) && !empty($member->profile->image))
-                            <img class="student-image <?php echo $productOwner; ?>" src="{{ asset('user-profile/image/' . 'lg_' . $member->profile->image->src)}}" alt="student image">
-                        @else
-                            <img class="student-image <?php echo $productOwner; ?>" src="{{ asset('/imgs/anonymous.png') }}" alt="student image">
-                        @endif
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-12 text-center">
-                        @if(!empty($member->profile) && !empty($member->profile->links))
-                        @foreach($member->profile->links as $link)
-                            @if($link->type == 'linkedin' && !empty($link->pivot->link_url))
-                            <div class="social-media-btn">
-                                <a href="{{$link->pivot->link_url}}">
-                                    <img class="social-media-btn-img" src="{{ asset('imgs/linkden.svg' ) }}" alt="linkedin" />
-                                    <p>LinkedIn</p>
-                                </a>
-                            </div>
-                            @endif
-                            @if($link->type == 'portfolium' && !empty($link->pivot->link_url))
-                            <div class="social-media-btn">
-                                <a href="{{$link->pivot->link_url}}">
-                                    <img class="social-media-btn-img" src="{{ asset('imgs/Hover.svg' ) }}" alt="portfolium" />
-                                    <p>Portfolium</p>
-                                </a>
-                            </div>
-                            @endif
-                            @if($link->type == 'github' && !empty($link->pivot->link_url))
-                                <div class="social-media-btn">
-                                <a href="{{$link->pivot->link_url}}">
-                                    <img class="social-media-btn-img" src="{{ asset('imgs/github.svg' ) }}" alt="github" />
-                                    <p>GitHub</p>
-                                </a>
-                            </div>
-                            @endif
-                            @if($link->type == 'website' && !empty($link->pivot->link_url))
-                                <div class="social-media-btn">
-                                <a href="{{$link->pivot->link_url}}">
-                                    <img class="social-media-btn-img" src="{{ asset('imgs/sphere.svg' ) }}" alt="website" />
-                                    <p>Website</p>
-                                </a>
-                            </div>
-                            @endif
-                        @endforeach
-                        @endif
-                    </div>
-                </div>
-                
-                <div class="row">
-                    <div class="col-sm-12 text-center">
-                        <p class="student-name">{{$member->first_name}}</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12 text-center"><p class="student-title">{{$member->profile['position']}}</p></div>
-                </div>
-                @if(!empty($member->profile['grad_date']))
-                <div class="row">
-                    <div class="col-sm-12 text-center"><i class="fa fa-graduation-cap student-graduate"></i> <span class="graduates-in">Graduates in {{$member->profile['grad_date']}}</span></div>
-                </div>
-                @endif
-                <div class="row">
-                    <div class="col-sm-1"></div>
-                    <div class="col-sm-10 text-left student-seb">
-                        <h2 class="student-seb-title">Skills</h2>
-                        <ul class="student-seb-list">
-                        @if(!empty($member->profile))
-                            @foreach($member->profile->skills as $skill)
-                                <li class="student-seb-list-items"><span class="student-seb-list-item-space"></span>{{$skill->title}}</li>
-                            @endforeach
-                        @else
-                            <li class="student-seb-list-items"><span class="student-seb-list-item-space"></span>Student has not registrered any skills.</li>
-                        @endif
-                        </ul>
-                    </div>
-                    <div class="col-sm-1"></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-1"></div>
-                    <div class="col-sm-10 text-left student-seb">
-                        <h2 class="student-seb-title">Experience</h2>
-                        <ul class="student-seb-list">
-                            @if(!empty($member->profile))
-                            @foreach($member->profile->experience as $experience)
-                                <li class="student-seb-list-items"><span class="student-seb-list-item-space"></span>{{$experience->experience}}</li>
-                            @endforeach
-                        @else
-                            <li class="student-seb-list-items"><span class="student-seb-list-item-space"></span>Student has not registrered any experience.</li>
-                        @endif
-                        </ul>
-                    </div>
-                    <div class="col-sm-1"></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-1"></div>
-                    <div class="col-sm-10 text-left student-seb">
-                        <h2 class="student-seb-title">Education</h2>
-                        <div class="student-seb-list">
-                            @if(!empty($member->profile['background']))
-                                <li class="student-seb-list-items"><span class="student-seb-list-item-space"></span>{{$member->profile['background']}}</li>
-                            @else
-                                 <p><span class="student-seb-list-item-space"></span>Student has not registrered any education.</p>
-                            @endif
-                        </div>
-                    </div>
-                    <div class="col-sm-1"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        @endforeach
+        </div> <!-- edn of row -->
+        <hr class="visible-sm visible-xs hidden-md hidden-lg" />
     </div>
 </section>
 @endforeach
