@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@section('title')
 @section('content')
 	<section class="section page-hero work-banner">
 		  <div class="dark-overlay"></div>
@@ -190,15 +191,15 @@
 				    	</div>
 				    	@endif
 			        	<div class="col-sm-7 col-md-6 col-md-offset-1">
-			        		<div class="row">		        			
-				        		<p class="col-xs-7 col-sm-7 student--info student-name">{{ $profile->display_name }}</p>
-				        		<p class="col-xs-7 col-sm-7 student--info student-title">{{ $profile->position }}</p>
-				        		<div class="col-xs-7 col-sm-7">
+			        		<div class="row student--info__content">		        			
+				        		<p class="col-xs-8 col-sm-7 student--info student-name">{{ $profile->display_name }}</p>
+				        		<p class="col-xs-9 col-sm-7 student--info student-title">{{ $profile->position }}</p>
+				        		<div class="col-xs-8 col-sm-7">
 					        		<i class="student--info fa fa-graduation-cap student-graduate"></i> <span class="graduates-in">Graduates in {{ $profile->grad_date }}</span>
 				        		</div>
 
 					        	@if(isset($linkedin_url) || isset($portfolium_url))
-					        	<div class="col-sm-7">
+					        	<div class="col-xs-offset-1 col-xs-11 col-sm-7">
 					        		<ul class="list-inline list-unstyled">
 					        			@if(isset($linkedin_url))
 					        			<li>
@@ -271,7 +272,7 @@
 			        <div class="row">
 <!-- NEED TO ADD IN ALL OF THE PROJECTS NAMES -->
 			        @for ($i = 0; $i < 4; $i++)
-			            <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3">
+			            <div class="student--info__project col-xs-12 col-sm-5 col-md-4 col-lg-3">
 			            	<div class="row"> 
 				            	<div class="col-xs-4 col-md-6">
 					                <h1 class="heading-block--profile">Project</h1>
@@ -362,4 +363,4 @@
 			        <div class="row">
 			        	<div class="col-sm-1"></div>
 			        	<div class="col-sm-10 text-left student-seb">
-			        		
+@endsection
