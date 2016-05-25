@@ -33,6 +33,10 @@ class Project extends Model
         return $this->hasOne('Mom\Models\ProjectMeta', 'project_id');
     }
 
+    public function link() {
+        return $this->hasOne('Mom\Models\LinkEntity', 'entities_id', 'project_id');
+    }
+
     public function members() {
         return $this->belongsToMany('Mom\Models\User', 'nemo.memberships', 'parent_entities_id', 'individuals_id')
                 ->withPivot('role_position')

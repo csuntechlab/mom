@@ -93,6 +93,14 @@ Create Project
 						<div class="row">
 							<div class="col-sm-12">
 								<div class="form-group">
+									{!! Form::label('url', 'Project URL') !!}
+									{!! Form::url('url', '',['placeholder' => 'https://', 'class'=> 'form-control']) !!}
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="form-group">
 									{!! Form::label('description', 'Project Description') !!}
 									<br><span></span>
 									{!! Form::textarea('description', '' , ['placeholder' => 'Description', 'class' => 'form-control', 'rows' => '8', 'maxlength'=>'220'])!!}

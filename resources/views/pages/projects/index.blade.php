@@ -49,7 +49,7 @@ Projects
                         <li class="media">
                             <div class="media-left">
                                 <!-- Add link for project demo here -->
-                                <a href="" title="">
+                                <a href="{{isset($project->link) ? $project->link->link_url : ''}}" title="">
                                     @if($project->image)
                                     <div style="background: url({{ asset('imgs/projects/' . 'lg_' . $project->image->src)  }}); background-size: cover; width: 225px; height: 150px;"></div>
                                     @else

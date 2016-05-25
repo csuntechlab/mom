@@ -6,6 +6,7 @@ use Mom\Models\Image;
 use Mom\Models\Project;
 use Mom\Models\ProjectMeta;
 use Mom\Models\NemoEntity;
+use Mom\Models\LinkEntity;
 use Mom\Models\User;
 use Mom\Models\Role;
 use Mom\Http\Requests;
@@ -44,7 +45,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-         $projects = Project::with(['meta', 'productOwner', 'scrumMaster', 'members', 'image'])->get();
+         $projects = Project::with(['meta', 'productOwner', 'scrumMaster', 'members', 'image', 'link'])->get();
         // remove 'projects:' from project_id to only have the integers
         // Take into account projects with no product owner and scrum master
         // if count > 0 then it is true
@@ -135,6 +136,13 @@ class ProjectController extends Controller
             // add some sort of notification of error
             return redirect()->back();
         }
+        if($request->url){
+            LinkEntity::create([
+                'entities_id' => $project_id,
+                'link_id'     => 5,
+                'link_url'    => $request->url
+            ]);
+        }
 
         // lazy load relationships to add PO, SM, and members.
         $project->load('meta', 'productOwner', 'scrumMaster', 'members');
@@ -192,7 +200,7 @@ class ProjectController extends Controller
         // ModelNotFoundException exception will be caught for
         // findOrFail under the /project URI
         // eager load relationships as well
-        $project = Project::with(['meta', 'productOwner', 'scrumMaster', 'members', 'image'])->findOrFail('projects:' . $id);
+        $project = Project::with(['meta', 'productOwner', 'scrumMaster', 'members', 'image', 'link'])->findOrFail('projects:' . $id);
         $project->project_id = $id;
 
         // Take into account projects with no product owner and scrum master
@@ -291,7 +299,11 @@ class ProjectController extends Controller
             }
             
         }
-        
+
+        $linkEntity = LinkEntity::updateOrCreate(
+            ['entities_id'=>'projects:'.$id, 'link_id'=>5], 
+            ['link_url' => $request->url]
+        );
 
         // lazy load relationships to update PO, SM, and members. Also title and description (meta).
         $project->load('productOwner', 'scrumMaster', 'members', 'meta');
@@ -358,6 +370,7 @@ class ProjectController extends Controller
             'productOwner.profile.links', 'productOwner.profile.skills', 'productOwner.profile.experience', 'productOwner.profile.image',
             'scrumMaster.profile.links', 'scrumMaster.profile.skills', 'scrumMaster.profile.experience', 'scrumMaster.profile.image', 
             'members.profile.links', 'members.profile.skills', 'members.profile.experience', 'members.profile.image',
+            'link'
             ])
             ->paginate(5);
         foreach($projects as $project) {
