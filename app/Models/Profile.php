@@ -44,7 +44,7 @@ class Profile extends Model
   * @return Builder
   */
   public function skills() {
-    return $this->belongsToMany('Mom\Models\Skill', 'mom.person_expertise', 'individuals_id', 'expertise_id');
+    return $this->belongsToMany('Mom\Models\Skill', 'mom.person_expertise', 'entities_id', 'expertise_id');
   }
 
   /*
