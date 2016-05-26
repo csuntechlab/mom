@@ -50,11 +50,13 @@ class Project extends Model
                 ->wherePivot('role_position', 'scrum_master');
     }
 
-    public function memberIsPOorSM(Profile $profile)
-    {
-        return NemoMembership::where('individuals_id', $profile->id)
-        ->where('role_position', 'product_owner')
-        ->first();
-    }
+    public function projectsFilter(Profile $profile)
+  {
+    return $profile->projects()
+    ->wherePivot('role_position', 'product_owner')
+    ->wherePivot('individuals_id', $profile->id)
+    ->wherePivot('parent_entities_id', $this->id)
+    ->first();
+  }
 
 }

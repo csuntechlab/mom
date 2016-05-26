@@ -64,19 +64,18 @@ class ProfileController extends Controller
             ->firstOrFail()
             ->user_id;
         }
-        
         // Find the user profile
         $profile = Profile::with('skills', 'links', 'image', 'projects')->findOrFail($id);
 
         // if(!Auth::user()->canEdit($profile->individuals_id)){
         //     throw new PermissionDeniedException();
         // }
+
         // Get the user's skills if he's updated any
         $profile_skills = $profile->skills->lists('research_id')->toArray();
-        //return $profile_skills;
 
         // Get the entire collection of skills from research view
-        $skills = Skill::all()->lists('title', 'research_id')->toArray();
+        $skills = Skill::all()->lists('title', 'expertise_id')->toArray();
 
         // Create a years range for graduation year
         $range = range(date("Y"), date("Y") + 4);

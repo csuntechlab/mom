@@ -43,6 +43,13 @@
 				    	</div>
 					</div>
 					<div class="row">
+
+						@foreach($profile->filteredProjects() as $project)
+						<h1>{{ $project->project->title }} - {{ $project->role_position }}</h1>
+						@endforeach
+
+
+
 						<div class="col-sm-8 col-sm-offset-2">
 							<div class="social-media">
 					    		<div class="form-group">
@@ -111,10 +118,7 @@
 				    	<div class="col-sm-8 col-sm-offset-2">
 					    	<div class="student-seb">
 					    		<div class="form-group">
-					    	@foreach($profile['projects'] as $project)
-					    		
-						    	<h1>{{ $project->meta->title }} - {{ $project->pivot->role_position }}</h1>
-						    @endforeach
+					    	
 						    		<label class="student-seb-title">Skills</label>
 						    		<ul id="skills_list" class="list-unstyled">
 						    			<li>

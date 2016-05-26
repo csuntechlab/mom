@@ -43,7 +43,7 @@ class Profile extends Model
   * @return Builder
   */
   public function skills() {
-    return $this->belongsToMany('Mom\Models\Skill', 'mom.person_expertise', 'individuals_id', 'expertise_id');
+    return $this->belongsToMany('Mom\Models\Skill', 'mom.person_expertise', 'entities_id', 'expertise_id');
   }
 
   /*
@@ -70,10 +70,21 @@ class Profile extends Model
     return User::find($this->individuals_id)->confidential;
   }
 
-  // returns projects this profile is associated with
+  /**
+  * Many to many relationship between Profile and Project models
+  * @return Builder
+  */
   public function projects() {
-    return $this->belongsToMany('Mom\Models\Project', 'nemo.memberships', 'individuals_id', 'parent_entities_id')
-    ->withPivot('role_position');
+    return $this->hasMany('Mom\Models\NemoMembership', 'individuals_id')
+    ->where('parent_entities_id', 'LIKE', 'projects:%');
+  }
+
+  public function filteredProjects()
+  {
+    $members = $this->projects->where('role_position', 'member');
+    $POandSM = $this->projects->whereIn('role_position', ['product_owner', 'scrum_master']);
+
+    return $members->merge($POandSM);
   }
 
 }

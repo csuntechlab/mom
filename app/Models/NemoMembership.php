@@ -14,4 +14,9 @@ class NemoMembership extends Model
 		'role_position',
 	];
 	public $incrementing = false;
+
+	public function project()
+	{
+		return $this->belongsTo('Mom\Models\ProjectMeta', 'parent_entities_id');
+	}
 }
