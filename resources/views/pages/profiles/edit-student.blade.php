@@ -44,11 +44,7 @@
 					</div>
 					<div class="row">
 
-						@if($profile->filteredProjects())
-						@foreach($profile->filteredProjects() as $project)
-						<h1>{{ $project->project->title }} - {{ $project->role_position }}</h1>
-						@endforeach
-						@endif
+					
 
 
 
@@ -277,6 +273,11 @@
 			        		</ul>
 			        	</div>
 			        	<div class="col-sm-1"></div>
+			        	@if($profile->filteredProjects())
+						@foreach($profile->filteredProjects() as $project)
+						<h1>{{ $project->project->title }} - {{ $project->role_position }}</h1>
+						@endforeach
+						@endif
 			        </div>
 			      </div>
 			    </div>
