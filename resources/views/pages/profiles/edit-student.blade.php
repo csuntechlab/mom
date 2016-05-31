@@ -125,7 +125,7 @@
 						    		<label class="student-seb-title">Skills</label>
 						    		<ul id="skills_list" class="list-unstyled">
 						    			<li>
-						    				{!! Form::select('skills[]', $skills, $profile_skills, ['multiple' => '', 'class' => 'chosen-select form-control', 'placeholder' => 'Add skill']) !!}
+						    				{!! Form::select('skills[]', $skills, $profile_skills, ['multiple' => '', 'class' => 'chosen-select form-control']) !!}
 						    			</li>
 						    		</ul>
 					    		</div>

@@ -88,7 +88,7 @@ class ProfileController extends Controller
             }
         }
         // Get the user's skills if he's updated any
-        $profile_skills = $profile->skills->lists('research_id')->toArray();
+        $profile_skills = $profile->skills->lists('expertise_id')->toArray();
 
         // Get the entire collection of skills from research view
         $skills = Skill::all()->lists('title', 'expertise_id')->toArray();
@@ -114,7 +114,7 @@ class ProfileController extends Controller
 
     // Update the user's profile
     public function postEdit(EditProfileRequest $request, $id)
-    {
+    {   
         $profile = Profile::findOrFail($id);
         // handle unauthorized POST requests
         if(!Auth::user()->canEdit($profile->individuals_id)){
@@ -174,32 +174,12 @@ class ProfileController extends Controller
         // If user has included something in the skills textbox
         if($request->has('skills')) 
         {
-            
-            if(count($profile->skills) > 0)
+            $profile->skills()->detach();
+
+            foreach ($request->skills as $val) 
             {
-
-                FrescoExpertiseEntity::where('entities_id', $id)->delete();
-
-                foreach ($request->skills as $val) 
-                {
-                    FrescoExpertiseEntity::create([
-                        'entities_id'  => $id,
-                        'expertise_id' => $val
-                    ]);
-                }
-            }   
-
-            else 
-            {
-                foreach ($request->skills as $value)
-                {
-                    FrescoExpertiseEntity::create([
-                        'entities_id'  => $id,
-                        'expertise_id' => $value
-                    ]);
-                }
+                $profile->skills()->attach($val);
             }
-            
         }
 
         // profile experiences section
