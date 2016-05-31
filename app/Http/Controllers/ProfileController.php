@@ -27,7 +27,7 @@ class ProfileController extends Controller
         // apply middleware as needed
         // use 'except' instead of 'only' if it's a short array
         $this->middleware('auth', ['except' => [
-            'getShowProfile',
+            'getUserProfile',
         ]]);
     }
 

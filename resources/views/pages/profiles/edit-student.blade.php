@@ -4,10 +4,12 @@
 		  <div class="dark-overlay"></div>
 			<div class="content">
 				<h1 class="text-center">
-				@if(!Auth::user()->canEdit($profile->individuals_id))
-				{{ $profile->display_name }}
+				@if(Auth::check())
+					@if(Auth::user()->canEdit($profile->individuals_id))
+					Edit Profile
+					@endif
 				@else
-				Edit Profile
+				{{ $profile->display_name }}
 				@endif
 				</h1>
 				<hr class="line-lg line-center">
@@ -16,6 +18,7 @@
 	</section>
 	<section class="section section-page section-white projects">
 		<div class="container" style="background-color: #fff;">
+			@if(Auth::check())
 			@if(Auth::user()->canEdit($profile->individuals_id))
 			<div class="student">
 				{{ Form::open(['url' => 'profiles/edit/' . $profile->individuals_id, 'files' => 'true']) }}
@@ -180,6 +183,7 @@
 				    </div>
 			    {!! Form::close() !!}
 			</div>
+			@endif
 			@else
 			  <div>
 			    <div>
