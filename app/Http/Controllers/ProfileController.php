@@ -4,6 +4,7 @@ namespace Mom\Http\Controllers;
 
 use Auth;
 use Illuminate\Http\Request;
+use Mom\Traits\ImageHandler;
 
 use Mom\Http\Requests;
 use Mom\Http\Requests\EditProfileRequest;
@@ -22,6 +23,9 @@ use Mom\Exceptions\PermissionDeniedException;
 
 class ProfileController extends Controller
 {
+
+    // Trait used to resize image - found in Mom\Traits\ImageHandler.php
+    use ImageHandler;
 
     public function __construct(){
         // apply middleware as needed
@@ -124,16 +128,36 @@ class ProfileController extends Controller
     	// If user has uploaded an image for their profile
     	if($request->hasFile('profile_image'))
     	{
-    		// Move the file to public/profile/image 
-    		$file = $request->file('profile_image');
-			$file->move('user-profile/image', $file->getClientOriginalName());
+            // Resize image using Intervention
+            $file = $request->file('profile_image');
+            $time = time();
+            $smImage = 'sm_' . $time . $file->getClientOriginalName();
+            $lgImage = 'lg_' . $time . $file->getClientOriginalName();
+
+            // Small image
+            $this->resizeImage($file, 50, 50, '/user-profile/image/' . $smImage);
+            
+            // Large image
+            $this->resizeImage($file, 200, 200, '/user-profile/image/' . $lgImage);
+
+            // Has the profile uploaded an image before?
+            if(!is_null($profile->image))
+            {   
+                // Yes so delete all instances of that one to make room for the new one
+                $files = [
+                    'user-profile/image/sm_' . $profile->image->src,
+                    'user-profile/image/lg_' . $profile->image->src
+                ];
+
+                \File::delete($files);
+            }
 
 			// Save file name to images table
 			Image::where('imageable_id', $id)->firstOrCreate([
                 'imageable_id'   => $id,
                 'imageable_type' => 'Mom\Models\Profile'
 			])->update([
-                'src' => $file->getClientOriginalName()
+                'src' => $time . $file->getClientOriginalName()
             ]);
     	}
 

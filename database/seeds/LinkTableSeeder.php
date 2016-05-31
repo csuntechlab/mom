@@ -23,5 +23,9 @@ class LinkTableSeeder extends Seeder
          'type' => 'website',
          'logo_src' => 'url_to_website_logo'
       ]);
+      Link::create([
+        'type' =>  'project',
+        'logo_src' => 'url_to_project'
+      ]);
     }
 }

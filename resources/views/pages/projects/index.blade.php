@@ -49,9 +49,9 @@ Projects
                         <li class="media">
                             <div class="media-left">
                                 <!-- Add link for project demo here -->
-                                <a href="" title="">
+                                <a href="{{isset($project->link) ? $project->link->link_url : ''}}" title="">
                                     @if($project->image)
-                                    <div style="background: url({{ asset('imgs/projects/' . $project->image->src)  }}); background-size: cover; width: 200px; height: 200px;"></div>
+                                    <div style="background: url({{ asset('imgs/projects/' . 'lg_' . $project->image->src)  }}); background-size: cover; width: 225px; height: 150px;"></div>
                                     @else
                                     <img class="media-object thumbnail" src="http://placehold.it/225x150" alt="...">
                                     @endif
@@ -68,6 +68,10 @@ Projects
                                         <dl class="dl-horizontal">
                                             <dt>Project</dt>
                                             <dd>{{ $project->meta->title }}</dd>
+                                            @if(isset($project->sponsor))
+                                                <dt>Sponsor</dt>
+                                                <dd>{{ $project->sponsor }}</dd>
+                                            @endif
                                             <dt>Start Date</dt>
                                             <dd>{{ $project->start_date->format('m-d-Y') }}</dd>
                                             <dt>End Date</dt>

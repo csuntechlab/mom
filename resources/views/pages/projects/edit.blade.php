@@ -52,7 +52,7 @@ Edit Project
 									<label for="project_image_file">
 										Upload Image: 
 										@if($project->image)
-										<div id="project_image_preview" style="background: url({{ asset('imgs/projects/' . $project->image->src)  }}) no-repeat center center; background-size: cover; width: 150px; height: 150px; border-radius: 2px;"></div>
+										<div id="project_image_preview" style="background: url({{ asset('imgs/projects/' . 'sm_' . $project->image->src)  }}) no-repeat center center; background-size: cover; width: 150px; height: 150px; border-radius: 2px;"></div>
 										@else
 										<div id="project_image_preview" class="img-rounded text-center">
 											<span id="project_image_preview_icon"><i class="fa fa-upload fa-2x"></i></span>
@@ -67,7 +67,23 @@ Edit Project
 							<div class="col-sm-12">
 								<div class="form-group">
 									{!! Form::label('title', 'Project Title') !!}
-									{!! Form::text('title', $project->meta->title, ['placeholder' => 'Title', 'class' => 'form-control']) !!}
+									{!! Form::text('title', $project->meta->title, ['placeholder' => 'Title', 'class' => 'form-control', 'maxlength' => '35']) !!}
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="form-group">
+									{!! Form::label('sponsor', 'Project Sponsor') !!}
+									{!! Form::text('sponsor', isset($project->sponsor) ? $project->sponsor : '',['placeholder' => 'Project Sponsor', 'class' => 'form-control']) !!}
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="form-group">
+									{!! Form::label('url', 'Project URL') !!}
+									{!! Form::url('url', isset($project->link) ? $project->link->link_url : '', ['placeholder' => 'https://', 'class'=> 'form-control']) !!}
 								</div>
 							</div>
 						</div>
@@ -75,20 +91,20 @@ Edit Project
 							<div class="col-sm-12">
 								<div class="form-group">
 									{!! Form::label('description', 'Project Description') !!}
-									{!! Form::textarea('description', $project->meta->description , ['placeholder' => 'Description', 'class' => 'form-control', 'rows' => '8'])!!}
+									{!! Form::textarea('description', $project->meta->description , ['placeholder' => 'Description', 'class' => 'form-control', 'rows' => '8', 'maxlength'=>'220'])!!}
 								</div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-6">
 								<div class="form-group">
-									{!! Form::label('start_date', 'Start Date:') !!}
+									{!! Form::label('start_date', 'Start Date') !!}
 							        {!! Form::text('start_date', $project->start_date->format('Y-m-d'), ['placeholder' => 'YYYY-MM-DD', 'class' => 'form-control']) !!}
 								</div>
 							</div>
 							<div class="col-sm-6">
 								<div class="form-group">
-							    	{!! Form::label('end_date', 'Estimated End Date:') !!}
+							    	{!! Form::label('end_date', 'Estimated End Date') !!}
 							    	{!! Form::text('end_date', $project->end_date ? $project->end_date->format('Y-m-d') : "", ['placeholder' => 'YYYY-MM-DD', 'class' => 'form-control']) !!}  
 								</div>
 							</div>
@@ -96,14 +112,14 @@ Edit Project
 						<div class="row">
 							<div class="col-sm-6">
 								<div class="form-group">
-									{!! Form::label('product_owner', 'Product Owner:') !!}    
+									{!! Form::label('product_owner', 'Product Owner') !!}    
 									{!! Form::select('product_owner', $users, $project->productOwner->user_id,
 									['placeholder' => 'Select Product Owner', 'role' => 'Select Team Members', 'class' => 'form-control chosen-select']) !!}
 								</div>
 							</div>
 							<div class="col-sm-6">
 								<div class="form-group">
-									{!! Form::label('scrum_master', 'Scrum Master:') !!}
+									{!! Form::label('scrum_master', 'Scrum Master') !!}
 									{!! Form::select('scrum_master', $users, $project->scrumMaster->user_id,
 									['placeholder' => 'Select Scrum Master', 'role' => 'Select Team Members', 'class' => 'form-control chosen-select']) !!}
 								</div>
@@ -112,7 +128,7 @@ Edit Project
 						<div class="row">
 							<div class="col-sm-12">
 								<div class="form-group">
-									{!! Form::label('members[]', 'Team Members:') !!}
+									{!! Form::label('members[]', 'Team Members') !!}
 									{!! Form::select('members[]', $users, $members, 
 									['multiple' => '', 'role' => 'Select Team Members', 'class' => 'form-control chosen-select']) !!}
 								</div>

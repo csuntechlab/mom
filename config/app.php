@@ -189,6 +189,7 @@ return [
 
     'providers' => [
         Collective\Html\HtmlServiceProvider::class, 
+        Intervention\Image\ImageServiceProvider::class,
 
         /*
          * Laravel Framework Service Providers...
@@ -240,8 +241,9 @@ return [
     */
 
     'aliases' => [
-        'Form'      => Collective\Html\FormFacade::class, 
-        'HTML'      => Collective\Html\HtmlFacade::class, 
+        'Form'         => Collective\Html\FormFacade::class, 
+        'HTML'         => Collective\Html\HtmlFacade::class, 
+        'Intervention' => Intervention\Image\Facades\Image::class,
 
         'App'       => Illuminate\Support\Facades\App::class,
         'Artisan'   => Illuminate\Support\Facades\Artisan::class,

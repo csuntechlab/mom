@@ -24,7 +24,8 @@ class Profile extends Model
   * @return Builder
   */
   public function image() {
-    return $this->hasOne('Mom\Models\Image', 'imageable_id');
+    return $this->hasOne('Mom\Models\Image', 'imageable_id')
+    ->where('imageable_type', get_class($this));
   }
 
   /**

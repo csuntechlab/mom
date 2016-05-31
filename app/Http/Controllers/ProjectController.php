@@ -1,9 +1,12 @@
 <?php namespace Mom\Http\Controllers;
 
+use Mom\Traits\ImageHandler;
+
 use Mom\Models\Image;
 use Mom\Models\Project;
 use Mom\Models\ProjectMeta;
 use Mom\Models\NemoEntity;
+use Mom\Models\LinkEntity;
 use Mom\Models\User;
 use Mom\Models\Role;
 use Mom\Http\Requests;
@@ -13,6 +16,10 @@ use Carbon\Carbon;
 
 class ProjectController extends Controller
 {
+    // trait used to handle image resizing using Intervention
+    // found in app\Traits\ImageHandler.php
+    use ImageHandler;
+
     public function __construct(){
         $this->middleware('admin', ['except' => [
             'work',
@@ -38,7 +45,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-         $projects = Project::with(['meta', 'productOwner', 'scrumMaster', 'members', 'image'])->get();
+         $projects = Project::with(['meta', 'productOwner', 'scrumMaster', 'members', 'image', 'link'])->get();
         // remove 'projects:' from project_id to only have the integers
         // Take into account projects with no product owner and scrum master
         // if count > 0 then it is true
@@ -80,6 +87,7 @@ class ProjectController extends Controller
         $description = $request->description;
         $start_date = $request->start_date;
         $end_date = $request->end_date  === "" ? NULL : $request->end_date;
+        $sponsor = $request->sponsor;
         // product_owner and scrum_master are required fields validated in CreateProjectRequest
         $product_owner = $request->product_owner;
         $scrum_master = $request->scrum_master;
@@ -100,18 +108,25 @@ class ProjectController extends Controller
                 'project_id' => $project_id,
                 'start_date' => $start_date,
                 'end_date'   => $end_date,
+                'sponsor'    => $sponsor,
             ]);
 
              if($request->hasFile('project_image'))
              {
                 $image = $request->file('project_image');
+                $time = time();
+                $smImage = 'sm_' . $time . $image->getClientOriginalName();
+                $lgImage = 'lg_' . $time . $image->getClientOriginalName();
+
+                $this->resizeImage($image, 150, 150, '/imgs/projects/' . $smImage);
+                $this->resizeImage($image, 290, 175, '/imgs/projects/' . $lgImage);
 
                 $image->move('imgs/projects/', $image->getClientOriginalName());
 
                 Image::create([
                     'imageable_id'   => $project_id,
                     'imageable_type' => 'Mom\Models\Project',
-                    'src'            => $image->getClientOriginalName()
+                    'src'            => $time . $image->getClientOriginalName()
                 ]);
 
              }
@@ -120,6 +135,13 @@ class ProjectController extends Controller
         catch (\PDOException $e) {
             // add some sort of notification of error
             return redirect()->back();
+        }
+        if($request->url){
+            LinkEntity::create([
+                'entities_id' => $project_id,
+                'link_id'     => 5,
+                'link_url'    => $request->url
+            ]);
         }
 
         // lazy load relationships to add PO, SM, and members.
@@ -178,7 +200,7 @@ class ProjectController extends Controller
         // ModelNotFoundException exception will be caught for
         // findOrFail under the /project URI
         // eager load relationships as well
-        $project = Project::with(['meta', 'productOwner', 'scrumMaster', 'members', 'image'])->findOrFail('projects:' . $id);
+        $project = Project::with(['meta', 'productOwner', 'scrumMaster', 'members', 'image', 'link'])->findOrFail('projects:' . $id);
         $project->project_id = $id;
 
         // Take into account projects with no product owner and scrum master
@@ -210,7 +232,7 @@ class ProjectController extends Controller
         $projectMeta = NemoEntity::findOrFail('projects:' . $id);
         try {
             $projectMeta->fill([
-                'display_name'         =>  $request->title,
+                'display_name'  =>  $request->title,
                 'description'   =>  $request->description,
             ]);
             $projectMeta->save();
@@ -225,6 +247,7 @@ class ProjectController extends Controller
             $project->fill([
                 'start_date' =>  $request->start_date,
                 'end_date'   =>  $request->end_date  === "" ? NULL: $request->end_date,
+                'sponsor'    =>  $request->sponsor,
             ]);
             $project->save();
             $project->touch();
@@ -240,36 +263,47 @@ class ProjectController extends Controller
         // Does incoming request have a file uploaded
         if($request->hasFile('project_image'))
         {  
-            // The project already has an image uploaded to DB
+            $image = $request->file('project_image');
+            $time = time();
+            $smImage = 'sm_' . $time . $image->getClientOriginalName();
+            $lgImage = 'lg_' . $time . $image->getClientOriginalName();
+
+            $this->resizeImage($image, 150, 150, '/imgs/projects/' . $smImage);
+            $this->resizeImage($image, 290, 175, '/imgs/projects/' . $lgImage);
+
+            // Does the project already have an image saved in DB?
             if($projectImage)
             {
-                // Is it a different file?
-                if($projectImage->src !== $request->file('project_image')->getClientOriginalName())
-                {
-                    // Yes, so save new file in public/imgs/projects/
-                    // and update images table
-                    $file->move('imgs/projects/', $file->getClientOriginalName());
+                // Yes, so delete old images
+                $files = [
+                    'imgs/projects/' . 'sm_' . $projectImage->src,
+                    'imgs/projects/' . 'lg_' . $projectImage->src
+                ];
 
-                    $projectImage->update([
-                        'src' => $file->getClientOriginalName()
-                    ]);
-                }
+                \File::delete($files);
+
+                // and update images table
+                $projectImage->update([
+                    'src' => $time . $image->getClientOriginalName()
+                ]);
             }
 
             // No image has ever been uploaded for project so create one
             else 
             {
-                $file->move('imgs/projects/', $file->getClientOriginalName());
-
                 Image::create([
                     'imageable_id'   => 'projects:' . $id,
                     'imageable_type' => 'Mom\Models\Project',
-                    'src'            => $file->getClientOriginalName()
+                    'src'            => $time . $image->getClientOriginalName()
                 ]);
             }
             
         }
-        
+
+        $linkEntity = LinkEntity::updateOrCreate(
+            ['entities_id'=>'projects:'.$id, 'link_id'=>5], 
+            ['link_url' => $request->url]
+        );
 
         // lazy load relationships to update PO, SM, and members. Also title and description (meta).
         $project->load('productOwner', 'scrumMaster', 'members', 'meta');
@@ -336,11 +370,14 @@ class ProjectController extends Controller
             'productOwner.profile.links', 'productOwner.profile.skills', 'productOwner.profile.experience', 'productOwner.profile.image',
             'scrumMaster.profile.links', 'scrumMaster.profile.skills', 'scrumMaster.profile.experience', 'scrumMaster.profile.image', 
             'members.profile.links', 'members.profile.skills', 'members.profile.experience', 'members.profile.image',
+            'link'
             ])
-            ->get();
+            ->paginate(5);
         foreach($projects as $project) {
             $project->productOwner =  count($project->productOwner) ? $project->productOwner[0] : new User();
             $project->scrumMaster =  count($project->scrumMaster) ? $project->scrumMaster[0] : new User();
+
+            //return $projects;
         }
 
         

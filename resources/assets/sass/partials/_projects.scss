@@ -90,10 +90,6 @@
   height: 200px;
 }
 
-.product-owner {
-  box-shadow: 0 0 10px $brand-primary;
-}
-
 
 .student-name {
   background-image: url('../imgs/red-line.png');
@@ -243,4 +239,42 @@
 }
 .card-content-xl img {
   margin: 0 auto;
+}
+
+@media(max-width: 991px){
+
+  .project-title {
+    margin-top: 1em !important;
+  }
+  
+  .work.card {
+    outline: 0;
+  }
+
+  .card .work.card-content-xl{
+    padding: 0;
+  }
+
+  .card.card-light.work{
+    outline-color: none;
+  }
+  
+  .card .work.card-content-action:hover {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+  }
+
+  .work.well {
+    border: none;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+  }
+
+  .work.small {
+    font-size: 80%;
+  }
+
+ h1.project-block{
+  min-width: 0 !important;
+ }
 }
