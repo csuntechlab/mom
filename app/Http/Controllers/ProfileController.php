@@ -69,12 +69,24 @@ class ProfileController extends Controller
             ->user_id;
         }
         // Find the user profile
-        $profile = Profile::with('skills', 'links', 'image', 'projects')->findOrFail($id);
 
-        // if(!Auth::user()->canEdit($profile->individuals_id)){
-        //     throw new PermissionDeniedException();
-        // }
-
+        $profile = Profile::with('skills', 'links', 'image')->find($id);
+        // here let's handle the case were the user has not logged in ever
+        // and maybe he won't log in ever but people whould still be able to
+        // view the profile
+        if(is_null($profile)) {
+            try{
+              $profile = Profile::create([
+                'individuals_id'  => $id,
+                'background'      => "",
+                'position'        => "",
+                'grad_date'       => NULL
+              ]);
+            } catch (\PDOException $e){
+              // add some sort of notification of error
+              return redirect()->back();
+            }
+        }
         // Get the user's skills if he's updated any
         $profile_skills = $profile->skills->lists('research_id')->toArray();
 
@@ -97,24 +109,7 @@ class ProfileController extends Controller
             }
         }
 
-    	// Return corresponding indiviudals profile edit page
-        // if($profile->isConfidential())
-        // {
-        //     if(Auth::user()->isOwner($profile->individuals_id))
-        //     {
-        //         return view('pages.profiles.edit-student', compact('skills', 'profile', 'profile_skills', 'linkedin_url', 'portfolium_url', 'github_url', 'years'));
-        //     }
-
-        //     else
-        //     {
-        //         abort(404);
-        //     }
-    
-        // }
-
         return view('pages.profiles.edit-student', compact('skills', 'profile', 'profile_skills', 'linkedin_url', 'portfolium_url', 'github_url', 'years'));
-
-
     }
 
     // Update the user's profile
