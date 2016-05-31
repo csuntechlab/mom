@@ -15,7 +15,7 @@ class NemoMembership extends Model
 	];
 	public $incrementing = false;
 
-	public function project()
+	public function meta()
 	{
 		return $this->belongsTo('Mom\Models\ProjectMeta', 'parent_entities_id');
 	}

@@ -280,11 +280,23 @@
 			        		</ul>
 			        	</div>
 			        	<div class="col-sm-1"></div>
-			        	@if($profile->filteredProjects())
-						@foreach($profile->filteredProjects() as $project)
-						<h1>{{ $project->project->title }} - {{ $project->role_position }}</h1>
-						@endforeach
-						@endif
+			        </div>
+
+			        <div class="row">
+			        	<div class="col-sm-1"></div>
+			        	<div class="col-sm-10 text-left student-seb">
+			        		<h2 class="student-seb-title">Projects</h2>
+			        		<ul class="student-seb-list">
+			        		@if($profile->filteredProjects()->count() > 0)
+			        			@foreach($profile->filteredProjects() as $project)
+								<li class="student-seb-list-items">{{ $project->meta->title }} - {{ $project->role_position }}</li>
+								@endforeach
+			        		@else
+								<li class="student-seb-list-items">This individual has not been added to any projects yet.</li>
+			        		@endif
+			        		</ul>
+			        	</div>
+			        	<div class="col-sm-1"></div>
 			        </div>
 			      </div>
 			    </div>
@@ -384,11 +396,23 @@
 			        		</ul>
 			        	</div>
 			        	<div class="col-sm-1"></div>
-			        	@if($profile->filteredProjects())
-						@foreach($profile->filteredProjects() as $project)
-						<h1>{{ $project->project->title }} - {{ $project->role_position }}</h1>
-						@endforeach
-						@endif
+			        </div>
+
+			        <div class="row">
+			        	<div class="col-sm-1"></div>
+			        	<div class="col-sm-10 text-left student-seb">
+			        		<h2 class="student-seb-title">Projects</h2>
+			        		<ul class="student-seb-list">
+			        		@if($profile->filteredProjects()->count() > 0)
+			        			@foreach($profile->filteredProjects() as $project)
+								<li class="student-seb-list-items">{{ $project->meta->title }} - {{ $project->role_position }}</li>
+								@endforeach
+			        		@else
+								<li class="student-seb-list-items">This individual has not been added to any projects yet.</li>
+			        		@endif
+			        		</ul>
+			        	</div>
+			        	<div class="col-sm-1"></div>
 			        </div>
 			      </div>
 			    </div>

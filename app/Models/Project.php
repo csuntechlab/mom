@@ -55,13 +55,4 @@ class Project extends Model
                 ->wherePivot('role_position', 'scrum_master');
     }
 
-    public function projectsFilter(Profile $profile)
-  {
-    return $profile->projects()
-    ->wherePivot('role_position', 'product_owner')
-    ->wherePivot('individuals_id', $profile->id)
-    ->wherePivot('parent_entities_id', $this->id)
-    ->first();
-  }
-
 }
