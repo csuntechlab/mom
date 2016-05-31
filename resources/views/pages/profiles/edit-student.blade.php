@@ -6,10 +6,12 @@
 				<h1 class="text-center">
 				@if(Auth::check())
 					@if(Auth::user()->canEdit($profile->individuals_id))
-					Edit Profile
+						Edit Profile
+					@else
+						{{ $profile->display_name }}
 					@endif
 				@else
-				{{ $profile->display_name }}
+					{{ $profile->display_name }}
 				@endif
 				</h1>
 				<hr class="line-lg line-center">
@@ -183,6 +185,109 @@
 				    </div>
 			    {!! Form::close() !!}
 			</div>
+			@else
+			<div>
+			    <div>
+			      <div class="modal-body student lines-back">
+			        <div class="row">
+			        	<div class="text-center">
+			        	@if(isset($profile->image->src))
+						<div id="profile_image_preview" style="border-radius: 50%; width: 200px; height: 200px; background: url('{{ asset('user-profile/image/' . $profile->image->src) }}') no-repeat center center; background-size: cover; position: relative; margin: auto;">
+				    	</div>
+				    	@else
+				    	<img class="student-image product-owner" src="http://placehold.it/200x200" alt="student image">
+				    	</div>
+				    	@endif
+			        	</div>
+			        	@if(isset($linkedin_url) || isset($portfolium_url))
+			        	<div class="row" style="text-align: center; margin-top: 25px;">
+			        		<ul class="list-inline list-unstyled">
+			        			@if(isset($linkedin_url))
+			        			<li>
+				        			<a href="{{ $linkedin_url }}">
+				        				<img class="social-media-btn-img" src="{{ asset('imgs/linkden.svg' ) }}" alt="linkedin" />
+				        				<p>LinkedIn</p>
+				    				</a>
+			    				</li>
+			        			@endif
+			        			@if(isset($portfolium_url))
+			        			<li>
+			        				<a href="{{ ($portfolium_url) }}">
+			        				<img class="social-media-btn-img" src="{{ asset('imgs/Hover.svg' ) }}" alt="portfolium" />
+			        				<p>Portfolium</p>
+			    					</a>
+			        			</li>
+			        			@endif
+			        		</ul>
+			        	</div>
+			        	@endif
+			        </div>
+			        <div class="row">
+			        	<div class="col-sm-12 text-center">
+			        		<p class="student-name">{{ $profile->display_name }}</p>
+		    			</div>
+			        </div>
+			        <div class="row">
+			        	<div class="col-sm-12 text-center"><p class="student-title">{{ $profile->position }}</p></div>
+			        </div>
+			        @if($profile->grad_date > 0)
+			        <div class="row">
+			        	<div class="col-sm-12 text-center"><i class="fa fa-graduation-cap student-graduate"></i> <span class="graduates-in">Graduates in {{ $profile->grad_date }}</span></div>
+			        </div>
+			        @endif
+			        <div class="row">
+			        	<div class="col-sm-1"></div>
+			        	<div class="col-sm-10 text-left student-seb">
+			        		<h2 class="student-seb-title">Skills</h2>
+			        		<ul class="student-seb-list">
+			        		@if($profile->skills->count() > 0)
+			        			@foreach($profile->skills as $skill)
+									<li class="student-seb-list-items">{{ $skill->title }}</li>
+			        			@endforeach
+			        		@else
+								<li class="student-seb-list-items">No skills added yet</li>
+			        		@endif
+			        		</ul>
+			        	</div>
+			        	<div class="col-sm-1"></div>
+			        </div>
+			        <div class="row">
+			        	<div class="col-sm-1"></div>
+			        	<div class="col-sm-10 text-left student-seb">
+			        		<h2 class="student-seb-title">Experience</h2>
+			        		<ul class="student-seb-list">
+			        		@if($profile->experience->count() > 0)
+			        			@foreach($profile->experience as $exp)
+									<li class="student-seb-list-items">{{ $exp->experience }}</li>
+			        			@endforeach
+			        		@else
+								<li class="student-seb-list-items">No experience added yet</li>
+			        		@endif
+			        		</ul>
+			        	</div>
+			        	<div class="col-sm-1"></div>
+			        </div>
+			        <div class="row">
+			        	<div class="col-sm-1"></div>
+			        	<div class="col-sm-10 text-left student-seb">
+			        		<h2 class="student-seb-title">Background</h2>
+			        		<ul class="student-seb-list">
+			        		@if($profile->background)
+								<li class="student-seb-list-items">{{ $profile->background }}</li>
+			        		@else
+								<li class="student-seb-list-items">No background added yet</li>
+			        		@endif
+			        		</ul>
+			        	</div>
+			        	<div class="col-sm-1"></div>
+			        	@if($profile->filteredProjects())
+						@foreach($profile->filteredProjects() as $project)
+						<h1>{{ $project->project->title }} - {{ $project->role_position }}</h1>
+						@endforeach
+						@endif
+			        </div>
+			      </div>
+			    </div>
 			@endif
 			@else
 			  <div>
