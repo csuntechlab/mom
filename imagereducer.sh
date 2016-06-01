@@ -8,7 +8,7 @@ imagereduce()
 		if [[ ( $file != sm_* ) && ( $file != lg_*) && ( $file != *placeholder* ) ]]
 			then
 			# let's only traverse through image files
-			if [[ ( $file == *.jpeg ) || ( $ifle == *.JPEG ) || ( $file == *.jpg ) || ( $ifle == *.JPG ) || ( $file == *.png ) || ( $file == '*.PNG' ) ]]
+			if [[ ( $file == *.jpeg ) || ( $file == *.JPEG ) || ( $file == *.jpg ) || ( $file == *.JPG ) || ( $file == *.png ) || ( $file == '*.PNG' ) ]]
 				then
 				# we are in the profile folder
 				if($flag == "true")
