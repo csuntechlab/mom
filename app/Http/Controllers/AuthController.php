@@ -53,21 +53,6 @@ class AuthController extends Controller
       // attempt to perform the authentication
       try {
         if(Auth::attempt($creds)) {
-          // No profile exists for this person, let's make one
-          if(!Auth::user()->hasProfile()) {
-            try{
-              $profile = Profile::create([
-                'individuals_id'  => Auth::user()->user_id,
-                'background'      => "",
-                'position'        => "",
-                'grad_date'       => NULL
-              ]);
-            } catch (\PDOException $e){
-              // add some sort of notification of error
-              return redirect()->back();
-            }
-          }
-       
           // redirect to the appropriate place
           if(Auth::user()->hasRole('admin'))
             return redirect()->intended('admin');
