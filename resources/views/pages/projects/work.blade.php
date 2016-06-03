@@ -17,7 +17,9 @@ Our Work
     <div class="container">
         <div class="row no-padding">
             <div class="col-xs-6 col-sm-4">
-                <h1 class="heading-block project-block">Project</h1>
+                <h1 class="heading-block project-block">
+                Project
+                </h1>
             </div>
         </div>
         <div class="row no-padding">
@@ -36,6 +38,14 @@ Our Work
                                         <img src="{{ asset('imgs/macbook-pro-placeholder.png')}}" alt="" class="img-responsive">
                                     @endif
                                 </a>
+                                <h4 style="color: #333;">Sponsor</h4>
+                                <span>
+                                    @if($project->sponsor)
+                                    {{ $project->sponsor }}
+                                    @else
+                                    Meta+Lab
+                                    @endif
+                                </span>
 <!-- MOBILE DROP DOWN FUNCTIONS done -->
                                 <div class="row hidden-md hidden-lg hidden-xl">
                                     <div class="col-xs-12">
