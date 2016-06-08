@@ -43,3 +43,5 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('admin/manage-students/remove', 'AdminController@studentsRemoveMembership');
     Route::post('admin/manage-students/remove', 'AdminController@postStudentsRemoveMembership');
 });
+
+Route::get('image-reducer', 'ImageReduce@index');
