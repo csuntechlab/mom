@@ -25,7 +25,7 @@ Our Work
         <div class="row no-padding">
             <div id="project{{$y}}" class="row-eq-height">
                 <div class="col-xs-12">
-                    
+
                     <div class="col-md-4 col-sm-12 col-xs-12">
                         <div class="card work card-light">
                             <div class="work card-content-xl card-content-action">
@@ -53,7 +53,7 @@ Our Work
                                     </div>
                                 </div>
 
-                                <div class="collapse out hidden-md hidden-lg hidden-xl" id="collapse{{ $y }}" aria-expanded="false"> 
+                                <div class="collapse out hidden-md hidden-lg hidden-xl" id="collapse{{ $y }}" aria-expanded="false">
                                     <!-- part 1 of well 1 -->
                                     <div class="work padding well card-dropdown card-light">
                                         <div class="row">
@@ -66,58 +66,56 @@ Our Work
                                         </div>
                                         <!--  part two of first well-->
                                         <div class="">
-                                            <div class="row">         
+                                            <div class="row">
                                                 <div class="col-xs-6 col-sm-6">
-                                                    <p class="work small">Product Owner</p> 
+                                                    <p class="work small">Product Owner</p>
                                                 </div>
                                                 <div class="col-xs-6 col-sm-6">
-                                                    <p class="work small">Scrum Master</p> 
-                                                </div>             
+                                                    <p class="work small">Scrum Master</p>
+                                                </div>
                                                 <div class="col-xs-6 col-sm-6">
                                                     <?php $productOwner = "product-owner";
-                                                    $productOwnerID = $project->productOwner->user_id; 
-                                                    $scrumMasterID = $project->scrumMaster->user_id;?>  
+                                                    $productOwnerID = $project->productOwner->user_id;
+                                                    $scrumMasterID = $project->scrumMaster->user_id;?>
                                                     @if(!empty($project->productOwner->profile) && !empty($project->productOwner->profile->image))
-                                                        <img class="members--member-img" src="{{ asset('user-profile/image/' .'sm_'. $project->productOwner->profile->image->src)}}" alt="">
+                                                        <img class="members--member-img" src="{{ asset('user-profile/image/' .'sm_'. $project->productOwner->profile->image->src)}}" alt="{{$project->productOwner->first_name}}">
                                                     @else
                                                         <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="{{$project->productOwner->first_name}}">
-                                                    @endif                                                    
+                                                    @endif
                                                 </div>
-                                                <div class="col-xs-6 col-sm-6">                    
+                                                <div class="col-xs-6 col-sm-6">
                                                     @if(!empty($project->scrumMaster->profile) && !empty($project->scrumMaster->profile->image))
-                                                        <img class="members--member-img" src="{{ asset('user-profile/image/' .'sm_'. $project->scrumMaster->profile->image->src)}}" alt="">
+                                                        <img class="members--member-img" src="{{ asset('user-profile/image/' .'sm_'. $project->scrumMaster->profile->image->src)}}" alt="{{$project->scrumMaster->first_name}}">
                                                     @else
                                                         <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="{{$project->scrumMaster->first_name}}">
-                                                    @endif                                                    
+                                                    @endif
                                                 </div>
                                                 <div class="col-xs-6 col-sm-6">
                                                     <h3 class="small">{{$project->productOwner->first_name}}</h3>
-                                                </div> 
-                                                
+                                                </div>
+
                                                 <div class="col-xs-6 col-sm-6">
                                                     <h3 class="small">{{$project->scrumMaster->first_name}}</h3>
-                                                </div> 
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="work well card-dropdown card-light col-xs-12 col-sm-12"> 
+                                    <div class="work well card-dropdown card-light col-xs-12 col-sm-12">
                                         <div class="">
 
-                                        <p class="work small" style="padding-bottom: 1em;">Team Members</p> 
-                                                
+                                        <p class="work small" style="padding-bottom: 1em;">Team Members</p>
+
                                         @foreach($project->members as $member)
                                             <div class="row" style="padding-bottom: 1em;">
                                                 <div class="col-xs-6">
-                                                    <?php $memberID = $member->user_id; 
-                                                    $memberIdModal = explode(":", $memberID); ?>
-                                                    <a href="{{ $member->profile_link }}" data-toggle="modal" data-target="#<?php echo $memberIdModal[1]; ?>">
+                                                    <a href="{{ $member->profile_link }}">
                                                         @if(!empty($member->profile) && !empty($member->profile->image))
-                                                            <img class="members--member-img" src="{{ asset('user-profile/image/' . 'sm_' . $member->profile->image->src)}}" alt="">
+                                                            <img class="members--member-img" src="{{ asset('user-profile/image/' . 'sm_' . $member->profile->image->src)}}" alt="{{$member->first_name}}">
                                                         @else
-                                                           <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="{{$member->first_name}}"> 
-                                                        @endif 
-                                                    </a>                                                     
+                                                           <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="{{$member->first_name}}">
+                                                        @endif
+                                                    </a>
                                                 </div>
                                                 <div class="col-xs-6" style="padding-top: 0.8em;">
                                                     <h3 class="small">{{$member->first_name}}</h3>
@@ -125,8 +123,8 @@ Our Work
                                             </div>
                                         @endforeach
                                         </div>
-                                    </div> 
-                                </div> 
+                                    </div>
+                                </div>
 <!-- END MOBILE DROPDOWN  -->
                             </div>
                         </div>
@@ -144,20 +142,20 @@ Our Work
                                 <div class="col-md-6">
                                     <h2 class="small">
                                         Product Owner
-                                    </h2> 
+                                    </h2>
                                 </div>
                                 <div class="col-md-6">
                                     <h2 class="small">
                                         Scrum Master
-                                    </h2> 
+                                    </h2>
                                 </div>
-                                    
+
                                 @foreach($project->members as $member)
                                     @if($member->user_id == $productOwnerID)
                                         <div class="col-md-6">
                                             <a href="{{$project->productOwner->profile_link}}">
                                                 @if(!empty($project->productOwner->profile->image))
-                                                    <img class="members--member-img" src="{{ asset('user-profile/image/' . $project->productOwner->profile->image)}}" alt="">
+                                                    <img class="members--member-img" src="{{ asset('user-profile/image/' . $project->productOwner->profile->image)}}" alt="{{$project->productOwner->first_name}}">
                                                     <p class="small" style="padding-top: 1em;">{{$project->productOwner->first_name}}</p>
                                                 @else
                                                     <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="{{$project->productOwner->first_name}}">
@@ -170,7 +168,7 @@ Our Work
                                         <div class="col-md-6">
                                             <a href="{{$project->scrumMaster->profile_link}}">
                                                 @if(!empty($project->scrumMaster->profile->image))
-                                                    <img class="members--member-img" src="{{ asset('user-profile/image/' . $project->scrumMaster->profile->image)}}" alt="">
+                                                    <img class="members--member-img" src="{{ asset('user-profile/image/' . $project->scrumMaster->profile->image)}}" alt="{{$project->scrumMaster->first_name}}">
                                                     <p class="small" style="padding-top: 1em;">{{$project->scrumMaster->first_name}}</p>
                                                 @else
                                                     <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="{{$project->scrumMaster->first_name}}">
@@ -178,11 +176,11 @@ Our Work
                                                 @endif
                                             </a>
                                         </div>
-                                    @endif            
+                                    @endif
                                 @endforeach
                             </div>
                         </div>
-                    </div>                  
+                    </div>
                     <div class="col-md-4 hidden-sm hidden-xs">
                         <div class="card card-light">
                             <div class="card-content-xl card-content-action">
@@ -191,16 +189,6 @@ Our Work
                                     </div>
 <!-- MEMBER DISPLAY FOR IPAD -->
                                  @foreach ($project->members as $member)
-                                    <?php $memberID = $member->user_id; 
-                                    $memberIdModal = explode(":", $memberID);
-
-                                    if($productOwnerID == $memberID){
-                                        $productOwner = "product-owner";
-                                    }
-                                    else {
-                                        $productOwner = "";
-                                    }?>                                
-                                    
                                     <div class="hidden-lg">
                                         <div class="col-md-4">
                                             <div class="">
@@ -218,7 +206,7 @@ Our Work
                                             </div>
                                         </div>
                                     </div>
-                                @endforeach 
+                                @endforeach
 <!-- END FOR IPAD -->
                                 <!-- <h2>Members</h2>
                                 <hr class="line-inline"> -->
@@ -226,22 +214,11 @@ Our Work
                                 <div class="members hidden-xs hidden-md">
 
                                     @foreach($project->members as $member)
-                                    
-                                    <?php $memberID = $member->user_id; 
-                                    $memberIdModal = explode(":", $memberID);
-
-                                    if($productOwnerID == $memberID){
-                                        $productOwner = "product-owner";
-                                    }
-                                    else {
-                                        $productOwner = "";
-                                    }?>
-
                                     <a href="{{ $member->profile_link }}" class="members--member" >
                                     @if(!empty($member->profile) && !empty($member->profile->image))
-                                        <img class="members--member-img <?php echo $productOwner; ?>" src="{{ asset('user-profile/image/' . 'sm_' . $member->profile->image->src)}}" alt="{{$member->first_name}}">
+                                        <img class="members--member-img" src="{{ asset('user-profile/image/' . 'sm_' . $member->profile->image->src)}}" alt="{{$member->first_name}}">
                                     @else
-                                        <img class="members--member-img <?php echo $productOwner; ?>" src="{{ asset('/imgs/anonymous.png') }}" alt="{{$member->first_name}}">
+                                        <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="{{$member->first_name}}">
                                     @endif
                                     <div class="members--member-name">{{$member->first_name}}</div>
                                     </a>
@@ -251,7 +228,7 @@ Our Work
                             </div>
                         </div>
                     </div>
-                </div>  
+                </div>
                 <?php $y++; ?>
             </div>
 
@@ -260,8 +237,8 @@ Our Work
     </div>
 </section>
 @endforeach
-<div class="text-center"> 
-{{ $projects->links() }} 
+<div class="text-center">
+{{ $projects->links() }}
 </div>
 <script>
 
@@ -278,8 +255,8 @@ for(y=1; y <= projects; y++){
 
         var x = Math.round(width/2 + radius * cosAngle - $(this).width()/2);
         var y = Math.round((height/2) + (radius * sinAngle) - ($(this).height()/2));
-    
-    
+
+
         $(this).css({
             left: x + 'px',
             top: y-25 + 'px'
