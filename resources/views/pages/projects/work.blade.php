@@ -150,34 +150,28 @@ Our Work
                                     </h2>
                                 </div>
 
-                                @foreach($project->members as $member)
-                                    @if($member->user_id == $productOwnerID)
-                                        <div class="col-md-6">
-                                            <a href="{{$project->productOwner->profile_link}}">
-                                                @if(!empty($project->productOwner->profile->image))
-                                                    <img class="members--member-img" src="{{ asset('user-profile/image/' . $project->productOwner->profile->image)}}" alt="{{$project->productOwner->first_name}}">
-                                                    <p class="small" style="padding-top: 1em;">{{$project->productOwner->first_name}}</p>
-                                                @else
-                                                    <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="{{$project->productOwner->first_name}}">
-                                                    <div class="members--member-name">{{$project->productOwner->first_name}}</div>
-                                                @endif
-                                            </a>
-                                        </div>
-                                    @endif
-                                    @if($member->user_id == $scrumMasterID)
-                                        <div class="col-md-6">
-                                            <a href="{{$project->scrumMaster->profile_link}}">
-                                                @if(!empty($project->scrumMaster->profile->image))
-                                                    <img class="members--member-img" src="{{ asset('user-profile/image/' . $project->scrumMaster->profile->image)}}" alt="{{$project->scrumMaster->first_name}}">
-                                                    <p class="small" style="padding-top: 1em;">{{$project->scrumMaster->first_name}}</p>
-                                                @else
-                                                    <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="{{$project->scrumMaster->first_name}}">
-                                                    <div class="members--member-name">{{$project->scrumMaster->first_name}}</div>
-                                                @endif
-                                            </a>
-                                        </div>
-                                    @endif
-                                @endforeach
+                                <div class="col-md-6">
+                                    <a href="{{$project->productOwner->profile_link}}">
+                                        @if(!empty($project->productOwner->profile->image))
+                                            <img class="members--member-img" src="{{ asset('user-profile/image/' . $project->productOwner->profile->image)}}" alt="{{$project->productOwner->first_name}}">
+                                        @else
+                                            <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="{{$project->productOwner->first_name}}">
+                                        @endif
+                                            <div class="members--member-name">{{$project->productOwner->first_name}}</div>
+                                    </a>
+                                </div>
+                                <div class="col-md-6">
+                                    <a href="{{ $project->scrumMaster->profile_link ?: '#' }}">
+                                        @if(!empty($project->scrumMaster->profile->image))
+                                            <img class="members--member-img" src="{{ asset('user-profile/image/' . $project->scrumMaster->profile->image)}}" alt="{{$project->scrumMaster->first_name}}">
+                                        @else
+                                            <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="project-scrum-master">
+                                        @endif
+                                            <div class="members--member-name">
+                                                {{ $project->scrumMaster->first_name or 'N/A' }}
+                                            </div>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
