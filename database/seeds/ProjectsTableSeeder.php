@@ -14,31 +14,31 @@ class ProjectsTableSeeder extends Seeder
     public function run()
     {
         Project::create([
-        	'project_id' => 'projects:22',
+        	'project_id' => 'projects-mom:22',
         	'start_date' => '2016-04-08 00:00:00',
         	'end_date'   => '2016-05-08 00:00:00'
         ]);
 
         Project::create([
-        	'project_id' => 'projects:23',
+        	'project_id' => 'projects-mom:23',
         	'start_date' => '2016-04-08 00:00:00',
         	'end_date'   => '2016-05-08 00:00:00'
         ]);
 
         Project::create([
-        	'project_id' => 'projects:24',
+        	'project_id' => 'projects-mom:24',
         	'start_date' => '2016-04-08 00:00:00',
         	'end_date'   => '2016-05-08 00:00:00'
         ]);
 
         Project::create([
-        	'project_id' => 'projects:25',
+        	'project_id' => 'projects-mom:25',
         	'start_date' => '2016-04-08 00:00:00',
         	'end_date'   => '2016-05-08 00:00:00'
         ]);
 
         Project::create([
-        	'project_id' => 'projects:28',
+        	'project_id' => 'projects-mom:28',
         	'start_date' => '2016-04-21 00:00:00',
         	'end_date'   => '2016-05-21 00:00:00'
         ]);

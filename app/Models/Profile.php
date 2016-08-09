@@ -77,7 +77,7 @@ class Profile extends Model
   */
   public function projects() {
     return $this->hasMany('Mom\Models\NemoMembership', 'individuals_id')
-    ->where('parent_entities_id', 'LIKE', 'projects:%');
+    ->where('parent_entities_id', 'LIKE', 'projects-mom:%');
   }
 
   public function filteredProjects()

@@ -51,7 +51,7 @@ class CreateProjectRequest extends Request
         // if keeping the same name on edit/update 
         if($this['_method'] == 'PUT'){
             $parameters     = Route::current()->parameters();
-            $project_id     = 'projects:' . array_values($parameters)[0];
+            $project_id     = 'projects-mom:' . array_values($parameters)[0];
             $rules['title'] = "required|unique:projectmeta,title,$project_id,project_id|min:3";
         }
         return $rules;

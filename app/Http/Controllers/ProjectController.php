@@ -32,10 +32,17 @@ class ProjectController extends Controller
      * @return Integer project_id
      */
     private function generateProjectNewID() {
-        $latestID = NemoEntity::where('entities_id', 'LIKE', 'projects:%')->latest()->first()->entities_id;
-        // split string 'projects:#' into an array with ':' delimiter and then append 'projects:' after adding 1
-        $project_id = explode(':', $latestID);
-        return 'projects:' . (array_pop($project_id) + 1);
+        $latestID = NemoEntity::where('entities_id', 'LIKE', 'projects-mom:%')->latest()->first();
+
+        if (is_null($latestID)) {
+            return "projects-mom:0";
+        }
+        else {
+        // split string 'projects-mom:#' into an array with ':' delimiter and then append 'projects-mom:' after adding 1
+        $project_id = explode(':', $latestID->entities_id);
+        return 'projects-mom:' . (array_pop($project_id) + 1);
+        }
+
     }
 
     /**
@@ -46,7 +53,7 @@ class ProjectController extends Controller
     public function index()
     {
          $projects = Project::with(['meta', 'productOwner', 'scrumMaster', 'members', 'image', 'link'])->get();
-        // remove 'projects:' from project_id to only have the integers
+        // remove 'projects-mom:' from project_id to only have the integers
         // Take into account projects with no product owner and scrum master
         // if count > 0 then it is true
         foreach($projects as $project) {
@@ -176,7 +183,7 @@ class ProjectController extends Controller
         // ModelNotFoundException exception will be caught for
         // findOrFail under the /project URI
         // eager load relationships as well
-        $project = Project::with(['meta', 'productOwner', 'scrumMaster', 'members'])->findOrFail('projects:' . $id);
+        $project = Project::with(['meta', 'productOwner', 'scrumMaster', 'members'])->findOrFail('projects-mom:' . $id);
         $project->project_id = $id;
         
         // Take into account projects with no product owner and scrum master
@@ -200,7 +207,7 @@ class ProjectController extends Controller
         // ModelNotFoundException exception will be caught for
         // findOrFail under the /project URI
         // eager load relationships as well
-        $project = Project::with(['meta', 'productOwner', 'scrumMaster', 'members', 'image', 'link'])->findOrFail('projects:' . $id);
+        $project = Project::with(['meta', 'productOwner', 'scrumMaster', 'members', 'image', 'link'])->findOrFail('projects-mom:' . $id);
         $project->project_id = $id;
 
         // Take into account projects with no product owner and scrum master
@@ -229,7 +236,7 @@ class ProjectController extends Controller
         // ModelNotFoundException exception will be caught for
         // findOrFail under the /project URI
         // Columns are updated in their respective models
-        $projectMeta = NemoEntity::findOrFail('projects:' . $id);
+        $projectMeta = NemoEntity::findOrFail('projects-mom:' . $id);
         try {
             $projectMeta->fill([
                 'display_name'  =>  $request->title,
@@ -242,7 +249,7 @@ class ProjectController extends Controller
             return redirect()->back();
         }
         
-        $project = Project::findOrFail('projects:' . $id);
+        $project = Project::findOrFail('projects-mom:' . $id);
         try {
             $project->fill([
                 'start_date' =>  $request->start_date,
@@ -256,7 +263,7 @@ class ProjectController extends Controller
             return redirect()->back();
         }
 
-        $projectImage = Image::where('imageable_id', 'projects:' . $id)->first();
+        $projectImage = Image::where('imageable_id', 'projects-mom:' . $id)->first();
 
         $file = $request->file('project_image');
         
@@ -292,7 +299,7 @@ class ProjectController extends Controller
             else 
             {
                 Image::create([
-                    'imageable_id'   => 'projects:' . $id,
+                    'imageable_id'   => 'projects-mom:' . $id,
                     'imageable_type' => 'Mom\Models\Project',
                     'src'            => $time . $image->getClientOriginalName()
                 ]);
@@ -301,7 +308,7 @@ class ProjectController extends Controller
         }
 
         $linkEntity = LinkEntity::updateOrCreate(
-            ['entities_id'=>'projects:'.$id, 'link_id'=>5], 
+            ['entities_id'=>'projects-mom:'.$id, 'link_id'=>5], 
             ['link_url' => $request->url]
         );
 
@@ -350,13 +357,13 @@ class ProjectController extends Controller
         // findOrFail under the /project URI
         // Must be deleted on both models
         // projects and respective relationships are just being deleted for testing purposes
-        $project = Project::with('meta', 'productOwner', 'scrumMaster', 'members')->findOrFail('projects:' . $id);
+        $project = Project::with('meta', 'productOwner', 'scrumMaster', 'members')->findOrFail('projects-mom:' . $id);
         $project->productOwner()->sync([]);
         $project->scrumMaster()->sync([]);
         $project->members()->sync([]);
 
         $project->delete();
-        $projectMeta = NemoEntity::findOrFail('projects:' . $id);
+        $projectMeta = NemoEntity::findOrFail('projects-mom:' . $id);
         $projectMeta->delete();
 
         return redirect()
