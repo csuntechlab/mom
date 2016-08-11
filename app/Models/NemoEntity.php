@@ -15,5 +15,6 @@ class NemoEntity extends Model
       'entity_type',
       'display_name', 
       'description',
+      'confidential'
    ];
 }

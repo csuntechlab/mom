@@ -46,58 +46,58 @@ Projects
             @if(count($projects))
                 <ul class="media-list">
                     @foreach($projects as $project)
-                        <li class="media">
-                            <div class="media-left">
-                                <!-- Add link for project demo here -->
-                                <a href="{{isset($project->link) ? $project->link->link_url : ''}}" title="">
-                                    @if($project->image)
-                                    <div style="background: url({{ asset('imgs/projects/' . 'lg_' . $project->image->src)  }}); background-size: cover; width: 225px; height: 150px;"></div>
-                                    @else
-                                    <img class="media-object thumbnail" src="http://placehold.it/225x150" alt="...">
-                                    @endif
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <div class="row">
-                                    <div class="col-sm-2 pull-right">
-                                        <div class="text-right">
-                                            <a href="{{ url('projects/' . $project->project_id . '/edit') }}" type="button" class="btn btn-primary">Edit</a>
+                            <li class="media">
+                                <div class="media-left">
+                                    <!-- Add link for project demo here -->
+                                    <a href="{{isset($project->link) ? $project->link->link_url : ''}}" title="">
+                                        @if($project->image)
+                                        <div style="background: url({{ asset('imgs/projects/' . 'lg_' . $project->image->src)  }}); background-size: cover; width: 225px; height: 150px;"></div>
+                                        @else
+                                        <img class="media-object thumbnail" src="http://placehold.it/225x150" alt="...">
+                                        @endif
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <div class="row">
+                                        <div class="col-sm-2 pull-right">
+                                            <div class="text-right">
+                                                <a href="{{ url('projects/' . $project->project_id . '/edit') }}" type="button" class="btn btn-primary">Edit</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-10">
+                                            <dl class="dl-horizontal">
+                                                <dt>Project</dt>
+                                                <dd>{{ $project->meta->title }}</dd>
+                                                @if(isset($project->sponsor))
+                                                    <dt>Sponsor</dt>
+                                                    <dd>{{ $project->sponsor }}</dd>
+                                                @endif
+                                                <dt>Start Date</dt>
+                                                <dd>{{ $project->start_date->format('m-d-Y') }}</dd>
+                                                <dt>End Date</dt>
+                                                <dd>{{ $project->end_date ? $project->end_date->format('m-d-Y') : "TBA" }}</dd>
+                                                <dt>Product Owner</dt>
+                                                <dd> {{ $project->productOwner->display_name or 'Not Assigned'}} </dd>
+                                                <dt>Scrum Master</dt>
+                                                <dd> {{ $project->scrumMaster->display_name or 'Not Assigned' }} </dd>
+                                                <dt>Team Members</dt>
+                                                <dd>
+                                                    @if(count($project->members))
+                                                        @for($i=0; $i < count($project->members); $i++)
+                                                            {{ $project->members[$i]->display_name }}
+                                                            @if($i < count($project->members) - 1)
+                                                                {{ '|' }}
+                                                            @endif
+                                                        @endfor
+                                                    @else
+                                                        Not Assigned
+                                                    @endif
+                                                </dd>
+                                            </dl>
                                         </div>
                                     </div>
-                                    <div class="col-sm-10">
-                                        <dl class="dl-horizontal">
-                                            <dt>Project</dt>
-                                            <dd>{{ $project->meta->title }}</dd>
-                                            @if(isset($project->sponsor))
-                                                <dt>Sponsor</dt>
-                                                <dd>{{ $project->sponsor }}</dd>
-                                            @endif
-                                            <dt>Start Date</dt>
-                                            <dd>{{ $project->start_date->format('m-d-Y') }}</dd>
-                                            <dt>End Date</dt>
-                                            <dd>{{ $project->end_date ? $project->end_date->format('m-d-Y') : "TBA" }}</dd>
-                                            <dt>Product Owner</dt>
-                                            <dd> {{ $project->productOwner->display_name or 'Not Assigned'}} </dd>
-                                            <dt>Scrum Master</dt>
-                                            <dd> {{ $project->scrumMaster->display_name or 'Not Assigned' }} </dd>
-                                            <dt>Team Members</dt>
-                                            <dd>
-                                                @if(count($project->members))
-                                                    @for($i=0; $i < count($project->members); $i++)
-                                                        {{ $project->members[$i]->display_name }}
-                                                        @if($i < count($project->members) - 1)
-                                                            {{ '|' }}
-                                                        @endif
-                                                    @endfor
-                                                @else
-                                                    Not Assigned
-                                                @endif
-                                            </dd>
-                                        </dl>
-                                    </div>
                                 </div>
-                            </div>
-                        </li>
+                            </li>
                     @endforeach
                 </ul>
             @endif

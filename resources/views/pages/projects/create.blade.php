@@ -73,6 +73,10 @@ Create Project
 									{{ Form::file('project_image', ['id' => 'project_image_file', 'style' => 'display: none;']) }}
 								</div>
 							</div>
+							<div class="col-sm-6" style="text-align: right">
+								{!! Form::checkbox('hidden_toggle', 'set') !!}
+								{!! Form::label('hidden_toggle', 'Hide Project') !!}
+							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-12">

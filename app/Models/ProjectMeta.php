@@ -11,7 +11,8 @@ class ProjectMeta extends Model
     public $incrementing = false;
     protected $fillable = [
     	'title',
-    	'description'
+    	'description',
+        'confidential'
     ];
     protected $hidden = [
         'created_at',
