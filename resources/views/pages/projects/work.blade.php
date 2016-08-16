@@ -17,9 +17,9 @@ Our Work
     <div class="container">
         <div class="row no-padding">
             <div class="col-xs-6 col-sm-4">
-                <h1 class="heading-block project-block">
-                Project
-                </h1>
+                @if($y == 1)
+                    <h1 class="heading-block project-block">Project</h1>
+                @endif
             </div>
         </div>
         <div class="row no-padding">
