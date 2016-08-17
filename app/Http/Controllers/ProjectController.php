@@ -100,6 +100,13 @@ class ProjectController extends Controller
         $scrum_master = $request->scrum_master;
         // expecting a list of user_id's
         $members = $request->members;
+
+        //Hide Project was toggled
+        $confidential = 0;
+        if($request->hidden_toggle == "set"){
+            $confidential = 1;
+        }
+
         // account for an empty array
 
         try {
@@ -109,6 +116,7 @@ class ProjectController extends Controller
                 'entity_type' => 'Project',
                 'display_name' => $title,
                 'description' => $description,
+                'confidential' => $confidential,
             ]);
 
              $project = Project::create([
@@ -237,10 +245,18 @@ class ProjectController extends Controller
         // findOrFail under the /project URI
         // Columns are updated in their respective models
         $projectMeta = NemoEntity::findOrFail('projects-mom:' . $id);
+
+        //Hide Project was toggled
+        $confidential = 0;
+        if($request->hidden_toggle == "set"){
+            $confidential = 1;
+        }
+
         try {
             $projectMeta->fill([
                 'display_name'  =>  $request->title,
                 'description'   =>  $request->description,
+                'confidential'  =>  $confidential
             ]);
             $projectMeta->save();
             $projectMeta->touch();
