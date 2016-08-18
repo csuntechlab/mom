@@ -54,7 +54,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-         $projects = Project::with(['meta', 'productOwner', 'scrumMaster', 'members', 'image', 'link'])->get();
+         $projects = Project::with(['meta', 'productOwner', 'scrumMaster', 'members', 'image', 'link'])->orderBy('position', 'ASC')->get();
         // remove 'projects-mom:' from project_id to only have the integers
         // Take into account projects with no product owner and scrum master
         // if count > 0 then it is true
@@ -413,7 +413,7 @@ class ProjectController extends Controller
             'scrumMaster.profile.links', 'scrumMaster.profile.skills', 'scrumMaster.profile.experience', 'scrumMaster.profile.image', 
             'members.profile.links', 'members.profile.skills', 'members.profile.experience', 'members.profile.image',
             'link'
-            ])
+            ])->orderBy('position', 'ASC')
             ->paginate(5);
         foreach($projects as $project) {
             $project->productOwner =  count($project->productOwner) ? $project->productOwner[0] : new User();
