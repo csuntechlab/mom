@@ -39,23 +39,23 @@ class Project extends Model
 
     public function members() {
         return $this->belongsToMany('Mom\Models\User', 'nemo.memberships', 'parent_entities_id', 'individuals_id')
-                ->where('confidential', 0)
                 ->withPivot('role_position')
-                ->wherePivot('role_position', 'member');
+                ->wherePivot('role_position', 'member')
+                ->wherePivot('confidential', 0);
     }
 
     public function productOwner() {
         return $this->belongsToMany('Mom\Models\User', 'nemo.memberships', 'parent_entities_id', 'individuals_id')
-                ->where('confidential', 0)
                 ->withPivot('role_position')
-                ->wherePivot('role_position', 'product_owner');
+                ->wherePivot('role_position', 'product_owner')
+                ->wherePivot('confidential', 0);
     }
 
     public function scrumMaster() {
         return $this->belongsToMany('Mom\Models\User', 'nemo.memberships', 'parent_entities_id', 'individuals_id')
-                ->where('confidential', 0)
                 ->withPivot('role_position')
-                ->wherePivot('role_position', 'scrum_master');
+                ->wherePivot('role_position', 'scrum_master')
+                ->wherePivot('confidential', 0);
     }
 
 }
