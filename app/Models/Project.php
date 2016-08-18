@@ -13,7 +13,8 @@ class Project extends Model
     	'project_id',
     	'start_date',
     	'end_date',
-        'sponsor'
+        'sponsor',
+        'position',
     ];
 
     // formatted as Carbon instances on database in order to use ->format('Y-m-d') in views.

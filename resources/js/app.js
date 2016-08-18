@@ -1,3 +1,14 @@
+var mom = {
+    html: $('html').data('url'),
+    token: $('html').data('token'),
+};
+
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-Token': mom.token
+    }
+});
+
 $(document).ready(function(){
     $(".chosen-select").chosen();
 });
@@ -49,6 +60,34 @@ $(document).ready(function() {
     function isMobile() {
         return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     }
+    
+    $('.sortable-projects' ).sortable();
+    $('.sortable-projects .draggable-objects').on('mouseup', function() {
+      var itemPositions = [];
+      setTimeout(function(){
+        for(let listItem of $('.sortable-projects .draggable-objects')){
+          var itemId = $(listItem).data('project-id');
+          itemPositions.push( itemId );
+        }
+
+        var dataItemPositions = { itemPositions }
+
+         $.ajax({
+            type: "POST",
+            data: dataItemPositions,
+            url: mom.html + '/admin/projects/updatepositions',
+            success: function(data, textStatus, jqXHR){
+        
+            },
+            error: function(jqXHR, textStatus, errorThrown){
+                console.log(errorThrown);
+            },
+         });
+      }, 100);
+
+
+
+    });
 
     // function toggleVideo(state) {
     //     // if state == 'hide', hide. Else: show video

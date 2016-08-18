@@ -44,9 +44,9 @@ Projects
                 <a href="{{ url('projects/create') }}" type="button" class="btn btn-primary">Add a New Project</a>
             </div>
             @if(count($projects))
-                <ul class="media-list">
+                <ul class="media-list sortable-projects">
                     @foreach($projects as $project)
-                            <li class="media">
+                            <li class="media draggable-objects" data-project-id="{{$project->project_id}}">
                                 <div class="media-left">
                                     <!-- Add link for project demo here -->
                                     <a href="{{isset($project->link) ? $project->link->link_url : ''}}" title="">

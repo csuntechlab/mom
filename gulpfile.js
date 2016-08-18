@@ -22,6 +22,7 @@ var paths = {
    'bootstrap': components + '/bootstrap-sass/assets/',
    'fontawesome': components + '/font-awesome/',
    'chosen': components + '/chosen/',
+   'jquery_ui': components + '/jquery-ui/',
 };
 
 // Begin Elixir Project
@@ -30,7 +31,8 @@ elixir(function(mix) {
   // Add Styles to project
   mix.copy(paths.bootstrap + 'stylesheets', 'resources/assets/bootstrap-sass')
      .copy(paths.fontawesome + 'css/font-awesome.css', 'resources/css/vendor/font-awesome.css')
-     .copy(paths.chosen + 'chosen.css', 'resources/css/chosen.css');
+     .copy(paths.chosen + 'chosen.css', 'resources/css/chosen.css')
+     .copy(paths.jquery_ui + 'themes/base/all.css', 'resources/css/jquery-ui.css');
 
   // Add Fonts to project
   mix.copy(paths.fontawesome + 'fonts', 'public/fonts');
@@ -38,21 +40,24 @@ elixir(function(mix) {
   // Add Scripts to project
   mix.copy(paths.jquery + 'jquery.js', 'resources/js/jquery/jquery.js')
      .copy(paths.bootstrap + 'javascripts/bootstrap.js', 'resources/js/bootstrap-js/bootstrap.js')
-     .copy(paths.chosen + 'chosen.jquery.js', 'resources/js/chosen/chosen.js');
+     .copy(paths.chosen + 'chosen.jquery.js', 'resources/js/chosen/chosen.js')
+     .copy(paths.jquery_ui + 'jquery-ui.js' , 'resources/js/jquery-ui/jquery-ui.js');
 
   // Merge Styles
   mix.styles([
     'font-awesome.css',
-    'chosen.css'
+    'chosen.css',
+    'jquery-ui.css',
   ],'public/css/components.css', 'resources/css');
 
   // Merge Scripts
   mix.scripts([
-    'jquery/jquery.js', 
+    'jquery/jquery.js',
+    'jquery-ui/jquery-ui.js',
     'bootstrap-js/bootstrap.js',
     'chosen/chosen.js',
     'project/create.js',
-    'app.js'
+    'app.js',
   ],'public/js/app.js', 'resources/js');
 
   // Compile SASS

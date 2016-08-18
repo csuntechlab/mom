@@ -14,6 +14,8 @@ use Mom\Http\Controllers\Controller;
 use Mom\Http\Requests\CreateProjectRequest;
 use Carbon\Carbon;
 
+use Request;
+
 class ProjectController extends Controller
 {
     // trait used to handle image resizing using Intervention
@@ -56,12 +58,25 @@ class ProjectController extends Controller
         // remove 'projects-mom:' from project_id to only have the integers
         // Take into account projects with no product owner and scrum master
         // if count > 0 then it is true
+        
+        //Check if projects exists and initially have no positions, if not set them
+        if((count(Project::all()) > 1) && Project::max('position') == 0){
+            $setPositions = 0;
+            foreach($projects as $project){
+                $project->position = $setPositions;
+                $project->save();
+                $project->touch();
+                $setPositions++;
+            }
+        }
+
         foreach($projects as $project) {
             $id = explode(':', $project->project_id);
             $project->project_id = array_pop($id);
             $project->productOwner =  count($project->productOwner) ? $project->productOwner[0] : new User();
             $project->scrumMaster =  count($project->scrumMaster) ? $project->scrumMaster[0] : new User();
         }
+
         // Change view as needed
         return view('pages.projects.index', compact('projects'));
     }
@@ -101,6 +116,9 @@ class ProjectController extends Controller
         // expecting a list of user_id's
         $members = $request->members;
 
+        //Place at the bottom of the list
+        $position = Project::max('position') + 1;
+
         //Hide Project was toggled
         $confidential = 0;
         if($request->hidden_toggle == "set"){
@@ -124,6 +142,7 @@ class ProjectController extends Controller
                 'start_date' => $start_date,
                 'end_date'   => $end_date,
                 'sponsor'    => $sponsor,
+                'position'   => $position,
             ]);
 
              if($request->hasFile('project_image'))
@@ -406,4 +425,20 @@ class ProjectController extends Controller
         
         return view('pages.projects.work', compact('projects'));
     }
+
+    /*
+    * Ajax request based on moving the blocks in admin page
+     */
+    public function updatePositions(){
+        $project_order =  Request::input('itemPositions');
+        $position = 0;
+        foreach($project_order as $projectID){
+            $project = Project::where('project_id', '=', 'projects-mom:' . $projectID)->first();
+            $project->position = $position;
+            $project->save();
+            $project->touch();
+            $position++;
+        }
+    }
+
 }

@@ -42,6 +42,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('admin/manage-students/add', 'AdminController@postStudentsAddMembership');
     Route::get('admin/manage-students/remove', 'AdminController@studentsRemoveMembership');
     Route::post('admin/manage-students/remove', 'AdminController@postStudentsRemoveMembership');
+    Route::post('admin/projects/updatepositions', 'ProjectController@updatePositions');
 });
+
 
 Route::get('image-reducer', 'ImageReduce@index');
