@@ -13,7 +13,7 @@ class Position extends Migration
     public function up()
     {
         Schema::table('projects', function (Blueprint $table) {
-            $table->integer('position');
+            $table->integer('position')->after('project_id');
         });
     }
 
