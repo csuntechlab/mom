@@ -7,6 +7,7 @@ use Illuminate\Validation\ValidationException;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
@@ -54,7 +55,12 @@ class Handler extends ExceptionHandler
             if(starts_with($request->getRequestUri(), '/project/')) {
                 return redirect()->to('project');
             }
-            //return response(view('pages.errors.404'), 404);
+            if(!env('APP_ENV') === 'local')
+                return response(view('pages.errors.404'), 404);
+        }
+        else if($e instanceof NotFoundHttpException) {
+            if(!env('APP_ENV') === 'local')
+                return response(view('pages.errors.404'), 404);
         }
         return parent::render($request, $e);
     }

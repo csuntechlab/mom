@@ -16,20 +16,13 @@
         {!! HTML::style('css/app.css') !!}
         {{-- APP SCRIPTS --}}
         {!! HTML::script('js/app.js') !!}
-        {!! HTML::script('js/profile/edit.js') !!}
         @yield('scripts')
     </head>
     <body>
 
         {{-- APP CONTENT BEGINS --}}
         @include('layouts.partials.nav')
-            <div id="content">
-                @yield('content')
-            
-            {{-- MODALS --}}
-            @yield('modal')
-        @include('layouts.partials.footer')
-        {{-- APP CONTENT ENDS --}}
-            </div>                                
+            @yield('content')
+        {{-- APP CONTENT ENDS --}}                 
     </body>
 </html>

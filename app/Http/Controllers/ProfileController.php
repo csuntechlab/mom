@@ -57,13 +57,15 @@ class ProfileController extends Controller
     public function getUserProfile($email)
     {   
         //This takes care the staging vs production email structure
-        if(env('APP_DEBUG') == true) {
+        if(env('APP_ENV') === 'local') {
             $id = User::where('email', 'nr_'.$email.'@my.csun.edu')
+            ->where('confidential', 0)
             ->orWhere('email', 'nr_'.$email.'@csun.edu')
             ->firstOrFail()
             ->user_id;
         } else {
             $id = User::where('email', $email.'@my.csun.edu')
+            ->where('confidential', 0)
             ->orWhere('email', $email.'@csun.edu')
             ->firstOrFail()
             ->user_id;
