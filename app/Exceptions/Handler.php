@@ -55,11 +55,11 @@ class Handler extends ExceptionHandler
             if(starts_with($request->getRequestUri(), '/project/')) {
                 return redirect()->to('project');
             }
-            if(!env('APP_ENV') === 'local')
+            if(!(env('APP_ENV') === 'local'))
                 return response(view('pages.errors.404'), 404);
         }
         else if($e instanceof NotFoundHttpException) {
-            if(!env('APP_ENV') === 'local')
+            if(!(env('APP_ENV') === 'local'))
                 return response(view('pages.errors.404'), 404);
         }
         return parent::render($request, $e);
