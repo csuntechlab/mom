@@ -406,15 +406,21 @@ class ProjectController extends Controller
             ->with('message', "Project {$project->meta->title} has been deleted successfully!");
     }
 
+    /**
+     * Queries the database to return the information necessary to the work view
+     * 
+     * @return View the work view with project information
+     */
     public function work(){
         $projects = Project::with([
             'meta', 'image',
-            'productOwner.profile.links', 'productOwner.profile.skills', 'productOwner.profile.experience', 'productOwner.profile.image',
-            'scrumMaster.profile.links', 'scrumMaster.profile.skills', 'scrumMaster.profile.experience', 'scrumMaster.profile.image', 
-            'members.profile.links', 'members.profile.skills', 'members.profile.experience', 'members.profile.image',
+            'productOwner.profile', 'productOwner.profile.image',
+            'scrumMaster.profile','scrumMaster.profile.image', 
+            'members.profile', 'members.profile.image',
             'link'
-            ])->orderBy('position', 'ASC')
-            ->paginate(5);
+        ])->whereHas('meta', function($q) {
+                $q->where('confidential', 0);
+            })->orderBy('position', 'ASC')->paginate(5);
         foreach($projects as $project) {
             $project->productOwner =  count($project->productOwner) ? $project->productOwner[0] : new User();
             $project->scrumMaster =  count($project->scrumMaster) ? $project->scrumMaster[0] : new User();
@@ -426,8 +432,9 @@ class ProjectController extends Controller
         return view('pages.projects.work', compact('projects'));
     }
 
-    /*
-    * Ajax request based on moving the blocks in admin page
+    /**
+     * Handles the AJAX request that is sent from the moving of project blocks in the admin dashboard
+     * @return void
      */
     public function updatePositions(){
         $project_order =  Request::input('itemPositions');

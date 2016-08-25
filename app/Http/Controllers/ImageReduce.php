@@ -29,7 +29,7 @@ class ImageReduce extends Controller
 	    	Intervention::make($image)->fit(200, 200)->save($path . '/lg_' . $fileName);
 	    // image resizing for project images
     	} else {
-	    	Intervention::Make($image)->fit(150, 150)->save($path . '/sm_' . $fileName);
+	    	Intervention::make($image)->fit(150, 150)->save($path . '/sm_' . $fileName);
             Intervention::make($image)->fit(200, 175)->save($path . '/lg_' . $fileName);
     	}
     }

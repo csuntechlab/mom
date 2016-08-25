@@ -20,7 +20,7 @@
 								<a href="/our-team/">Our Team</a>
 							</li>
 							<li>
-								<a href="{{ url('/work') }}">Work</a>
+								<a href="{{ url('/') }}">Work</a>
 							</li>
 							<li>
 								<a href="/contact/">Contact</a>

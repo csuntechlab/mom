@@ -88,7 +88,7 @@ class AuthController extends Controller
     Auth::logout();
 
     // re-direct back to the landing page without HTTPS
-    $landing = str_replace('https:', 'http:', url('/work'));
+    $landing = str_replace('https:', 'http:', url('/'));
     return redirect($landing);
   }
 

@@ -22,6 +22,8 @@ class User extends MetaUser
       'email_uri',  
       'password',
       'remember_token',
+      'created_at',
+      'updated_at'
     ];
 
     /**

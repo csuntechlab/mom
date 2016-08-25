@@ -6,17 +6,24 @@ class Profile extends Model
 {
   protected $table = 'mom.profiles';
   protected $primaryKey = 'individuals_id';
+  public $incrementing = false;
+  
   protected $appends = [
     'display_name',
     'confidential'
   ];
+  
   protected $fillable = [
     'individuals_id',
     'background',
     'position',
     'grad_date'
   ];
-  public $incrementing = false;
+
+  protected $hidden = [
+    'created_at',
+    'updated_at'
+  ];
 
   /**
   * Relates this person to their associated image.

@@ -13,7 +13,6 @@ Our Work
     <div class="gradient-overlay"></div>
 </section>
 @foreach($projects as $project)
-@if($project->meta->confidential == 0)
 <section class="section section-page section-white projects" style="background-image: url({{ asset('/imgs/lines-right-white.png') }}); background-size: contain; background-position: top right; background-repeat: no-repeat;">
     <div class="container">
         <div class="row no-padding">
@@ -250,7 +249,6 @@ Our Work
         <hr class="visible-sm visible-xs hidden-md hidden-lg" />
     </div>
 </section>
-@endif
 @endforeach
 <div class="text-center">
 {{ $projects->links() }}
