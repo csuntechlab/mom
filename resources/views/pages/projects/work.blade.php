@@ -144,6 +144,10 @@ Our Work
     @endif
 @endforeach
 
+<div class="text-center">
+    {{ $projects->links() }}
+</div>
+
 <script>
 
 var projects = $('.projects').length;
