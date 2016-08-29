@@ -153,7 +153,6 @@ $(document).ready(windowResize);
 $(window).resize(windowResize);
 
 function windowResize() {
-    console.log($(window).width());
     if($(window).width() > 991){
         for(y=1; y <= projects; y++){
             var radius = 130;
