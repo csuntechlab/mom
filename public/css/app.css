@@ -6160,7 +6160,8 @@ address {
       .card .card-content {
         padding: 50px; } }
   .card .card-content-xl {
-    padding: 50px; }
+    padding: 50px;
+    min-height: 500px; }
   .card .card-content-lg {
     padding: 25px 65px;
     min-height: 200px; }
@@ -6190,6 +6191,9 @@ address {
 
 .mt10 {
   margin-top: 10px; }
+
+.ml100 {
+  margin-left: 100px; }
 
 .blurry {
   -webkit-filter: blur(18px);
@@ -6260,6 +6264,9 @@ address {
 .members--member {
   height: 40px;
   position: absolute; }
+  @media (max-width: 992px) {
+    .members--member {
+      position: relative; } }
 
 .members--member-img {
   border-radius: 50px;
@@ -6429,7 +6436,7 @@ address {
 .card-content-xl img {
   margin: 0 auto; }
 
-@media (max-width: 991px) {
+@media (max-width: 992px) {
   .project-title {
     margin-top: 1em !important; }
   .work.card {
@@ -6448,7 +6455,11 @@ address {
   .work.small {
     font-size: 80%; }
   h1.project-block {
-    min-width: 0 !important; } }
+    min-width: 0 !important; }
+  .project-collapse.collapse {
+    display: none; }
+    .project-collapse.collapse.in {
+      display: block; } }
 
 .projects h1, .projects h2, .projects h3, .projects h4, .projects h5, .projects h6 {
   text-transform: none; }

@@ -19,6 +19,9 @@
 .members--member {
   height: 40px;
   position: absolute;
+    @media(max-width: $screen-md){
+      position: relative;
+    }
 }
 
 .members--member-img {
@@ -241,7 +244,7 @@
   margin: 0 auto;
 }
 
-@media(max-width: 991px){
+@media(max-width: $screen-md){
 
   .project-title {
     margin-top: 1em !important;
@@ -274,7 +277,16 @@
     font-size: 80%;
   }
 
- h1.project-block{
-  min-width: 0 !important;
- }
+   h1.project-block{
+    min-width: 0 !important;
+   }
+
+  .project-collapse.collapse{
+    display: none;
+    &.in{
+      display: block;
+    }
+  }
+
+
 }

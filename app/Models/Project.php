@@ -34,6 +34,16 @@ class Project extends Model
         return $this->hasOne('Mom\Models\ProjectMeta', 'project_id');
     }
 
+    public function metaProjectShow() {
+        return $this->meta()->where('confidential','=', 0);
+    }
+
+       // results in a "problem", se examples below
+    public function available_videos() {
+        return $this->videos()->where('available','=', 1);
+    }
+
+
     public function link() {
         return $this->hasOne('Mom\Models\LinkEntity', 'entities_id', 'project_id');
     }

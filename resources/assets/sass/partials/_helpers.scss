@@ -2,6 +2,10 @@
 	margin-top: 10px;
 }
 
+.ml100{
+	margin-left: 100px;
+}
+
 .blurry{
 	@include filter(blur(18px));
 	@include transform(translate(0, 0, 0));
