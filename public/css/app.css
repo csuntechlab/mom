@@ -6260,6 +6260,10 @@ address {
   position: relative;
   text-align: center;
   width: 300px; }
+  @media (max-width: 480px) {
+    .members {
+      height: auto;
+      max-height: 100%; } }
 
 .members--member {
   height: 40px;
