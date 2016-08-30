@@ -50,7 +50,7 @@ Our Work
                                         Meta+Lab
                                         @endif
                                     </span>
-                                    <div class="row visible-xs visible-sm visible-md">
+                                    <div class="row visible-xs visible-sm">
                                         <div class="col-xs-12">
                                             <button class="btn btn--view btn-sm btn-primary center-block" type="button" data-toggle="collapse" data-target="#collapse{{ $y }}" aria-expanded="false" aria-controls="collapseExample">View +</button>
                                         </div>

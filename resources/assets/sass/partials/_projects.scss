@@ -14,7 +14,7 @@
   position: relative;
   text-align: center;
   width: $view-members-circle-size;
-    @media(max-width: $screen-xs){
+    @media(max-width: $screen-md){
       height: auto;
       max-height: 100%; 
     }

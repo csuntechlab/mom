@@ -70,7 +70,7 @@ $(document).ready(function() {
           itemPositions.push( itemId );
         }
 
-        var dataItemPositions = { itemPositions }
+        var dataItemPositions = { itemPositions };
 
          $.ajax({
             type: "POST",

@@ -6260,7 +6260,7 @@ address {
   position: relative;
   text-align: center;
   width: 300px; }
-  @media (max-width: 480px) {
+  @media (max-width: 992px) {
     .members {
       height: auto;
       max-height: 100%; } }
