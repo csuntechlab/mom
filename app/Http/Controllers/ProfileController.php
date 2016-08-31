@@ -232,6 +232,8 @@ class ProfileController extends Controller
             ]);
         }
 
+        \Session::flash('profile_updated', 'Your profile has been updated');
+
     	return redirect()->back();
     }
 

@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('content')
 	<section class="section page-hero work-banner">
-		  <div class="dark-overlay"></div>
+		<div class="dark-overlay"></div>
 			<div class="content">
 				<h1 class="text-center">
 				@if(Auth::check())
@@ -19,6 +19,13 @@
 		<div class="gradient-overlay"></div>
 	</section>
 	<section class="section section-page section-white projects">
+		{{-- flash message --}}
+		@if (Session::has('profile_updated'))
+            <div class="alert alert-success" style="text-align:center;">
+                {{ Session::get('profile_updated') }}
+            </div>
+            <script>$('div.alert').delay(3000).slideUp(300);</script>
+        @endif
 		<div class="container" style="background-color: #fff;">
 			@if(Auth::check())
 			@if(Auth::user()->canEdit($profile->individuals_id))
