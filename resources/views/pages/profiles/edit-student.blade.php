@@ -199,7 +199,36 @@
 				    	</div>
 				    	@endif
 			        	</div>
-			        	@if(isset($linkedin_url) || isset($portfolium_url))
+			        	<div class="text-center">
+			        		<div class="social-media-btn">
+			        		@if(!isset($linkedin_url))
+			        			<a href="{{ $linkedin_url }}">
+			        				<img class="social-media-btn-img" src="{{ asset('imgs/linkden.svg' ) }}" alt="linkedin" />
+			        				<p>LinkedIn</p>
+			    				</a>
+			    			@endif
+							</div>
+						
+			        		<div class="social-media-btn">
+			        		@if(!isset($portfolium_url))
+			        			<a href="{{ ($portfolium_url) }}">
+			        				<img class="social-media-btn-img" src="{{ asset('imgs/Hover.svg' ) }}" alt="portfolium" />
+			        				<p>Portfolium</p>
+			    				</a>
+			    			@endif
+							</div>
+						
+			        		<div class="social-media-btn">
+			        		@if(!isset($github_url))
+
+			        			<a href="{{ ($github_url) }}">
+			        				<img class="social-media-btn-img" src="{{ asset('imgs/github.svg' ) }}" alt="github" />
+			        				<p>Github</p>
+			    				</a>
+			    			@endif
+							</div>
+						</div>
+			        	{{-- @if(isset($linkedin_url) || isset($portfolium_url))
 			        	<div class="row" style="text-align: center; margin-top: 25px;">
 			        		<ul class="list-inline list-unstyled">
 			        			@if(isset($linkedin_url))
@@ -220,7 +249,7 @@
 			        			@endif
 			        		</ul>
 			        	</div>
-			        	@endif
+			        	@endif --}}
 			        </div>
 			        <div class="row">
 			        	<div class="col-sm-12 text-center">
@@ -315,7 +344,36 @@
 				    	</div>
 				    	@endif
 			        	</div>
-			        	@if(isset($linkedin_url) || isset($portfolium_url))
+			        	<div class="text-center">
+			        		<div class="social-media-btn">
+			        		@if(!isset($linkedin_url))
+			        			<a href="{{ $linkedin_url }}">
+			        				<img class="social-media-btn-img" src="{{ asset('imgs/linkden.svg' ) }}" alt="linkedin" />
+			        				<p>LinkedIn</p>
+			    				</a>
+			    			@endif
+							</div>
+						
+			        		<div class="social-media-btn">
+			        		@if(!isset($portfolium_url))
+			        			<a href="{{ ($portfolium_url) }}">
+			        				<img class="social-media-btn-img" src="{{ asset('imgs/Hover.svg' ) }}" alt="portfolium" />
+			        				<p>Portfolium</p>
+			    				</a>
+			    			@endif
+							</div>
+						
+			        		<div class="social-media-btn">
+			        		@if(!isset($github_url))
+
+			        			<a href="{{ ($github_url) }}">
+			        				<img class="social-media-btn-img" src="{{ asset('imgs/github.svg' ) }}" alt="github" />
+			        				<p>Github</p>
+			    				</a>
+			    			@endif
+							</div>
+						</div>
+			        	{{-- @if(isset($linkedin_url) || isset($portfolium_url))
 			        	<div class="row" style="text-align: center; margin-top: 25px;">
 			        		<ul class="list-inline list-unstyled">
 			        			@if(isset($linkedin_url))
@@ -336,7 +394,7 @@
 			        			@endif
 			        		</ul>
 			        	</div>
-			        	@endif
+			        	@endif --}}
 			        </div>
 			        <div class="row">
 			        	<div class="col-sm-12 text-center">
@@ -422,19 +480,7 @@
 			    <div class="modal-content">
 			      <div class="modal-body student lines-back">
 			        <div class="row">
-			        	<div class="col-xs-1"></div>
-			        	<div class="col-xs-2 text-right">
-			        		<div class="social-media-btn">
-			        		@if(isset($portfolium_url))
-			        			<a href="{{ ($portfolium_url) }}">
-			        				<img class="social-media-btn-img" src="{{ asset('imgs/Hover.svg' ) }}" alt="portfolium" />
-			        				<p>Portfolium</p>
-			    				</a>
-			    			@endif
-							</div>
-						</div>
-						
-			        	<div class="col-xs-6 text-center">
+			        	<div class="col-xs-12 text-center">
 			        	@if(isset($profile->image->src))
 						<div id="profile_image_preview" style="border-radius: 50%; width: 200px; height: 200px; background: url('{{ asset('user-profile/image/' . $profile->image->src) }}') no-repeat center center; background-size: cover; position: relative;">
 				    	</div>
@@ -443,12 +489,31 @@
 				    	</div>
 				    	@endif
 			        	</div>
-			        	<div class="col-xs-2 text-left">
+			        	<div class="text-center">
 			        		<div class="social-media-btn">
-			        		@if(isset($linkedin_url))
+			        		@if(!isset($linkedin_url))
 			        			<a href="{{ $linkedin_url }}">
 			        				<img class="social-media-btn-img" src="{{ asset('imgs/linkden.svg' ) }}" alt="linkedin" />
 			        				<p>LinkedIn</p>
+			    				</a>
+			    			@endif
+							</div>
+						
+			        		<div class="social-media-btn">
+			        		@if(!isset($portfolium_url))
+			        			<a href="{{ ($portfolium_url) }}">
+			        				<img class="social-media-btn-img" src="{{ asset('imgs/Hover.svg' ) }}" alt="portfolium" />
+			        				<p>Portfolium</p>
+			    				</a>
+			    			@endif
+							</div>
+						
+			        		<div class="social-media-btn">
+			        		@if(!isset($github_url))
+
+			        			<a href="{{ ($github_url) }}">
+			        				<img class="social-media-btn-img" src="{{ asset('imgs/github.svg' ) }}" alt="github" />
+			        				<p>Github</p>
 			    				</a>
 			    			@endif
 							</div>

@@ -6303,7 +6303,7 @@ address {
 
 .social-media-btn {
   display: inline-block;
-  padding: 2em 0.5em 1em; }
+  padding: 2em 0.2em 0.2em; }
   .social-media-btn a {
     color: #999;
     letter-spacing: .2px;
