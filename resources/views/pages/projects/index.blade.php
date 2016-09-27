@@ -51,7 +51,7 @@ Projects
                                     <!-- Add link for project demo here -->
                                     <a href="{{isset($project->link) ? $project->link->link_url : ''}}" title="">
                                         @if($project->image)
-                                        <div style="background: url({{ asset('imgs/projects/' . 'lg_' . $project->image->src)  }}); background-size: cover; width: 225px; height: 150px;"></div>
+                                        <img class="media-object thumbnail" src="{{ asset('imgs/projects/' . 'lg_' . $project->image->src) }}" alt="{{ $project->meta->title }}" />
                                         @else
                                         <img class="media-object thumbnail" src="http://placehold.it/225x150" alt="...">
                                         @endif
