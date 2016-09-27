@@ -37,7 +37,7 @@ Our Work
                                     <hr class="line-inline">
                                     <a href="{{isset($project->link) ? $project->link->link_url : ''}}">
                                         @if(!empty($project->image))
-                                            <img src="{{ asset('imgs/projects/sm_'.$project->image->src)}}" alt="Product image" class="img-responsive">
+                                            <img src="{{ asset('imgs/projects/lg_'.$project->image->src)}}" alt="Product image" class="img-responsive">
                                         @else
                                             <img src="{{ asset('imgs/macbook-pro-placeholder.png')}}" alt="" class="img-responsive">
                                         @endif
@@ -88,7 +88,7 @@ Our Work
                                             <div class="col-xs-6 col-md-6">
                                                 <a href="{{$project->productOwner->profile_link}}">
                                                     @if(!empty($project->productOwner->profile->image))
-                                                        <img class="members--member-img" src="{{ asset('user-profile/image/' . $project->productOwner->profile->image->src)}}" alt="{{$project->productOwner->first_name}}">
+                                                        <img class="members--member-img" src="{{ asset('user-profile/image/sm_' . $project->productOwner->profile->image->src)}}" alt="{{$project->productOwner->first_name}}">
                                                     @else
                                                         <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="{{$project->productOwner->first_name}}">
                                                     @endif
@@ -100,7 +100,7 @@ Our Work
                                                 <div class="col-md-6">
                                                     <a href="{{ $project->scrumMaster->profile_link ?: '#' }}">
                                                         @if(!empty($project->scrumMaster->profile->image))
-                                                            <img class="members--member-img" src="{{ asset('user-profile/image/' . $project->scrumMaster->profile->image->src)}}" alt="{{$project->scrumMaster->first_name}}">
+                                                            <img class="members--member-img" src="{{ asset('user-profile/image/sm_' . $project->scrumMaster->profile->image->src)}}" alt="{{$project->scrumMaster->first_name}}">
                                                         @else
                                                             <img class="members--member-img" src="{{ asset('/imgs/anonymous.png') }}" alt="project-scrum-master">
                                                         @endif
