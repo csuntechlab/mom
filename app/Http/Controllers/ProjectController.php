@@ -426,6 +426,8 @@ class ProjectController extends Controller
             $project->scrumMaster =  count($project->scrumMaster) ? $project->scrumMaster[0] : new User();
         }
 
+        // make the path for the pagination links work properly
+        $projects->setPath('/');
         
         return view('pages.projects.work', compact('projects'));
     }

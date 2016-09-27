@@ -70,8 +70,10 @@ class ImageReduce extends Controller
     	$this->traverseImages($path, true);
 
     	// trigger the project image resizing
-    	$path = 'imgs/projects';
-    	$this->traverseImages($path, false);
+    	/*$path = 'imgs/projects';
+    	$this->traverseImages($path, false);*/
+
+        // The Resizer does not work properly on project images; DO NOT USE!
 
     	return "<h1>Successfully re-sized all images</h1>";
     }
