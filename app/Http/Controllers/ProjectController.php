@@ -427,7 +427,7 @@ class ProjectController extends Controller
         }
 
         // make the path for the pagination links work properly
-        $projects->setPath('/');
+        $projects->setPath('work');
         
         return view('pages.projects.work', compact('projects'));
     }
