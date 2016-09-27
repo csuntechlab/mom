@@ -27,7 +27,7 @@
 				    <div class="row">
 				    	<div class="col-sm-4 col-sm-offset-4 text-center">
 				    		<label for="profile_image_file">
-					    		@if(isset($profile->image->src))
+					    		@if(!empty($profile->image->src))
 									<div id="profile_image_preview" style="cursor: pointer; border-radius: 50%; width: 200px; height: 200px; background: url('{{ asset('user-profile/image/' . 'lg_' . $profile->image->src) }}') no-repeat center center; background-size: cover; position: relative;">
 					    			</div>
 					    		@else
@@ -60,7 +60,7 @@
 					    				<div class="input-group-addon">
 							    			<img class="social-media-btn-img" src="{{ asset('imgs/linkden.svg' ) }}" alt="linkedin" />
 					    				</div>
-					    				{!! Form::text('linkedin_url', isset($linkedin_url) ? $linkedin_url : "", ['placeholder' => 'Add URL', 'class' => 'form-control']) !!}
+					    				{!! Form::text('linkedin_url', !empty($linkedin_url) ? $linkedin_url : "", ['placeholder' => 'Add URL', 'class' => 'form-control']) !!}
 					    			</div>
 						    	</div>
 					    	</div>
@@ -72,7 +72,7 @@
 						    			<div class="input-group-addon">
 							    			<img class="social-media-btn-img" src="{{ asset('imgs/github.svg' ) }}" alt="linkedin" />
 						    			</div>
-							    		{!! Form::text('github_url', isset($github_url) ? $github_url : "", ['placeholder' => 'Add URL', 'class' => 'form-control']) !!}
+							    		{!! Form::text('github_url', !empty($github_url) ? $github_url : "", ['placeholder' => 'Add URL', 'class' => 'form-control']) !!}
 					    			</div>
 					    		</div>
 					    	</div>
@@ -84,7 +84,7 @@
 					    				<div class="input-group-addon">
 							    			<img class="social-media-btn-img" src="{{ asset('imgs/Hover.svg' ) }}" alt="linkedin" />
 					    				</div>
-							    		{!! Form::text('portfolium_url', isset($portfolium_url) ? $portfolium_url : "", ['placeholder' => 'Add URL', 'class' => 'form-control']) !!}
+							    		{!! Form::text('portfolium_url', !empty($portfolium_url) ? $portfolium_url : "", ['placeholder' => 'Add URL', 'class' => 'form-control']) !!}
 					    			</div>
 					    		</div>
 						    </div>
@@ -191,7 +191,7 @@
 			      <div class="modal-body student lines-back">
 			        <div class="row">
 			        	<div class="text-center">
-			        	@if(isset($profile->image->src))
+			        	@if(!empty($profile->image->src))
 						<div id="profile_image_preview" style="border-radius: 50%; width: 200px; height: 200px; background: url('{{ asset('user-profile/image/lg_' . $profile->image->src) }}') no-repeat center center; background-size: cover; position: relative; margin: auto;">
 				    	</div>
 				    	@else
@@ -199,10 +199,10 @@
 				    	</div>
 				    	@endif
 			        	</div>
-			        	@if(isset($linkedin_url) || isset($portfolium_url))
+			        	@if(!empty($linkedin_url) || !empty($portfolium_url) || !empty($github_url))
 			        	<div class="row" style="text-align: center; margin-top: 25px;">
 			        		<ul class="list-inline list-unstyled">
-			        			@if(isset($linkedin_url))
+			        			@if(!empty($linkedin_url))
 			        			<li>
 				        			<a href="{{ $linkedin_url }}">
 				        				<img class="social-media-btn-img" src="{{ asset('imgs/linkden.svg' ) }}" alt="linkedin" />
@@ -210,11 +210,19 @@
 				    				</a>
 			    				</li>
 			        			@endif
-			        			@if(isset($portfolium_url))
+			        			@if(!empty($portfolium_url))
 			        			<li>
 			        				<a href="{{ ($portfolium_url) }}">
 			        				<img class="social-media-btn-img" src="{{ asset('imgs/Hover.svg' ) }}" alt="portfolium" />
 			        				<p>Portfolium</p>
+			    					</a>
+			        			</li>
+			        			@endif
+			        			@if(!empty($github_url))
+			        			<li>
+			        				<a href="{{ ($github_url) }}">
+			        				<img class="social-media-btn-img" src="{{ asset('imgs/github.svg' ) }}" alt="github" />
+			        				<p>GitHub</p>
 			    					</a>
 			        			</li>
 			        			@endif
@@ -307,7 +315,7 @@
 			      <div class="modal-body student lines-back">
 			        <div class="row">
 			        	<div class="text-center">
-			        	@if(isset($profile->image->src))
+			        	@if(!empty($profile->image->src))
 						<div id="profile_image_preview" style="border-radius: 50%; width: 200px; height: 200px; background: url('{{ asset('user-profile/image/lg_' . $profile->image->src) }}') no-repeat center center; background-size: cover; position: relative; margin: auto;">
 				    	</div>
 				    	@else
@@ -315,10 +323,10 @@
 				    	</div>
 				    	@endif
 			        	</div>
-			        	@if(isset($linkedin_url) || isset($portfolium_url))
+			        	@if(!empty($linkedin_url) || !empty($portfolium_url) || !empty($github_url))
 			        	<div class="row" style="text-align: center; margin-top: 25px;">
 			        		<ul class="list-inline list-unstyled">
-			        			@if(isset($linkedin_url))
+			        			@if(!empty($linkedin_url))
 			        			<li>
 				        			<a href="{{ $linkedin_url }}">
 				        				<img class="social-media-btn-img" src="{{ asset('imgs/linkden.svg' ) }}" alt="linkedin" />
@@ -326,11 +334,19 @@
 				    				</a>
 			    				</li>
 			        			@endif
-			        			@if(isset($portfolium_url))
+			        			@if(!empty($portfolium_url))
 			        			<li>
 			        				<a href="{{ ($portfolium_url) }}">
 			        				<img class="social-media-btn-img" src="{{ asset('imgs/Hover.svg' ) }}" alt="portfolium" />
 			        				<p>Portfolium</p>
+			    					</a>
+			        			</li>
+			        			@endif
+			        			@if(!empty($github_url))
+			        			<li>
+			        				<a href="{{ ($github_url) }}">
+			        				<img class="social-media-btn-img" src="{{ asset('imgs/github.svg' ) }}" alt="github" />
+			        				<p>GitHub</p>
 			    					</a>
 			        			</li>
 			        			@endif
@@ -425,7 +441,7 @@
 			        	<div class="col-xs-1"></div>
 			        	<div class="col-xs-2 text-right">
 			        		<div class="social-media-btn">
-			        		@if(isset($portfolium_url))
+			        		@if(!empty($portfolium_url))
 			        			<a href="{{ ($portfolium_url) }}">
 			        				<img class="social-media-btn-img" src="{{ asset('imgs/Hover.svg' ) }}" alt="portfolium" />
 			        				<p>Portfolium</p>
@@ -435,7 +451,7 @@
 						</div>
 						
 			        	<div class="col-xs-6 text-center">
-			        	@if(isset($profile->image->src))
+			        	@if(!empty($profile->image->src))
 						<div id="profile_image_preview" style="border-radius: 50%; width: 200px; height: 200px; background: url('{{ asset('user-profile/image/lg_' . $profile->image->src) }}') no-repeat center center; background-size: cover; position: relative;">
 				    	</div>
 				    	@else
@@ -445,7 +461,7 @@
 			        	</div>
 			        	<div class="col-xs-2 text-left">
 			        		<div class="social-media-btn">
-			        		@if(isset($linkedin_url))
+			        		@if(!empty($linkedin_url))
 			        			<a href="{{ $linkedin_url }}">
 			        				<img class="social-media-btn-img" src="{{ asset('imgs/linkden.svg' ) }}" alt="linkedin" />
 			        				<p>LinkedIn</p>
