@@ -6,6 +6,8 @@ use Toyota\Component\Ldap\Core\Manager,
     Toyota\Component\Ldap\Platform\Native\Driver,
     Toyota\Component\Ldap\Exception\BindException;
 
+use Toyota\Component\Ldap\API\ConnectionInterface;
+
 /**
  * Handler class for LDAP operations using the Tiesa LDAP package.
  */
@@ -76,6 +78,9 @@ class HandlerLDAP
 		$params = array(
 		    'hostname'  => $this->host,
 		    'base_dn'   => $this->basedn,
+		    'options' => [
+		    	ConnectionInterface::OPT_PROTOCOL_VERSION => 3, // LDAPv3
+		    ],
 		);
 		$this->ldap = new Manager($params, new Driver());
 
@@ -148,7 +153,7 @@ class HandlerLDAP
             	//dd($node->getAttributes());
                 foreach($node->getAttributes() as $attribute)
                 {   
-                    if ($attribute->getName() == $attr_name)
+                    if (strtolower($attribute->getName()) == strtolower($attr_name))
                     {
                         $attr =  $attribute->getValues()[0]; // attribute found
                         break;
